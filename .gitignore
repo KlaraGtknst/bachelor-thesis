@@ -1,0 +1,15 @@
+*.aux
+*.bbl
+*.log
+*.blg
+*.out
+*.toc
+*.run.xml
+*.synctex.gz
+*.lof
+*.lol
+*.lot
+_minted-main/
+Exposé/
+Formulare/
+Literatur/
