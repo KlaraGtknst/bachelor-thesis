@@ -5,4 +5,29 @@
 % left paranthese for side header of even numbered page, right one for odd numbered page
 \markboth{Abstract}{Abstract}
 
-\textcolor{red}{Abstract}
+
+Finding relevant documents and connections between multiple ones becomes significantly more difficult due to the sheer amount of documents available.
+Reviewing all documents in the course of the exploration of the data is no longer an option and thus, exploratory data analysis (EDA) is very important.
+
+Institutes, such as the (German) tax offices have access to leak data containing huge amounts of documents and valuable information yet to be extracted.
+However, these institutes, companies and individuals do not have sufficient resources to explore individual documents in order to find a specific one or to identify the key topics of them.
+Hence, computational means, such as text mining, may facilitate the situation.
+Text mining is used to automatically extract knowledge or information from unstructured text data.
+Text mining is a discipline of data mining.
+
+In this case, the starting point is a large text corpus.
+Since the leaks of (German) tax offices are restricted due to confidentiality reasons, free and online accessible data for instance from Wikipedia or Twitter, containing multiple documents of unknown and diverse content will be used for this thesis.
+
+In order to explore texts methods of topic modelling may be used.
+In this thesis, these methods are first identified via literature research and applied after.
+Potentially applicable methods include LDA in combination with visualisation via Wordclouds or BERTopic.
+
+
+The topics to be identified can be groups of words which appear more often than the average or groups of similar documents.
+Hence, a topic is not always the defined topic in terms of content, but sometimes a statistical phenomenon.
+Since different methods will probably define different topics, as they work and define the meaning of 'topic' differently, their results will be compared and evaluated on the dataset.
+
+Besides literature research, application and evaluation of the methods identified, certain preprocessing methods will probably prove to be eminent to successful work with unstructured text data.
+These methods could include chunking (separating texts into equally sized segments), lemmatization (eg. faster to fast), conversion to small letters, and Part of Speech (POS) for analysis and potential exclusion of certain named entities (NER) and stop-word-lists.
+
+First research showed that Natural Language Toolkit (NLTK) may be a library of interest in this context.
