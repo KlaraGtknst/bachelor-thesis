@@ -13,3 +13,5 @@ _minted-main/
 Exposé/
 Formulare/
 Literatur/
+# exclude temp Office files
+~$*
