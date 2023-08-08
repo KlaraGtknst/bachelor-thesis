@@ -18,17 +18,47 @@ These methods include chunking/ tokenization (separating texts into equally size
 conversion to small letters and stop-word-lists.
 
 \section{Motivation/ Objective}\label{sec:motivation}
-Zielsetzung
+
+On a broader scope this thesis aims to provide computational means to facilitate the work with large unstructured text data for individuals.
+In the following, certain goals are defined, which are to be achieved in this thesis.
+
+\begin{description}
+    \item[Usability.]
+    The methods should be bundeled in an application, which is easy to use and does not require any programming skills.
+    \item[Semantic similarity.]
+    The documents grouped together should be semantically similar.
+    \item[Topic identification.]
+    The topics identified should be meaningful to the task at hand.  
+    \item[Offline Calculation.]
+    The database should be calculated offline, so that the queries can be executed with little latency.
+\end{description}
 
 
 \section{Related work}\label{sec:related-work}
 
 
 \section{Research Questions}\label{sec:research-questions}
+The following research questions build the guideline for this thesis.
 
-list of research questions
-\subsection[\acs{rq}1]{\ac{rq}1: Question 1?}\label{subsec:rq1}
-explanation of \ac{rq}1
+\subsection[\acs{rq}1]{\ac{rq}1: Effect of different preprocessing pipelines on performance?}\label{subsec:rq1}
+In terms of \ac{rq}1, one could compare different types of stemmers (i.e. algorithmic vs. dictionary-based).
+
+\subsection[\acs{rq}2]{\ac{rq}2: Effect of different similarity measurement types on performance?}\label{subsec:rq2}
+In terms of \ac{rq}2, one could compare different types of similarity measurement types (i.e. cosine similarity vs. soft cosine similarity).
+
+\subsection[\acs{rq}3]{\ac{rq}3: Which type of database is best suited for this task?}\label{subsec:rq3}
+In terms of \ac{rq}3, one could compare different types of databases (i.e. object-orientated, relational, document).
+
+\subsection[\acs{rq}4]{\ac{rq}4: Effect of different embeddings on performance?}\label{subsec:rq4}
+In terms of \ac{rq}4, one could compare different types of embeddings (i.e. Doc2Vec, Bag-of-words, \ac{lda}, BERTopic).
+
 
 
 \section{Structure of the Thesis}\label{sec:structure-of-the-thesis}
+The rest of this thesis is structured as follows.
+Chapter \ref{ch:methodology} provides background information on the topic of this thesis.
+Chapter \ref{ch:implementation} describes the implementation of the methods.
+Chapter \ref{ch:evaluation} evaluates the methods.
+Chapter \ref{ch:results} discusses the results.
+Chapter \ref{ch:conclusion} concludes this thesis and 
+Chapter \ref{ch:outlook} gives an outlook on future work.
