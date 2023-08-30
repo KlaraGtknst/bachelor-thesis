@@ -9,6 +9,7 @@
 *.lof
 *.lol
 *.lot
+.DS_Store
 _minted-main/
 Exposé/
 Formulare/
