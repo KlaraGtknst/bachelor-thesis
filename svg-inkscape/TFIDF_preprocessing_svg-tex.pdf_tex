@@ -1,0 +1,76 @@
+%% Creator: Inkscape 1.3 (0e150ed, 2023-07-21), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'TFIDF_preprocessing_svg-tex.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{1329.44091797bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.09387404)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{TFIDF_preprocessing_svg-tex.pdf}}%
+    \put(0.02820735,0.00648769){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}PDFs\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{TFIDF_preprocessing_svg-tex.pdf}}%
+    \put(0.138216,0.00648769){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Strip accents\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{TFIDF_preprocessing_svg-tex.pdf}}%
+    \put(0.25668685,0.00648769){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Strip newlines\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{TFIDF_preprocessing_svg-tex.pdf}}%
+    \put(0.37797844,0.00648769){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Discretize numbers\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{TFIDF_preprocessing_svg-tex.pdf}}%
+    \put(0.49644929,0.00648769){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Remove punctation\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{TFIDF_preprocessing_svg-tex.pdf}}%
+    \put(0.61492014,0.00648769){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Change number en...\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{TFIDF_preprocessing_svg-tex.pdf}}%
+    \put(0.733391,0.00648769){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Remove stop words\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{TFIDF_preprocessing_svg-tex.pdf}}%
+    \put(0.85186185,0.00648769){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Lemmatization\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{TFIDF_preprocessing_svg-tex.pdf}}%
+    \put(0.9703327,0.00648769){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}preprocessed PDFs\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{TFIDF_preprocessing_svg-tex.pdf}}%
+  \end{picture}%
+\endgroup%
