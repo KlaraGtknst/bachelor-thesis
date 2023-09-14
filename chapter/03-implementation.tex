@@ -1,6 +1,19 @@
+\newcommand{\databaseName}{Elasticsearch}
 \chapter{Implementation}\label{ch:implementation}
 
-\section{Database ElasticSearch}\label{subsec:db}
+\section{Database Elasticsearch}\label{subsec:db}
+% introduction, users
+\databaseName{} is a widely used non-relational database, which was designed to store and perform full-text search on large corpus of unstructured data \cite{Elasticsearch2017}.
+This open-source distributed document-driven database system is build in Java and is based on the Apache Lucene (Java) library for high-speed full-text search \cite{Elasticsearch2017,Elasticsearch2019}.
+According to \cite{Elasticsearch2019}, \databaseName{} provides Wikipedia's full-text search and suggestions as well as Github's code search and Stack Overflow's geolocation queries and related questions.
+Needless to say, \databaseName{} is prone to handle Big Data and enables near real-time search by index refreshing periods of one second.
+
+% structure
+\databaseName{}'s entries, i.e. documents are stored in logical units, so called indices.
+As stated in \citeauthor{Elasticsearch2019} and \citeauthor{Elasticsearch2017}'s work, the indices are structured similar to Apache Lucene's inverted index format.
+
+
+
 columns are embeddings, rows are documents
 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
