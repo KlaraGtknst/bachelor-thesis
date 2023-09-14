@@ -10,7 +10,21 @@ Needless to say, \databaseName{} is prone to handle Big Data and enables near re
 
 % structure
 \databaseName{}'s entries, i.e. documents are stored in logical units, so called indices.
+% index
 As stated in \citeauthor{Elasticsearch2019} and \citeauthor{Elasticsearch2017}'s work, the indices are structured similar to Apache Lucene's inverted index format.
+An index can be spread into multiple nodes.
+A node is single running instance of \databaseName{} \cite{Elasticsearch2019}.
+An index is divided into one or more shards, which can be stored on different servers and enable parallelization \cite{Elasticsearch2019}.
+
+% document
+\databaseName{} indices' entries are documents, which are saved in a JSON fromat \cite{Elasticsearch2017}.
+A document's fields and field types are defined by the user when initializing the database index.
+By default, every field of a document is indexed and searchable \cite{Elasticsearch2019}.
+
+% Replicas
+Replicas are copies of shards, which create redundancy and thus, ensure availability \cite{Elasticsearch2019}.
+
+
 
 
 
