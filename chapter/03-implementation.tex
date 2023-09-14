@@ -26,12 +26,24 @@ Replicas are copies of shards, which create redundancy and thus, ensure availabi
 
 
 % content
-The database is filled once with data from a large unstructured corpus of \acs{pdf}.
+The database is filled once with data from a large unstructured corpus of \acp{pdf}.
 After the initialization of the database, it is used for queries. 
 Therefore, the procedure is carries out in a completely offline fashion.
 
 The index \textit{Bahamas} stores different embeddings of the text layer information and metadata of the documents.
 
+\begin{table}[htp]
+    \centering
+    \caption{Fields in \databaseName{} database in index \textit{Bahamas}}
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+        \_id & doc2vec & sim\_docs\_tfidf & google\_univ\_sent\_encoding & huggingface\_sent\_tarnsformer & inferSent\_AE & pca\_image & pca\_kmeans\_cluster & text & path & image \\
+        \hline
+        unique identifier of document \texttt{i} & doc2vec embedding of \texttt{i} & sim\_docs\_tfidf embedding of \texttt{i} & google\_univ\_sent\_encoding embedding of \texttt{i} & huggingface\_sent\_tarnsformer embedding of \texttt{i} & inferSent\_AE embedding of \texttt{i} & two dimensional \ac{pca} version of first page image of \texttt{i} & Cluster of \texttt{i} identified by KMeans on \ac{pca} version of image & text of \texttt{i} & path on local maschine to \texttt{i} & image of first page of \texttt{i} \\
+        \hline
+    \end{tabular}
+    \label{tbl:Elasticsearch-fields}
+\end{table}
 
 % query (endpoints)
 % get
