@@ -17,7 +17,7 @@ A node is single running instance of \databaseName{} \cite{Elasticsearch2019}.
 An index is divided into one or more shards, which can be stored on different servers and enable parallelization \cite{Elasticsearch2019}.
 
 % document
-\databaseName{} indices' entries are documents, which are saved in a JSON fromat \cite{Elasticsearch2017}.
+\databaseName{} indices' entries are documents, which are saved in a \ac{json} fromat \cite{Elasticsearch2017}.
 A document's fields and field types are defined by the user when initializing the database index.
 By default, every field of a document is indexed and searchable \cite{Elasticsearch2019}.
 
@@ -25,7 +25,22 @@ By default, every field of a document is indexed and searchable \cite{Elasticsea
 Replicas are copies of shards, which create redundancy and thus, ensure availability \cite{Elasticsearch2019}.
 
 
+% content
+The database is filled once with data from a large unstructured corpus of \acs{pdf}.
+After the initialization of the database, it is used for queries. 
+Therefore, the procedure is carries out in a completely offline fashion.
 
+The index \textit{Bahamas} stores different embeddings of the text layer information and metadata of the documents.
+
+
+% query (endpoints)
+% get
+
+% search id
+
+% full-text search
+
+% knn-search
 
 
 columns are embeddings, rows are documents
