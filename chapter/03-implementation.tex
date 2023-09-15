@@ -32,18 +32,30 @@ Therefore, the procedure is carries out in a completely offline fashion.
 
 The index \textit{Bahamas} stores different embeddings of the text layer information and metadata of the documents.
 
-\begin{table}[htp]
-    \centering
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[]
     \caption{Fields in \databaseName{} database in index \textit{Bahamas}}
-    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+    \begin{tabular}{|
+    >{\columncolor[HTML]{EFEFEF}}l |p{0.63\textwidth}|}
     \hline
-        \_id & doc2vec & sim\_docs\_tfidf & google\_univ\_sent\_encoding & huggingface\_sent\_tarnsformer & inferSent\_AE & pca\_image & pca\_kmeans\_cluster & text & path & image \\
-        \hline
-        unique identifier of document \texttt{i} & doc2vec embedding of \texttt{i} & sim\_docs\_tfidf embedding of \texttt{i} & google\_univ\_sent\_encoding embedding of \texttt{i} & huggingface\_sent\_tarnsformer embedding of \texttt{i} & inferSent\_AE embedding of \texttt{i} & two dimensional \ac{pca} version of first page image of \texttt{i} & Cluster of \texttt{i} identified by KMeans on \ac{pca} version of image & text of \texttt{i} & path on local maschine to \texttt{i} & image of first page of \texttt{i} \\
-        \hline
+    \cellcolor[HTML]{C0C0C0}\textbf{field name} & \cellcolor[HTML]{C0C0C0}\textbf{field description}                                                        \\ \hline
+    \_id                                        & unique identifier of document \texttt{i}                                                 \\ \hline
+    doc2vec                                     & doc2vec embedding of \texttt{i}                                                          \\ \hline
+    sim\_docs\_tfidf                            & sim\_docs\_tfidf embedding of \texttt{i}                                                 \\ \hline
+    google\_univ\_sent\_encoding                & google\_univ\_sent\_encoding embedding of \texttt{i}                                     \\ \hline
+    huggingface\_sent\_transformer              & huggingface\_sent\_transformer embedding of \texttt{i}                                   \\ \hline
+    inferSent\_AE                               & inferSent\_AE embedding of \texttt{i}                                                    \\ \hline
+    pca\_image                                  & two dimensional \ac{pca} version of first page image of \texttt{i}                      \\ \hline
+    pca\_kmeans\_cluster                        & Cluster of \texttt{i} identified by KMeans on \ac{pca} version of image                 \\ \hline
+    text                                        & text of \texttt{i}                                                                       \\ \hline
+    path                                        & path on local maschine to \texttt{i}                                                     \\ \hline
+    image                                       & image of first page of \texttt{i}                                                        \\ \hline
     \end{tabular}
     \label{tbl:Elasticsearch-fields}
 \end{table}
+
 
 % query (endpoints)
 % get
