@@ -31,6 +31,7 @@ After the initialization of the database, it is used for queries.
 Therefore, the procedure is carries out in a completely offline fashion.
 
 The index \textit{Bahamas} stores different embeddings of the text layer information and metadata of the documents.
+The structure of the index is presented in \autoref{tbl:Elasticsearch-fields}.
 
 % Please add the following required packages to your document preamble:
 % \usepackage[table,xcdraw]{xcolor}
@@ -63,6 +64,26 @@ The index \textit{Bahamas} stores different embeddings of the text layer informa
 % search id
 
 % full-text search
+The keyword used when performing full-text search in this case is \texttt{match}.
+To query for a specific value, one has to specify the \texttt{<field>} of interest and the query value.
+
+\databaseName{} preprocesses the query value before starting the search \cite{Elasticsearch-text-analyser}.
+The default preprocessing steps of the so-called default analyser include tokenization and lowercasing \cite{Elasticsearch-standard-analyser}. 
+Omitting stop words is disabled by default, but it is possible to provide custom stop words or use the English stop word list \cite{Elasticsearch-standard-analyser}.
+It is possible to create custom tokenizers, which split the query value into tokens of a certain maximum length.
+In this work, the default analyser is used for the full-text search, since for instance configuring a maximum token length did not seem necessary or likely to improve the results.
+
+Another useful feature of \databaseName{} is the multi-terms synonym expansion.
+When the user queries a specific phrase \databaseName{} expands the query to include synonyms of the query terms \cite{Elasticsearch-synonyms}.
+The maximum number of expansion terms is set to 50 by default, but can be configured by the user \cite{Elasticsearch-match}.
+By default, the multi-terms synonym expansion option is enabled \cite{Elasticsearch-match}.
+
+\databaseName{} also provides the option to perform fuzzy matching instead of exact search.
+By default this option is not enabled, but can be enabled and configured individually by the user \cite{Elasticsearch-match}.
+In this work, the fuzzy matching option is set to \texttt{AUTO}, which means in terms of keyword or text fields that the allowed Levenshtein Edit Distance, 
+i.e. number of characters changed to create an exact match between two terms, to be considered a match, is correlated to the length of the term \cite{Elasticsearch-fuzziness}.
+By default, terms of length up to two characters must match exactly, terms of length three to five characters must have an edit distance of one and 
+terms of length six or more characters must have an edit distance of two \cite{Elasticsearch-fuzziness}.
 
 % knn-search
 
