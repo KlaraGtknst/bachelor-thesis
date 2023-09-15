@@ -62,6 +62,9 @@ The structure of the index is presented in \autoref{tbl:Elasticsearch-fields}.
 % get
 
 % search id
+By specifying the unique \texttt{\_id} of a document and the database \texttt{index}, it is possible to retrieve a specific document from the database using the \texttt{GET \ac{api}}.
+The query is real-time by default.
+The parameter \texttt{\_source\_excludes} or \texttt{\_source\_includes} may be used to exclude or include specific fields of the document in the response \cite{Elasticsearch-get}.
 
 % full-text search
 The keyword used when performing full-text search in this case is \texttt{match}.
