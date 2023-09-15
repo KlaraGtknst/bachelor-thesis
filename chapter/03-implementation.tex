@@ -24,13 +24,13 @@ By default, every field of a document is indexed and searchable \cite{Elasticsea
 % Replicas
 Replicas are copies of shards, which create redundancy and thus, ensure availability \cite{Elasticsearch2019}.
 
-
 % content
 The database is filled once with data from a large unstructured corpus of \acp{pdf}.
 After the initialization of the database, it is used for queries. 
 Therefore, the procedure is carries out in a completely offline fashion.
 
 The index \textit{Bahamas} stores different embeddings of the text layer information and metadata of the documents.
+As depicted in \autoref{fig:pdf2db}, not only textual information is stored in the database, but also the images of the first page of the \acp{pdf}.
 The structure of the index is presented in \autoref{tbl:Elasticsearch-fields}.
 
 % Please add the following required packages to your document preamble:
@@ -57,11 +57,18 @@ The structure of the index is presented in \autoref{tbl:Elasticsearch-fields}.
     \label{tbl:Elasticsearch-fields}
 \end{table}
 
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=0.7\textwidth]{images/PDFs_to_database}
+    \caption{\acp{pdf} to Database. 
+    The first page of the \acp{pdf} are converted to images and the complete text is extracted. 
+    The images are stored in the database as well as the text and different embeddings of the text.
+    }
+    \label{fig:pdf2db}
+\end{figure}
 
 % query (endpoints)
-% get
-
-% search id
+% get: search id
 By specifying the unique \texttt{\_id} of a document and the database \texttt{index}, it is possible to retrieve a specific document from the database using the \texttt{GET \ac{api}}.
 The query is real-time by default.
 The parameter \texttt{\_source\_excludes} or \texttt{\_source\_includes} may be used to exclude or include specific fields of the document in the response \cite{Elasticsearch-get}.
@@ -89,7 +96,6 @@ i.e. number of characters changed to create an exact match between two terms, to
 By default, terms of length up to two characters must match exactly, terms of length three to five characters must have an edit distance of one and 
 terms of length six or more characters must have an edit distance of two \cite{Elasticsearch-fuzziness}.
 
-
 % knn-search
 Another search option of \databaseName{} is the \ac{knn} search.
 The query is a dense vector of the same dimension as the (dense) vectors stored in the database.
@@ -113,18 +119,11 @@ Therefore, instead of using the \ac{knn} query structure for semantic search on 
 
 columns are embeddings, rows are documents
 
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
-    \centering
-    \includesvg[width=0.5\textwidth]{images/PDFs_to_database}
-    \caption{Das Logo der Uni Kassel}
-    \label{fig:pdf2db}
-\end{figure}
-
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
-    \centering
-    \includesvg[width=1.0\textwidth]{images/TFIDF_preprocessing}
-    \caption{TFIDF Preprocessing}
-    \label{fig:preprocessing}
-\end{figure}
 
 \section{User Interface}\label{sec:ui}
+
+\subsection{Backend}\label{subsec:backend}
+Flask
+
+\subsection{Frontend}\label{subsec:frontend}
+angular
