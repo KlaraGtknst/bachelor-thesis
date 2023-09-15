@@ -41,10 +41,10 @@ The structure of the index is presented in \autoref{tbl:Elasticsearch-fields}.
     \begin{tabular}{|
     >{\columncolor[HTML]{EFEFEF}}l |p{0.63\textwidth}|}
     \hline
-    \cellcolor[HTML]{C0C0C0}\textbf{field name} & \cellcolor[HTML]{C0C0C0}\textbf{field description}                                                        \\ \hline
+    \cellcolor[HTML]{C0C0C0}\textbf{field name} & \cellcolor[HTML]{C0C0C0}\textbf{field description}                                       \\ \hline
     \_id                                        & unique identifier of document \texttt{i}                                                 \\ \hline
     doc2vec                                     & doc2vec embedding of \texttt{i}                                                          \\ \hline
-    sim\_docs\_tfidf                            & sim\_docs\_tfidf embedding of \texttt{i}                                                 \\ \hline
+    sim\_docs\_tfidf                            & sim\_docs\_tfidf embedding + all-zero flag of \texttt{i}                                 \\ \hline
     google\_univ\_sent\_encoding                & google\_univ\_sent\_encoding embedding of \texttt{i}                                     \\ \hline
     huggingface\_sent\_transformer              & huggingface\_sent\_transformer embedding of \texttt{i}                                   \\ \hline
     inferSent\_AE                               & inferSent\_AE embedding of \texttt{i}                                                    \\ \hline
@@ -79,13 +79,33 @@ The maximum number of expansion terms is set to 50 by default, but can be config
 By default, the multi-terms synonym expansion option is enabled \cite{Elasticsearch-match}.
 
 \databaseName{} also provides the option to perform fuzzy matching instead of exact search.
+By enabling the fuzzy matching option, a \databaseName{} query consisting of for instance, \textit{Bahama} returns documents which have the word \textit{Bahamas}.
 By default this option is not enabled, but can be enabled and configured individually by the user \cite{Elasticsearch-match}.
 In this work, the fuzzy matching option is set to \texttt{AUTO}, which means in terms of keyword or text fields that the allowed Levenshtein Edit Distance, 
 i.e. number of characters changed to create an exact match between two terms, to be considered a match, is correlated to the length of the term \cite{Elasticsearch-fuzziness}.
 By default, terms of length up to two characters must match exactly, terms of length three to five characters must have an edit distance of one and 
 terms of length six or more characters must have an edit distance of two \cite{Elasticsearch-fuzziness}.
 
+
 % knn-search
+Another search option of \databaseName{} is the \ac{knn} search.
+The query is a dense vector of the same dimension as the (dense) vectors stored in the database.
+According to \cite{Elasticsearch-knn}, the \ac{knn} either returns the exact brute-force nearest neighbors or approximate nearest neighbors calculated by the \textcolor{red}{TODO:}\ac{hnsw} algorithm \cite{Elasticsearch-kNN-HNSW, Elasticsearch-knn}.
+In this work, the approximate nearest neighbors search is used, since it is faster and the results are good enough for the use case of this work.
+In order to perform the \ac{knn} search on a \texttt{<field>} it has to be of type \texttt{dense\_vector}, indexed and a \texttt{similarity} measure has to be defined when initializing the database \cite{Elasticsearch-knn}.
+The similarity measure used in this work is the cosine similarity, which calculates the \texttt{\_score} of a document according to \autoref{eq:cosine-similarity}, 
+where \texttt{query} is the query vector and \texttt{vector} is the vector representation of the document in the database \cite{Elasticsearch-kNN-similarity}.
+Since cosine is not defined on vectors with zero magnitude, embeddings which can possibly return all zero vector representations, such as sim\_docs\_tfidf, are enhanced with an all-zero flag in this work.
+\begin{equation}
+    \frac{1 + \text{cosine}(\text{query}, \text{vector})}{2}
+\end{equation}
+\label{eq:cosine-similarity}
+
+\databaseName{}'s \ac{knn} implementation not only allows literal matching on search terms, but also semantic search \cite{Elasticsearch-knn}.
+Besides \databaseName{}, the elastic stack offers other tools, for instance Kibana, which provides a user interface to manage different models.
+After saving a model in Kibana, it is possible to create a text embedding ingest pipeline, which embeds new documents or reindexes existing documents \cite{Elasticsearch-knn-embedding}.
+However, in this work, Kibana is not used and the used models are saved on disk as \ac{pkl} files.
+Therefore, instead of using the \ac{knn} query structure for semantic search on embeddings provided by \databaseName{}, the normal \ac{knn} search on a field which contains an embedding is used.
 
 
 columns are embeddings, rows are documents
