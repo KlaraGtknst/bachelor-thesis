@@ -127,7 +127,7 @@ Another search option of \databaseName{} is the \ac{knn} search.
 The return value of a \ac{knn} search are the \texttt{k} nearest neighbors in terms of a certain distance function of a query vector \cite{Elasticsearch-kNN-HNSW}.
 According to \citeauthor{Elasticsearch-kNN-HNSW}, one of \ac{knn} search's use cases is semantic document retrieval, which makes it a good fit for this task.
 The query is a dense vector of the same dimension as the (dense) vectors stored in the database.
-According to \cite{Elasticsearch-knn}, the \ac{knn} either returns the exact brute-force nearest neighbors or approximate nearest neighbors calculated by the \textcolor{red}{TODO:}\ac{hnsw} algorithm \cite{Elasticsearch-kNN-HNSW, Elasticsearch-knn}.
+According to \cite{Elasticsearch-knn}, the \ac{knn} either returns the exact brute-force nearest neighbors or approximate nearest neighbors calculated by the \ac{hnsw} algorithm \cite{Elasticsearch-kNN-HNSW, Elasticsearch-knn}.
 In this work, the approximate nearest neighbors search is used, since it is faster and the results are good enough for the use case of this work.
 \ac{hnsw} is a graph-based algorithm \cite{Elasticsearch-kNN-HNSW}.
 The term \texttt{navigable} refers to the graphs used, which are graphs with (poly-)logarithmic scaling of links traversed during greedy traversal with respect to the network size \cite{Elasticsearch-kNN-HNSW}.
