@@ -98,9 +98,39 @@ terms of length six or more characters must have an edit distance of two \cite{E
 
 % knn-search
 Another search option of \databaseName{} is the \ac{knn} search.
+The return value of a \ac{knn} search are the \texttt{k} nearest neighbors in terms of a certain distance function of a query vector \cite{Elasticsearch-kNN-HNSW}.
+According to \citeauthor{Elasticsearch-kNN-HNSW}, one of \ac{knn} search's use cases is semantic document retrieval, which makes it a good fit for this task.
 The query is a dense vector of the same dimension as the (dense) vectors stored in the database.
 According to \cite{Elasticsearch-knn}, the \ac{knn} either returns the exact brute-force nearest neighbors or approximate nearest neighbors calculated by the \textcolor{red}{TODO:}\ac{hnsw} algorithm \cite{Elasticsearch-kNN-HNSW, Elasticsearch-knn}.
 In this work, the approximate nearest neighbors search is used, since it is faster and the results are good enough for the use case of this work.
+\ac{hnsw} is a graph-based algorithm \cite{Elasticsearch-kNN-HNSW}.
+The term \texttt{navigable} refers to the graphs used, which are graphs with (poly-)logarithmic scaling of links traversed during greedy traversal with respect to the network size \cite{Elasticsearch-kNN-HNSW}.
+The idea of a \texttt{hiercharical} algorithm is to create a multilayer graph, grouping links according to their link length, as displayed in \autoref{fig:hnsw-layer}. 
+The search starts on the uppermost layer, i.e. the layer containing the longest links, greedily traversing the layer until reaching the local minimum.
+It uses this local minimum as the starting point at the next lower layer and the process is repeated until the lowest layer is reached \cite{Elasticsearch-kNN-HNSW}.
+The layers of the graph are built incrementally, and a neighbour selection heuristic, as depicted in \autoref{fig:hnsw-heuristic}, not only creates links between close elements, 
+but also between isolated clusters to ensure global connectivity \cite{Elasticsearch-kNN-HNSW}.
+
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/HNSW-layer.png}
+    \caption{Structure of \ac{hnsw} layer from \cite{Elasticsearch-kNN-HNSW}.
+    The search starts on the uppermost layer, i.e. the layer containing the longest links, greedily traversing the layer until reaching the local minimum.
+    The local minimum is used as the starting point at the next lower layer and the process is repeated until the lowest layer is reached.
+    }
+    \label{fig:hnsw-layer}
+\end{figure}
+
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/HNSW-neighbour-selection-heuristic.png}
+    \caption{Neighbour selection heuristic of \ac{hnsw} from \cite{Elasticsearch-kNN-HNSW}.
+    The heuristic creates diverse links, i.e. links between close elements (e.g., green circle and elements in cluster 1) 
+    and between isolated clusters (e.g., green circle and $e_2$) to ensure global connectivity.
+    }
+    \label{fig:hnsw-heuristic}
+\end{figure}
+
 In order to perform the \ac{knn} search on a \texttt{<field>} it has to be of type \texttt{dense\_vector}, indexed and a \texttt{similarity} measure has to be defined when initializing the database \cite{Elasticsearch-knn}.
 The similarity measure used in this work is the cosine similarity, which calculates the \texttt{\_score} of a document according to \autoref{eq:cosine-similarity}, 
 where \texttt{query} is the query vector and \texttt{vector} is the vector representation of the document in the database \cite{Elasticsearch-kNN-similarity}.
