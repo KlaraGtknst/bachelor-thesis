@@ -3,8 +3,26 @@
 
 
 \section{Slurm}\label{subsec:slurm}
-\cite{slurm2003}
-\cite{slurm-online}
+
+Slurm is an open-source management tool for Linux clusters \cite{slurm-online}.
+It allocates access to recources, i.e. compute nodes, and provides the means to start, execute and monitor jobs \cite{slurm-online, slurm2003}.
+
+The so-called slurm deamons control nodes, partitions, jobs and job steps \cite{slurm-online}.
+According to \citeauthor{slurm-online}, a partition is a group of nodes and a job is the allocation of ressources, i.e. computate nodes, to an user for a limited time period.
+A basic visualization of the architecture is given in \autoref{fig:slurm-architecture}.
+
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=0.7\textwidth]{images/slurm_architecture}
+    \caption{Slurm architecture. The management node has a \texttt{slurmctld} deamon, while every compute node has a \texttt{slurmd} deamon.
+    The nodes communicate.
+    The user can use certain commmands, for instance \texttt{srun} and \texttt{squeue} anywhere on the cluster.
+    }
+    \label{fig:slurm-architecture}
+\end{figure}
+
+
+
 
 
 
