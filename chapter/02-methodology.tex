@@ -159,8 +159,38 @@ where $C_{i}$ is the $i$-th cluster and $\mu_{i}$ is the mean of the objects in 
 \label{eq:kmeans-error}
 \end{equation}
 
+\citeauthor{OPTICS_kMeans_2016} claim, hat KMeans will not identfy outliers.
+
 
 \subsubsection{DBSCAN}\label{subsec:dbscan}
+
+The clusters identfied by DBSCAN have a high density, i.e. minimum number of objects within a certain distance of each other, and are seperated by low density regions \cite{OPTICS_kMeans_2016}.
+In order to create clusters of minimum size and density, DBSCAN distinguishes between three types of objects \cite{OPTICS_kMeans_2016}:
+
+\begin{enumerate}
+    \item \textbf{Core objects}: 
+    An object with at least $minPts$ objects in its $\varepsilon$-neighbourhood $N_\varepsilon$ (within radius $varepsilon$).
+
+    \item \textbf{Border objects}: 
+    An object with less than $minPts$ objects in its $\varepsilon$-neighbourhood, but is in the $\varepsilon$-neighbourhood of a core object.
+
+    \item \textbf{Noise objects}: 
+    An object, which is neither a core object nor a border object.
+\end{enumerate}
+
+\citeauthor{OPTICS_kMeans_2016} define $x$ is directly density reachable from $y$ as object $x$ is in the $\varepsilon$-neighbourhood of core object $y$ \cite{OPTICS_kMeans_2016}.
+Moreover, a point is density reachable from another, if there is a chain of objects, which are directly density reachable from each other \cite{OPTICS_kMeans_2016}.
+$x$ and $y$ are said to be density connected, if there is a object $z$, from which both $x$ and $y$ are density reachable \cite{OPTICS_kMeans_2016}.
+
+The DBSCAN algorithm starts by labeling all objects as core, border or noise points.
+Then, it elimated noise points and links all core points, which are within each others neighbourhood \cite{OPTICS_kMeans_2016}.
+Groups of connected core points form a cluster \cite{OPTICS_kMeans_2016}.
+At the end every border point is assigned to the cluster of its corresponding core points \cite{OPTICS_kMeans_2016}.
+This algorithm creates clusters as maximal set of density connected points \cite{OPTICS_kMeans_2016}.
+
+According to \citeauthor{OPTICS_kMeans_2016}, DBSCAN can identify outlier or noise.
+However, the algorithm is sensitive to the input parameters $minPts$ and $\varepsilon$ and has difficulties distinguishing closely located cluster \cite{OPTICS_kMeans_2016}.
+
 
 
 \subsubsection{HDBSCAN*}\label{subsec:hdbcan}
@@ -171,8 +201,18 @@ where $C_{i}$ is the $i$-th cluster and $\mu_{i}$ is the mean of the objects in 
 Opposed to DBSCAN, OPTICS is able to detect clusters of varying densities \cite{OPTICS2014}.
 OPTICS produces an order of the elements according distance to the already added elements \cite{OPTICS2014}:
 The first element added to the order list is arbitrary.
+$\varepsilon$ defines the neighbourhood radius, i.e. the maximum distance between two elements, which are still considered to be in the same neighbourhood \cite{OPTICS_kMeans_2016}.
 The order list is iteratively expanded by adding the element of the $\varepsilon$-neighbourhood of the order list items, which is has the smallest distance to any of the elements already in the order list.
+Hence, clusters with higher density, i.e. lower $\varepsilon$, are added first (prioritized) \cite{OPTICS_kMeans_2016}.
 When there are no more elements in the $\varepsilon$-neighbourhood to add, the process is repeated for the other clusters.
+
+Hence, this procedure enables the extraction of clusters for arbitrary $0 \le \varepsilon_i \le \varepsilon$ \cite{OPTICS_kMeans_2016}.
+However, the algorithm is sensitive to the input parameters $minPts$ and $\varepsilon$.
+% generating distance
+
+% core distance p
+
+% reachability distance p, q
 
 
 
