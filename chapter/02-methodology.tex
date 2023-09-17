@@ -119,11 +119,11 @@ The similarity is measured by a distance function, which is dependent on the dat
 Common distance functions are the Euclidean distance, the Manhattan distance and the Minkowski distance \cite{OPTICS_kMeans_2016}.
 
 There are multiple clustering techniques, which can be divided into four categories \cite{OPTICS2016}: 
-\begin{enumerate}
+\begin{itemize}
     \item \textbf{Hierarchical clustering}:
     Algorithms, which create spherical or conex shaped clusters, possibly naturally occurring. 
     A terminal condition has to be defined beforehand.
-    Examples include CLINK and SLINK \cite{OPTICS2014}.
+    Examples include CLINK, SLINK \cite{OPTICS2014} and OPTICS \cite{OPTICS2013}.
 
     \item \textbf{Partitional based clustering}: 
     Algorithms, which partition the data into $k$ clusters, whereas $k$ is given apriori.
@@ -140,7 +140,11 @@ There are multiple clustering techniques, which can be divided into four categor
     Similar to density based clustering, but according to \citeauthor{OPTICS2016} better than density based clustering.
     Examples include flexible grid-based clustering \cite{OPTICS2014}.
     
-\end{enumerate}
+\end{itemize}
+
+Multiple approaches below use the term $\varepsilon$-neighbourhood, which is defined as the set of all objects within a certain distance $\varepsilon$ of a given object \cite{OPTICS2013}.
+In other words: $N_\varepsilon (x) = \left\{ y \in X | dist(x,y) \le \varepsilon, y \neq x \right\}$ 
+
 
 \subsubsection{KMeans}\label{subsec:kmeans}
 
@@ -167,29 +171,56 @@ where $C_{i}$ is the $i$-th cluster and $\mu_{i}$ is the mean of the objects in 
 The clusters identfied by DBSCAN have a high density, i.e. minimum number of objects within a certain distance of each other, and are seperated by low density regions \cite{OPTICS_kMeans_2016}.
 In order to create clusters of minimum size and density, DBSCAN distinguishes between three types of objects \cite{OPTICS_kMeans_2016}:
 
-\begin{enumerate}
+\begin{itemize}
     \item \textbf{Core objects}: 
-    An object with at least $minPts$ objects in its $\varepsilon$-neighbourhood $N_\varepsilon$ (within radius $varepsilon$).
+    An object with at least $minPts$ objects in its $\varepsilon$-neighbourhood $N_\varepsilon$.
+    $N_\varepsilon$ contains all objects within radius $\varepsilon$ of $x$, $\varepsilon$ being the so-called generating distance \cite{OPTICS2013}.
+    In other words: The neighbourhood of $x$ has to exceed a certain threshold for $x$ to be considered a core object, i.e. $| N_\varepsilon (x) | \geq minPts$ is true.
 
     \item \textbf{Border objects}: 
     An object with less than $minPts$ objects in its $\varepsilon$-neighbourhood, but is in the $\varepsilon$-neighbourhood of a core object.
 
     \item \textbf{Noise objects}: 
     An object, which is neither a core object nor a border object.
-\end{enumerate}
+\end{itemize}
 
-\citeauthor{OPTICS_kMeans_2016} define $x$ is directly density reachable from $y$ as object $x$ is in the $\varepsilon$-neighbourhood of core object $y$ \cite{OPTICS_kMeans_2016}.
-Moreover, a point is density reachable from another, if there is a chain of objects, which are directly density reachable from each other \cite{OPTICS_kMeans_2016}.
-$x$ and $y$ are said to be density connected, if there is a object $z$, from which both $x$ and $y$ are density reachable \cite{OPTICS_kMeans_2016}.
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=0.2\textwidth]{images/density_reachable}
+    \caption{Density reachability cf. \cite{OPTICS1999}.
+    The point $y \in X$ is density reachable from $x \in X$, since there is a chain of objects $x_1, ..., x_n$ with $x_1 = x$ and $x_n = y$, 
+    which are directly density reachable from each other.
+    }
+    \label{fig:density_reachable}
+\end{figure}
+
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=0.2\textwidth]{images/density_connected}
+    \caption{Density connectivity cf. \cite{OPTICS1999}.
+    The objects $x$ and $y$ are density connected, since there is a object $o$, from which both $x$ and $y$ are density reachable.
+    }
+    \label{fig:density_connected}
+\end{figure}
+
+
+
+\citeauthor{OPTICS_kMeans_2016} define $y$ is directly density reachable from $x$ as object $x$ is in the $\varepsilon$-neighbourhood of core object $y$ \cite{OPTICS_kMeans_2016}.
+Moreover, a point $y \in X$ is density reachable from $x \in X$, if there is a chain of objects $x_1, ..., x_n$ with $x_1 = x$ and $x_n = y$, 
+which are directly density reachable from each other \cite{OPTICS_kMeans_2016}.
+The points $x$ and $y$ are said to be density connected, if there is a object $o$, from which both $x$ and $y$ are density reachable \cite{OPTICS_kMeans_2016}.
+Density reachability is displayed in \autoref{fig:density_reachable} and density connectivity in \autoref{fig:density_connected}.
 
 The DBSCAN algorithm starts by labeling all objects as core, border or noise points.
 Then, it elimated noise points and links all core points, which are within each others neighbourhood \cite{OPTICS_kMeans_2016}.
 Groups of connected core points form a cluster \cite{OPTICS_kMeans_2016}.
 At the end every border point is assigned to the cluster of its corresponding core points \cite{OPTICS_kMeans_2016}.
+The non-core point cluster assigning is non-deterministic \cite{OPTICS2013}.
 This algorithm creates clusters as maximal set of density connected points \cite{OPTICS_kMeans_2016}.
 
 According to \citeauthor{OPTICS_kMeans_2016}, DBSCAN can identify outlier or noise.
 However, the algorithm is sensitive to the input parameters $minPts$ and $\varepsilon$ and has difficulties distinguishing closely located cluster \cite{OPTICS_kMeans_2016}.
+Moreover, if one wants to obtain hiercharical clustering, one has to run the algorithm multiple times with different $\varepsilon$, which is expensive in terms of memory usage \cite{OPTICS2013}.
 
 
 
@@ -198,21 +229,56 @@ However, the algorithm is sensitive to the input parameters $minPts$ and $\varep
 
 \subsubsection{OPTICS}\label{subsec:optics}
 
+OPTICS does not return an explicit clustering, but rather a density-based clustering structure of the data, 
+which is equivalent to clustering results of a broad range of parameters \cite{OPTICS1999}.
+The idea of \citeauthor{OPTICS1999} is that real world datasets cannot be described by a single global density, since they often consist of different local densities, 
+as displayed in \autoref{fig:diff_density_cluster}.
+
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=0.5\textwidth]{images/diff_density_cluster}
+    \caption{Clusters of different densities cf. \cite{OPTICS1999}.
+    Since $C_1$ and $C_2$ have different densities than $A$ and $B$, a clustering algorithm using one global density parameter would detect the clusters $A$, $B$ and $C$, 
+    rather than $A$, $B$, $C_1$ and $C_2$ .
+    }
+    \label{fig:diff_density_cluster}
+\end{figure}
+
 Opposed to DBSCAN, OPTICS is able to detect clusters of varying densities \cite{OPTICS2014}.
-OPTICS produces an order of the elements according distance to the already added elements \cite{OPTICS2014}:
+OPTICS produces an order of the elements according distance to the already added elements \cite{OPTICS2014, OPTICS2013}:
 The first element added to the order list is arbitrary.
 $\varepsilon$ defines the neighbourhood radius, i.e. the maximum distance between two elements, which are still considered to be in the same neighbourhood \cite{OPTICS_kMeans_2016}.
 The order list is iteratively expanded by adding the element of the $\varepsilon$-neighbourhood of the order list items, which is has the smallest distance to any of the elements already in the order list.
 Hence, clusters with higher density, i.e. lower $\varepsilon$, are added first (prioritized) \cite{OPTICS_kMeans_2016}.
 When there are no more elements in the $\varepsilon$-neighbourhood to add, the process is repeated for the other clusters.
+The non-core point cluster assigning is non-deterministic \cite{OPTICS2013}.
 
+\begin{equation}
+    RD(y) = \left\{
+    \begin{array}{ll}
+    \textrm{NULL} & \, \textrm{if |}N_\varepsilon (x)| < minPts \\
+    max(core\_dist(x), dist(x,y)) & \, \textrm{otherwise} \\
+    \end{array}
+    \right. 
+    \label{eq:optics-reachability-distance}
+\end{equation}
+
+OPTICS saves the reachability distance $RD(y)$, as calculated in \autoref{eq:optics-reachability-distance} from \cite{OPTICS2013},
+with core\_dist being the minimal distance $\varepsilon^{min}$ such that $| N_{\varepsilon^{min}} (x) | \geq minPts$ or NULL else, 
+of each element to its predecessor in the order list and thus, 
+a representation of the density necessary to keep two consecutive objects in the same cluster \cite{OPTICS2013}.
+If $\varepsilon < RD(y)$, then $y$ is not density reachable from predecessor $x$ and thus, 
+one can determine whether $x$ and $y$ are in the same cluster for a given $\varepsilon$ \cite{OPTICS2013}.
+According to \citeauthor{OPTICS2013}, the algorithm builds a spanning tree, which enables obtaining the clusters for a given $\varepsilon$ by returning the connected components 
+of the spanning tree after omitting all edges with $\varepsilon < RD(y)$ \cite{OPTICS2013}.
 Hence, this procedure enables the extraction of clusters for arbitrary $0 \le \varepsilon_i \le \varepsilon$ \cite{OPTICS_kMeans_2016}.
+According to \citeauthor{OPTICS2013}'s work, even though the clsutering algorithm is expensive the extraction needs only linear time.
 However, the algorithm is sensitive to the input parameters $minPts$ and $\varepsilon$.
 % generating distance
 
 % core distance p
 
-% reachability distance p, q
+
 
 
 
