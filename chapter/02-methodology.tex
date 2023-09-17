@@ -150,6 +150,12 @@ There are multiple clustering techniques, which can be divided into four categor
 
 \subsubsection{OPTICS}\label{subsec:optics}
 
+Opposed to DBSCAN, OPTICS is able to detect clusters of varying densities \cite{OPTICS2014}.
+OPTICS produces an order of the elements according distance to the already added elements \cite{OPTICS2014}:
+The first element added to the order list is arbitrary.
+The order list is iteratively expanded by adding the element of the $\varepsilon$-neighbourhood of the order list items, which is has the smallest distance to any of the elements already in the order list.
+When there are no more elements in the $\varepsilon$-neighbourhood to add, the process is repeated for the other clusters.
+
 
 
 \subsubsection{Variational Bayesian estimation of a Gaussian mixture}\label{subsec:varbayes}
