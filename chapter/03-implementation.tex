@@ -31,13 +31,14 @@ A basic visualization of the architecture is given in \autoref{fig:slurm-archite
 % introduction, users
 \databaseName{} is a widely used non-relational database, which was designed to store and perform full-text search on large corpus of unstructured data \cite{Elasticsearch2017}.
 This open-source distributed document-driven database system is build in Java and is based on the Apache Lucene (Java) library for high-speed full-text search \cite{Elasticsearch2017,Elasticsearch2019}.
-According to \cite{Elasticsearch2019}, \databaseName{} provides Wikipedia's full-text search and suggestions as well as Github's code search and Stack Overflow's geolocation queries and related questions.
-Needless to say, \databaseName{} is prone to handle Big Data and enables near real-time search by index refreshing periods of one second.
+According to \citeauthor{Elasticsearch2019}, \databaseName{} provides Wikipedia's full-text search and suggestions as well as Github's code search and Stack Overflow's geolocation queries and related questions.
+It enables near real-time search by index refreshing periods of one second.
+Needless to say, \databaseName{} is qualified to handle Big Data.
 
 % structure
-\databaseName{}'s entries, i.e. documents are stored in logical units, so called indices.
+\databaseName{}'s entries, i.e. documents, are stored in logical units, so called indices.
 % index
-As stated in \citeauthor{Elasticsearch2019} and \citeauthor{Elasticsearch2017}'s work, the indices are structured similar to Apache Lucene's inverted index format.
+As stated by \citeauthor{Elasticsearch2019} and \citeauthor{Elasticsearch2017}, the indices are structured similar to Apache Lucene's inverted index format.
 An index can be spread into multiple nodes.
 A node is single running instance of \databaseName{} \cite{Elasticsearch2019}.
 An index is divided into one or more shards, which can be stored on different servers and enable parallelization \cite{Elasticsearch2019}.
@@ -51,34 +52,32 @@ By default, every field of a document is indexed and searchable \cite{Elasticsea
 Replicas are copies of shards, which create redundancy and thus, ensure availability \cite{Elasticsearch2019}.
 
 % content
-The database is filled once with data from a large unstructured corpus of \acp{pdf}.
+The database is filled once with data from a large unstructured corpus of \ac{pdf} files.
 After the initialization of the database, it is used for queries. 
-Therefore, the procedure is carries out in a completely offline fashion.
+Therefore, the workflow is completely offline.
 
 The index \textit{Bahamas} stores different embeddings of the text layer information and metadata of the documents.
 As depicted in \autoref{fig:pdf2db}, not only textual information is stored in the database, but also the images of the first page of the \acp{pdf}.
 The structure of the index is presented in \autoref{tbl:Elasticsearch-fields}.
 
-% Please add the following required packages to your document preamble:
-% \usepackage[table,xcdraw]{xcolor}
-% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+% TODO: add field type or dimension?
 \begin{table}[]
-    \caption{Fields in \databaseName{} database in index \textit{Bahamas}}
+    \caption{Fields in \databaseName{} database in index \textit{Bahamas}.}
     \begin{tabular}{|
     >{\columncolor[HTML]{EFEFEF}}l |p{0.63\textwidth}|}
     \hline
-    \cellcolor[HTML]{C0C0C0}\textbf{field name} & \cellcolor[HTML]{C0C0C0}\textbf{field description}                                       \\ \hline
-    \_id                                        & unique identifier of document \texttt{i}                                                 \\ \hline
-    doc2vec                                     & doc2vec embedding of \texttt{i}                                                          \\ \hline
-    sim\_docs\_tfidf                            & sim\_docs\_tfidf embedding + all-zero flag of \texttt{i}                                 \\ \hline
-    google\_univ\_sent\_encoding                & google\_univ\_sent\_encoding embedding of \texttt{i}                                     \\ \hline
-    huggingface\_sent\_transformer              & huggingface\_sent\_transformer embedding of \texttt{i}                                   \\ \hline
-    inferSent\_AE                               & inferSent\_AE embedding of \texttt{i}                                                    \\ \hline
-    pca\_image                                  & two dimensional \ac{pca} version of first page image of \texttt{i}                      \\ \hline
-    pca\_kmeans\_cluster                        & Cluster of \texttt{i} identified by KMeans on \ac{pca} version of image                 \\ \hline
-    text                                        & text of \texttt{i}                                                                       \\ \hline
-    path                                        & path on local maschine to \texttt{i}                                                     \\ \hline
-    image                                       & image of first page of \texttt{i}                                                        \\ \hline
+    \cellcolor[HTML]{C0C0C0}\textbf{field name} & \cellcolor[HTML]{C0C0C0}\textbf{field description}                                     \\ \hline
+    \_id                                        & unique identifier of document \texttt{i}. The identifier is generated by the sha256 hash algorithm from hashlib.\\ \hline
+    doc2vec                                     & 55 dimensional doc2vec embedding of \texttt{i}.                                                          \\ \hline
+    sim\_docs\_tfidf                            & sim\_docs\_tfidf embedding + all-zero flag of \texttt{i}. The all-zero flag is one, if the tfidf embedding consists of only zeros, else zero.\\ \hline
+    google\_univ\_sent\_encoding                & 512 dimensional google\_univ\_sent\_encoding embedding of \texttt{i}.                                     \\ \hline
+    huggingface\_sent\_transformer              & 384 dimensional huggingface\_sent\_transformer embedding of \texttt{i}.                                  \\ \hline
+    inferSent\_AE                               & inferSent\_AE embedding of \texttt{i}. Since the pretrained infersent model embedding's dimension is 4096, the encoder of a trained \ac{ae} is added to reduce the dimension to 2048.                                                    \\ \hline
+    pca\_image                                  & Two dimensional \ac{pca} version of first page image of \texttt{i}.                      \\ \hline
+    pca\_kmeans\_cluster                        & Cluster of \texttt{i} identified by KMeans on \ac{pca} version of image.                 \\ \hline
+    text                                        & Text of \texttt{i}.                                                                       \\ \hline
+    path                                        & Path on local maschine to \texttt{i}.                                                     \\ \hline
+    image                                       & Base64 encoded image of first page of \texttt{i}.                                                        \\ \hline
     \end{tabular}
     \label{tbl:Elasticsearch-fields}
 \end{table}
@@ -87,7 +86,8 @@ The structure of the index is presented in \autoref{tbl:Elasticsearch-fields}.
     \centering
     \includesvg[width=0.7\textwidth]{images/PDFs_to_database}
     \caption{\acp{pdf} to Database. 
-    The first page of the \acp{pdf} are converted to images and the complete text is extracted. 
+    First, the data is preprocessed:
+    The first page of a \ac{pdf} file is converted to an image and the complete text is extracted. 
     The images are stored in the database as well as the text and different embeddings of the text.
     }
     \label{fig:pdf2db}
@@ -97,10 +97,10 @@ The structure of the index is presented in \autoref{tbl:Elasticsearch-fields}.
 % get: search id
 By specifying the unique \texttt{\_id} of a document and the database \texttt{index}, it is possible to retrieve a specific document from the database using the \texttt{GET \ac{api}}.
 The query is real-time by default.
-The parameter \texttt{\_source\_excludes} or \texttt{\_source\_includes} may be used to exclude or include specific fields of the document in the response \cite{Elasticsearch-get}.
+The parameters \texttt{\_source\_excludes} or \texttt{\_source\_includes} may be used to exclude or include specific fields of the document in the response \cite{Elasticsearch-get}.
 
 % full-text search
-The keyword used when performing full-text search in this case is \texttt{match}.
+The keyword used when performing full-text search is \texttt{match}.
 To query for a specific value, one has to specify the \texttt{<field>} of interest and the query value.
 
 \databaseName{} preprocesses the query value before starting the search \cite{Elasticsearch-text-analyser}.
@@ -139,7 +139,7 @@ but also between isolated clusters to ensure global connectivity \cite{Elasticse
 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includegraphics[width=0.4\textwidth]{images/HNSW-layer.png}
+    \includegraphics[width=0.3\textwidth]{images/HNSW-layer.png}
     \caption{Structure of \ac{hnsw} layer from \cite{Elasticsearch-kNN-HNSW}.
     The search starts on the uppermost layer, i.e. the layer containing the longest links, greedily traversing the layer until reaching the local minimum.
     The local minimum is used as the starting point at the next lower layer and the process is repeated until the lowest layer is reached.
@@ -149,7 +149,7 @@ but also between isolated clusters to ensure global connectivity \cite{Elasticse
 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includegraphics[width=0.4\textwidth]{images/HNSW-neighbour-selection-heuristic.png}
+    \includegraphics[width=0.3\textwidth]{images/HNSW-neighbour-selection-heuristic.png}
     \caption{Neighbour selection heuristic of \ac{hnsw} from \cite{Elasticsearch-kNN-HNSW}.
     The heuristic creates diverse links, i.e. links between close elements (e.g., green circle and elements in cluster 1) 
     and between isolated clusters (e.g., green circle and $e_2$) to ensure global connectivity.
@@ -158,13 +158,13 @@ but also between isolated clusters to ensure global connectivity \cite{Elasticse
 \end{figure}
 
 In order to perform the \ac{knn} search on a \texttt{<field>} it has to be of type \texttt{dense\_vector}, indexed and a \texttt{similarity} measure has to be defined when initializing the database \cite{Elasticsearch-knn}.
-The similarity measure used in this work is the cosine similarity, which calculates the \texttt{\_score} of a document according to \autoref{eq:cosine-similarity}, 
-where \texttt{query} is the query vector and \texttt{vector} is the vector representation of the document in the database \cite{Elasticsearch-kNN-similarity}.
+The similarity measure used in this work is the cosine similarity, which calculates the \texttt{\_score} of a document according to \autoref{eq:cosine-similarity} from \cite{Elasticsearch-kNN-similarity}, 
+where \texttt{query} is the query vector and \texttt{vector} is the vector representation of the document in the database.
 Since cosine is not defined on vectors with zero magnitude, embeddings which can possibly return all zero vector representations, such as sim\_docs\_tfidf, are enhanced with an all-zero flag in this work.
 \begin{equation}
     \frac{1 + \text{cosine}(\text{query}, \text{vector})}{2}
+    \label{eq:cosine-similarity}
 \end{equation}
-\label{eq:cosine-similarity}
 
 \databaseName{}'s \ac{knn} implementation not only allows literal matching on search terms, but also semantic search \cite{Elasticsearch-knn}.
 Besides \databaseName{}, the elastic stack offers other tools, for instance Kibana, which provides a user interface to manage different models.
