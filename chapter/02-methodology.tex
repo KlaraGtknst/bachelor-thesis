@@ -264,11 +264,14 @@ The non-core point cluster assigning is non-deterministic \cite{OPTICS2013}.
 \end{equation}
 
 OPTICS saves the reachability distance $RD(y)$, as calculated in \autoref{eq:optics-reachability-distance} from \cite{OPTICS2013},
-with core\_dist being the minimal distance $\varepsilon^{min}$ such that $| N_{\varepsilon^{min}} (x) | \geq minPts$ or NULL else, 
+with core distance core\_dist being the minimal distance $\varepsilon^{min}$ such that $| N_{\varepsilon^{min}} (x) | \geq minPts$ 
+(the distance to the $minPts^{th}$ point in $N_\varepsilon$) or NULL else, 
 of each element to its predecessor in the order list and thus, 
 a representation of the density necessary to keep two consecutive objects in the same cluster \cite{OPTICS2013}.
-If $\varepsilon < RD(y)$, then $y$ is not density reachable from predecessor $x$ and thus, 
-one can determine whether $x$ and $y$ are in the same cluster for a given $\varepsilon$ \cite{OPTICS2013}.
+If $\varepsilon < RD(y)$, then $y$ is not density reachable from any of its predecessors and thus, 
+one can determine whether two points are in the same cluster for a given information saved by OPTICS \cite{OPTICS2013, OPTICS1999}.
+If the core distance of an element is not NULL, i.e. it is a core object, and it is not density reachable from its predecessors, it is the start of a new cluster \cite{OPTICS1999}.
+Otherwise, the element is a noise point \cite{OPTICS1999}.
 According to \citeauthor{OPTICS2013}, the algorithm builds a spanning tree, which enables obtaining the clusters for a given $\varepsilon$ by returning the connected components 
 of the spanning tree after omitting all edges with $\varepsilon < RD(y)$ \cite{OPTICS2013}.
 The relationship between $\varepsilon$, cluster density and nested density-based clusters is displayed in \autoref{fig:nested_density_cluster}.
@@ -288,10 +291,20 @@ The relationship between $\varepsilon$, cluster density and nested density-based
 
 Hence, this procedure enables the extraction of clusters for arbitrary $0 \le \varepsilon_i \le \varepsilon$ \cite{OPTICS_kMeans_2016, OPTICS1999}.
 According to \citeauthor{OPTICS2013}'s work, even though the clsutering algorithm is expensive the extraction needs only linear time.
-However, the algorithm is sensitive to the input parameters $minPts$ and $\varepsilon$.
-% generating distance
+According to \cite{OPTICS1999}, the algorithm is yields good results, if the input parameters $minPts$ and $\varepsilon$ are "large enough" and thus, is rather insensitive to them.
 
-% core distance p
+% effect of eps (reachability plot)
+The smaller $\varepsilon$ is chosen, the more objects will be identified as noise and thus, the algorithm will not identify clusters with low density, 
+since some objects only become core objects for a larger $\varepsilon$ \cite{OPTICS1999}.
+According to \citeauthor{OPTICS1999}, the optimal value for $\varepsilon$ creates one cluster for most of the objects with respect to a constant $minPts$,
+since information about all density-based clusters for $\varepsilon_i < \varepsilon$ is preserved.
+A heuristic for choosing $\varepsilon$ based on the expected $k$-nearest neighbour distance is presented in \cite{OPTICS1999}.
+
+% effect of minPts (reachability plot)
+High values for $minPts$ smoothen the reachability curve, even though the overall shape stays roughly the same \cite{OPTICS1999}.
+According to \citeauthor{OPTICS1999}, the optimal value for $minPts$ is between 10 and 20.
+
+% TODO: reachability plot for doc images  (32x32 greyscale images and euclidean distance as similarity measure)
 
 
 
