@@ -124,7 +124,7 @@ There are multiple clustering techniques, which can be divided into four categor
     \item \textbf{Hierarchical clustering}:
     Algorithms, which create spherical or conex shaped clusters, possibly naturally occurring. 
     A terminal condition has to be defined beforehand.
-    Examples include CLINK, SLINK \cite{OPTICS2014} and OPTICS \cite{OPTICS2013}.
+    Examples include CLINK, SLINK \cite{OPTICS2014} and \ac{optics} \cite{OPTICS2013}.
 
     \item \textbf{Partitional based clustering}: 
     Algorithms, which partition the data into $k$ clusters, whereas $k$ is given apriori.
@@ -135,7 +135,7 @@ There are multiple clustering techniques, which can be divided into four categor
     Resulting clusters can be of arbitrary shape and size.
     The number of clusters does not have to be defined apriori.
     However, the algorithms are sensitive to input parameters, such as radius, minimum number of points and threshold.
-    Popular examples are DBSCAN and OPTICS.
+    Popular examples are DBSCAN and \ac{optics}.
     
     \item \textbf{Grid based clustering}:
     Similar to density based clustering, but according to \citeauthor{OPTICS2016} better than density based clustering.
@@ -230,7 +230,7 @@ Moreover, if one wants to obtain hiercharical clustering, one has to run the alg
 
 \subsubsection{OPTICS}\label{subsec:optics}
 
-OPTICS does not return an explicit clustering, but rather a density-based clustering structure of the data, 
+\ac{optics} does not return an explicit clustering, but rather a density-based clustering structure of the data, 
 which is equivalent to clustering results of a broad range of parameters \cite{OPTICS1999}.
 The idea of \citeauthor{OPTICS1999} is that real world datasets cannot be described by a single global density, since they often consist of different local densities, 
 as displayed in \autoref{fig:diff_density_cluster}.
@@ -245,8 +245,8 @@ as displayed in \autoref{fig:diff_density_cluster}.
     \label{fig:diff_density_cluster}
 \end{figure}
 
-Opposed to DBSCAN, OPTICS is able to detect clusters of varying densities \cite{OPTICS2014}.
-OPTICS produces an order of the elements according distance to the already added elements \cite{OPTICS2014, OPTICS2013}:
+Opposed to DBSCAN, \ac{optics} is able to detect clusters of varying densities \cite{OPTICS2014}.
+\ac{optics} produces an order of the elements according distance to the already added elements \cite{OPTICS2014, OPTICS2013}:
 The first element added to the order list is arbitrary.
 $\varepsilon$ defines the neighbourhood radius, i.e. the maximum distance between two elements, which are still considered to be in the same neighbourhood \cite{OPTICS_kMeans_2016}.
 The order list is iteratively expanded by adding the element of the $\varepsilon$-neighbourhood of the order list items, which is has the smallest distance to any of the elements already in the order list.
@@ -264,13 +264,13 @@ The non-core point cluster assigning is non-deterministic \cite{OPTICS2013}.
     \label{eq:optics-reachability-distance}
 \end{equation}
 
-OPTICS saves the reachability distance $RD(y)$, as calculated in \autoref{eq:optics-reachability-distance} from \cite{OPTICS2013},
+\ac{optics} saves the reachability distance $RD(y)$, as calculated in \autoref{eq:optics-reachability-distance} from \cite{OPTICS2013},
 with core distance core\_dist being the minimal distance $\varepsilon^{min}$ such that $| N_{\varepsilon^{min}} (x) | \geq minPts$ 
 (the distance to the $minPts^{th}$ point in $N_\varepsilon$) or NULL else, 
 of each element to its predecessor in the order list and thus, 
 a representation of the density necessary to keep two consecutive objects in the same cluster \cite{OPTICS2013}.
 If $\varepsilon < RD(y)$, then $y$ is not density reachable from any of its predecessors and thus, 
-one can determine whether two points are in the same cluster for a given information saved by OPTICS \cite{OPTICS2013, OPTICS1999}.
+one can determine whether two points are in the same cluster for a given information saved by \ac{optics} \cite{OPTICS2013, OPTICS1999}.
 If the core distance of an element is not NULL, i.e. it is a core object, and it is not density reachable from its predecessors, it is the start of a new cluster \cite{OPTICS1999}.
 Otherwise, the element is a noise point \cite{OPTICS1999}.
 According to \citeauthor{OPTICS2013}, the algorithm builds a spanning tree, which enables obtaining the clusters for a given $\varepsilon$ by returning the connected components 
@@ -284,7 +284,7 @@ The relationship between $\varepsilon$, cluster density and nested density-based
     \caption{The relationship between $\varepsilon$, cluster density and nested density-based clusters cf. \cite{OPTICS1999}.
     For a constant $minPts$, clusters with higher density such as $C_1$, $C_2$ and $C_3$, i.e. a low $\varepsilon_2$ value, 
     are completely contained in lower density clusters such as $C$ given $\varepsilon_1 > \varepsilon_2$.
-    This idea forms the basis of OPTICS of expanding clusters iteratively and thus, 
+    This idea forms the basis of \ac{optics} of expanding clusters iteratively and thus, 
     enables the detection of clusters for a broad range of neighbourhood radii $0 \le \varepsilon_i \le \varepsilon$.
     }
     \label{fig:nested_density_cluster}
@@ -306,9 +306,9 @@ High values for $minPts$ smoothen the reachability curve, even though the overal
 According to \citeauthor{OPTICS1999}, the optimal value for $minPts$ is between 10 and 20.
 
 % TODO: reachability plot for doc images  (32x32 greyscale images and euclidean distance as similarity measure)
-Similar to the approach from \cite{OPTICS1999}, OPTICS was used to cluster the images of the first page of documents in this work.
+Similar to the approach from \cite{OPTICS1999}, \ac{optics} was used to cluster the images of the first page of documents in this work.
 The images were preprossed to 32x32 greyscale pixel as visualized in \autoref{fig:preprocessed_docs}.
-The reachability distance ordered by OPTICS is displayed in \autoref{fig:reachability_plot}.
+The reachability distance ordered by \ac{optics} is displayed in \autoref{fig:reachability_plot}.
 The resulting clusters are displayed in \autoref{fig:optics_cluster}.
 Example instances of both clusters (cluster and noise) are displayed in \autoref{fig:example-cluster}.
 
@@ -327,7 +327,7 @@ Example instances of both clusters (cluster and noise) are displayed in \autoref
     \centering
     \includegraphics[width=0.5\textwidth]{images/reachability_plot.pdf}
     \caption{The reachability plot of the preprocessed documents.
-    The plot was created using the OPTICS algorithm from the Python library scikit-learn.
+    The plot was created using the \ac{optics} algorithm from the Python library scikit-learn.
     The plot shows the reachability distance of each document to its predecessor in the order list.
     The reachability distance is the minimum distance necessary to keep two consecutive objects in the same cluster.
     The plot shows that the documents are divided into a cluster and a noise region.
@@ -340,7 +340,7 @@ Example instances of both clusters (cluster and noise) are displayed in \autoref
     \centering
     \includegraphics[width=0.5\textwidth]{images/OPTICS_cluster.pdf}
     \caption{The clusters of the preprocessed documents in a three dimensional space.
-    The plot was created using the OPTICS algorithm from the Python library scikit-learn.
+    The plot was created using the \ac{optics} algorithm from the Python library scikit-learn.
     The clusters were extracted from the reachability plot in \autoref{fig:reachability_plot}.
     The green points belong to the cluster, whereas the blue points are noise points.
     }
@@ -353,7 +353,7 @@ Example instances of both clusters (cluster and noise) are displayed in \autoref
     \subfloat[\centering Example image from cluster 0. The image seems to be a normal, non-certficate document.]{{\includegraphics[width=5cm]{images/example_image_cluster_0.pdf} }}%
     \qquad
     \subfloat[\centering Example image which was identified as noise. The image seems to be a certficate.]{{\includegraphics[width=5cm]{images/example_image_cluster_-1.pdf} }}%
-    \caption{When using OPTICS with the configurations stated above, only one cluster and noise was identfied.
+    \caption{When using \ac{optics} with the configurations stated above, only one cluster and noise was identfied.
     This result could be due to the degradation of quality in the context of preprocessing the images.}%
     \label{fig:example-cluster}%
 \end{figure}
