@@ -305,6 +305,45 @@ High values for $minPts$ smoothen the reachability curve, even though the overal
 According to \citeauthor{OPTICS1999}, the optimal value for $minPts$ is between 10 and 20.
 
 % TODO: reachability plot for doc images  (32x32 greyscale images and euclidean distance as similarity measure)
+Similar to the approach from \cite{OPTICS1999}, OPTICS was used to cluster the images of the first page of documents in this work.
+The images were preprossed to 32x32 greyscale pixel as visualized in \autoref{fig:preprocessed_docs}.
+
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/preprocessed_docs.pdf}
+    \caption{The first 100 preprocessed documents of the dataset.
+    They were preprocessed in order to have the same characteristics as the images used in \cite{OPTICS1999}.
+    The images were preprocessed to 32x32 greyscale pixel, which drastically reduces the quality of the images.
+    }
+    \label{fig:preprocessed_docs}
+\end{figure}
+
+
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/reachability_plot.pdf}
+    \caption{The reachability plot of the preprocessed documents.
+    The plot was created using the OPTICS algorithm from the Python library scikit-learn.
+    The plot shows the reachability distance of each document to its predecessor in the order list.
+    The reachability distance is the minimum distance necessary to keep two consecutive objects in the same cluster.
+    The plot shows that the documents are divided into a cluster and a noise region.
+    }
+    \label{fig:reachability_plot}
+\end{figure}
+
+
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/OPTICS_cluster.pdf}
+    \caption{The clusters of the preprocessed documents in a three dimensional space.
+    The plot was created using the OPTICS algorithm from the Python library scikit-learn.
+    The clusters were extracted from the reachability plot in \autoref{fig:reachability_plot}.
+    The green points belong to the cluster, whereas the blue points are noise points.
+    }
+    \label{fig:optics_cluster}
+\end{figure}
+
+% what docs are in the cluster, what are noise?
 
 
 
