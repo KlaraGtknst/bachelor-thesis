@@ -307,6 +307,9 @@ According to \citeauthor{OPTICS1999}, the optimal value for $minPts$ is between 
 % TODO: reachability plot for doc images  (32x32 greyscale images and euclidean distance as similarity measure)
 Similar to the approach from \cite{OPTICS1999}, OPTICS was used to cluster the images of the first page of documents in this work.
 The images were preprossed to 32x32 greyscale pixel as visualized in \autoref{fig:preprocessed_docs}.
+The reachability distance ordered by OPTICS is displayed in \autoref{fig:reachability_plot}.
+The resulting clusters are displayed in \autoref{fig:optics_cluster}.
+Example instances of both clusters (cluster and noise) are displayed in \autoref{fig:example-cluster}.
 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
@@ -344,7 +347,15 @@ The images were preprossed to 32x32 greyscale pixel as visualized in \autoref{fi
 \end{figure}
 
 % what docs are in the cluster, what are noise?
-
+\begin{figure}%
+    \centering
+    \subfloat[\centering Example image from cluster 0. The image seems to be a normal, non-certficate document.]{{\includegraphics[width=5cm]{images/example_image_cluster_0.pdf} }}%
+    \qquad
+    \subfloat[\centering Example image which was identified as noise. The image seems to be a certficate.]{{\includegraphics[width=5cm]{images/example_image_cluster_-1.pdf} }}%
+    \caption{When using OPTICS with the configurations stated above, only one cluster and noise was identfied.
+    This result could be due to the degradation of quality in the context of preprocessing the images.}%
+    \label{fig:example-cluster}%
+\end{figure}
 
 
 
