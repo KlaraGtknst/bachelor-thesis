@@ -249,7 +249,7 @@ OPTICS produces an order of the elements according distance to the already added
 The first element added to the order list is arbitrary.
 $\varepsilon$ defines the neighbourhood radius, i.e. the maximum distance between two elements, which are still considered to be in the same neighbourhood \cite{OPTICS_kMeans_2016}.
 The order list is iteratively expanded by adding the element of the $\varepsilon$-neighbourhood of the order list items, which is has the smallest distance to any of the elements already in the order list.
-Hence, clusters with higher density, i.e. lower $\varepsilon$, are added first (prioritized) \cite{OPTICS_kMeans_2016}.
+Hence, clusters with higher density, i.e. lower $\varepsilon$, are added first (prioritized) \cite{OPTICS_kMeans_2016, OPTICS1999}.
 When there are no more elements in the $\varepsilon$-neighbourhood to add, the process is repeated for the other clusters.
 The non-core point cluster assigning is non-deterministic \cite{OPTICS2013}.
 
@@ -271,7 +271,22 @@ If $\varepsilon < RD(y)$, then $y$ is not density reachable from predecessor $x$
 one can determine whether $x$ and $y$ are in the same cluster for a given $\varepsilon$ \cite{OPTICS2013}.
 According to \citeauthor{OPTICS2013}, the algorithm builds a spanning tree, which enables obtaining the clusters for a given $\varepsilon$ by returning the connected components 
 of the spanning tree after omitting all edges with $\varepsilon < RD(y)$ \cite{OPTICS2013}.
-Hence, this procedure enables the extraction of clusters for arbitrary $0 \le \varepsilon_i \le \varepsilon$ \cite{OPTICS_kMeans_2016}.
+The relationship between $\varepsilon$, cluster density and nested density-based clusters is displayed in \autoref{fig:nested_density_cluster}.
+
+% TODO 1999 image of nested clusters to explain eps relation for fixed minPts
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=0.5\textwidth]{images/nested_density_cluster.svg}
+    \caption{The relationship between $\varepsilon$, cluster density and nested density-based clusters cf. \cite{OPTICS1999}.
+    For a constant $minPts$, clusters with higher density such as $C_1$, $C_2$ and $C_3$, i.e. a low $\varepsilon_2$ value, 
+    are completely contained in lower density clusters such as $C$ given $\varepsilon_1 > \varepsilon_2$.
+    This idea forms the basis of OPTICS of expanding clusters iteratively and thus, 
+    enables the detection of clusters for a broad range of neighbourhood radii $0 \le \varepsilon_i \le \varepsilon$.
+    }
+    \label{fig:nested_density_cluster}
+\end{figure}
+
+Hence, this procedure enables the extraction of clusters for arbitrary $0 \le \varepsilon_i \le \varepsilon$ \cite{OPTICS_kMeans_2016, OPTICS1999}.
 According to \citeauthor{OPTICS2013}'s work, even though the clsutering algorithm is expensive the extraction needs only linear time.
 However, the algorithm is sensitive to the input parameters $minPts$ and $\varepsilon$.
 % generating distance
