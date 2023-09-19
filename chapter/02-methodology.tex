@@ -406,7 +406,7 @@ Example instances of both clusters (cluster and noise) are displayed in \autoref
 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includegraphics[width=0.5\textwidth]{images/reachability_plot.pdf}
+    \includegraphics[width=0.5\textwidth]{images/OPTICS/model_xi/reachability_plot.pdf}
     \caption{The reachability plot of the preprocessed documents.
     The plot was created using the \ac{optics} algorithm from the Python library scikit-learn.
     The plot shows the reachability distance of each document to its predecessor in the order list.
@@ -419,7 +419,7 @@ Example instances of both clusters (cluster and noise) are displayed in \autoref
 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includegraphics[width=0.5\textwidth]{images/OPTICS_cluster.pdf}
+    \includegraphics[width=0.5\textwidth]{images/OPTICS/model_xi/OPTICS_cluster.pdf}
     \caption{The clusters of the preprocessed documents in a three-dimensional space.
     The clusters were extracted from the reachability plot in \autoref{fig:reachability_plot}.
     The green points belong to the cluster, whereas the blue points are noise points.
@@ -429,9 +429,9 @@ Example instances of both clusters (cluster and noise) are displayed in \autoref
 
 \begin{figure}%
     \centering
-    \subfloat[\centering Example image from cluster 0. The image seems to be a normal, non-certificate document.]{{\includegraphics[width=5cm]{images/example_image_cluster_0.pdf} }}%
+    \subfloat[\centering Example image from cluster 0. The image seems to be a normal, non-certificate document.]{{\includegraphics[width=5cm]{images/OPTICS/model_xi/example_image_cluster_0.pdf} }}%
     \qquad
-    \subfloat[\centering Example image which was identified as noise. The image seems to be a certificate.]{{\includegraphics[width=5cm]{images/example_image_cluster_-1.pdf} }}%
+    \subfloat[\centering Example image which was identified as noise. The image seems to be a certificate.]{{\includegraphics[width=5cm]{images/OPTICS/model_xi/example_image_cluster_-1.pdf} }}%
     \caption{When using \ac{optics} with the configurations stated above, only one cluster and noise was identified.
     This result could be due to the degradation of quality in the context of preprocessing the images.}%
     \label{fig:example-cluster}%
