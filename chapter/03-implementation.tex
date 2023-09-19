@@ -167,7 +167,7 @@ Since cosine is not defined on vectors with zero magnitude, embeddings that can 
 \end{equation}
 
 \databaseName{}'s \ac{knn} implementation not only allows literal matching on search terms but also semantic search \cite{Elasticsearch-knn}.
-Besides \databaseName{}, the elastic stack offers other tools, for instance Kibana, which provides a user interface to manage different models.
+Besides \databaseName{}, the elastic stack offers other tools, for instance, Kibana, which provides a user interface to manage different models.
 After saving a model in Kibana, it is possible to create a text embedding ingest pipeline, which embeds new documents or reindexes existing documents \cite{Elasticsearch-knn-embedding}.
 However, in this work, Kibana is not used and the used models are saved on disk as \ac{pkl} files.
 Therefore, instead of using the \ac{knn} query structure for semantic search on embeddings provided by \databaseName{}, the normal \ac{knn} search on a field that contains an embedding is used.
@@ -180,3 +180,5 @@ Flask
 
 \subsection{Frontend}\label{subsec:frontend}
 angular
+
+\section{Trade-off between memory and query time}\label{sec:trade-off}
