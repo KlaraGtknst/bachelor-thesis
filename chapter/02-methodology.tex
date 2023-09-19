@@ -1,3 +1,5 @@
+\newcommand{\eigenfaces}{Eigenfaces}
+\newcommand{\eigendocs}{Eigendocs}
 \chapter{Methodology}\label{ch:methodology}
 
 \cite{InformationRetrieval1999}
@@ -52,6 +54,8 @@ two flavor of doc2vec: PV-DM and PV-DBOW (https://thinkinfi.com/simple-doc2vec-e
 %\subsection{\ac{w2v}}\label{subsec:word2vec}
 
 \subsection{\ac{tfidf}}\label{subsec:tfidf}
+
+\cite{tfidf2020}
 Test test test
 % svg does not icons
 \begin{figure}[h] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
@@ -63,7 +67,7 @@ Test test test
 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includesvg[width=1.0\textwidth]{images/TFIDF_preprocessing}
+    \includesvg[width=1.1\textwidth]{images/TFIDF_preprocessing}
     \caption{TFIDF Preprocessing}
     \label{fig:preprocessing}
 \end{figure}
@@ -98,9 +102,9 @@ when querying db, top image results looked similar, which is how the idea of thi
 
 \subsubsection{eigenface}\label{subsec:eigenface}
 
-According to \citeauthor{eigenfaces1991}, the idea of eigenfaces is inspired by information theory.
+According to \citeauthor{eigenfaces1991}, the idea of \eigenfaces{} is inspired by information theory.
 Opposed to former approaches in the domain of face recognition which relied on the classification of images based on a set of predefined facial features, such as distance between eyes,
-eigenfaces does not use predefined features \cite{eigenfaces1991}.
+\eigenfaces{} does not use predefined features \cite{eigenfaces1991}.
 More specifically, the goal of this approach is to represent images using a smaller set of image features, which best describes and distinguishes between the images \cite{eigenfaces1991, eigenfaces2013}.
 Similar pictures, i.e. of the same person, should lie on a manifold in the lower-dimensional feature space \cite{face-recognition2008}.
 These features do not necessarily correspond to human facial features \cite{eigenfaces1991}.
@@ -131,14 +135,14 @@ The compressed image is a vector of the first $m$ weights of the linear combinat
 The decomposition is a projection of the face images onto a feature space or so-called face space spanned by the first $m$ basis vectors \cite{eigenfaces1991}.
 
 % eigenfaces: KL base
-In the context of eigenfaces one basis used for decomposition is the \ac{kl} basis, i.e. \ac{pca} \cite{eigenfaces1997, eigenfaces1991}.
+In the context of \eigenfaces{} one basis used for decomposition is the \ac{kl} basis, i.e. \ac{pca} \cite{eigenfaces1997, eigenfaces1991}.
 % source 1991, pg. 587: or fourier basis
 According to \citeauthor{eigenfaces1997}, the \ac{kl} representation is optimal in the sense that it minimizes the mean squared error between the original image and 
 the compressed image calculated using $m < n$ orthogonal vectors.
 The \ac{kl} basis is a vector of the eigenvectors of covariance matrix $\textbf{C} = E\left[ \textbf{x}\textbf{x}^{T} \right]$ of the input images $\mathbf{x}$ \cite{eigenfaces1997}.
 % determine the number of components m
 Since these eigenvectors can have facial features, they are called \textit{eigenfaces}.
-To determine the number of eigenfaces $m$ used to compress the input images, the cumulative explained variance of the first $i \le n$ eigenvectors (sorted by eigenvalues $\lambda_i$) is calculated 
+To determine the number of \eigenfaces{} $m$ used to compress the input images, the cumulative explained variance of the first $i \le n$ eigenvectors (sorted by eigenvalues $\lambda_i$) is calculated 
 \cite{eigenfaces1997, face-recognition2020, face-recognition2021}.
 The eigenvalues $\lambda_i$ can be interpreted as the amount of variance explained by the corresponding eigenvector $\textbf{e}_i$, which is equivalent to information or entropy.
 The user can choose how much variance, i.e. information, should be preserved, by choosing $m$ such that the explained variance is greater than the chosen threshold.
@@ -177,19 +181,19 @@ that makes the distance function used to make classifications a no longer reliab
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=1.0\textwidth]{images/eigendocs}
-    \caption{From \acp{pdf} to eigendocs.
+    \caption{From \acp{pdf} to \eigendocs{}.
     Firstly, the first page of a document is converted to an image.
     Then the image is preprocessed:
     It is placed on a white canvas, to ensure all images have the same dimensions.
     Moreover, it is converted to greyscale.
     Afterwards, the 2d image is reshaped to a 1d array.
-    Lastly, the image is compressed using eigenfaces.
+    Lastly, the image is compressed using \eigenfaces{}.
     }
     \label{fig:eigendocs_procedure}
 \end{figure}
 
 % this work
-In this work, the eigenfaces approach is used to compress the images of the first page of documents.
+In this work, the \eigenfaces{} approach is used to compress the images of the first page of documents.
 The idea is that documents not only hold textual information but also visual information, such as layout, company logo or signature.
 By mapping those images on a subspace, they ought to be grouped by visual similarity.
 The procedure of the eigenface adaption \textit{eigendocs} is displayed in \autoref{fig:eigendocs_procedure}.
@@ -396,7 +400,7 @@ According to \citeauthor{OPTICS1999}, the optimal value for $minPts$ is between 
     Then the image is preprocessed:
     There are two different preprocessing approaches were used:
     The first approach resizes the image to a 32x32 format when reading it initially.
-    The second approach uses the Eigendocs approach (i.e. an adaption of Eigenfaces) to reduce the image to a 2x2 format.
+    The second approach uses the \eigendocs{} approach (i.e. an adaption of \eigenfaces{}) to reduce the image to a 2x2 format.
     In both cases, the compressed image is converted to greyscale.
     }
     \label{fig:OPTICS_procedure}
@@ -407,7 +411,7 @@ The procedure is displayed in \autoref{fig:OPTICS_procedure}.
 There were two different preprocessing approaches:
 \begin{enumerate}
     \item \label{pt:32}The images were preprocessed to 32x32 greyscale pixels as visualized in \autoref{fig:preprocessed_docs_32x32}.
-    \item \label{pt:eigendocs}The technique eigendocs from \autoref{subsec:eigenface} 
+    \item \label{pt:eigendocs}The technique \eigendocs{} from \autoref{subsec:eigenface} 
     was used to compress the images to 2x2 greyscale images as displayed in the fourth row of \autoref{fig:preprocessed_docs_eigendocs}.
 \end{enumerate}
 
