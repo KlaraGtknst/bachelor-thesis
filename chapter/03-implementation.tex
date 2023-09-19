@@ -103,9 +103,9 @@ The parameters \texttt{\_source\_excludes} or \texttt{\_source\_includes} may be
 The keyword used when performing a full-text search is \texttt{match}.
 To query for a specific value, one has to specify the \texttt{<field>} of interest and the query value.
 
-\databaseName{} preprocesses the query value before starting the search \cite{Elasticsearch-text-analyzer}.
-The default preprocessing steps of the so-called default analyzer include tokenization and lowercasing \cite{Elasticsearch-standard-analyzer}. 
-Omitting stop words is disabled by default, but it is possible to provide custom stop words or use the English stop word list \cite{Elasticsearch-standard-analyzer}.
+\databaseName{} preprocesses the query value before starting the search \cite{Elasticsearch-text-analyser}.
+The default preprocessing steps of the so-called default analyzer include tokenization and lowercasing \cite{Elasticsearch-text-analyser}. 
+Omitting stop words is disabled by default, but it is possible to provide custom stop words or use the English stop word list \cite{Elasticsearch-text-analyser}.
 It is possible to create custom tokenizers, which split the query value into tokens of a certain maximum length.
 In this work, the default analyzer is used for the full-text search, since for instance configuring a maximum token length did not seem necessary or likely to improve the results.
 
