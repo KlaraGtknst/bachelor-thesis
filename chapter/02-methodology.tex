@@ -97,12 +97,59 @@ when querying db, top image results looked similar, which is how the idea of thi
 \subsubsection{AE}\label{subsec:autoencoder}
 
 \subsubsection{eigenface}\label{subsec:eigenface}
-like pca, but for images
+
+According to \citeauthor{eigenfaces1991}, the idea of eigenfaces is inspired by information theory.
+Opposed to former approaches in the domain of face recognition which relied on the classification of images based on a set of predefined facial features, such as distance between eyes,
+eigenfaces does not use predefined features \cite{eigenfaces1991}.
+More specifically, the goal of this approach is to represent images using a smaller set of image features, which best describes and distinguishes between the images.
+These features do not necessarily correspond to human facial features \cite{eigenfaces1991}.
+
+% input image
+The input greyscale images are two-dimensional arrays of numbers: $\textbf{x} = \left\{ x_i, i \in \textbf{S} \right\}$, $\textbf{S}$ being a square lattice \cite{eigenfaces1997}.
+The images are reshaped to an one-dimensional array $\textbf{x} = \left[x_1, x_2, ..., x_n  \right]^{T} \in \mathbb{R}^{n}$, 
+where $n = \left\| \textbf{S} \right\|$ and $\mathbb{R}^{n}$ is the $n$-dimensional euclidean space \cite{eigenfaces1997}.
+
+% decomposition
+The next step is to find an alternative lower-dimensional representation of the images, which preserves most of the information of the original image.
+In mathematical terms, this decomposition can be expressed as 
+$\textbf{x} = \sum_{i=1}^{n}\hat{x}_{i} \textbf{e}_{i}$, 
+$\hat{x}_{i}$ being inner product of $\textbf{x}$ and $\textbf{e}_{i}$, 
+$\textbf{e}$ being an orthogonal basis 
+\cite{eigenfaces1997}.
+In order to compress the input from a $n-$ to a $m-$, given $m \ll n$, dimensional space, only the first $m$ basis vectors are used.
+$m$ is chosen such that $\hat{x}_{i}$ is small for $i \ge m$ \cite{eigenfaces1997}.
+The compressed version of the image is denoted $\textbf{x} \simeq \hat{\textbf{x}} = \left[\hat{x}_{1}, \hat{x}_{2}, ..., \hat{x}_{m}  \right]^{T}$.
+In other words: 
+The compressed image is a vector of the first $m$ weights of the linear combination of weight and basis vectors which can be used to transform the image back to the original space.
+
+% eigenfaces: KL base
+In the context of eigenfaces one basis used for decomposition is the \ac{kl} basis, i.e. \ac{pca} \cite{eigenfaces1997}.
+According to \citeauthor{eigenfaces1997}, the \ac{kl} representation is optimal in the sense that it minimizes the mean squared error between the original image and 
+the compressed image calculated using $m < n$ orthogonal vectors.
+The \ac{kl} basis is a vector of the eigenvectors of covariance matrix $\textbf{C} = E\left[ \textbf{x}\textbf{x}^{T} \right]$ of the input images $\mathbf{x}$ \cite{eigenfaces1997}.
+% determine the number of components m
+Since these eigenvectors can have facial features, they are called \textit{eigenfaces}.
+To determine the number of eigenfaces $m$ used to compress the input images, the cumulative explained variance of the first $i \le n$ eigenvectors (sorted by eigenvalues $\lambda_i$) is calculated.
+The eigenvalues $\lambda_i$ can be interpreted as the amount of variance explained by the corresponding eigenvector $\textbf{e}_i$, which is equivalent to information or entropy.
+The user can choose how much variance, i.e. information, should be preserved, by choosing $m$ such that the explained variance is greater than the chosen threshold.
+
+% calculation of eigenvectors of covariance matrix C
+In order to reduce calculation complexity, $C$ is approximated by $\frac{1}{N}\sum_{k=1}^{N}\textbf{x}_{k}\textbf{x}_{k}^{T}$ and thus, $\textbf{C} \simeq \frac{1}{N}\textbf{X}\textbf{X}^{T}$, 
+with $\textbf{X} = \left[ \textbf{x}_{1}, \textbf{x}_{2}, ..., \textbf{x}_{N} \right]$ and $N$ being the number of training images, $\textbf{x}_i \in \mathbb{R}^{n}$ \cite{eigenfaces1997}.
+However, finding the eigenvectors of $\textbf{X}\textbf{X}^{T}$ is still computationally expensive, since $\textbf{X}\textbf{X}^{T}$ is a $n$ by $n$ matrix.
+The key idea to solve this problem is \ac{svd} \cite{eigenfaces1997}.
+According to \citeauthor{eigenfaces1997}, the eigenvectors of $\textbf{X}\textbf{X}^{T}$ can be calculated by using the eigenvectors of $\textbf{X}^{T}\textbf{X}$.
+Hence, the problem is reduced to a $N$ by $N$ matrix, which is computationally less expensive to solve, since $N \ll n$.
+The eigenvalues $\textbf{e}_i \in \mathbb{R}^{n}$ of $\textbf{X}\textbf{X}^{T}$ can be derived from the eigenvectors $\textbf{v}_i \in \mathbb{R}^{N}$ of $\textbf{X}^{T}\textbf{X}$ by 
+$\textbf{e}_i = \frac{1}{\sqrt{\lambda_i}}\textbf{X}\textbf{v}_i$ as discussed in more detail in \cite{eigenfaces1997}.
+
+
 \cite{face-recognition2020}
 \cite{face-recognition2021}
 \cite{face-recognition2008}
 \cite{eigenfaces2013}
 \cite{eigenfaces1997}
+\cite{eigenfaces1991}
 
 
 \subsection{Clustering}\label{subsec:clustering}
