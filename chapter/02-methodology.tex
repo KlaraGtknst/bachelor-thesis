@@ -388,51 +388,88 @@ According to \citeauthor{OPTICS1999}, the optimal value for $minPts$ is between 
 
 % TODO: reachability plot for doc images  (32x32 greyscale images and euclidean distance as similarity measure)
 Similar to the approach from \cite{OPTICS1999}, \ac{optics} was used to cluster the images of the first page of documents in this work.
-The images were preprocessed to 32x32 greyscale pixels as visualized in \autoref{fig:preprocessed_docs}.
-The reachability distance ordered by \ac{optics} is displayed in \autoref{fig:reachability_plot}.
-The resulting clusters are displayed in \autoref{fig:optics_cluster}.
-Example instances of both clusters (cluster and noise) are displayed in \autoref{fig:example-cluster}.
+There were two different preprocessing approaches:
+\begin{enumerate}
+    \item \label{pt:32}The images were preprocessed to 32x32 greyscale pixels as visualized in \autoref{fig:preprocessed_docs_32x32}.
+    \item \label{pt:eigendocs}The technique eigendocs from \autoref{subsec:eigenface} 
+    was used to compress the images to 2x2 greyscale images as displayed in the fourth row of \autoref{fig:preprocessed_docs_eigendocs}.
+\end{enumerate}
 
+The reachability distance ordered by \ac{optics} is displayed in \autoref{fig:reachability_plots}.
+The resulting clusters are displayed in \autoref{fig:optics_cluster}.
+Example instances of both clusters (cluster and noise) are displayed in \autoref{fig:optics-cluster-32x32} and \autoref{fig:optics-cluster-eigendocs}.
+
+% preprocessed images
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includegraphics[width=0.5\textwidth]{images/preprocessed_docs.pdf}
+    \includegraphics[width=0.5\textwidth]{images/OPTICS/32x32/preprocessed_docs.pdf}
     \caption{The first 100 preprocessed documents of the dataset.
     They were preprocessed in order to have the same characteristics as the images used in \cite{OPTICS1999}.
-    The images were preprocessed to 32x32 greyscale pixels, which drastically reduced the quality of the images.
+    The images were preprocessed as discussed in \autoref{pt:32} to 32x32 greyscale pixels, which drastically reduced the quality of the images.
     }
-    \label{fig:preprocessed_docs}
+    \label{fig:preprocessed_docs_32x32}
 \end{figure}
-
 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includegraphics[width=0.5\textwidth]{images/OPTICS/model_xi/reachability_plot.pdf}
-    \caption{The reachability plot of the preprocessed documents.
-    The plot was created using the \ac{optics} algorithm from the Python library scikit-learn.
+    \includegraphics[width=0.7\textwidth]{images/OPTICS/eigendocs/eigendocs_2x2_dim.pdf}
+    \caption{The first 10 preprocessed documents of the dataset.
+    The original images are displayed in the first row.
+    The second row shows the reconstructed images using the compressed images from the fourth row.
+    The third row shows the reconstruction error, i.e. the difference between the reconstructed and the original image.
+    The fourth row shows them in their compressed 2x2 greyscale form as discussed in \autoref{pt:eigendocs}.
+    The last row presents the greyscale values of the compressed image as a line.
+    }
+    \label{fig:preprocessed_docs_eigendocs}
+\end{figure}
+
+
+% reachability plot
+\begin{figure}%
+    \centering
+    \subfloat[\centering The reachability plot of the documents preprocessed according to \autoref{pt:32}.]{{\includegraphics[width=5cm]{images/OPTICS/32x32/reachability_plot_32x32.pdf} }}%
+    \qquad
+    \subfloat[\centering The reachability plot of the documents preprocessed according to \autoref{pt:eigendocs}.]{{\includegraphics[width=5cm]{images/OPTICS/eigendocs/reachability_plot_eigendocs.pdf} }}%
+    \caption{The plot was created using the \ac{optics} algorithm from the Python library scikit-learn.
     The plot shows the reachability distance of each document to its predecessor in the order list.
     The reachability distance is the minimum distance necessary to keep two consecutive objects in the same cluster.
-    The plot shows that the documents are divided into a cluster and a noise region.
-    }
-    \label{fig:reachability_plot}
+    The plot shows that the documents are divided into a cluster and a noise region.}%
+    \label{fig:reachability_plots}%
 \end{figure}
 
 
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+% OPTIC cluster results
+\begin{figure}%
     \centering
-    \includegraphics[width=0.5\textwidth]{images/OPTICS/model_xi/OPTICS_cluster.pdf}
-    \caption{The clusters of the preprocessed documents in a three-dimensional space.
-    The clusters were extracted from the reachability plot in \autoref{fig:reachability_plot}.
-    The green points belong to the cluster, whereas the blue points are noise points.
-    }
-    \label{fig:optics_cluster}
+    \subfloat[\centering The clusters identified by \ac{optics} of the documents preprocessed according to \autoref{pt:32}.]{{\includegraphics[width=5cm]{images/OPTICS/32x32/OPTICS_cluster_32x32.pdf} }}%
+    \qquad
+    \subfloat[\centering The clusters identified by \ac{optics} of the documents preprocessed according to \autoref{pt:eigendocs}.]{{\includegraphics[width=5cm]{images/OPTICS/eigendocs/OPTICS_cluster_eigendocs.pdf} }}%
+    \caption{The clusters were extracted from the respective reachability plot in \autoref{fig:reachability_plots}.
+    The blue points are noise points, whereas any other colour denotes a cluster.}%
+    \label{fig:optics_cluster}%
+\end{figure}
+
+% example cluster images
+\begin{figure}%
+    \centering
+    \subfloat[\centering Example of cluster 0.]{{\includegraphics[width=5cm]{images/OPTICS/32x32/example_image_cluster_0_32x32.pdf}}}%
+    \qquad
+    \subfloat[\centering Example of cluster 1.]{{\includegraphics[width=5cm]{images/OPTICS/32x32/example_image_cluster_1_32x32.pdf}}}%
+    \qquad
+    \subfloat[\centering Example of cluster 2.]{{\includegraphics[width=5cm]{images/OPTICS/32x32/example_image_cluster_2_32x32.pdf}}}%
+    \qquad
+    \subfloat[\centering Example of noise.]{{\includegraphics[width=5cm]{images/OPTICS/32x32/example_image_cluster_-1_32x32.pdf}}}%
+    \caption{The clusters were identified by \ac{optics} of the documents preprocessed according to \autoref{pt:32}.}%
+    \label{fig:optics-cluster-32x32}%
 \end{figure}
 
 \begin{figure}%
     \centering
-    \subfloat[\centering Example image from cluster 0. The image seems to be a normal, non-certificate document.]{{\includegraphics[width=5cm]{images/OPTICS/model_xi/example_image_cluster_0.pdf} }}%
+    \subfloat[\centering Example of cluster 0.]{{\includegraphics[width=5cm]{images/OPTICS/eigendocs/example_image_cluster_0__eigendocs.pdf}}}%
     \qquad
-    \subfloat[\centering Example image which was identified as noise. The image seems to be a certificate.]{{\includegraphics[width=5cm]{images/OPTICS/model_xi/example_image_cluster_-1.pdf} }}%
-    \caption{When using \ac{optics} with the configurations stated above, only one cluster and noise was identified.
-    This result could be due to the degradation of quality in the context of preprocessing the images.}%
-    \label{fig:example-cluster}%
+    \subfloat[\centering Example of cluster 1.]{{\includegraphics[width=5cm]{images/OPTICS/eigendocs/example_image_cluster_1_eigendocs.pdf}}}%
+    \qquad
+    \subfloat[\centering Example of noise.]{{\includegraphics[width=5cm]{images/OPTICS/eigendocs/example_image_cluster_-1__eigendocs.pdf}}}%
+    \caption{The clusters were identified by \ac{optics} of the documents preprocessed according to \autoref{pt:eigendocs}.}%
+    \label{fig:optics-cluster-eigendocs}%
 \end{figure}
