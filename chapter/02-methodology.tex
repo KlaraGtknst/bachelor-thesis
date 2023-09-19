@@ -179,7 +179,10 @@ that makes the distance function used to make classifications a no longer reliab
     \includesvg[width=1.0\textwidth]{images/eigendocs}
     \caption{From \acp{pdf} to eigendocs.
     Firstly, the first page of a document is converted to an image.
-    Then, the image is preprocessed, i.e. cropped, resized and converted to greyscale. \textcolor{red}{TODO: was genau passiert hier}
+    Then the image is preprocessed:
+    It is placed on a white canvas, to ensure all images have the same dimensions.
+    Moreover, it is converted to greyscale.
+    Afterwards, the 2d image is reshaped to a 1d array.
     Lastly, the image is compressed using eigenfaces.
     }
     \label{fig:eigendocs_procedure}
@@ -386,8 +389,21 @@ A heuristic for choosing $\varepsilon$ based on the expected $k$-nearest neighbo
 High values for $minPts$ smoothen the reachability curve, even though the overall shape stays roughly the same \cite{OPTICS1999}.
 According to \citeauthor{OPTICS1999}, the optimal value for $minPts$ is between 10 and 20.
 
-% TODO: reachability plot for doc images  (32x32 greyscale images and euclidean distance as similarity measure)
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=0.5\textwidth]{images/OPTICS/OPTICS_procedure.svg}
+    \caption{First, the first page of each document is converted to an image.
+    Then the image is preprocessed:
+    There are two different preprocessing approaches were used:
+    The first approach resizes the image to a 32x32 format when reading it initially.
+    The second approach uses the Eigendocs approach (i.e. an adaption of Eigenfaces) to reduce the image to a 2x2 format.
+    In both cases, the compressed image is converted to greyscale.
+    }
+    \label{fig:OPTICS_procedure}
+\end{figure}
+
 Similar to the approach from \cite{OPTICS1999}, \ac{optics} was used to cluster the images of the first page of documents in this work.
+The procedure is displayed in \autoref{fig:OPTICS_procedure}.
 There were two different preprocessing approaches:
 \begin{enumerate}
     \item \label{pt:32}The images were preprocessed to 32x32 greyscale pixels as visualized in \autoref{fig:preprocessed_docs_32x32}.
@@ -399,6 +415,7 @@ The reachability distance ordered by \ac{optics} is displayed in \autoref{fig:re
 The resulting clusters are displayed in \autoref{fig:optics_cluster}.
 Example instances of both clusters (cluster and noise) are displayed in \autoref{fig:optics-cluster-32x32} and \autoref{fig:optics-cluster-eigendocs}.
 \textcolor{red}{TODO: compare preprocessing results}
+
 
 % preprocessed images
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
