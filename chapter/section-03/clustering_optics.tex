@@ -13,14 +13,24 @@ Similar to the approach from \cite{OPTICS1999}, \ac{optics} was used to cluster 
 The procedure is displayed in \autoref{fig:OPTICS_procedure}.
 There were two different preprocessing approaches:
 \begin{enumerate}
-    \item \label{pt:32}The images were first preprocessed to 32x32 greyscale pixels and afterwards compressed to 13-dimensional vectors using \ac{pca} as visualized in \autoref{fig:preprocessed_docs_32x32}.
+    \item \label{pt:32}The images were first preprocessed to 32x32 greyscale pixels (cf. \cite{OPTICS1999}) as visualized in \autoref{fig:preprocessed_docs_32x32}
+    and afterwards compressed to 13-dimensional vectors using \ac{pca}.
     \item \label{pt:eigendocs}The technique \eigendocs{} from \autoref{subsec:eigenface} 
     was used to compress the images to 13-dimensional greyscale images as displayed in \autoref{fig:preprocessed_docs_eigendocs}.
 \end{enumerate}
 
+
+% preprocessed images
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/OPTICS/32x32/preprocessed_docs.pdf}
+    \caption{The first 100 documents of the dataset compressed to 32x32 greyscale pixels.
+    }
+    \label{fig:preprocessed_docs_32x32}
+\end{figure}
+
 The reachability distance ordered by \ac{optics} is displayed in \autoref{fig:reachability_plots}.
 The resulting clusters are displayed in \autoref{fig:optics_cluster}.
-
 
 % reachability plot
 \begin{figure}%
