@@ -1,0 +1,21 @@
+\section{\eigendocs{}}\label{subsec:eigendocs}
+
+% this work
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=1.0\textwidth]{images/eigendocs}
+    \caption{From \acp{pdf} to \eigendocs{}.
+    Firstly, the first page of a document is converted to an image.
+    Then the image is preprocessed:
+    It is placed on a white canvas, to ensure all images have the same dimensions.
+    Moreover, it is converted to greyscale.
+    Afterwards, the 2d image is reshaped to a 1d array.
+    Lastly, the image is compressed using \eigenfaces{}.
+    }
+    \label{fig:eigendocs_procedure}
+\end{figure}
+
+In this work, the \eigenfaces{} approach from \autoref{subsec:eigenface} is used to compress the images of the first page of documents.
+The idea is that documents not only hold textual information but also visual information, such as layout, company logo or signature.
+By mapping those images on a subspace, they ought to be grouped by visual similarity.
+The procedure of the eigenface adaption \textit{eigendocs} is displayed in \autoref{fig:eigendocs_procedure}.

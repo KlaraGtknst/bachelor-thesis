@@ -1,31 +1,3 @@
-\newcommand{\databaseName}{Elasticsearch}
-\chapter{Implementation}\label{ch:implementation}
-
-
-\section{Slurm}\label{subsec:slurm}
-
-Slurm is an open-source management tool for Linux clusters \cite{slurm-online}.
-It allocates resources, i.e. compute nodes, and provides the means to start, execute and monitor jobs \cite{slurm-online, slurm2003}.
-
-The so-called slurm daemons control nodes, partitions, jobs and job steps \cite{slurm-online}.
-According to \citeauthor{slurm-online}, a partition is a group of nodes and a job is the allocation of resources, i.e. compute nodes, to a user for a limited period of time.
-A basic visualization of the architecture is given in \autoref{fig:slurm-architecture}.
-
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
-    \centering
-    \includesvg[width=0.7\textwidth]{images/slurm_architecture}
-    \caption{Slurm architecture. The management node has a \texttt{slurmctld} daemon, while every compute node has a \texttt{slurmd} daemon.
-    The nodes communicate.
-    The user can use certain commands, for instance \texttt{srun} and \texttt{squeue}, anywhere on the cluster.
-    }
-    \label{fig:slurm-architecture}
-\end{figure}
-
-% Christians Skizzen der Verbindung(sherstellung)
-
-
-
-
 
 \section{Database Elasticsearch}\label{subsec:db}
 % introduction, users
@@ -173,13 +145,3 @@ After saving a model in Kibana, it is possible to create a text embedding ingest
 However, in this work, Kibana is not used and the used models are saved on disk as \ac{pkl} files.
 Therefore, instead of using the \ac{knn} query structure for semantic search on embeddings provided by \databaseName{}, the normal \ac{knn} search on a field that contains an embedding is used.
 
-
-\section{User Interface}\label{sec:ui}
-
-\subsection{Backend}\label{subsec:backend}
-Flask
-
-\subsection{Frontend}\label{subsec:frontend}
-angular
-
-\section{Trade-off between memory and query time}\label{sec:trade-off}
