@@ -1,0 +1,34 @@
+\subsection{Clustering using \ac{optics}}\label{subsec:impl-optics}
+
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=0.5\textwidth]{images/OPTICS/OPTICS_procedure.svg}
+    \caption{First, the first page of each document is converted to an image.
+    Then the image is preprocessed, i.e. conversion to greyscale and resizing.
+    }
+    \label{fig:OPTICS_procedure}
+\end{figure}
+
+Similar to the approach from \cite{OPTICS1999}, \ac{optics} was used to cluster the images of the first page of documents in this work.
+The procedure is displayed in \autoref{fig:OPTICS_procedure}.
+There were two different preprocessing approaches:
+\begin{enumerate}
+    \item \label{pt:32}The images were first preprocessed to 32x32 greyscale pixels and afterwards compressed to 13-dimensional vectors using \ac{pca} as visualized in \autoref{fig:preprocessed_docs_32x32}.
+    \item \label{pt:eigendocs}The technique \eigendocs{} from \autoref{subsec:eigenface} 
+    was used to compress the images to 13-dimensional greyscale images as displayed in \autoref{fig:preprocessed_docs_eigendocs}.
+\end{enumerate}
+
+The reachability distance ordered by \ac{optics} is displayed in \autoref{fig:reachability_plots}.
+The resulting clusters are displayed in \autoref{fig:optics_cluster}.
+
+
+% reachability plot
+\begin{figure}%
+    \centering
+    \subfloat[\centering The reachability plot of the documents preprocessed according to \autoref{pt:32}.]{{\includegraphics[width=5cm]{images/OPTICS/32x32/reachability_plot_32x32_pca_13dim.pdf} }}%
+    \qquad
+    \subfloat[\centering The reachability plot of the documents preprocessed according to \autoref{pt:eigendocs}.]{{\includegraphics[width=5cm]{images/OPTICS/eigendocs/reachability_plot_13dim_eigendocs.pdf} }}%
+    \caption{The plot was created using the \ac{optics} algorithm from the Python library scikit-learn.
+    It shows the reachability distance of each document to its predecessor in the order list.}%
+    \label{fig:reachability_plots}%
+\end{figure}
