@@ -51,17 +51,11 @@ The default analyzer is used for the full-text search, since for instance config
             index='bahamas', 
             size=count,
             from_=(page*count),
-            query= {
-                    'match' : {
-                        'text': {
-                            'query':text,
-                            'fuzziness': 'AUTO',
-                            }
-                        
-                    },
-                    
-                },
-            source_includes=SRC_INCLUDES)
+            query= {'match' : {
+                        'text': {   'query':text,
+                                    'fuzziness': 'AUTO',}
+                    }, 
+                }, source_includes=SRC_INCLUDES)
     \end{minted}
     \caption{Exemplartary query to an \databaseName database index.
     The number of results to return \texttt{size} and the start index of the results \texttt{from\_} is defined.
