@@ -21,4 +21,48 @@ By mapping those images on a subspace, they ought to be grouped by visual simila
 The procedure of the eigenface adaption \textit{eigendocs} is displayed in \autoref{fig:eigendocs_procedure}.
 
 % procedure
-\textcolor{red}{white canvas encodes information about the size of the document} 
+The documents are first read from a directory. 
+Subsequently, their first page is converted to an image and saved.
+When initially filling the database, these images are read from their directory.
+Firstly, the maximum height and width of all images in the corpus is calculated.
+These dimension are used to create a white canvas for each image which forms the background.
+Every image is placed in the upper left corner.
+Hence, scaling is not necessary and thus, the portion of white pixels on the right and bottom side encodes the dimension of the former image.
+Therefore, the relative size of images in the corpus is incooperated in the resulting representation fo the input images.
+
+\begin{listing}[htp]
+    \begin{minted}{python3}
+        C = np.ones((max_w,max_h))
+        C[:doc.shape[0],:doc.shape[1]] = rgb2gray(doc)
+        documents.append(C.ravel())
+    \end{minted}
+    \caption{Preprocessing of the input images from \thesissupervisor{}.
+    The background is a white canvas.
+    The images are converted to one-dimensional greyscale values.}
+    \label{lst:preproc_images}
+\end{listing}
+
+Afterwards, they are converted to greyscale images using \autoref{lst:rgb2grey}.
+Before returning the image, the two-dimensional image vectors are converted to one-dimensional ones as displayed in the last line of \autoref{lst:preproc_images}.
+The decomposition is transformed using \ac{pca} as displayed in \autoref{lst:pca_svd}.
+
+\begin{listing}[htp]
+    \begin{minted}{python3}
+        0.299*img[:,:,0] + 0.587*img[:,:,1] + 0.114*img[:,:,2]
+    \end{minted}
+    \caption{Conversion of RGB pixel values to greyscale by a script from \thesissupervisor{}.}
+    \label{lst:rgb2grey}
+\end{listing}
+
+\begin{listing}[htp]
+    \begin{minted}{python3}
+        pca = decomposition.PCA(n_components=n_components, whiten=True, 
+            svd_solver="randomized")
+    \end{minted}
+    \caption{Initialization of the \ac{pca} instace used to compress the image data.
+    In order to work according to the \eigenfaces{} approach a svd\_solver has to be used.
+    }
+    \label{lst:pca_svd}
+\end{listing}
+
+

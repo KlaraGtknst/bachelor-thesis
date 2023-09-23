@@ -42,3 +42,26 @@ The resulting clusters are displayed in \autoref{fig:optics_cluster}.
     It shows the reachability distance of each document to its predecessor in the order list.}%
     \label{fig:reachability_plots}%
 \end{figure}
+
+% code
+The configurations used when initializing an \ac{optics} model greatly influence the clusters returned.
+The user has to consider the increase of complexity when choosing a high \texttt{max\_eps} value.
+The way the reachability plot is used to extract cluster is dependent on the \texttt{cluster\_method}, 
+whereas \texttt{min\_smaples} and \texttt{eps} influence the cluster sizes and number of cluster found for a given clustering approach.
+The code to initialize an exemplartary \ac{optics} model is displayed in \lst{lst:optics_model}.
+
+\begin{listing}[htp]
+    \begin{minted}{python3}
+        optics_model = OPTICS(cluster_method='dbscan', min_samples=2, max_eps=10, 
+            eps=0.5)
+    \end{minted}
+    \caption{Initialization of the \ac{optics} model.
+    One can choose either \texttt{dbscan} or \texttt{xi} as clustering method.
+    The number of minimum samples in a cluster corresponds to \textit{minPts}.
+    The parameter \texttt{max\_eps} is infinity as default, but can be specified by the user to reduce complexity and runtime.
+    According to literature, \texttt{max\_eps} should be big enough to include almost all points in a cluster.
+    The value of \texttt{eps} define the distance between two points to still be considered neighbors 
+    and can be chosen consulting the reachability plot.
+    }
+    \label{lst:optics_model}
+\end{listing}

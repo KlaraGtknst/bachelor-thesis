@@ -57,3 +57,10 @@ Most of the certificates are classified as noise for both approaches.
 
 
 The preprocessing approach used to create the \ac{optics} input for the \databaseName{} database index is \eigendocs{} since it also encodes information about the document size. 
+
+% code
+According to \citeauthor{OPTICS2014}, \ac{optics} was developed to improve \ac{dbscan} flaws.
+Therefore, \ac{dbscan} is chosen for the cluster method in \lst{lst:optics_model}, since the literature consulted works with \ac{dbscan} as a basis.
+In order to reduce calculation complexity the maximum $\varepsilon$ is 10.
+The distance between to two points to still be considered neighbours is defined after visual inspection of the reachability plot.
+Considering the intrinsic structure of the data it is set to $0.5$ to return meaningful clusters.
