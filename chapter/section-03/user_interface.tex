@@ -1,7 +1,36 @@
 \section{User Interface}\label{sec:ui}
 
 \subsection{Backend}\label{subsec:backend}
-Flask
+
+% introduction
+The framework used for the backend is \flask{}.
+According to \citeauthor{flask_book2015}, \flask{} is one of the most popular Python web frameworks.
+It provides powerful libraries for tasks such as routing, templating, and \ac{http} request parsing \cite{flask_book2015}.
+
+% initialization
+All requests received from clients are passed to an instance of the \flask{} application \cite{flask_book2018}.
+% code example
+
+% routing
+Clients send requests to the web server, which passes them to the \flask{} application instance.
+The queries are then routed to the corresponding functions.
+Routing is the process of mapping \ac{url} paths to functions \cite{flask_book2018}.
+To define a route, the \texttt{route} decorator is used \cite{flask_book2018}.
+% code example
+\acs{url} can contain dynamic components, which are enclosed in \texttt{<>} angle brackets.
+The values of these components are passed to the function as arguments \cite{flask_book2018}.
+By default, dynamic components are of type \texttt{string}.
+However, other types including \texttt{int} and \texttt{float} are supported \cite{flask_book2018}.
+
+% dev server
+During development, the \flask{} application can be run using \texttt{flask run} to start the built-in development web server \cite{flask_book2018}.
+By enabling debug mode, the server automatically reloads the application when changes are detected \cite{flask_book2018}.
+
+\cite{mvc_flask2019}
+\cite{flask2015}
+\cite{flask_book2015}
+\cite{flask_book2018}
+\cite{flask2018}
 
 \subsection{Frontend}\label{subsec:frontend}
 angular
