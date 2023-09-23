@@ -45,10 +45,36 @@ The structure of the index is presented in \autoref{tbl:Elasticsearch-fields}.
 
 The default analyzer is used for the full-text search, since for instance configuring a maximum token length did not seem necessary or likely to improve the results.
 
+\begin{listing}[htp]
+    \begin{minted}{python3}
+        results = elastic_search_client.search(
+            index='bahamas', 
+            size=count,
+            from_=(page*count),
+            query= {
+                    'match' : {
+                        'text': {
+                            'query':text,
+                            'fuzziness': 'AUTO',
+                            }
+                        
+                    },
+                    
+                },
+            source_includes=SRC_INCLUDES)
+    \end{minted}
+    \caption{Exemplartary query to an \databaseName database index.
+    The number of results to return \texttt{size} and the start index of the results \texttt{from\_} is defined.
+    To enable fuzzy search a value for \texttt{fuzziness} has to be defined. 
+    }
+    \label{lst:fuzzy_query}
+\end{listing}
+
 Moreover, the fuzzy matching option is set to \texttt{AUTO}, which means in terms of keyword or text fields that the allowed Levenshtein Edit Distance, 
 i.e. number of characters changed to create an exact match between two terms, to be considered a match, is correlated to the length of the term \cite{Elasticsearch-fuzziness}.
 By default, terms of length up to two characters must match exactly, terms of length three to five characters must have an edit distance of one and 
 terms of length six or more characters must have an edit distance of two \cite{Elasticsearch-fuzziness}.
+An exemplartary query, which uses fuzzy search is given in \lst{lst:fuzzy_query}.
 
 According to \citeauthor{Elasticsearch-kNN-HNSW}, one of \ac{knn} search's use cases is semantic document retrieval, which makes it a good fit for this task.
 In this work, the approximate nearest neighbors search is used, since it is faster and the results are good enough for the use case of this work.
