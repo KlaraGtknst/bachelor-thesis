@@ -1,0 +1,62 @@
+\section{\flask{}}\label{sec:BE_flask}
+
+% introduction
+The framework used for the backend is \flask{}.
+\flask{} is open source and written in Python by Armin Ronancher in 2004 \cite{flask2015, mvc_flask2019}.
+According to \citeauthor{flask_book2015} and \citeauthor{mvc_flask2019}, \flask{} is one of the most popular Python web frameworks.
+It provides powerful libraries for core functionality such as routing, templating, and \ac{http} request parsing \cite{flask_book2015}.
+It is extensible and thus, can be extended with additional plugins without affecting the internal structure of the existing system \cite{flask2015}.
+
+% technical details
+\flask{} uses the Jinja Template Engine for template files including \ac{html} pages,
+whereas static files such as \ac{css} files are handeled using the Werkzeug WSGI toolkit \cite{flask2015}.
+According to \citeauthor{flask2015}, Jinja is modeled after the Django template system.
+Werkzeug implements, for instance, requests and response objects \cite{mvc_flask2019}.
+
+% initialization
+All requests received from clients are passed to an instance of the \flask{} application \cite{flask_book2018}.
+Hence, the first step is to create an instance of the \flask{} class, such as done in \lst{lst:flask_app_init}.
+
+\begin{listing}[htp]
+    \begin{minted}{python3}
+    app = Flask(__name__)
+    \end{minted}
+    \caption{Initialization of \flask{} application instance.
+    }
+    \label{lst:flask_app_init}
+\end{listing}
+
+% routing
+Clients send requests to the web server, which passes them to the \flask{} application instance.
+The queries are then routed to the corresponding functions.
+Routing is the process of mapping \ac{url} paths to functions \cite{flask_book2018}.
+To define a route, the \texttt{route} decorator is used as displayed in \lst{lst:flask_routing}.
+
+\begin{listing}[htp]
+    \begin{minted}{python3}
+    @api.route('/documents/<id>', endpoint='document')
+    class Document(Resource):
+        def get(self, id):
+            elastic_search_client = Elasticsearch(CLIENT_ADDR)
+            return query_database.get_doc_meta_data(elastic_search_client, 
+                doc_id=id)
+    \end{minted}
+    \caption{Exemplartary definition of a function to display routing with \flask{}.
+    The \texttt{route} decorator is used to define the \ac{url} path.
+    }
+    \label{lst:flask_routing}
+\end{listing}
+
+\acs{url} can contain dynamic components, which are enclosed in \texttt{<>} angle brackets.
+The values of these components are passed to the function as arguments \cite{flask_book2018}.
+By default, dynamic components are of type \texttt{string}.
+However, other types including \texttt{int} and \texttt{float} are supported \cite{flask_book2018}.
+
+% dev server
+During development, the \flask{} application can be run using \texttt{flask run} to start the built-in development web server \cite{flask_book2018}.
+By enabling debug mode, the server automatically reloads the application when changes are detected \cite{flask_book2018}.
+
+% endpoints
+An endpoint is a class with certain methods, which can be accessed using \ac{http} requests.
+Every endpoint can have a \texttt{GET}, \texttt{PUT} and a \texttt{DELETE} method \cite{flask2018}.
+The \texttt{GET} method is used to retrieve data from the server, whereas the other methods are used to either insert or delete data.

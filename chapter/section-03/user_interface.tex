@@ -2,35 +2,38 @@
 
 \subsection{Backend}\label{subsec:backend}
 
-% introduction
-The framework used for the backend is \flask{}.
-According to \citeauthor{flask_book2015}, \flask{} is one of the most popular Python web frameworks.
-It provides powerful libraries for tasks such as routing, templating, and \ac{http} request parsing \cite{flask_book2015}.
+% this work: endpoints
+In this work, only the \texttt{GET} method is used.
+There are multiple endpoints, which are used to retrieve data from the server:
 
-% initialization
-All requests received from clients are passed to an instance of the \flask{} application \cite{flask_book2018}.
-% code example
+\begin{itemize}
+    \item \label{pt:docs}Documents: 
+        Returns a list of documents, which best match the query.
+        The query can be of type \texttt{match\_all}, which returns all documents in the database, 
+        or a fuzzy full-text query, 
+        or a \ac{knn} query on a certain field of the database.
+        Moreover, the number and start index of the results returned can be specified.
 
-% routing
-Clients send requests to the web server, which passes them to the \flask{} application instance.
-The queries are then routed to the corresponding functions.
-Routing is the process of mapping \ac{url} paths to functions \cite{flask_book2018}.
-To define a route, the \texttt{route} decorator is used \cite{flask_book2018}.
-% code example
-\acs{url} can contain dynamic components, which are enclosed in \texttt{<>} angle brackets.
-The values of these components are passed to the function as arguments \cite{flask_book2018}.
-By default, dynamic components are of type \texttt{string}.
-However, other types including \texttt{int} and \texttt{float} are supported \cite{flask_book2018}.
+    \item \label{pt:doc}Document: 
+        Returns the document with the specified \texttt{id}.
 
-% dev server
-During development, the \flask{} application can be run using \texttt{flask run} to start the built-in development web server \cite{flask_book2018}.
-By enabling debug mode, the server automatically reloads the application when changes are detected \cite{flask_book2018}.
+    \item \label{pt:pdf}\ac{pdf}: 
+        Returns the path to a \ac{pdf} file.
+        In order to access the path information a query for a document with the specified \texttt{id} is performed.
+    
+    \item \label{pt:wordcloud}WordCloud: 
+        Returns the bytes of a WordCloud image. 
+        Depending on additional parameters, the WordCloud is either generated from one document or 
+        the most similar documents to the query field, identified by \ac{knn}.
 
-\cite{mvc_flask2019}
-\cite{flask2015}
-\cite{flask_book2015}
-\cite{flask_book2018}
-\cite{flask2018}
+    \item \label{pt:termfrequency}\textcolor{red}{Term Frequency}
+\end{itemize}
+
+In order to test the endpoints during development, swagger documentation for every endpoint is provided.
+
+
+
+
 
 \subsection{Frontend}\label{subsec:frontend}
 angular

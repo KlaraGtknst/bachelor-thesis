@@ -1,5 +1,12 @@
 \section{Evaluation of database}\label{subsec:evaluation-db}
 
-According to \cite{flask_book2018}, \ac{sql} databases are a good choice for storing structured data in an efficient way.
-This is because their paradigm \acs{ACID}, i.e. \acl{acid}, provides high reliability.
-No\ac{sql} databases, on the other hand, are more flexible and can be used to store unstructured data \cite{flask_book2018}.
+According to \cite{flask_book2018}, \ac{sql} databases are a good choice for efficiently storing structured data.
+This is because their paradigm \acs{acid}, i.e. \acl{acid}, provides high reliability.
+\ac{nosql} databases, on the other hand, are more flexible and can be used to store unstructured data \cite{flask_book2018}.
+They do not require a predefined schema and can therefore accept documents of arbitrary structure \cite{flask2018}.
+
+Usually, \ac{nosql} databases do not offer services such as \texttt{JOIN} \cite{flask2018}.
+According to \citeauthor{flask2018}, \ac{nosql} databases make a tradeoff between storage and speed, as well as a tradeoff between consistency and availability.
+\ac{nosql} databases are said to outperform out-of-the-box \ac{sql} databases \cite{flask2018}.
+
+A document store database can be used if the primary goal is to write fast rather than write save \cite{flask2018}.

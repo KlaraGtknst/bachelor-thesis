@@ -9,11 +9,12 @@ It enables near real-time search by index refreshing periods of one second.
 Needless to say, \databaseName{} is qualified to handle Big Data.
 
 % structure
+\databaseName{} is a document store, which stores schemaless key-value pairs called documents \cite{flask2018}.
 \databaseName{}'s entries, i.e. documents, are stored in logical units, so-called indices.
 % index
 As stated by \citeauthor{Elasticsearch2019} and \citeauthor{Elasticsearch2017}, the indices are structured similarly to Apache Lucene's inverted index format.
 An index can be spread into multiple nodes.
-A node is single running instance of \databaseName{} \cite{Elasticsearch2019}.
+A node is a single running instance of \databaseName{} \cite{Elasticsearch2019}.
 An index is divided into one or more shards, which can be stored on different servers and enable parallelization \cite{Elasticsearch2019}.
 
 % document
