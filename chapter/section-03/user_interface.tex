@@ -39,3 +39,57 @@ In order to test the endpoints during development, swagger documentation for eve
 \subsection{Frontend}\label{subsec:frontend}
 
 The framework used for the frontend is \angular{}.
+There are two main components, which are used to display the data:
+
+\begin{itemize}
+    \item \label{pt:home}Home: 
+        The home component is used to display the results of a query.
+        It consists of a search bar, which is used to enter the text query, and a list of results.
+        If no text query is entered the first documents of the database, i.e. the result of a \texttt{match\_all} query, are displayed.
+        The search component is shown in \autoref{fig:home_comp}.
+
+    \item \label{pt:detail}Detail: 
+        The detail component is used to display the details of a document.
+        It consists of a card, which contains the title, authors, and abstract of the document.
+        Moreover, the WordCloud of the document is displayed.
+        The WordCloud is generated from the abstract of the document.
+        The detail component is shown in \autoref{fig:detail_comp}.
+\end{itemize}
+
+
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/UI/Home_component.png}
+    \caption{Home component of the frontend.
+    The search bar is used to enter the text query.
+    The results of the query are displayed below the search bar.
+    }
+    \label{fig:home_comp}
+\end{figure}
+
+
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/UI/Home_detail.png}
+    \caption{Detail component of the frontend.
+    The chosen document is displayed, as well as its most similar documents in the database.
+    WordClouds of the document and the most similar documents are displayed.
+    }
+    \label{fig:detail_comp}
+\end{figure}
+
+
+To change between the components, the routes have to be defined.
+The routes are defined in the \texttt{app-routing.module.ts} file, as shown in \autoref{lst:angular_routing}.
+
+\begin{listing}[htp]
+    \begin{minted}{typescript}
+        const routes: Routes = [
+            { path: ':id', component: DocumentDetailComponent},
+            { path: '', component: HomeComponent},
+          ];
+    \end{minted}
+    \caption{Definition of routes in \angular{} in the app-routing.module.ts.
+    }
+    \label{lst:angular_routing}
+\end{listing}
