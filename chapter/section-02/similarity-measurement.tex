@@ -5,7 +5,36 @@
 
 \subsection{Cosine Similarity}\label{subsec:cosine-similarity}
 
+In the traditional bag-of-words approach the texts are represented as vectors of \ac{tfidf} coefficients \cite{soft_cosine2017}.
+Without further processing, the vector is of size $N$, $N$ being the number of different words of the texts \cite{soft_cosine2017}.
+Hence, a vector represents its corresponding text in a $N$-dimensional space.
+This space is called \ac{vsm} \cite{soft_cosine2014}.
+
+The similarity between two texts is measured by the cosine of the angle between their respective vectors \cite{soft_cosine2014}.
+The cosine similarity is defined in \autoref{eq:cosine-similarity} from \cite{soft_cosine2014}.
+$a \cdot b = \sum_{i=1}^{N}a_{i}b_{i}$ is the dot-product.
+The dot-product is normalized with $\left\| x \right\| = \sqrt{x \cdot x}$ to unit Euclidean length \cite{soft_cosine2014}.
+The cosine similarity is a value between $0$ and $1$ for positive values \cite{soft_cosine2014}.
+According to \citeauthor{soft_cosine2014}, the formula has a time and space complexity of $O(N)$ for a pair of $N$-dimensional vectors.
+
+\begin{equation}
+    cosine(a,b) = \frac{a \cdot b}{\left\| a \right\| \times \left\| b \right\|} = \frac{\sum_{i=1}^{N}a_{i}b_{i}}{\sqrt{\sum_{i=1}^{N}{a}^2_{i}}\sqrt{\sum_{i=1}^{N}{b}^2_{i}}}
+    \label{eq:cosine-similarity}
+\end{equation}
+
+The formula \autoref{eq:cosine-similarity} assumes that the vectors, which span the \ac{vsm} are orthogonal and thus, 
+completely independent \cite{soft_cosine2014}.
+However, in practical applications, this often is not the case \cite{soft_cosine2014}.
+
+
 \subsection{Soft Cosine Similarity}\label{subsec:soft-cosine-similarity}
+
+This similarity measure not only evaluates whether two texts consist of the same words but 
+also takes into account the semantic similarity or lexical relation of different words of the texts \cite{soft_cosine2017}.
+Hence, it improves the shortcomings of the traditional cosine similarity measure, 
+which assumes the tokens of the vocabulary are completely independent of each other.
+
+
 
 \subsection{euclidian distance}\label{subsec:euclidian-distance}
 
