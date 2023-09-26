@@ -14,5 +14,6 @@ Since the similarity between vectors is usually calculated using some form of co
 rather than Euclidean distance in literature, cosine is preferred over Euclidean distance. 
 Since the models may produce embeddings, which are not normalized, the cosine similarity is used instead of the dot product.
 Soft cosine similarity is not used, since it is not available in \databaseName{}.
+\textcolor{red}{soft cosine would be better!}
 
 A document store database can be used if the primary goal is to write fast rather than write save \cite{flask2018}.

@@ -31,7 +31,8 @@ There are multiple endpoints, which are used to retrieve data from the server:
         Depending on additional parameters, the WordCloud is either generated from one document or 
         the most similar documents to the query field, identified by \ac{knn}.
 
-    \item \label{pt:termfrequency}\textcolor{red}{Term Frequency}
+    \item \label{pt:termfrequency}Term Frequency:
+        Returns the term frequency calculated for the specified document.
 \end{itemize}
 
 In order to test the endpoints during development, swagger documentation for every endpoint is provided.
@@ -54,18 +55,19 @@ There are two main components, which are used to display the data:
 
     \item \label{pt:detail}Detail: 
         The detail component is used to display the details of a document.
-        It consists of a card, which contains the title, authors, and abstract of the document.
+        The document name and ID are located on the left side of the screen.
+        Beneath the document name and ID, a button which opens the term frequency image on a new page upon pressing is located. 
         Moreover, the WordCloud of the document is displayed.
-        The WordCloud is generated from the abstract of the document.
+        The WordCloud is generated from the text of the document.
+        On the right side of the screen, there is a \ac{pdf} viewer which displays the pages of the document.
+        Beneath the \ac{pdf} viewer, the names and WordClouds of the most similar documents are displayed after a query for them is initiated by the user.
         The detail component is shown in \autoref{fig:detail_comp}.
 \end{itemize}
-
-\textcolor{red}{TODO: describe visualizations}
 
 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includegraphics[width=0.6\textwidth]{images/UI/Home_component.png}
+    \includegraphics[width=0.7\textwidth]{images/UI/Home_component.png}
     \caption{Home component of the frontend.
     The search bar is used to enter the text query.
     The results of the query are displayed below the search bar.
@@ -76,7 +78,7 @@ There are two main components, which are used to display the data:
 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includegraphics[width=0.6\textwidth]{images/UI/Home_detail.png}
+    \includegraphics[width=0.7\textwidth]{images/UI/Home_detail.png}
     \caption{Detail component of the frontend.
     The chosen document is displayed, as well as its most similar documents in the database.
     WordClouds of the document and the most similar documents are displayed.
