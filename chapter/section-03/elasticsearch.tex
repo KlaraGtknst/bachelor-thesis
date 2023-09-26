@@ -72,14 +72,14 @@ An exemplartary query, which uses fuzzy search is given in \lst{lst:fuzzy_query}
 
 According to \citeauthor{Elasticsearch-kNN-HNSW}, one of \ac{knn} search's use cases is semantic document retrieval, which makes it a good fit for this task.
 In this work, the approximate nearest neighbors search is used, since it is faster and the results are good enough for the use case of this work.
-The similarity measure used in this work is the cosine similarity, which calculates the \texttt{\_score} of a document according to \autoref{eq:cosine-similarity} from \cite{Elasticsearch-kNN-similarity}, 
+The similarity measure used in this work is the cosine similarity, which calculates the \texttt{\_score} of a document according to \autoref{eq:cosine-similarity-db} from \cite{Elasticsearch-kNN-similarity}, 
 where \texttt{query} is the query vector and \texttt{vector} is the vector representation of the document in the database.
 Since cosine is not defined on vectors with zero magnitude, embeddings that can return all zero vector representations, such as sim\_docs\_tfidf, 
 are enhanced with an all-zero flag before inserting them into the database.
 
 \begin{equation}
     \frac{1 + \text{cosine}(\text{query}, \text{vector})}{2}
-    \label{eq:cosine-similarity}
+    \label{eq:cosine-similarity-db}
 \end{equation}
 
 In this work, the only tool from the elastic stack used is \databaseName{}.
