@@ -30,13 +30,13 @@ However, in practical applications, this often is not the case \cite{soft_cosine
 \subsection{Soft Cosine Similarity}\label{subsec:soft-cosine-similarity}
 
 This similarity measure not only evaluates whether two texts consist of the same words but 
-also takes into account the semantic similarity or lexical relation of different words of the texts \cite{soft_cosine2017}.
+also takes into account the semantic (word-level) similarity or lexical relation of different words of the texts \cite{soft_cosine2017}.
 Hence, it improves the shortcomings of the traditional cosine similarity measure, 
-which assumes the tokens of the vocabulary are completely independent of each other.
+which assumes the tokens of the vocabulary are completely independent of each other \cite{soft_cosine2014}.
 
 According to \citeauthor{soft_cosine2014}, in order to model this additional information, more dimensions are added to the \ac{vsm}.
 These dimensions can be obtained, for instance, by multiplying the mean of two features of one vector with the similarity between them \cite{soft_cosine2014}.
-The similarity can be calculated by using Levenshtein distance, i.e. the number of operations necessary to convert one string into another, 
+The similarity can be calculated by using Levenshtein distance for e.g., n-grams, i.e. the number of operations necessary to convert one string into another, 
 or using a dictionary of synonyms \cite{soft_cosine2014}.
 
 Since this approach no longer assumes that different words are independent of each other, 
@@ -45,13 +45,17 @@ The formula for the soft cosine similarity is defined in \autoref{eq:soft-cosine
 The similarity $s_{ij}$ between the $i$-th and $j$-th basis vector is obtained using a similarity measure, such as synonymy \cite{soft_cosine2014}.
 
 \begin{equation}
-    soft\_cosine(a,b) = \frac{\sum_{i,j=1}^{N}s_{ij}a_{i}b_{j}}{\sqrt{\sum_{i,j=1}^{N}s_{ij}a_{i}a_{j}}\sqrt{\sum_{i,j=1}^{N}s_{ij}b_{i}b_{j}}}
+    soft\_cosine(a,b) = \frac{\sum_{i=1}^{N}\sum_{j=1}^{N}s_{ij}a_{i}b_{j}}{\sqrt{\sum_{i=1}^{N}\sum_{j=1}^{N}s_{ij}a_{i}a_{j}}\sqrt{\sum_{i=1}^{N}\sum_{j=1}^{N}s_{ij}b_{i}b_{j}}}
     \label{eq:soft-cosine-similarity}
 \end{equation}
 
+According to \citeauthor{soft_cosine2017}, the similarity between two texts is non-zero as soon as they share related words \cite{soft_cosine2017}.
 If there is no similarity between different features, 
 the soft cosine similarity from \autoref{eq:soft-cosine-similarity} is equal to the cosine similarity from \autoref{eq:cosine-similarity}.
 The time and space complexity of the soft cosine similarity is $O(N^2)$ \cite{soft_cosine2014}.
+
+In order to reduce the complexity, \citeauthor{soft_cosine2014} propose to use a sparse similarity matrix which only stores $s_{ij} > t$, 
+$t$ being a threshold \cite{soft_cosine2014}.
 
 \subsection{euclidian distance}\label{subsec:euclidian-distance}
 
