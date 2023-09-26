@@ -9,4 +9,10 @@ Usually, \ac{nosql} databases do not offer services such as \texttt{JOIN} \cite{
 According to \citeauthor{flask2018}, \ac{nosql} databases make a tradeoff between storage and speed, as well as a tradeoff between consistency and availability.
 \ac{nosql} databases are said to outperform out-of-the-box \ac{sql} databases \cite{flask2018}.
 
+% similarity
+Since the similarity between vectors is usually calculated using some form of cosine similarity, 
+rather than Euclidean distance in literature, cosine is preferred over Euclidean distance. 
+Since the models may produce embeddings, which are not normalized, the cosine similarity is used instead of the dot product.
+Soft cosine similarity is not used, since it is not available in \databaseName{}.
+
 A document store database can be used if the primary goal is to write fast rather than write save \cite{flask2018}.

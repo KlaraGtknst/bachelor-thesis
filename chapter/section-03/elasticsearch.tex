@@ -74,6 +74,8 @@ According to \citeauthor{Elasticsearch-kNN-HNSW}, one of \ac{knn} search's use c
 In this work, the approximate nearest neighbors search is used, since it is faster and the results are good enough for the use case of this work.
 The similarity measure used in this work is the cosine similarity, which calculates the \texttt{\_score} of a document according to \autoref{eq:cosine-similarity-db} from \cite{Elasticsearch-kNN-similarity}, 
 where \texttt{query} is the query vector and \texttt{vector} is the vector representation of the document in the database.
+The other similarity measures provided by \databaseName{} are \texttt{l2\_norm} or 
+so-called Euclidian distance and \texttt{dot\_product} which is the non-auto-normalized version of the \texttt{cosine} option.
 Since cosine is not defined on vectors with zero magnitude, embeddings that can return all zero vector representations, such as sim\_docs\_tfidf, 
 are enhanced with an all-zero flag before inserting them into the database.
 
