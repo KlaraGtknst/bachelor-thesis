@@ -8,7 +8,7 @@
     Firstly, the first page of a document is converted to an image.
     Then the image is preprocessed:
     It is placed on a white canvas, to ensure all images have the same dimensions.
-    Moreover, it is converted to greyscale.
+    Moreover, it is converted to greyscale and normalized to values between zero and one.
     Afterwards, the 2d image is reshaped to a 1d array.
     Lastly, the image is compressed using \eigenfaces{}.
     }
