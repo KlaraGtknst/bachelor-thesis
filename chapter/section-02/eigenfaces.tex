@@ -46,7 +46,7 @@ The weights denote the position of the projection of the face images in the feat
 % eigenfaces: KL base
 In the context of \eigenfaces{} one basis used for decomposition is the \ac{kl} basis, i.e. \ac{pca} \cite{eigenfaces1997, eigenfaces1991}.
 % source 1991, pg. 587: or fourier basis
-According to \citeauthor{eigenfaces1997}, the \ac{kl} representation is optimal in the sense that it minimizes the mean squared error between the original image and 
+According to \citeauthor{eigenfaces1997}, the \ac{kl} representation is optimal in the sense that it minimizes the \ac{rmse} between the original image and 
 the compressed image calculated using $m < n$ orthogonal vectors.
 The \ac{kl} basis consists of the eigenvectors of covariance matrix $\textbf{C} = E\left[ \textbf{x}\textbf{x}^{T} \right]$ of the input images $\mathbf{x}$ \cite{eigenfaces1997}.
 % determine the number of components m
@@ -61,10 +61,16 @@ The are two approaches in the literature to determine the number of \eigenfaces{
         A plot displaying the cumulative explained variance and a threshold of 90\% is shown in \autoref{fig:det_n_comp} (a).
 
     \item The number of \eigenfaces{} $m$ is chosen using the reconstruction error-complexity trade-off. % \cite{face-recognition2008}.
-        The reconstruction error, i.e. the difference between the original image and the inverse transformed image, is calculated for different values of $m$.
+        The reconstruction error, i.e. the \ac{rmse} of the original image $X$ and the inverse transformed image $X'$ 
+        calculated in \autoref{eq:rsme} for different values of $m$.
         A \textcolor{red}{"knee"} marks the point where the reconstruction error decreases only slightly for increasing $m$ and thus, is an indicator for the optimal $m$.
         A visualization of this approach is shown in \autoref{fig:det_n_comp} (b).
 \end{enumerate}
+
+\begin{equation}
+    \text{RSME} = \sqrt{\frac{\sum_{i=1}^{N}(x_{i}-x'_i)^2}{N}}
+    \label{eq:rsme}
+\end{equation}
  
 
 %TODO: insert image of cumulative explained variance
@@ -73,7 +79,7 @@ The are two approaches in the literature to determine the number of \eigenfaces{
     \subfloat[\centering The cumulative explained variance of the first $i \le n$ eigenvectors (sorted by eigenvalues $\lambda_i$).]
     {{\includegraphics[width=7cm]{images/Eigendocs/Eval-Params/cumulative_explained_variance.pdf}}}%
     \qquad
-    \subfloat[\centering The reconstruction error calculated for different values of $m$. Around 13 is a \textcolor{red}{"knee"}.]
+    \subfloat[\centering The reconstruction error \ac{rmse} calculated for different values of $m$. Around 13 is a \textcolor{red}{"knee"}.]
     {{\includegraphics[width=7cm]{images/Eigendocs/Eval-Params/reconstruction error_eigendocs.pdf} }}%
     \caption{Two approaches in the literature to determine the number of \eigenfaces{} $m$ used to compress the input images.}%
     \label{fig:det_n_comp}%
