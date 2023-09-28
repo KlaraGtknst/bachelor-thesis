@@ -9,8 +9,11 @@ Therefore, it is not feasible to change the dimensionality of the \infersent{} e
 produce the final embedding.
 Hence, the idea is to use the encoder of an \ac{ae} to reduce the dimensionality of the \infersent{} embedding.
 
-The architecture and implementation from \lst{lst:impl_ae} was provided from 
-\href{https://blog.paperspace.com/autoencoder-image-compression-keras/}{a blog post using keras}.
+The implementation was provided by 
+\href{https://blog.paperspace.com/autoencoder-image-compression-keras/}{a blog post using keras}
+and adapted to fulfil the needs of the specific context.
+Hence, The dimensionality of the layers was increased since the \ac{ae} of the blog post has a smaller dimensionality in the latent space.
+More layers were added to the encoder and decoder to improve the ability of the model to reconstruct.
 \autoref{fig:impl-encoder} \autoref{fig:impl-ae}
 
 \begin{figure}[h] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
@@ -26,34 +29,3 @@ The architecture and implementation from \lst{lst:impl_ae} was provided from
     \caption{Architecture of the \ac{ae}}
     \label{fig:impl-ae}
 \end{figure}
-
-\begin{listing}[htp]
-    \begin{minted}{python3}
-    # Encoder
-    x = layers.Input(shape=(input_shape), name="encoder_input")
-    encoder_dense_layer1 = layers.Dense(units=300, name="encoder_dense_1")(x)
-    encoder_activ_layer1 = layers.LeakyReLU(name="encoder_leakyrelu_1")(encoder_dense_layer1)
-    encoder_dense_layer2 = layers.Dense(units=latent_dim, name="encoder_dense_2")(encoder_activ_layer1)
-    encoder_output = layers.LeakyReLU(name="encoder_output")(encoder_dense_layer2)
-    encoder = models.Model(x, encoder_output, name="encoder_model")
-
-    # Decoder
-    decoder_input = layers.Input(shape=(latent_dim), name="decoder_input")
-    decoder_dense_layer1 = layers.Dense(units=300, name="decoder_dense_1")(decoder_input)
-    decoder_activ_layer1 = layers.LeakyReLU(name="decoder_leakyrelu_1")(decoder_dense_layer1)
-    decoder_dense_layer2 = layers.Dense(units=input_shape, name="decoder_dense_2")(decoder_activ_layer1)
-    decoder_output = layers.LeakyReLU(name="decoder_output")(decoder_dense_layer2)
-    decoder = models.Model(decoder_input, decoder_output, name="decoder_model")
-
-    # Autoencoder
-    ae_input = layers.Input(shape=(input_shape), name="AE_input")
-    ae_encoder_output = encoder(ae_input)
-    ae_decoder_output = decoder(ae_encoder_output)
-    ae = models.Model(ae_input, ae_decoder_output, name="AE")
-    ae.compile(loss="mse", optimizer=optimizers.legacy.Adam(learning_rate=0.0005))
-    ae.fit(x_train, x_train, epochs=20, batch_size=256, shuffle=True, validation_data=(x_test, x_test))
-    \end{minted}
-    \caption{Architecture of \ac{ae} using \texttt{tensorflow.keras}. 
-    }
-    \label{lst:impl_ae}
-\end{listing}
