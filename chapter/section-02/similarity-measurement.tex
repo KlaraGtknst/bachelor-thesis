@@ -1,7 +1,28 @@
 
 \section{Similarity Measurement}\label{sec:similarity-measurement}
 
-\cite{EmbDist2015}
+Since embeddings represent texts as vectors, they not only facilitate human interpretability of relationships between texts using 
+the text's respective point in a $N$-dimensional space, but also enable the use of similarity measures to quantify the similarity between texts.
+A similarity measure defines a metric to quantify the similarity between two texts \cite{IR2011, euclidean_l2_norm2015}.
+
+There are several similarity measures, such as the dot product quantifying the number of shared tokens of two texts, 
+the (soft) cosine similarity, which is the normalized dot product and calculates the angle between two vectors, and many more \cite{IR2011, euclidean_l2_norm2015}.
+The following section describes a few of the metrics usable for similarity measurement.
+
+
+\subsection{Euclidian distance}\label{subsec:euclidian-distance}
+
+The \textit{euclidian distance} is a distance measure.
+In order to measure the distance between two points in a $N$-dimensional space, 
+the root of the sum of squared distances between the respective values of every dimension is calculated.
+The distance function Euclidean (L2) norm is given in \autoref{eq:euclidian-distance} from \cite{euclidean_l2_norm2015}.
+The points $x_1, x_2$ correspond to objects $d_1, d_2$.
+
+\begin{equation}
+    d_E(x_1,x_2) = \sqrt{\sum_{i=1}^{N}(x_1\left[ i \right] - x_2\left[ i \right])^2}
+    \label{eq:euclidian-distance}
+\end{equation}
+
 
 \subsection{Cosine Similarity}\label{subsec:cosine-similarity}
 
@@ -56,7 +77,3 @@ The time and space complexity of the soft cosine similarity is $O(N^2)$ \cite{so
 
 In order to reduce the complexity, \citeauthor{soft_cosine2014} propose to use a sparse similarity matrix which only stores $s_{ij} > t$, 
 $t$ being a threshold \cite{soft_cosine2014}.
-
-\subsection{euclidian distance}\label{subsec:euclidian-distance}
-
-%\subsection{Hamming distance}\label{subsec:hamming-distance}
