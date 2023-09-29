@@ -1,0 +1,21 @@
+\section{Evaluation of \acs{tfidf}}\label{sec:evaluation-tfidf}
+
+The main obstacle to overcome was the high dimensionality of the \ac{tfidf} embeddings.
+Hence, the goal of the parameter selection was to find a way to reduce the dimensionality of the vocabulary to the maximum vector dimensionality of \databaseName{}.
+However, the quality of the embeddings should not decline too much.
+
+% parameter selection
+The choice of the preprocessor was investigated with regard to the goal of minimizing the vocabulary size.
+Both the default and custom preprocessor were tested on a data corpus of 195 documents with regard to the vocabulary (size) and the result of preprocessing.
+While the default preprocessor had a vocabulary size of 1641, the custom preprocessor had a size of 1906.
+The custom preprocessor was chosen because it had a smaller vocabulary size and TODO: vocab of custom.
+
+% two fields in db
+Initially, there should have been two different \ac{tfidf} models.
+The first one should have been used to obtain documents which are similar to the query document.
+Therefore, terms which occur only once in the corpus should have been removed from the vocabulary.
+The second approach should have been used to obtain specific documents from the corpus.
+Hence, the vocabulary should consist of very document-specific terms and thus, \texttt{max\_df} would have been relatively low, to omit terms that occur in many documents.
+However, the restrictions imposed by the database implementation made it impossible to explore many parameter ranges.
+Therefore, only one \ac{tfidf} model was used in the end, whose parameters \texttt{min\_df} and \texttt{max\_df} were set to values which kept the vocabulary and thus,
+the dimensionality of the embeddings reasonably small.
