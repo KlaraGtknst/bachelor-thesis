@@ -1,5 +1,17 @@
 \section{Embeddings}\label{sec:embeddings}
 
+Embeddings are numerical representations of words, sentences or texts.
+They can be used to present the textual data as vectors in a \ac{vsm}.
+\acp{vsm} are commonly used due to their conceptual simplicity and because spatial proximity serves as metapher for semantic proximity \cite{tfidf2008}.
+According to \citeauthor{tfidf2008}, when representing text the first step is indexing, i.e. assigning indexing terms to the document.
+The second task is to assign weights to the terms which correspond to the importance of the term in the document.
+The weights assigned depend on the method and the assumptions of the model chosen to carry out the assignments.
+
+The following section outlines a selection of embeddings.
+Let a corpus of documents be denoted $D= \left\{d_1, d_2, ..., d_M  \right\}$, the number of documents in the dataset $M = \left\| D \right\|$,
+a sequence of terms $w_{ij}$ or so-called document $d_i = \left\{w_{i1}, w_{i2}, ..., d_{iV}  \right\}$, $V$ being the length of the vocabulary, 
+i.e. set of distinct words, of the corpus of documents \cite{clusteringDocs2020}.
+
 \cite{WordRep2013}
 \cite{SentRep2014}
 
@@ -7,30 +19,14 @@
 
 %\subsection{\ac{cbow}}\label{subsec:bag-of-words}
 
-\subsection{\ac{d2v}}\label{subsec:doc2vec}
-\cite{SentRep2014}
-two flavor of doc2vec: PV-DM and PV-DBOW (https://thinkinfi.com/simple-doc2vec-explained/)
-\cite{SkipGram2013}
+
+\input{chapter/section-02/tfidf.tex}
+
+\input{chapter/section-02/doc2vec.tex}
 
 %\subsection{\ac{w2v}}\label{subsec:word2vec}
 
-\subsection{\ac{tfidf}}\label{subsec:tfidf}
 
-\cite{tfidf2020}
-
-\begin{figure}[h] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
-    \centering
-    \includesvg[width=1.0\textwidth]{images/TFIDF_embedding}
-    \caption{TFIDF Preprocessing}
-    \label{fig:tfidf_embedding}
-\end{figure}
-
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
-    \centering
-    \includesvg[width=1.1\textwidth]{images/TFIDF_preprocessing}
-    \caption{TFIDF Preprocessing}
-    \label{fig:preprocessing}
-\end{figure}
 
 \subsection{Universal sentence encoder}\label{subsec:univ-sent-encoder}
 \ac{use}

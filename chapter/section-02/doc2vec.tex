@@ -1,0 +1,36 @@
+\subsection{\ac{d2v}}\label{subsec:doc2vec}
+
+Another term used for \ac{d2v} is \textit{Paragraph Vector} \cite{clusteringDocs2020}.
+\ac{d2v} addresses the problems of \ac{tfidf} by encoding texts as $n-$dimensional vectors learnt using the words' context \cite{clusteringDocs2020}.
+Hence, it preserves semantic similarities between words.
+According to \citeauthor{clusteringDocs2020}, \ac{d2v} learns continuous distributed vector representations for pieces of the text.
+The model handles inputs of different dimensions.
+
+\ac{d2v} is an adaption of the \ac{w2v} model, which maps words into a \ac{vsm} under consideration of their semantic similarities \cite{clusteringDocs2020}.
+The underlying hypothesis of both approaches is that words appearing in similar contexts are semantically similar \cite{clusteringDocs2020}.
+The \ac{w2v} embedding is obtained using a \ac{nn} \cite{clusteringDocs2020}.
+The \ac{nn} is shallow, i.e. has only one hidden layer.
+This hidden layer creates the embedding of input data.
+There are two approach as to how design the architecture of the \ac{nn}:
+\begin{itemize}
+    \item \ac{cbow}: 
+        Predicts a word given a context
+    \item Skip-Gram: 
+        Predicts the context given a word.
+\end{itemize}
+
+The \ac{pvdm} extends the \ac{cbow} to work on corpus of documents instead of set of words \cite{clusteringDocs2020}:
+As usual, vectors representing the words are obtained using the \ac{cbow} model.
+Each document is mapped to a vector using an additional document-to-vector matrix.
+The document vector is concatenated to the word vectors.
+The resulting vector is used to predict the central word.
+\textcolor{red}{prediction, loss function? B. in paper}
+
+% paper widerspricht sich
+%According to \citeauthor{clusteringDocs2020}, the \ac{doc2vec} model's performance is influenced quality of the preprocessing.
+%If for instance, the stemmer assigns words with different meaning to the same root, there is a degradation in performance.
+
+
+\cite{SentRep2014}
+two flavor of doc2vec: PV-DM and PV-DBOW (https://thinkinfi.com/simple-doc2vec-explained/)
+\cite{SkipGram2013}

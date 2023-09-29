@@ -2,7 +2,7 @@
 \section{Clustering}\label{sec:clustering}
 
 Clustering is used in a variety of domains to group data into meaningful subclasses, i.e. clusters \cite{OPTICS2013, OPTICS2014, OPTICS_kMeans_2016}.
-According to \citeauthor{OPTICS2013}, common domains include anomaly detection, noise filtering, document clustering and image segmentation. 
+According to \citeauthor{OPTICS2013} and \citeauthor{clusteringDocs2020}, common domains include anomaly detection, noise filtering, document clustering and image segmentation. 
 The objective is to find clusters, which have a low inter-class similarity and a high intra-class similarity \cite{OPTICS2013}.
 The similarity is measured by a distance function, which is dependent on the data type. 
 Common distance functions are the Euclidean distance, the Manhattan distance and the Minkowski distance \cite{OPTICS_kMeans_2016}.
@@ -38,13 +38,13 @@ In other words: $N_\varepsilon (x) = \left\{ y \in X | dist(x,y) \le \varepsilon
 
 \subsection{KMeans}\label{subsec:kmeans}
 
-KMeans partitions the data into $k \in \mathbb{N}$  clusters, $k$ is given apriori \cite{OPTICS_kMeans_2016}. %
+KMeans partitions the data into $k \in \mathbb{N}$  clusters, $k$ is given apriori \cite{OPTICS_kMeans_2016,clusteringDocs2020}. %
 First, $k$ centroids, i.e. cluster centres, are randomly initialized.
 Then, the objects are assigned to the closest centroid.
 Afterwards, the centroids are updated by calculating the mean of the assigned objects.
 The process is repeated until the terminating condition, for instance, no more change in the clusters, is met \cite{OPTICS_kMeans_2016}.
 By iteratively reassinging the objects to the closest centroid and updating the centroids, 
-the algorithm minimizes the within-cluster sum of squared errors $E$, i.e. the sum of squared distances between objects in a cluster and their centroid $\mu_{i}$, 
+the algorithm minimizes the within-cluster sum of squared errors $E$, i.e. the sum of squared (Euclidean) distances between objects in a cluster and their centroid $\mu_{i}$, 
 calculated in \autoref{eq:kmeans-error} from \cite{OPTICS_kMeans_2016}, 
 where $C_{i}$ is the $i$-th cluster.
 
@@ -107,7 +107,10 @@ This algorithm creates clusters as a maximal set of density-connected points \ci
 According to \citeauthor{OPTICS_kMeans_2016}, \ac{dbscan} can identify outliers or noise.
 However, the algorithm is sensitive to the input parameters $minPts$ and $\varepsilon$ and has difficulties distinguishing closely located clusters \cite{OPTICS_kMeans_2016}.
 Moreover, if one wants to obtain hierarchical clustering, one has to run the algorithm multiple times with different $\varepsilon$, which is expensive in terms of memory usage \cite{OPTICS2013}.
-
+According to \citeauthor{clusteringDocs2020}, \ac{dbscan} is affected by the curse of dimensionality.
+Since \ac{dbscan} relies on nearest neighbour queries and these become less meaningful in high dimensions, i.e. distances become difficult to interprete, 
+the quality and accuracy of the results declines with increasing dimensionality \cite{clusteringDocs2020}.
+\citeauthor{clusteringDocs2020} found that their \ac{dbscan} model assigned most documents noise, when the dimensionality was sufficiently large.
 
 
 \subsection{\acs*{optics}}\label{subsec:optics}

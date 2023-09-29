@@ -1,8 +1,8 @@
 \section{Preprocessing}\label{sec:preprocessing}
 
 Similar to other \ac{ml} domains, \ac{nlp} requires preprocessing of the data.
-Usually, textual data contains irrelevant information.
-Hence, preprocessing improves the performance and complexity of the model applied afterwards.
+Usually, textual data contains irrelevant information and noise.
+Hence, preprocessing improves the performance and results \cite{clusteringDocs2020}.
 The next sections describe a selection of the preprocessing steps applied in this work.
 
 
@@ -20,18 +20,27 @@ According to \citeauthor{nlp-book2009}, chunkers produce their pieces by followi
 
 \subsection{Stemming}\label{subsec:stemming}
 
-According to \citeauthor{nlp-book2009}, \textit{stemming} is the process of striping off any affixes, i.e. prefixes and suffixes \cite{IR2011}, from a word and returning the stem.
+In order to avoid language inflections, i.e. treating words with similar meanings differently, stemming is applied \cite{clusteringDocs2020}.
+According to \citeauthor{nlp-book2009}, \textit{stemming} is the process of striping off any affixes, i.e. prefixes and suffixes \cite{IR2011}, 
+from a word and returning the stem.
 Different types of stemmers are better suited for certain applications than others.
 Hence, the choice of the stemmer depends on the application.
-For instance, the \textit{Porter Stemmer} performs well when indexing texts and for text search using alternative forms, 
-i.e. adding and omitting affixes, of words \cite{nlp-book2009}.
-The \textit{Porter Stemmer} is a rule-based stemmer, i.e. it applies a set of rules to a word to produce the stem and thus, does not use a dictionary \cite{IR2011}.
+
+For instance, the \textit{Porter Stemmer} performs well for English texts \cite{nlp-book2009, clusteringDocs2020}.
+It is predominantly used for the normalization of inflected forms.
+The \textit{Porter Stemmer} is an algorithmic stemmer, 
+i.e. it applies a set of rules to a word to produce the stem and thus, does not use a dictionary \cite{IR2011, clusteringDocs2020}.
 
 \subsection{Lemmatization}\label{subsec:lemmatization}
 
+Stemming or lemmatization is used to reduce the vocabulary size \cite{clusteringDocs2020}.
 By ensuring the resulting stem is a valid word, the process of stemming is called \textit{lemmatization} \cite{nlp-book2009}.
 Some implementations of lemmatizers only stem words if the result is in its dictionary.
 Since lemmatizers validate the result prior to returning it, they are usually slower than stemmers \cite{nlp-book2009}.
+
+The \textit{WordNetLemmatizer} from the \texttt{nltk} package requires a vocabulary \cite{clusteringDocs2020}.
+According to \citeauthor{clusteringDocs2020}, it is frequently used for English texts.
+It manages the meaning of words and considers the order of the words \cite{clusteringDocs2020}.
 
 
 \subsection{Stop-Word-Removal}\label{subsec:stop-word-removal}
