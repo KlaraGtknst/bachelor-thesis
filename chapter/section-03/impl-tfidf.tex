@@ -1,17 +1,86 @@
 \section{\ac{tfidf}}\label{sec:impl-tfidf}
 
-The lemmatizer used is \texttt{WordNetLemmatizer} from the \texttt{nltk} package.
+% overall architecture
+The \ac{tfidf} model has to be initialized and trained on the data corpus to build the data-specific vocabulary.
+An exemplary implementation is given in \lst{lst:impl-tfidf}.
+The \texttt{TfidfVectorizer} is provided by the \texttt{scikit-learn} package.
+When initializing the model, the parameters define not only the input type but also the way the data is preprocessed.
+The \texttt{input} parameter defines the input type, i.e., \texttt{content} means that the input is a list of strings or bytes, 
+whereas \texttt{file} assumes the input has a \texttt{read} method and \texttt{filename} denotes a list of filenames as input \cite{tfidf-vec-scikit-learn}.
+
+The \texttt{preprocessor} parameter defines the preprocessing (string transformation) stage.
+It is possible to override the default with a custom preprocessing function.
+The parameters \texttt{min\_df} and \texttt{max\_df} define the minimum and maximum document frequency of a word in the corpus.
+The default values are $1$, i.e. a term has to appear at least once, and $1.0$, i.e. a term appears at most in all documents, respectively \cite{tfidf-vec-scikit-learn}.
+
+The implementation of \ac{tfidf} in \texttt{scikit-learn} is different from the original \ac{tfidf} definition.
+By default, the \texttt{scikit-learn} implementation uses the \texttt{norm='l2'} parameter, i.e. the Euclidean norm \cite{tfidf-scikit-learn}.
+The difference is the calculation of the \ac{idf} part, which is given in \autoref{eq:tfidf-scikit-learn} from \cite{tfidf-scikit-learn}.
+The one is added to $M_{ij}$ due to the parameter \texttt{smooth\_id=True} by default to prevent zero divisions.
+After calculating the \ac{tfidf} values, they are normalized by the Euclidean norm 
+$v_{norm} = \frac{v}{\left\| v \right\|_{2}} = \frac{v}{\sqrt{v_1^{2} + v_2^{2} + ... + v_M^{2}}}$.
+
+\begin{equation}
+    \text{idf}(w_{ij}) = \log \frac{1 + M}{1 + M_{ij}} + 1    
+    \label{eq:tfidf-scikit-learn}
+\end{equation}
+
+\begin{listing}[htp]
+    \begin{minted}{python3}
+        tfidf = TfidfVectorizer(input='content', 
+                    preprocessor=TfidfTextPreprocessor().transform, min_df=3, 
+                    max_df=int(len(docs)*0.07))
+        tfidf.fit(documents)
+    \end{minted}
+    \caption{Initialization of the \ac{tfidf} model.
+    Firstly, an instance of the \texttt{TfidfVectorizer} class is created.
+    Secondly, the \texttt{fit} method is called to fit the model to the documents.
+    }
+    \label{lst:impl-tfidf}
+\end{listing}
+
+% pipeline
+In this work, the text of the \acp{pdf} is first extracted, then preprocessed using a custom preprocessor and afterwards embedded using the \texttt{TfidfVectorizer},
+which returns the \ac{tfidf} weights as embedding.
+Before storing the \ac{tfidf} weights in the database, they are enhanced with an all-zero flag.
+The all-zero flag ensures that no all-zero vectors are stored in the database by enhancing those that have a zero magnitude with a "1" entry and "0" otherwise.
+All-zero \ac{tfidf} weights indicate that a document does not have any terms with the vocabulary in common.
+Since the vocabulary is kept relatively small with respect to the number of different words in the data corpus to reduce the dimensionality of the embeddings, 
+it is not unlikely that a document does not contain any of the vocabulary terms.
+The all-zero flag is necessary because the cosine similarity used to query for similar documents in the database cannot handle vectors of zero magnitude.
+The pipeline in \autoref{fig:tfidf_embedding} visualizes the steps.
 
 \begin{figure}[h] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=1.0\textwidth]{images/TFIDF_embedding}
-    \caption{TFIDF Preprocessing}
+    \caption{\ac{tfidf} pipeline.
+    Firstly, the text extracted from the documents is preprocessed using a custom preprocessor.
+    Then the \ac{tfidf} are obtained from the \texttt{TfidfVectorizer}.
+    Lastly, the all-zero flag is added to the \ac{tfidf} weights and they are stored in the database.
+    }
     \label{fig:tfidf_embedding}
 \end{figure}
+
+% custom preprocessing
+In this work, a custom preprocessing function is used.
+The preprocessing steps are visualized in \autoref{fig:preprocessing} on an exemplary text.
+Firstly, the accents are stripped from the text.
+Then, all new line symbols are replaced with a whitespace.
+Afterwards, the text is converted to lowercase.
+Then the numbers are discretized, i.e. all numbers between 0 and 99999 are replaced with the string \texttt{SMALLNUMBER}, 
+numbers bigger than 99999 are replaced with the string \texttt{BIGNUMBER} and floats are replaced with the string \texttt{FLOAT}.
+The next step is to remove all punctuation symbols.
+After that, the symbols for numbers are enclosed with pointed brackets, e.g. \texttt{<SMALLNUMBER>}.
+Then, the text is tokenized, i.e. splitting at whitespaces, and stop words are omitted.
+The stop word corpus used is provided by the \texttt{nltk} package and consists of common English stop words.
+Afterwards, the tokens are lemmatized.
+The lemmatizer used is \texttt{WordNetLemmatizer} from the \texttt{nltk} package.
+In the end, the tokens are joined to a string again.
+
 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=1.1\textwidth]{images/TFIDF_preprocessing}
-    \caption{TFIDF Preprocessing}
+    \caption{\ac{tfidf} Preprocessing visualized using a example text.}
     \label{fig:preprocessing}
 \end{figure}
