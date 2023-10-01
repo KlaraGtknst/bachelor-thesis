@@ -2,7 +2,7 @@
 
 Another term used for \ac{d2v} is \textit{Paragraph Vector} \cite{clusteringDocs2020}.
 \ac{d2v} addresses the problems of \ac{tfidf} by encoding texts as $n-$dimensional vectors learnt using the words' context \cite{clusteringDocs2020}.
-Hence, it preserves semantic similarities between words.
+Hence, it preserves semantic similarities between words and encodes many linguistic regularities and patterns \cite{SkipGram2013}.
 According to \citeauthor{clusteringDocs2020}, \ac{d2v} learns continuous distributed vector representations for pieces of the text.
 The model handles inputs of different dimensions.
 
@@ -11,15 +11,15 @@ The underlying hypothesis of both approaches is that words appearing in similar 
 The \ac{w2v} embedding is obtained using a \ac{nn} \cite{clusteringDocs2020}.
 The \ac{nn} is shallow, i.e. has only one hidden layer.
 This hidden layer creates the embedding of input data.
-There are two approach as to how design the architecture of the \ac{nn}:
+There are two approaches as to how to design the architecture of the \ac{nn}:
 \begin{itemize}
     \item \ac{cbow}: 
-        Predicts a word given a context
+        Predicts a word given a context.
     \item Skip-Gram: 
         Predicts the context given a word.
 \end{itemize}
 
-The \ac{pvdm} extends the \ac{cbow} to work on corpus of documents instead of set of words \cite{clusteringDocs2020}:
+The \ac{pvdm} extends the \ac{cbow} to work on a corpus of documents instead of a set of words \cite{clusteringDocs2020}:
 As usual, vectors representing the words are obtained using the \ac{cbow} model.
 Each document is mapped to a vector using an additional document-to-vector matrix.
 The document vector is concatenated to the word vectors.
