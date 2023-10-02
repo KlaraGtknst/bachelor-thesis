@@ -1,3 +1,39 @@
 \subsection{\infersent{}}\label{subsec:inferSent}
-\infersent{}
-\cite{inferSent2018}
+
+% general
+\infersent{} is a sentence embedding method trained in a supervised manner on the \ac{snli} dataset \cite{inferSent2018}.
+The trained model is transferable to other tasks.
+
+% training
+The \ac{snli} dataset contains a huge data corpus of English sentence pairs.
+The sentence pairs are labelled with one of three categories: \textit{entailment}, \textit{contradiction} or \textit{neutral}.
+This dataset is used because it captures \ac{nli} and thus, enables learning sentence semantics.
+To train the model, a shared sentence encoder encodes both the premise and the hypothesis to their vector representations $u$ and $v$.
+In order to extract information about the relation of $u$ and $v$, three matching methods are applied:
+
+\begin{itemize}
+    \item $(u,v)$: Concatenation of the two vectors.
+    \item $u \cdot v$: Element-wise product.
+    \item $|u - v|$: Element-wise difference of the two vectors.
+\end{itemize}
+
+The resulting vector (\textcolor{red}{Wie kommt man von 3 Vektoren auf einen?}) is then fed into a three-class classifier.
+The classifier consists of multiple fully connected layers and a softmax layer.
+
+% LSTM as sentence encoder
+\citeauthor{inferSent2018} have compared multiple architectures in their work.
+The \ac{bilstm} architecture with max pooling has been found the best option for the sentence encoder.
+Given a sentence $(w_1, w_2, ..., w_T)$ of $T$ words, the \ac{bilstm} architecture computes the hidden representations $h_t$ for each word $w_t$.
+The hidden representation $h_t$ is the concatenation of the forward and backward hidden vectors $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$.
+$\overrightarrow{h_t}$ and $\overleftarrow{h_t}$ are produced by a forward and backward \ac{lstm} respectively.
+Hence, the sentence is read from both directions.
+
+Since the \ac{lstm} computes different numbers of hidden vectors $h_t$ depending on the length of sentence, a max pooling layer is applied to the hidden vectors.
+The max pooling layer selects the maximum value for each dimension of the hidden vectors.
+
+%LSTM: The sentence is represented by the last hidden vector $h_T$.
+
+
+
+
+
