@@ -18,15 +18,23 @@ In order to extract information about the relation of $u$ and $v$, three matchin
 \end{itemize}
 
 The resulting vector (\textcolor{red}{Wie kommt man von 3 Vektoren auf einen?}) is then fed into a three-class classifier.
-The classifier consists of multiple fully connected layers and a softmax layer.
+The classifier consists of multiple fully connected layers and a softmax layer \cite{inferSent2018}.
 
-% LSTM as sentence encoder
+% Bi-LSTM as sentence encoder
 \citeauthor{inferSent2018} have compared multiple architectures in their work.
 The \ac{bilstm} architecture with max pooling has been found the best option for the sentence encoder.
 Given a sentence $(w_1, w_2, ..., w_T)$ of $T$ words, the \ac{bilstm} architecture computes the hidden representations $h_t$ for each word $w_t$.
 The hidden representation $h_t$ is the concatenation of the forward and backward hidden vectors $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$.
 $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$ are produced by a forward and backward \ac{lstm} respectively.
-Hence, the sentence is read from both directions.
+Hence, the sentence is read from both directions and thus, considers past and future context.
+
+% LSTM
+A \ac{lstm} is a \ac{rnn} that is able to learn long-term dependencies.
+In other words: 
+A \ac{lstm} is able to remember information as a so-called \textit{state}.
+Certain \ac{lstm} mechanisms control whether the current state is deleted, whether new data is saved and 
+to what degree the current state contributes to the current input processed in the node.
+Hence, \ac{lstm} nodes are not only influenced by the former output but also by their state.
 
 Since the \ac{lstm} computes different numbers of hidden vectors $h_t$ depending on the length of sentence, a max pooling layer is applied to the hidden vectors.
 The max pooling layer selects the maximum value for each dimension of the hidden vectors.
