@@ -7,14 +7,15 @@ Their output is a 512-dimensional vector.
 
 % Transformer
 The transformer model is more accurate and more complex than the \ac{dan} model \cite{UniversalSentEnc2018}.
-The transformer's attention is used to compute context aware word embeddings, which consider both the word order and their semantic identity.
+The transformer's (self) attention is used to compute context-aware word embeddings, which consider both the word order and their semantic identity.
 Since the sequence of word embeddings of a sentence would produce embeddings of different dimensions, the approach postprocesses the word embeddings.
 A sentence vector is obtained by computing the element-wise sum of the word embeddings 
 and normalizing the result by dividing by the square root of the sentence length.
 
 % DAN
-The \ac{dan} model receives embeddings of words and bi-grams as input \textcolor{red}{Woher embeddings?}.
-The embeddings are averaged and subsequently passed to a feedforward \ac{dnn}.
+The \ac{dan} model receives embeddings of words and bi-grams as input.
+The strings can be converted to input vectors using models such as the bag of words model \cite{UniversalSentEnc-dan-input-emb}.
+The embeddings are averaged and subsequently passed to a feedforward \ac{dnn} \cite{UniversalSentEnc2018}.
 
 % dataset
 The models are trained on both unsupervised training data, e.g., Wikipedia, and the supervised training dataset \ac{snli} \cite{UniversalSentEnc2018, HfsentTrans2019}.
@@ -28,9 +29,3 @@ $n$ being the number of words in the sentence \cite{UniversalSentEnc2018}.
 The memory usage of both models is equivalent to their complexity.
 \citeauthor{UniversalSentEnc2018} state that \ac{dan}'s memory usage is dominated by the parameters used to store the embeddings of the uni- and bi-grams.
 Moreover, the transformer model only stores the uni-gram embeddings and thus, can require less memory than \ac{dan} for short sentences \cite{UniversalSentEnc2018}.
-
-% final model
-According to \citeauthor{HfsentTrans2019}, the transformer model is used.
-
-
-

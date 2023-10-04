@@ -1,3 +1,10 @@
 \section{\ac{use}}\label{sec:impl-use}
 
 The \ac{use} model is based on TensorFlow \cite{HfsentTrans2019}.
+In this work, the fourth version of the model is used.
+The implementation from Tfhub uses the \ac{dan} architecture \cite{UniversalSentEnc-dev}.
+It is about 1 GB and thus, loading the model takes a while.
+It is not necessary to preprocess the data for the model \cite{UniversalSentEnc-dev}.
+
+Since there are no parameters to customize the evaluation of the \ac{d2v} embeddings is limited.
+Therefore, the \ac{use} embeddings are evaluated by comparing them to other embeddings.
