@@ -1,0 +1,17 @@
+\section{Evaluation of \ac{ae}}\label{sec:evaluation-ae}
+
+% architecture
+In order to determine, which dimensionality of the latent space is the best option, 
+different architectures were tested and compared in terms of \ac{rsme} and cosine similarity.
+
+
+
+\begin{figure}[h] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includegraphics[width=1.0\textwidth]{images/embeddings/autoencoder/ae_score_plot.pdf}
+    \caption{The effect of different \ac{ae} architectures on the reconstruction error.
+    The error is measured in terms of \ac{rsme} (blue bars) and cosine similarity (yellow bars) between the original and the reconstructed image.
+    The smallest \ac{rsme} and the biggest cosine similarity belong to the architecture best suitable to this task and are coloured green.
+    }
+    \label{fig:eval-ae}
+\end{figure}
