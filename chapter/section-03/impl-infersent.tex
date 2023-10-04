@@ -1,8 +1,57 @@
 \section{\infersent{}}\label{sec:impl-infersent}
 
+% parameters
 The \infersent{} model is based on PyTorch \cite{HfsentTrans2019}.
+The parameters used to initialize the model are presented in \lst{lst:infersent-params}.
+The parameter \texttt{version} indicates whether the model was trained with \acs{glove} or fastText for 1 or 2 respectively.
+Since the model is precomputed, it is not possible to change certain parameters, 
+such as the word embedding dimension \texttt{word\_emb\_dim} or the dimension of the output vectors \texttt{enc\_lstm\_dim}.
+
+\begin{listing}[htp]
+    \begin{minted}{python3}
+        {'bsize': 64, 'word_emb_dim': 300, 'enc_lstm_dim': 2048, 'pool_type': 'max', 
+        'dpout_model': 0.0, 'version': 1}
+    \end{minted}
+    \caption{Parameters of the \infersent{} model.
+    }
+    \label{lst:infersent-params}
+\end{listing}
+
+% state dict
+The steps necessary to create a working instance of the \infersent{} model are presented in \lst{lst:infersent-init}.
+After the \infersent{} model is initialized, the \texttt{state\_dict} of the model is loaded.
+This dictionary consists of learnable parameters, i.e. weights and bias, of the model.
+The next step is to set the path to the word embeddings.
+Finally, the vocabulary of the model is built or more precisely, only those embeddings needed are kept while the rest is discarded.
+
+\begin{listing}[htp]
+    \begin{minted}{python3}
+        infersent = InferSent(params_model)
+        infersent.load_state_dict(torch.load(model_path))
+        infersent.set_w2v_path(w2v_path)
+        infersent.build_vocab(docs, tokenize=True)
+    \end{minted}
+    \caption{Initializing the \infersent{} model.
+    }
+    \label{lst:infersent-init}
+\end{listing}
 
 \textcolor{red}{W2V path}
 % GloVe
-The \infersent{} model is based on GloVe word embeddings.
-GloVe introduces bias in terms of ageism, racism and sexism into the model \cite{UniversalSentEnc2018}.
+The \infersent{} model is based on \acs{glove} word embeddings.
+\acs{glove} is an unsupervised learning algorithm for obtaining vector representations of words. 
+It is possible to download embeddings computed by \acs{glove}, instead of using the algorithm to generate them.
+The precomputed word embeddings are stored in a 5.65 GB text file.
+The file contains 840 B tokens and a vocabulary of 2.2 M cased 300-dimensional vector representations of words each \cite{download-glove}.
+\textcolor{red}{TODO: glove info \cite{glove2014}}
+\acs{glove} introduces bias in terms of ageism, racism and sexism into the model \cite{UniversalSentEnc2018}.
+
+% own W2V
+In this work, a custom set of vector representations of words is used.
+The custom word embeddings are computed by a \ac{w2v} model trained on a selection of 195 documents from the Bahamas dataset.
+The only parameter which differs from the default settings is the \texttt{vector\_size} which is set to 300.
+After the \ac{w2v} model is trained, the word embeddings are saved in a file.
+The file is post-processed to be compatible with the \infersent{} model.
+To be more precise, only lines that consist of at least two whitespace-separated char sequences are kept.
+Usually, word embeddings stored in a text file are structured in a way that 
+the first char sequence is the word and the following numbers are the vector representation of the word.
