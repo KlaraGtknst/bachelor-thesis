@@ -1,4 +1,4 @@
-\subsection{Universal sentence encoder}\label{subsec:univ-sent-encoder}
+\subsection{\ac{use}}\label{subsec:univ-sent-encoder}
 
 \citeauthor{UniversalSentEnc2018} have published their \ac{use} models on TF Hub.
 They propose two models, one based on a Transformer architecture and one based on a \ac{dan}.
@@ -17,7 +17,7 @@ The \ac{dan} model receives embeddings of words and bi-grams as input \textcolor
 The embeddings are averaged and subsequently passed to a feedforward \ac{dnn}.
 
 % dataset
-The models are trained on both unsupervised training data, e.g., Wikipedia, and the supervised training dataset \ac{snli}.
+The models are trained on both unsupervised training data, e.g., Wikipedia, and the supervised training dataset \ac{snli} \cite{UniversalSentEnc2018, HfsentTrans2019}.
 
 % complexity
 The transformer model is more complex than the \ac{dan} model.
@@ -29,7 +29,8 @@ The memory usage of both models is equivalent to their complexity.
 \citeauthor{UniversalSentEnc2018} state that \ac{dan}'s memory usage is dominated by the parameters used to store the embeddings of the uni- and bi-grams.
 Moreover, the transformer model only stores the uni-gram embeddings and thus, can require less memory than \ac{dan} for short sentences \cite{UniversalSentEnc2018}.
 
-
+% final model
+According to \citeauthor{HfsentTrans2019}, the transformer model is used.
 
 
 
