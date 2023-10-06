@@ -5,8 +5,8 @@
 \ac{bert} is a pre-trained transformer network.
 It predicts a target value, for i.e. classification or regression tasks, based on two input sentences \cite{HfsentTrans2019}.
 The input sentences are separated by a special token \texttt{[SEP]}.
-The base-model applies multi-head attention over 12 transformer layers, whereas the large model applies multi-head attention over 24 transformer layers.
-The final label is derived from a regression function, which receives the output of the 12th or 24th layer, respectively.
+The base model applies multi-head attention over 12 transformer layers, whereas the large model applies multi-head attention over 24 transformer layers.
+The final label is derived from a regression function, which receives the output of the $12^\text{th}$ or $24^\text{th}$ layer, respectively.
 \citeauthor{HfsentTrans2019} state that \ac{bert} is not suitable for specific pair regression tasks, 
 since the number of input sentence combinations is too big.
 Another shortcoming of \ac{bert} is that it does not produce independent embeddings for single sentences.
@@ -15,12 +15,24 @@ do not perform well on the representations of sentences in a \ac{vsm} produced b
 
 % SBERT
 \ac{sbert} is a modification of \ac{bert} that provides fixed-sized embeddings for single sentences \cite{HfsentTrans2019}.
-It consists of a siamese and triplet network architecture.
 It differs from \ac{bert} in terms of architecture, since it adds a pooling layer after the \ac{bert} model.
 The pooling strategies compared by \citeauthor{HfsentTrans2019} are using the output of the first/ \texttt{CLS} token, mean pooling and max pooling.
-
+The architecture of a single \ac{sbert} network is depicted in \autoref{fig:sbert}.
+In order to work with multiple input sentences at the same time, siamese and triplet network architecture, 
+i.e. multiple \ac{bert} networks with tied weights, are constructed.
+To perform classification or inference tasks layers are added on top of the \ac{sbert} network.
 % training corpus
 \ac{sbert} is trained on the \ac{snli} dataset.
+
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=0.8\textwidth]{images/embeddings/SBERT/SBERT.svg}
+    \caption{Architecture of \ac{sbert} cf. \cite{HfsentTrans2019}.
+    \ac{bert} is extended by a pooling layer.
+    The input is a sentence and the output is a fixed-sized embedding.
+    }
+    \label{fig:sbert}
+\end{figure}
 
 % performance
 According to \citeauthor{HfsentTrans2019}, \ac{sbert} outperforms \infersent{} and \ac{use}.
