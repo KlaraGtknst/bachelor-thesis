@@ -16,6 +16,17 @@ and normalizing the result by dividing by the square root of the sentence length
 The \ac{dan} model receives embeddings of words and bi-grams as input.
 The strings can be converted to input vectors using models such as the bag of words model \cite{UniversalSentEnc-dan-input-emb}.
 The embeddings are averaged and subsequently passed to a feedforward \ac{dnn} \cite{UniversalSentEnc2018}.
+The architecture of the \ac{dan} model is depicted in \autoref{fig:use_dan}.
+
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=0.6\textwidth]{images/embeddings/universal_sentence_encoder/DAN.svg}
+    \caption{Architecture of the \ac{dan} model used for \ac{use} on the basis of the textual description from \cite{inferSent2018}.
+    The input words and bi-grams $(w_1, w_2, ..., w_N)$ are embedded.
+    The embeddings are averaged and subsequently passed to a feedforward \ac{dnn}, which produces a 512-dimensional sentence embedding.
+    }
+    \label{fig:use_dan}
+\end{figure}
 
 % dataset
 The models are trained on both unsupervised training data, e.g., Wikipedia, and the supervised training dataset \ac{snli} \cite{UniversalSentEnc2018, HfsentTrans2019}.

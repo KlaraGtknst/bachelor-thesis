@@ -5,21 +5,21 @@
 The trained model is transferable to other tasks.
 
 % training
-The \ac{snli} dataset contains a huge data corpus of English sentence pairs.
-The sentence pairs are labelled with one of three categories: \textit{entailment}, \textit{contradiction} or \textit{neutral}.
-This dataset is used because it captures \ac{nli} and thus, enables learning sentence semantics.
-To train the model, a shared sentence encoder encodes both the premise and the hypothesis to their vector representations $u$ and $v$.
-In order to extract information about the relation of $u$ and $v$, three matching methods are applied:
+% The \ac{snli} dataset contains a huge data corpus of English sentence pairs.
+% The sentence pairs are labelled with one of three categories: \textit{entailment}, \textit{contradiction} or \textit{neutral}.
+% This dataset is used because it captures \ac{nli} and thus, enables learning sentence semantics.
+% To train the model, a shared sentence encoder encodes both the premise and the hypothesis to their vector representations $u$ and $v$.
+% In order to extract information about the relation of $u$ and $v$, three matching methods are applied:
 
-\begin{itemize}
-    \item $(u,v)$: Concatenation of the two vectors.
-    \item $u \cdot v$: Element-wise product.
-    \item $|u - v|$: Element-wise difference of the two vectors.
-\end{itemize}
+% \begin{itemize}
+%     \item $(u,v)$: Concatenation of the two vectors.
+%     \item $u \cdot v$: Element-wise product.
+%     \item $|u - v|$: Element-wise difference of the two vectors.
+% \end{itemize}
 
-The results of the matching methods are concatenated (cf. \cite{HfsentTrans2019}).
-The resulting vector is then fed into a three-class classifier.
-The classifier consists of multiple fully connected layers and a softmax layer \cite{inferSent2018}.
+% The results of the matching methods are concatenated (cf. \cite{HfsentTrans2019}).
+% The resulting vector is then fed into a three-class classifier.
+% The classifier consists of multiple fully connected layers and a softmax layer \cite{inferSent2018}.
 
 % Bi-LSTM as sentence encoder
 \citeauthor{inferSent2018} have compared multiple architectures in their work.
@@ -29,6 +29,19 @@ Given a sentence $(w_1, w_2, ..., w_T)$ of $T$ words, the \ac{bilstm} architectu
 The hidden representation $h_t$ is the concatenation of the forward and backward hidden vectors $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$.
 $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$ are produced by a forward and backward \ac{lstm} respectively.
 Hence, the sentence is read from both directions and thus, considers past and future context.
+The architecture of the \ac{bilstm} model with max pooling is depicted in \autoref{fig:infersent_bilstm}.
+
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=0.6\textwidth]{images/embeddings/infersent/Infersent.svg}
+    \caption{Architecture of the \ac{bilstm} model with max pooling used for \infersent{} cf. \cite{inferSent2018}.
+    The input sentence $(w_1, w_2, ..., w_T)$ is read from both directions by a forward and backward \ac{lstm} 
+    producing $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$ respectively.
+    After concatenating $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$ to $h_t$, max pooling is applied.
+    The output is a fixed-sized embedding.
+    }
+    \label{fig:infersent_bilstm}
+\end{figure}
 
 % LSTM
 A \ac{lstm} is a \ac{rnn} that is able to learn long-term dependencies.
