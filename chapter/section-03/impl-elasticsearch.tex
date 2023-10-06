@@ -26,7 +26,7 @@ The structure of the index is presented in \autoref{tbl:Elasticsearch-fields}.
     google\_univ\_sent\_encoding                & 512 dimensional google\_univ\_sent\_encoding embedding of \texttt{i}.                                     \\ \hline
     huggingface\_sent\_transformer              & 384 dimensional huggingface\_sent\_transformer embedding of \texttt{i}.                                  \\ \hline
     inferSent\_AE                               & inferSent\_AE embedding of \texttt{i}. Since the pretrained \infersent{} model embedding's dimension is 4096, the encoder of a trained \ac{ae} is added to reduce the dimension to 2048.                                                    \\ \hline
-    pca\_image                                  & Two dimensional \ac{pca} version of first page image of \texttt{i}.                      \\ \hline
+    pca\_image                                  & 13-dimensional \ac{pca} version of first page image of \texttt{i}.                      \\ \hline
     pca\_optics\_cluster                        & Cluster of \texttt{i} identified by \acs{optics} on \ac{pca} version of image.            \\ \hline
     argmax\_pca\_cluster                        & Number of maximum \ac{pca} component as cluster of \texttt{i}.                            \\ \hline
     text                                        & Text of \texttt{i}.                                                                       \\ \hline
