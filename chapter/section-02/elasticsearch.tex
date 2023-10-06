@@ -65,7 +65,7 @@ but also between isolated clusters to ensure global connectivity \cite{Elasticse
 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includegraphics[width=0.3\textwidth]{images/HNSW-layer.png}
+    \includegraphics[width=0.3\textwidth]{images/Elasticsearch/HNSW-layer.png}
     \caption{Structure of \ac{hnsw} layer from \cite{Elasticsearch-kNN-HNSW}.
     The search starts on the uppermost layer, i.e. the layer containing the longest links, greedily traversing the layer until reaching the local minimum.
     The local minimum is used as the starting point at the next lower layer and the process is repeated until the lowest layer is reached.
@@ -75,7 +75,7 @@ but also between isolated clusters to ensure global connectivity \cite{Elasticse
 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includegraphics[width=0.3\textwidth]{images/HNSW-neighbour-selection-heuristic.png}
+    \includegraphics[width=0.3\textwidth]{images/Elasticsearch/HNSW-neighbour-selection-heuristic.png}
     \caption{Neighbour selection heuristic of \ac{hnsw} from \cite{Elasticsearch-kNN-HNSW}.
     The heuristic creates diverse links, i.e. links between close elements (e.g., green circle and elements in cluster 1) 
     and between isolated clusters (e.g., green circle and $e_2$) to ensure global connectivity.
@@ -90,4 +90,3 @@ In order to perform the \ac{knn} search on a \texttt{<field>} it has to be of ty
 
 Besides \databaseName{}, the elastic stack offers other tools, for instance, Kibana, which provides a user interface to manage different models.
 After saving a model in Kibana, it is possible to create a text embedding ingest pipeline, which embeds new documents or reindexes existing documents \cite{Elasticsearch-knn-embedding}.
-

@@ -9,6 +9,20 @@ Usually, \ac{nosql} databases do not offer services such as \texttt{JOIN} \cite{
 According to \citeauthor{flask2018}, \ac{nosql} databases make a tradeoff between storage and speed, as well as a tradeoff between consistency and availability.
 \ac{nosql} databases are said to outperform out-of-the-box \ac{sql} databases \cite{flask2018}.
 
+% separation of initialisation and insertion
+The time per step is shown in \autoref{fig:time_init_db}.
+Separating the initialization into multiple steps is beneficial since it is possible to update the embeddings without having to recreate the database.
+Moreover, the time per step facilitates debugging and comparing the models used to create the embeddings.
+
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/Elasticsearch/time_per_emb.pdf}
+    \caption{Time per step when creating the Bahamas database using a selection of 195 documents.
+    The time was measured using the \texttt{timer} from \texttt{timeit.default\_timer} on a Apple M2 Pro MNW83D/A with 16 GB RAM and 12 cores.
+    }
+    \label{fig:time_init_db}
+\end{figure}
+
 % similarity
 Since the similarity between vectors is usually calculated using some form of cosine similarity, 
 rather than Euclidean distance in literature, cosine is preferred over Euclidean distance. 
