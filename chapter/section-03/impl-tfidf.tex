@@ -16,7 +16,8 @@ The default values are $1$, i.e. a term has to appear at least once, and $1.0$, 
 The implementation of \ac{tfidf} in \texttt{scikit-learn} is different from the original \ac{tfidf} definition.
 By default, the \texttt{scikit-learn} implementation uses the \texttt{norm='l2'} parameter, i.e. the Euclidean norm \cite{tfidf-scikit-learn}.
 The difference is the calculation of the \ac{idf} part, which is given in \autoref{eq:tfidf-scikit-learn} from \cite{tfidf-scikit-learn}.
-The one is added to $M_{ij}$ due to the parameter \texttt{smooth\_id=True} by default to prevent zero divisions.
+The one is added to $M_{ij}$ due to the parameter \texttt{smooth\_id=True} by default to prevent zero divisions \cite{tfidf-scikit-learn}
+and to avoid logarithmic divergences due to a zero argument \cite{glove2014}.
 After calculating the \ac{tfidf} values, they are normalized by the Euclidean norm 
 $v_{norm} = \frac{v}{\left\| v \right\|_{2}} = \frac{v}{\sqrt{v_1^{2} + v_2^{2} + ... + v_M^{2}}}$.
 

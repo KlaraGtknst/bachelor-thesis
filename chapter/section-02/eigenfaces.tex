@@ -97,6 +97,7 @@ The eigenvalues $\textbf{e}_i \in \mathbb{R}^{n}$ of $\textbf{X}\textbf{X}^{T}$ 
 $\textbf{e}_i = \frac{1}{\sqrt{\lambda_i}}\textbf{X}\textbf{v}_i$ as discussed in more detail in \cite{eigenfaces1997}.
 Hence, the problem is reduced to a $N$ by $N$ matrix, which is computationally less expensive to solve, since $N \ll n$.
 Eigenvectors can be calculated using \ac{svd} \cite{eigenfaces1997}.
+\textcolor{red}{\ac{svd} is a method, which decomposes a matrix into matrices and facilitates the calculation of eigenvectors.}
 
 % classification/ compare
 In the literature, face images are classified by comparing their position in the face space with those of already known faces \cite{eigenfaces1991}.

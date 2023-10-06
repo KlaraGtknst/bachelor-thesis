@@ -41,6 +41,7 @@ There are two approaches as to how to design the architecture of the \ac{nn}:
 % context to centre word
 The \ac{pvdm} extends the \ac{cbow} to work on a corpus of documents instead of on a set of words \cite{clusteringDocs2020}:
 As usual, vectors representing the words are obtained using the \ac{cbow} model.
+The \ac{cbow} has a single-layer architecture based on the inner product between two word vectors \cite{glove2014}.
 %Given training words $ w_{1}, ..., w_{T}$, the objective of the \ac{w2v} model \ac{cbow} is to maximize the average log probability in 
 %\autoref{eq:word2vec-cbow} from \cite{SentRep2014}.
 The word vectors can be concatenated or averaged/ summed up \cite{SentRep2014}.
@@ -70,7 +71,8 @@ The authors of \cite{SentRep2014} also state that the document vectors are uniqu
     \label{fig:pvdbow}%
 \end{figure}
 % centre word to context
-The \ac{pvdbow} approach is the adaption of the \ac{w2v} algorithm Skip-Gram and predicts the context given (a centre word and) the paragraph/ document \cite{SentRep2014}.
+The \ac{pvdbow} approach is the adaption of the \ac{w2v} algorithm Skip-Gram and predicts the context 
+given (a centre word and) the paragraph/ document \cite{SentRep2014}.
 The approaches are displayed in \autoref{fig:pvdbow}.
 %According to \citeauthor{SentRep2014}, the 
 
