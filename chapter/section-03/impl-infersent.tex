@@ -36,15 +36,19 @@ Finally, the vocabulary of the model is built or more precisely, only those embe
     \label{lst:infersent-init}
 \end{listing}
 
-\textcolor{red}{W2V path}
 % GloVe
 The \infersent{} model is based on \acs{glove} word embeddings.
-\acs{glove} is an unsupervised learning algorithm for obtaining vector representations of words. 
+\acs{glove} is a global log-bilinear regression model for unsupervised learning of vector representations of words \cite{glove2014}. 
+According to \citeauthor{glove2014}, the model captures global corpus statistics directly.
+The complexity of the model is bound by $O(V^2)$, $V$ being the vocabulary size.
+However, \citeauthor{glove2014} is better than the worst case stated above and rather in $O(C)$, $C$ being the corpus size.
+The \acs{glove} model is trained on ratios of co-occurrence probabilities of words from the corpus, 
+which correlate with the relationship between the words \cite{glove2014}.
+\citeauthor{glove2014} introduce rules for a weighting function to ensure rare and frequent co-occurrences are not overweighted.
 It is possible to download embeddings computed by \acs{glove}, instead of using the algorithm to generate them.
 The precomputed word embeddings are stored in a 5.65 GB text file.
 The file contains 840 B tokens and a vocabulary of 2.2 M cased 300-dimensional vector representations of words each \cite{download-glove}.
-\textcolor{red}{TODO: glove info \cite{glove2014}}
-\acs{glove} introduces bias in terms of ageism, racism and sexism into the model \cite{UniversalSentEnc2018}.
+According to \citeauthor{UniversalSentEnc2018}, \acs{glove} introduces bias in terms of ageism, racism and sexism into the model.
 
 % own W2V
 In this work, a custom set of vector representations of words is used.
