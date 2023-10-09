@@ -1,0 +1,9 @@
+\section{\topTwovec{}}\label{sec:impl-top2vec}
+
+\citeauthor{Top2Vec2020} provide their own Python library \topTwovec{} \cite{Top2Vec2020}.
+The non-changeable default values of the model are listed below.
+The model used to generate the word and document embeddings is the \ac{d2v} model \ac{pvdbow} \topTwovec{} \cite{Top2Vec2020}.
+It has a window size of 15, uses hierarchical softmax, minimum count of 50, vector size of 300 and has a sub-sampling threshold of $10^5$ \cite{Top2Vec2020}.
+% dimensionality reduction
+\ac{umap}'s hyperparameters are set to 15 nearest neighbours, cosine similarity as the distance metric and 5 as the embedding dimension in \citeauthor{Top2Vec2020}'s work.
+

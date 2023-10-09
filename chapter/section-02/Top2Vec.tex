@@ -1,0 +1,39 @@
+\subsection{Top2Vec}\label{subsec:top2vec}
+
+The approach \topTwovec{} was proprosed by \citeauthor{Top2Vec2020} \cite{Top2Vec2020}.
+It addresses several problems of state-of-the-art topic modelling approaches, such as \ac{lda}.
+Opposed to \ac{lda}, \topTwovec{} does not require the user to specify the number of topics $k$, 
+i.e. it does not discretize the topic space into $k$ topics, 
+and it does not require stop word removal or lemmatization.
+Moreover, it considers the semantic meaning of words unlike \ac{lda}.
+Unlike \ac{lda}, \topTwovec{} only associates one topic with a document.
+
+% topics
+The authors state that topics are continuous and can be described by different sets of words \cite{Top2Vec2020}.
+Hence, topic modelling is defined as the task of finding sets of informative words that describe a document.
+Documents in dense areas of the topic space are considered to be about the same topic.
+The density-based clustering algorithm \ac{hdbscan} is used to find these dense areas.
+The topic vector is denoted as the centroid or average of the document vectors belonging to the topic.
+\citeauthor{Top2Vec2020} have tried alternative topic vector definitions, such as the geometric mean, finding the arithmetic mean to be the best option \cite{Top2Vec2020}.
+The number of topics is derived from the number of dense areas.
+It is possible to merge topics to hierarchically reduce the number of topics found to any number of topics smaller than the number initially found.
+
+% word2vec and doc2vec
+\topTwovec{} is based on \ac{w2v} and \ac{d2v}.
+The learning task is to predict the document a word came from \cite{Top2Vec2020}.
+Similar to \ac{d2v}, \topTwovec{} not only embeds words and documents in the same feature space but also topics.
+\citeauthor{Top2Vec2020} view each point in the \ac{vsm} as a topic, described by its nearest words.
+
+% dimensionality reduction
+In order to find topics, clusters of documents, i.e. dense areas, need to be identified.
+The clustering algorithm \ac{hdbscan} is used to find these dense areas.
+Since \ac{hdbscan} has difficulties finding dense clusters in high-dimensional data, 
+the dimensionality reduction method \ac{umap} is applied \cite{Top2Vec2020}.
+The steps of the topic modelling procedure \topTwovec{} are depicted in \autoref{fig:top2vec}.
+
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=0.7\textwidth]{images/topic_modelling/Top2Vec.svg}
+    \caption{Procedure of topic modelling using \topTwovec{}.}
+    \label{fig:top2vec}
+\end{figure}

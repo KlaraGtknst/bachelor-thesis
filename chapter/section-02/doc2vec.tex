@@ -49,7 +49,7 @@ Each document is mapped to a vector using an additional document-to-vector matri
 Both document and word vectors are initialized randomly, but trained to convey meaning in terms of semantic differentiation.
 In order to train the model, centre words are predicted using the context, i.e. words within a sliding window, 
 and their document, respectively represented as vectors \cite{SentRep2014}.
-The document vector is added to incorporate the document's topic and thus, acts like a memory.
+The document vector is added to incorporate the document's topic and thus, acts like a memory \cite{SentRep2014, Top2Vec2020}.
 In the work of \cite{SentRep2014}, the document vector is concatenated to the word vectors.
 The resulting vector is the prediction of the central word.
 The approaches are displayed in \autoref{fig:pvdm}.
