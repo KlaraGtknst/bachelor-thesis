@@ -2,21 +2,21 @@
 
 Similar to other \ac{ml} domains, \ac{nlp} requires preprocessing of the data.
 Usually, textual data contains irrelevant information and noise.
-Hence, preprocessing improves the performance and results \cite{clusteringDocs2020}.
+Hence, preprocessing improves the performance and the results \cite{clusteringDocs2020}.
 The next sections describe a selection of the preprocessing steps applied in this work.
 
 
-\subsection{Tokenization/ Chunking}\label{subsec:tokenization}
+\subsection{Tokenization}\label{subsec:tokenization}
 
 \textit{Tokenization} is the process of splitting a text into smaller pieces, so-called \textit{tokens}.
 Tokens can be words and punctuation marks \cite{nlp-book2009}.
 However, the definition of a token depends on the application.
 For instance, certain tokenization implementations may identify tokens as subsequent series of non-whitespace characters omitting all numbers and punctuation marks \cite{IR2011}.
 
-\textit{Chunking} is the process of splitting a text into smaller pieces, so-called \textit{chunks}.
-A chunk is a sequence of tokens, e.g. words, in a text \cite{nlp-book2009}.
-Chunks do not overlap.
-According to \citeauthor{nlp-book2009}, chunkers produce their pieces by following a set of rules, e.g., grammar rules.
+% \textit{Chunking} is the process of splitting a text into smaller pieces, so-called \textit{chunks}.
+% A chunk is a sequence of tokens, e.g. words, in a text \cite{nlp-book2009}.
+% Chunks do not overlap.
+% According to \citeauthor{nlp-book2009}, chunkers produce their pieces by following a set of rules, e.g., grammar rules.
 
 \subsection{Stemming}\label{subsec:stemming}
 
@@ -26,29 +26,27 @@ from a word and returning the stem.
 Different types of stemmers are better suited for certain applications than others.
 Hence, the choice of the stemmer depends on the application.
 
-For instance, the \textit{Porter Stemmer} performs well for English texts \cite{nlp-book2009, clusteringDocs2020}.
-It is predominantly used for the normalization of inflected forms.
-The \textit{Porter Stemmer} is an algorithmic stemmer, 
-i.e. it applies a set of rules to a word to produce the stem and thus, does not use a dictionary \cite{IR2011, clusteringDocs2020}.
+% For instance, the \textit{Porter Stemmer} performs well for English texts \cite{nlp-book2009, clusteringDocs2020}.
+% It is predominantly used for the normalization of inflected forms.
+% The \textit{Porter Stemmer} is an algorithmic stemmer, 
+% i.e. it applies a set of rules to a word to produce the stem and thus, does not use a dictionary \cite{IR2011, clusteringDocs2020}.
 
 \subsection{Lemmatization}\label{subsec:lemmatization}
 
-Stemming or lemmatization is used to reduce the vocabulary size \cite{clusteringDocs2020}.
+Stemming and lemmatization are used to reduce the vocabulary size \cite{clusteringDocs2020}.
 By ensuring the resulting stem is a valid word, the process of stemming is called \textit{lemmatization} \cite{nlp-book2009}.
 Some implementations of lemmatizers only stem words if the result is in its dictionary.
 Since lemmatizers validate the result prior to returning it, they are usually slower than stemmers \cite{nlp-book2009}.
 
-The \textit{WordNetLemmatizer} from the \texttt{nltk} package requires a vocabulary \cite{clusteringDocs2020}.
+The \textit{WordNetLemmatizer} from the \texttt{nltk} package requires a vocabulary. % \cite{clusteringDocs2020}.
 According to \citeauthor{clusteringDocs2020}, it is frequently used for English texts.
-It manages the meaning of words and considers the order of the words \cite{clusteringDocs2020}.
+It considers not only the meaning of words, but also the order of the words \cite{clusteringDocs2020}.
 
 
 \subsection{Stop-Word-Removal}\label{subsec:stop-word-removal}
 
 Omitting words that are not relevant to the context of the text is called \textit{stop-word-removal}.
-Stop words not only depend on the domain but also on the language \cite{IR2011}.
-Possibly, domain-specific stop-word lists are used to remove words that are not relevant to the context of the text \cite{IR2011}.
-
+Stop words not only depend on the domain but also the language \cite{IR2011}.
 
 
 \subsection{Lower case}\label{subsec:lower-case}

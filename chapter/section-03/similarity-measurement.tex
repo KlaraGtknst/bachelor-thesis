@@ -1,14 +1,14 @@
 
 \section{Similarity Measurement}\label{sec:similarity-measurement}
 
-Since embeddings represent texts as vectors, they not only facilitate human interpretability of relationships between texts using 
-the text's respective point in a $N$-dimensional space, but also enable the use of similarity measures to quantify the similarity between texts.
-A similarity measure defines a metric to quantify the similarity between two texts \cite{IR2011, euclidean_l2_norm2015}.
+Since embeddings represent texts as numerical vectors, they not only facilitate human interpretability of relationships between texts using 
+the text's respective point in a $N$-dimensional space, 
+but they also enable the use of metrics, i.e. similarity measures, to quantify the similarity between texts \cite{IR2011, euclidean_l2_norm2015}.
 
 There are several similarity measures, such as the dot product quantifying the number of shared tokens of two texts, 
 the (soft) cosine similarity, which is the normalized dot product and calculates the angle between two vectors, 
 and many more \cite{IR2011, euclidean_l2_norm2015, HfsentTrans2019}.
-The following section describes a few of the metrics usable for similarity measurement.
+The following section outlines a few similarity measures.
 
 
 \subsection{Euclidian distance}\label{subsec:euclidian-distance}
@@ -16,11 +16,11 @@ The following section describes a few of the metrics usable for similarity measu
 The \textit{euclidian distance} is a distance measure.
 In order to measure the distance between two points in a $N$-dimensional space, 
 the root of the sum of squared distances between the respective values of every dimension is calculated.
-The distance function Euclidean (L2) norm is given in \autoref{eq:euclidian-distance} from \cite{euclidean_l2_norm2015}.
-The points $x_1, x_2$ correspond to objects $d_1, d_2$.
+The distance function Euclidean (L2) norm is given in \autoref{eq:euclidian-distance} c.f. \cite{euclidean_l2_norm2015}.
+The points $a, b$ correspond to objects $d_1, d_2$.
 
 \begin{equation}
-    d_E(x_1,x_2) = \sqrt{\sum_{i=1}^{N}(x_1\left[ i \right] - x_2\left[ i \right])^2}
+    d_E(a,b) = \sqrt{\sum_{i=1}^{N}(a_i - b_i)^2}
     \label{eq:euclidian-distance}
 \end{equation}
 
@@ -34,8 +34,8 @@ This space is called \ac{vsm} \cite{soft_cosine2014}.
 
 The similarity between two texts is measured by the cosine of the angle between their respective vectors \cite{soft_cosine2014}.
 The cosine similarity is defined in \autoref{eq:cosine-similarity} from \cite{soft_cosine2014}.
-$a \cdot b = \sum_{i=1}^{N}a_{i}b_{i}$ is the dot-product.
-The dot-product is normalized with $\left\| x \right\| = \sqrt{x \cdot x}$ to unit Euclidean length \cite{soft_cosine2014}.
+The dot-product is defined as $a \cdot b = \sum_{i=1}^{N}a_{i}b_{i}$.
+It is normalized with $\left\| x \right\| = \sqrt{x \cdot x}$ to unit Euclidean length \cite{soft_cosine2014}.
 The cosine similarity is a value between $0$ and $1$ for positive values \cite{soft_cosine2014}.
 According to \citeauthor{soft_cosine2014}, the formula has a time and space complexity of $O(N)$ for a pair of $N$-dimensional vectors.
 
@@ -58,7 +58,7 @@ which assumes the tokens of the vocabulary are completely independent of each ot
 
 According to \citeauthor{soft_cosine2014}, in order to model this additional information, more dimensions are added to the \ac{vsm}.
 These dimensions can be obtained, for instance, by multiplying the mean of two features of one vector with the similarity between them \cite{soft_cosine2014}.
-The similarity can be calculated by using Levenshtein distance for e.g., n-grams, i.e. the number of operations necessary to convert one string into another, 
+The similarity can be calculated by using Levenshtein distance, i.e. the number of operations necessary to convert one string into another, 
 or using a dictionary of synonyms \cite{soft_cosine2014}.
 
 Since this approach no longer assumes that different words are independent of each other, 
