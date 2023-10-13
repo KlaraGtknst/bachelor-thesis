@@ -46,15 +46,16 @@ The maximum number of expansion terms is set to 50 by default but can be configu
 By default, the multi-terms synonym expansion option is enabled \cite{Elasticsearch-match}.
 
 \databaseName{} also provides the option to perform fuzzy matching instead of exact search.
-By enabling the fuzzy matching option, a \databaseName{} query consisting of for instance, \textit{Bahama} returns documents that have the word \textit{Bahamas}.
+By enabling the fuzzy matching option, a \databaseName{} query consisting of for instance, \textit{Bahama} returns documents that contain the word \textit{Bahamas}.
 By default, this option is not enabled but can be enabled and configured individually by the user \cite{Elasticsearch-match}.
 
 
 % knn-search
 Another search option of \databaseName{} is the \ac{knn} search.
 The return value of a \ac{knn} search is the \texttt{k} nearest neighbors in terms of a certain distance function of a query vector \cite{Elasticsearch-kNN-HNSW}.
-The query is a dense vector of the same dimension as the (dense) vectors stored in the database.
-According to \cite{Elasticsearch-knn}, the \ac{knn} either returns the exact brute-force nearest neighbors or approximate nearest neighbors calculated by the \ac{hnsw} algorithm \cite{Elasticsearch-kNN-HNSW, Elasticsearch-knn}.
+The query is a dense vector of the same dimension as the vectors stored in the database.
+According to \cite{Elasticsearch-knn}, the \ac{knn} either returns the exact brute-force nearest neighbors or 
+an approximation of the nearest neighbors calculated by the \ac{hnsw} algorithm \cite{Elasticsearch-kNN-HNSW, Elasticsearch-knn}.
 \ac{hnsw} is a graph-based algorithm \cite{Elasticsearch-kNN-HNSW}.
 The term \texttt{navigable} refers to the graphs used, which are graphs with (poly-)logarithmic scaling of links traversed during greedy traversal concerning the network size \cite{Elasticsearch-kNN-HNSW}.
 The idea of a \texttt{hiercharical} algorithm is to create a multilayer graph, grouping links according to their link length, as displayed in \autoref{fig:hnsw-layer}. 
@@ -66,7 +67,7 @@ but also between isolated clusters to ensure global connectivity \cite{Elasticse
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includegraphics[width=0.3\textwidth]{images/Elasticsearch/HNSW-layer.png}
-    \caption{Structure of \ac{hnsw} layer from \cite{Elasticsearch-kNN-HNSW}.
+    \caption{Structure of \ac{hnsw} layers from \cite{Elasticsearch-kNN-HNSW}.
     The search starts on the uppermost layer, i.e. the layer containing the longest links, greedily traversing the layer until reaching the local minimum.
     The local minimum is used as the starting point at the next lower layer and the process is repeated until the lowest layer is reached.
     }
