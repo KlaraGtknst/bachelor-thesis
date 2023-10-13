@@ -5,13 +5,13 @@ Opposed to former approaches in the domain of face recognition which relied on t
 \eigenfaces{} does not use predefined features \cite{eigenfaces1991}.
 The goal of this approach is to represent images using a smaller set of image features, i.e. compression to a lower-dimensional feature space, 
 such that it is possible to distinguish between the images \cite{eigenfaces1991, eigenfaces2013}.
-Similar pictures, i.e. of the same person, should lie on a manifold in the lower-dimensional feature space \cite{face-recognition2008}.
 These features do not necessarily correspond to human facial features \cite{eigenfaces1991}.
+Similar pictures, i.e. of the same person, should lie on a manifold in the lower-dimensional feature space \cite{face-recognition2008}.
 The decomposition of input images not only reduces the complexity but also facilitates modelling probability density of a face image \cite{face-recognition2008}.
 
 % input image
 % greyscale
-The input greyscale images are two-dimensional arrays of numbers: $\textbf{x} = \left\{ x_i, i \in \textbf{S} \right\}$, $\textbf{S}$ being a square lattice \cite{eigenfaces1997, eigenfaces1991}.
+The greyscale input images are two-dimensional arrays of numbers: $\textbf{x} = \left\{ x_i, i \in \textbf{S} \right\}$, $\textbf{S}$ being a square lattice \cite{eigenfaces1997, eigenfaces1991}.
 The images are reshaped to an one-dimensional array $\textbf{x} = \left[x_1, x_2, ..., x_n  \right]^{T} \in \mathbb{R}^{n}$, 
 where $n = \left\| \textbf{S} \right\|$ and $\mathbb{R}^{n}$ is the $n$-dimensional euclidean space \cite{eigenfaces1997}.
 % background
@@ -23,8 +23,8 @@ whereas the projected images' dimension is 16x16 \cite{eigenfaces1991}/ 250 \cit
 \citeauthor{eigenfaces1991} stress that the data should be normalized, i.e. centred: 
 $\Phi_{k} = \mathbf{x}_{k} - {\psi }$. 
 $\Phi_{k}$ being the difference of the $k$-th training image and the average image $\psi = \frac{1}{N}\sum_{k=1}^{N}\textbf{x}_{k}$, $N$ being the number of training images.
-Some implementations of \eigenfaces{}, for instance, the one from \href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html}{sklearn}, 
-provide the normalization described above and thus, do not require the user to manually preprocess the data.
+\textcolor{red}{Implementation: Some implementations of \eigenfaces{}, for instance, the one from \href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html}{sklearn}, 
+provide the normalization described above and thus, do not require the user to manually preprocess the data.}
 
 
 % decomposition
@@ -51,12 +51,12 @@ the compressed image calculated using $m < n$ orthogonal vectors.
 The \ac{kl} basis consists of the eigenvectors of covariance matrix $\textbf{C} = E\left[ \textbf{x}\textbf{x}^{T} \right]$ of the input images $\mathbf{x}$ \cite{eigenfaces1997}.
 % determine the number of components m
 Since these eigenvectors can have facial features, they are called \textit{\eigenfaces{}}.
-The are two approaches in the literature to determine the number of \eigenfaces{} $m$ used to compress the input images:
+There are two approaches in the literature to determine the number of \eigenfaces{} $m$ used to compress the input images:
 \begin{enumerate}[label=(\alph*)]
     \item The cumulative explained variance of the first $i \le n$ eigenvectors (sorted by eigenvalues $\lambda_i$) is calculated 
         \cite{eigenfaces1997, face-recognition2020, face-recognition2021}.
         The eigenvalues $\lambda_i$ can be interpreted as the amount of variance explained by the corresponding eigenvector $\textbf{e}_i$, which is equivalent to information or entropy.
-        The user can choose how much variance, i.e. information, should be preserved, by choosing $m$ such that the explained variance is greater than the chosen threshold.
+        The user can choose how much variance, i.e. information, should be preserved, by choosing $m$ such that the explained variance is greater than a chosen threshold.
         \citeauthor{face-recognition2021} use a threshold of 90\%.
         A plot displaying the cumulative explained variance and a threshold of 90\% is shown in \autoref{fig:det_n_comp} (a).
 
@@ -97,7 +97,7 @@ The eigenvalues $\textbf{e}_i \in \mathbb{R}^{n}$ of $\textbf{X}\textbf{X}^{T}$ 
 $\textbf{e}_i = \frac{1}{\sqrt{\lambda_i}}\textbf{X}\textbf{v}_i$ as discussed in more detail in \cite{eigenfaces1997}.
 Hence, the problem is reduced to a $N$ by $N$ matrix, which is computationally less expensive to solve, since $N \ll n$.
 Eigenvectors can be calculated using \ac{svd} \cite{eigenfaces1997}.
-\ac{svd} is a method, which decomposes a matrix into three matrices, i.e. the so-called left singular vector, diagonal matrix and right singular vector \cite{dim_reduction2021}. 
+\ac{svd} is a method, which decomposes a matrix into the so-called left singular vector, the diagonal matrix and the right singular vector \cite{dim_reduction2021}. 
 \ac{svd} facilitates the calculation of eigenvectors.
 
 % classification/ compare
