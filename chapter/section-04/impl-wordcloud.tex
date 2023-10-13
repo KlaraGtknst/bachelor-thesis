@@ -1,0 +1,29 @@
+\section{\wordcloud{}}\label{sec:impl-wordcloud}
+
+The implementation of \wordcloud{}s in this thesis is based on the Python library \textit{wordcloud} \cite{wordcloud-dev}.
+This implementation removes certain English stop words from the text by default.
+The input text is split into tokens using a regex.
+By default, plurals are removed if their singular version is present and their frequency is added to their singular version.
+By default, numbers are not included as phrases/ tokens.
+
+\begin{listing}[htp]
+    \begin{minted}{python3}
+        lemmatizer = WordNetLemmatizer()
+        tokens = [lemmatizer.lemmatize(token) for token in tokens]
+    \end{minted}
+    \caption{Custom preprocessing of \wordcloud{} input.
+    }
+    \label{lst:impl-preproc-wordcloud}
+\end{listing}
+
+\begin{listing}[htp]
+    \begin{minted}{python3}
+        wordcloud = WordCloud(width=800, height=500, random_state=21, 
+            contour_width=3, max_font_size=110, background_color='white', 
+            max_words=5000).generate(','.join(tokens))
+    \end{minted}
+    \caption{Initialization of the \wordcloud{}.
+    }
+    \label{lst:impl-preproc-wordcloud}
+\end{listing}
+

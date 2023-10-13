@@ -23,8 +23,8 @@ The trained model is transferable to other tasks.
 
 % Bi-LSTM as sentence encoder
 \citeauthor{inferSent2018} have compared multiple architectures in their work.
-The \ac{bilstm} architecture with max pooling has been found the best option for the sentence encoder \cite{inferSent2018}.
-According to \citeauthor{HfsentTrans2019}, it is a single siamese \ac{bilstm} layer \cite{HfsentTrans2019}.
+The \ac{bilstm} architecture with max pooling was found to be the best option for the sentence encoder \cite{inferSent2018}.
+According to \citeauthor{HfsentTrans2019}, it consists of a single siamese \ac{bilstm} layer \cite{HfsentTrans2019}.
 Given a sentence $(w_1, w_2, ..., w_T)$ of $T$ words, the \ac{bilstm} architecture computes the hidden representations $h_t$ for each word $w_t$.
 The hidden representation $h_t$ is the concatenation of the forward and backward hidden vectors $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$.
 $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$ are produced by a forward and backward \ac{lstm} respectively.
@@ -35,7 +35,7 @@ The architecture of the \ac{bilstm} model with max pooling is depicted in \autor
     \centering
     \includesvg[width=0.6\textwidth]{images/embeddings/infersent/Infersent.svg}
     \caption{Architecture of the \ac{bilstm} model with max pooling used for \infersent{} cf. \cite{inferSent2018}.
-    The input sentence $(w_1, w_2, ..., w_T)$ is read from both directions by a forward and backward \ac{lstm} 
+    The input sentence $(w_1, w_2, ..., w_T)$ is read from both directions by a forward and a backward \ac{lstm} 
     producing $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$ respectively.
     After concatenating $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$ to $h_t$, max pooling is applied.
     The output is a fixed-sized embedding.
