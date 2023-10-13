@@ -150,10 +150,10 @@ The non-core point cluster assigning is non-deterministic \cite{OPTICS2013}.
 \end{equation}
 
 \ac{optics} saves the reachability distance $RD(y)$, as calculated in \autoref{eq:optics-reachability-distance} from \cite{OPTICS2013},
-with core distance core\_dist being the minimal distance $\varepsilon^{min}$ such that $| N_{\varepsilon^{min}} (x) | \geq minPts$ 
-(the distance to the $minPts^{th}$ point in $N_\varepsilon$) or NULL else, 
-of each element to its predecessor in the order list and thus, 
-a representation of the density necessary to keep two consecutive objects in the same cluster \cite{OPTICS2013}.
+with core distance $core\_dist$ being the minimal distance $\varepsilon^{min}$ such that $| N_{\varepsilon^{min}} (x) | \geq minPts$ 
+(i.e. the distance to the $minPts^{th}$ point in $N_\varepsilon$) or NULL else, 
+of each element $y$ to its predecessor $x$ in the order list and thus, 
+a representation of the density necessary to keep two consecutive objects $x$ and $y$ in the same cluster \cite{OPTICS2013}.
 If $\varepsilon < RD(y)$, then $y$ is not density reachable from any of its predecessors and thus, 
 one can determine whether two points are in the same cluster for given information saved by \ac{optics} \cite{OPTICS2013, OPTICS1999}.
 If the core distance of an element is not NULL, i.e. it is a core object, and it is not density reachable from its predecessors, it is the start of a new cluster \cite{OPTICS1999}.
@@ -175,7 +175,7 @@ The relationship between $\varepsilon$, cluster density and nested density-based
     \label{fig:nested_density_cluster}
 \end{figure}
 
-Hence, this procedure enables the extraction of clusters for arbitrary $0 \le \varepsilon_i \le \varepsilon$ \cite{OPTICS_kMeans_2016, OPTICS1999}.
+This procedure enables the extraction of clusters for arbitrary $0 \le \varepsilon_i \le \varepsilon$ \cite{OPTICS_kMeans_2016, OPTICS1999}.
 According to \citeauthor{OPTICS2013}'s work, even though the clustering algorithm is expensive the extraction only needs linear time.
 According to \cite{OPTICS1999}, the algorithm yields good results if the input parameters $minPts$ and $\varepsilon$ are "large enough" and thus, the algorithm is rather insensitive to the input parameters.
 
