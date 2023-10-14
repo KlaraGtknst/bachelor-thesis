@@ -1,17 +1,20 @@
 
-\section{Slurm}\label{subsec:slurm}
+\section{\slurm{}}\label{subsec:slurm}
 
-Slurm is an open-source management tool for Linux clusters \cite{slurm-online}.
+Since the data corpus is too big to be processed locally on a \localMaschineStats{}, the \thesisdepartment{} has offered to provide computally means to solve this problem.
+The scripts can be processed by multiple nodes which are managed by \slurm{}.
+
+\slurm{} is an open-source management tool for Linux clusters \cite{slurm-online}.
 It allocates resources, i.e. compute nodes, and provides the means to start, execute and monitor jobs \cite{slurm-online, slurm2003}.
 
-The so-called slurm daemons control nodes, partitions, jobs and job steps \cite{slurm-online}.
+The so-called \slurm{} daemons control nodes, partitions, jobs and job steps \cite{slurm-online}.
 According to \citeauthor{slurm-online}, a partition is a group of nodes and a job is the allocation of resources, i.e. compute nodes, to a user for a limited period of time.
 A basic visualization of the architecture is given in \autoref{fig:slurm-architecture}.
 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=0.7\textwidth]{images/slurm_architecture}
-    \caption{Slurm architecture. The management node has a \texttt{slurmctld} daemon, while every compute node has a \texttt{slurmd} daemon.
+    \caption{\slurm{} architecture. The management node has a \texttt{slurmctld} daemon, while every compute node has a \texttt{slurmd} daemon.
     The nodes communicate.
     The user can use certain commands, for instance \texttt{srun} and \texttt{squeue}, anywhere on the cluster.
     }
