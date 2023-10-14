@@ -6,11 +6,11 @@
     \includesvg[width=1.0\textwidth]{images/eigendocs}
     \caption{From \acp{pdf} to \eigendocs{}.
     Firstly, the first page of a document is converted to an image.
-    Then the image is preprocessed:
+    Then, the image is preprocessed:
     It is placed on a white canvas, to ensure all images have the same dimensions.
     Moreover, it is converted to greyscale and normalized to values between zero and one.
     Afterwards, the 2d image is reshaped to a 1d array.
-    Lastly, the image is compressed using \eigenfaces{}.
+    Lastly, the image is compressed using \eigendocs{}.
     }
     \label{fig:eigendocs_procedure}
 \end{figure}
@@ -18,7 +18,7 @@
 In this work, the \eigenfaces{} approach from \autoref{subsec:eigenface} is used to compress the images of the first page of documents.
 The idea is that documents not only hold textual information but also visual information, such as layout, company logo or signature.
 By mapping those images on a subspace, they ought to be grouped by visual similarity.
-The procedure of the eigenface adaption \textit{eigendocs} is displayed in \autoref{fig:eigendocs_procedure}.
+The procedure of the eigenface adaption \textit{\eigendocs{}} is displayed in \autoref{fig:eigendocs_procedure}.
 
 % procedure
 The documents are first read from a directory. 
@@ -28,6 +28,7 @@ Firstly, the maximum height and width of all images in the corpus is calculated.
 These dimension are used to create a white canvas for each image which forms the background.
 Every image is placed in the upper left corner.
 Hence, scaling is not necessary and thus, the portion of white pixels on the right and bottom side encodes the dimension of the former image.
+\textcolor{red}{max values from selection of data corpus and bigger images are scaled}
 Therefore, the relative size of images in the corpus is incooperated in the resulting representation fo the input images.
 
 \begin{listing}[htp]
@@ -42,9 +43,9 @@ Therefore, the relative size of images in the corpus is incooperated in the resu
     \label{lst:preproc_images}
 \end{listing}
 
-Afterwards, they are converted to greyscale images using \autoref{lst:rgb2grey}.
-Before returning the image, the two-dimensional image vectors are converted to one-dimensional ones as displayed in the last line of \autoref{lst:preproc_images}.
-The decomposition is transformed using \ac{pca} as displayed in \autoref{lst:pca_svd}.
+Afterwards, they are converted to greyscale images using \lst{lst:rgb2grey}.
+Before returning the image, the two-dimensional image vectors are converted to one-dimensional ones as displayed in the last line of \lst{lst:preproc_images}.
+The decomposition is transformed using \ac{pca} as displayed in \lst{lst:pca_svd}.
 
 \begin{listing}[htp]
     \begin{minted}{python3}
@@ -60,7 +61,7 @@ The decomposition is transformed using \ac{pca} as displayed in \autoref{lst:pca
             svd_solver="randomized")
     \end{minted}
     \caption{Initialization of the \ac{pca} instace used to compress the image data.
-    In order to work according to the \eigenfaces{} approach a svd\_solver has to be used.
+    Since the \eigenfaces{} approach uses a svd\_solver, the adaption \eigendocs{} has to be implemented likewise.
     }
     \label{lst:pca_svd}
 \end{listing}
