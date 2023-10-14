@@ -5,7 +5,7 @@ The \ac{tfidf} model has to be initialized and trained on the data corpus to bui
 An exemplary implementation is given in \lst{lst:impl-tfidf}.
 The \texttt{TfidfVectorizer} is provided by the \texttt{scikit-learn} package.
 When initializing the model, the parameters define not only the input type but also the way the data is preprocessed.
-The \texttt{input} parameter defines the input type, i.e., \texttt{content} means that the input is a list of strings or bytes, 
+The \texttt{input} parameter defines the input type, i.e. \texttt{content} means that the input is a list of strings or bytes, 
 whereas \texttt{file} assumes the input has a \texttt{read} method and \texttt{filename} denotes a list of filenames as input \cite{tfidf-vec-scikit-learn}.
 
 The \texttt{preprocessor} parameter defines the preprocessing (string transformation) stage.
@@ -13,8 +13,8 @@ It is possible to override the default with a custom preprocessing function.
 The parameters \texttt{min\_df} and \texttt{max\_df} define the minimum and maximum document frequency of a word in the corpus.
 The default values are $1$, i.e. a term has to appear at least once, and $1.0$, i.e. a term appears at most in all documents, respectively \cite{tfidf-vec-scikit-learn}.
 
-The implementation of \ac{tfidf} in \texttt{scikit-learn} is different from the original \ac{tfidf} definition.
 By default, the \texttt{scikit-learn} implementation uses the \texttt{norm='l2'} parameter, i.e. the Euclidean norm \cite{tfidf-scikit-learn}.
+The implementation of \ac{tfidf} in \texttt{scikit-learn} is different from the original \ac{tfidf} definition.
 The difference is the calculation of the \ac{idf} part, which is given in \autoref{eq:tfidf-scikit-learn} from \cite{tfidf-scikit-learn}.
 The one is added to $M_{ij}$ due to the parameter \texttt{smooth\_id=True} by default to prevent zero divisions \cite{tfidf-scikit-learn}
 and to avoid logarithmic divergences due to a zero argument \cite{glove2014}.
@@ -35,7 +35,7 @@ $v_{norm} = \frac{v}{\left\| v \right\|_{2}} = \frac{v}{\sqrt{v_1^{2} + v_2^{2} 
     \end{minted}
     \caption{Initialization of the \ac{tfidf} model.
     Firstly, an instance of the \texttt{TfidfVectorizer} class is created.
-    Secondly, the \texttt{fit} method is called to fit the model to the documents.
+    Secondly, the \texttt{fit} method is called to fit the model on the documents.
     }
     \label{lst:impl-tfidf}
 \end{listing}
@@ -44,7 +44,7 @@ $v_{norm} = \frac{v}{\left\| v \right\|_{2}} = \frac{v}{\sqrt{v_1^{2} + v_2^{2} 
 In this work, the text of the \acp{pdf} is first extracted, then preprocessed using a custom preprocessor and afterwards embedded using the \texttt{TfidfVectorizer},
 which returns the \ac{tfidf} weights as embedding.
 Before storing the \ac{tfidf} weights in the database, they are enhanced with an all-zero flag.
-The all-zero flag ensures that no all-zero vectors are stored in the database by enhancing those that have a zero magnitude with a "1" entry and "0" otherwise.
+The all-zero flag ensures that no all-zero vectors are stored in the database by extending those that have a zero magnitude with a "1" entry and "0" otherwise.
 All-zero \ac{tfidf} weights indicate that a document does not have any terms with the vocabulary in common.
 Since the vocabulary is kept relatively small with respect to the number of different words in the data corpus to reduce the dimensionality of the embeddings, 
 it is not unlikely that a document does not contain any of the vocabulary terms.
@@ -56,8 +56,8 @@ The pipeline in \autoref{fig:tfidf_embedding} visualizes the steps.
     \includesvg[width=1.0\textwidth]{images/TFIDF_embedding}
     \caption{\ac{tfidf} pipeline.
     Firstly, the text extracted from the documents is preprocessed using a custom preprocessor.
-    Then the \ac{tfidf} are obtained from the \texttt{TfidfVectorizer}.
-    Lastly, the all-zero flag is added to the \ac{tfidf} weights and they are stored in the database.
+    Then, the \ac{tfidf} values are obtained from the \texttt{TfidfVectorizer}.
+    Lastly, the all-zero flag is added to the \ac{tfidf} weights and they are stored in the database \textcolor{red}{if dim $<$ 2048, ae otherwise}.
     }
     \label{fig:tfidf_embedding}
 \end{figure}
@@ -73,7 +73,9 @@ numbers bigger than 99999 are replaced with the string \texttt{BIGNUMBER} and fl
 The next step is to remove all punctuation symbols.
 After that, the symbols for numbers are enclosed with pointed brackets, e.g. \texttt{<SMALLNUMBER>}.
 Then, the text is tokenized, i.e. splitting at whitespaces, and stop words are omitted.
-The stop word corpus used is provided by the \texttt{nltk} package and consists of common English stop words.
+\textcolor{red}{omitting double space missing}
+The \texttt{nltk} package provides the stop words used to omit uniformative words.
+The stop word corupus consists of common English stop words.
 Afterwards, the tokens are lemmatized.
 The lemmatizer used is \texttt{WordNetLemmatizer} from the \texttt{nltk} package.
 In the end, the tokens are joined to a string again.
