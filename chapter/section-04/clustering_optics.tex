@@ -3,8 +3,8 @@
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=0.5\textwidth]{images/OPTICS/OPTICS_procedure.svg}
-    \caption{First, the first page of each document is converted to an image.
-    Then the image is preprocessed, i.e. conversion to greyscale and resizing.
+    \caption{The first page of each document is converted to an image.
+    The image is preprocessed, i.e. conversion to greyscale and resizing.
     }
     \label{fig:OPTICS_procedure}
 \end{figure}
@@ -45,10 +45,14 @@ The resulting clusters are displayed in \autoref{fig:optics_cluster}.
 
 % code
 The configurations used when initializing an \ac{optics} model greatly influence the clusters returned.
-The user has to consider the increase of complexity when choosing a high \texttt{max\_eps} value.
-The way the reachability plot is used to extract cluster is dependent on the \texttt{cluster\_method}, 
-whereas \texttt{min\_smaples} and \texttt{eps} influence the cluster sizes and number of cluster found for a given clustering approach.
-The code to initialize an exemplartary \ac{optics} model is displayed in \lst{lst:optics_model}.
+The parameter \texttt{max\_eps} is infinity by default but can be specified by the user to reduce complexity and runtime.
+According to literature, \texttt{max\_eps} should be big enough to include almost all points in a cluster.
+The way the reachability plot is used to extract clusters is dependent on the \texttt{cluster\_method}. 
+One can choose either \texttt{dbscan} or \texttt{xi} as a clustering method.
+The parameters \texttt{min\_samples} and \texttt{eps} influence the cluster sizes and number of clusters found for a given clustering approach.
+The value of \texttt{eps} defines the distance between two points to still be considered neighbours 
+and can be chosen by consulting the reachability plot.
+The code to initialize an exemplary \ac{optics} model is displayed in \lst{lst:optics_model}.
 
 \begin{listing}[htp]
     \begin{minted}{python3}
@@ -56,12 +60,7 @@ The code to initialize an exemplartary \ac{optics} model is displayed in \lst{ls
             eps=0.5)
     \end{minted}
     \caption{Initialization of the \ac{optics} model.
-    One can choose either \texttt{dbscan} or \texttt{xi} as clustering method.
     The number of minimum samples in a cluster corresponds to \textit{minPts}.
-    The parameter \texttt{max\_eps} is infinity as default, but can be specified by the user to reduce complexity and runtime.
-    According to literature, \texttt{max\_eps} should be big enough to include almost all points in a cluster.
-    The value of \texttt{eps} define the distance between two points to still be considered neighbors 
-    and can be chosen consulting the reachability plot.
     }
     \label{lst:optics_model}
 \end{listing}
