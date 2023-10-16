@@ -44,7 +44,7 @@ The complexity of the model is bound by $O(V^2)$, $V$ being the vocabulary size.
 However, \citeauthor{glove2014} claim it is better than the worst case stated above and rather in $O(C)$, $C$ being the corpus size.
 The \acs{glove} model is trained on ratios of co-occurrence probabilities of words from the corpus, 
 which correlate with the relationship between the words \cite{glove2014}.
-\citeauthor{glove2014} introduce rules for a weighting function to ensure neither rare, nor frequent co-occurrences are overweighted.
+\citeauthor{glove2014} introduce rules for a weighting function to ensure neither rare nor frequent co-occurrences are overweighted.
 It is possible to download embeddings computed by \acs{glove}, instead of using the algorithm to generate them.
 The precomputed word embeddings are stored in a 5.65 \ac{gb} text file.
 The file contains 840 B tokens and a vocabulary of 2.2 M cased 300-dimensional vector representations of words \cite{download-glove}.

@@ -41,8 +41,8 @@ The structure of the index is presented in \autoref{tbl:Elasticsearch-fields}.
     \caption{\acp{pdf} to Database. 
     First, the data is preprocessed:
     The first page of a \ac{pdf} file is converted to an image and the complete text is extracted. 
-    A compressed version of the images are stored in the database as well as the text and different embeddings of the text.
-    \textcolor{red}{add: postprocessing to reduce embedding size}
+    The images are stored in the database as well as the text and different embeddings of the text.
+    Some values, such as the image or the \infersent{} embedding, have to be compressed to become an at most 2048 valued vector.
     }
     \label{fig:pdf2db}
 \end{figure}
