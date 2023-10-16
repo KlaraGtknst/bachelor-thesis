@@ -10,14 +10,15 @@ According to \citeauthor{flask2018}, \ac{nosql} databases make a tradeoff betwee
 \ac{nosql} databases are said to outperform out-of-the-box \ac{sql} databases \cite{flask2018}.
 
 % separation of initialisation and insertion
-The time per step is shown in \autoref{fig:time_init_db}.
+The time necessary to perform the unique steps of filling the \databaseName{} database has been evaluated and improved over the course of this work.
+The current measurements are shown in \autoref{fig:time_init_db}.
 Separating the initialization into multiple steps is beneficial since it is possible to update the embeddings without having to recreate the database.
-Moreover, the time per step facilitates debugging and comparing the models used to create the embeddings.
+Moreover, modulizing the initialization and filling of the database facilitates debugging and comparing the models used to create the embeddings.
 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includegraphics[width=0.6\textwidth]{images/Elasticsearch/time_per_emb.pdf}
-    \caption{Time per step when creating the Bahamas database using a selection of 195 documents.
+    \caption{Time per module of creating the Bahamas database using a selection of 195 documents.
     The time was measured using the \texttt{timer} from \texttt{timeit.default\_timer} on a \localMaschineStats{}.
     }
     \label{fig:time_init_db}

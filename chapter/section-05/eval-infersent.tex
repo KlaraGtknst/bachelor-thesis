@@ -2,8 +2,7 @@
 
 % pool type
 The \texttt{max} pooling type is used for the \infersent{} model, since the \citeauthor{inferSent2018} 
-found from conducting experiments using different pooling techniques
-that it was the best option.
+found that it was the best option from conducting experiments using different pooling techniques.
 
 % version/ embeddings dictionary
 Initially, in this work, the \ac{glove} word embeddings were used for the \infersent{} model.
@@ -23,6 +22,6 @@ However, since the computation time of the project is a crucial factor, the cust
     \subfloat[\centering Precomputed embeddings of \ac{glove}.]{{\includegraphics[width=5cm]{images/embeddings/infersent/time_per_doc_glove.png} }}%
     \qquad
     \subfloat[\centering Custom \ac{w2v} embeddings.]{{\includegraphics[width=5cm]{images/embeddings/infersent/time_per_doc_custom_emb.pdf} }}%
-    \caption{Time (seconds) necessary to initialize the database, compute and insert 195 documents for specific embeddings.}%
+    \caption{Time (in seconds) necessary to initialize the database, compute and insert 195 documents for specific embeddings.}%
     \label{fig:times_emb}%
 \end{figure}
