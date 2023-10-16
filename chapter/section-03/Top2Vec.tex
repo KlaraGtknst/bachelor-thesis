@@ -11,8 +11,9 @@ In contrast to \ac{lda}, \topTwovec{} only associates one topic with a document.
 % word2vec and doc2vec
 \topTwovec{} is based on \ac{w2v} and \ac{d2v}.
 The documents are embedded using \ac{pvdbow}.
-The learning task is to predict the document a word came from \cite{Top2Vec2020}.
-Similar to \ac{d2v}, \topTwovec{} not only embeds words and documents in the same feature space but also topics.
+The learning task is to predict the document a word came from \cite{Top2Vec2020}, similar to Skip-Gram \cite{Topic2Vec2015}.
+Similar to \ac{d2v}, \topTwovec{} not only embeds words and documents in the same feature space but also topics \cite{Top2Vec2020, Topic2Vec2015}.
+The similarity between embeddings can be measured using the cosine similarity function \cite{Topic2Vec2015}.
 \citeauthor{Top2Vec2020} regards each point in the \ac{vsm} as a topic, described by its nearest words.
 
 % topics & clustering
@@ -20,7 +21,7 @@ Similar to \ac{d2v}, \topTwovec{} not only embeds words and documents in the sam
 Hence, topic modelling is defined as the task of finding sets of informative words that describe a document.
 Documents in dense areas of the topic space are considered to be about the same topic.
 The density-based clustering algorithm \ac{hdbscan} is used to find these dense areas.
-The topic vector is denoted the centroid or average of the document vectors belonging to the topic.
+The topic vector is denoted as the centroid or average of the document vectors belonging to the topic.
 \citeauthor{Top2Vec2020} has compared several topic vector definitions and found the arithmetic mean to be the best option \cite{Top2Vec2020}.
 The number of topics is derived from the number of dense areas.
 It is possible to merge topics to hierarchically reduce the number of topics found to any number of topics smaller than the number initially found.
@@ -31,6 +32,9 @@ The clustering algorithm \ac{hdbscan} is used to find these dense areas.
 Since \ac{hdbscan} has difficulties finding dense clusters in high-dimensional data, 
 the dimensionality reduction method \ac{umap} is applied \cite{Top2Vec2020}.
 The steps of the topic modelling procedure \topTwovec{} are depicted in \autoref{fig:top2vec}.
+
+% complexity
+According to \citeauthor{Topic2Vec2015}, the complexity of \topTwovec{} is linear with the size of the dataset \cite{Topic2Vec2015}.
 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
