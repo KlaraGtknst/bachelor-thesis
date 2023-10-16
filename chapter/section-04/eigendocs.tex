@@ -18,18 +18,19 @@
 In this work, the \eigenfaces{} approach from \autoref{subsec:eigenface} is used to compress the images of the first page of documents.
 The idea is that documents not only hold textual information but also visual information, such as layout, company logo or signature.
 By mapping those images on a subspace, they ought to be grouped by visual similarity.
-The procedure of the eigenface adaption \textit{\eigendocs{}} is displayed in \autoref{fig:eigendocs_procedure}.
+The procedure of the \eigenfaces{} adaption \textit{\eigendocs{}} is displayed in \autoref{fig:eigendocs_procedure}.
 
 % procedure
 The documents are first read from a directory. 
 Subsequently, their first page is converted to an image and saved.
 When initially filling the database, these images are read from their directory.
-Firstly, the maximum height and width of all images in the corpus is calculated.
-These dimension are used to create a white canvas for each image which forms the background.
+Firstly, the maximum height and width among all images in the corpus is calculated.
+These dimensions are used to create a white canvas for each image which forms the background.
 Every image is placed in the upper left corner.
-Hence, scaling is not necessary and thus, the portion of white pixels on the right and bottom side encodes the dimension of the former image.
-\textcolor{red}{max values from selection of data corpus and bigger images are scaled}
-Therefore, the relative size of images in the corpus is incooperated in the resulting representation fo the input images.
+Hence, assuming the selection of documents used to fit the \ac{pca} model is representative, 
+scaling is not necessary and thus, the portion of white pixels on the right and bottom side encodes the dimension of the former image.
+However, some images are bigger than the max values from selected data and as a consequence are scaled.
+Therefore, the relative size of images in the corpus is incorporated in the resulting representation of the input images.
 
 \begin{listing}[htp]
     \begin{minted}{python3}
@@ -46,6 +47,9 @@ Therefore, the relative size of images in the corpus is incooperated in the resu
 Afterwards, they are converted to greyscale images using \lst{lst:rgb2grey}.
 Before returning the image, the two-dimensional image vectors are converted to one-dimensional ones as displayed in the last line of \lst{lst:preproc_images}.
 The decomposition is transformed using \ac{pca} as displayed in \lst{lst:pca_svd}.
+The implementation of \ac{pca} from \href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html}{sklearn} 
+intrinsically normalizes the data as described in \autoref{subsec:eigenface} and thus, does not require the user to manually preprocess the data.
+
 
 \begin{listing}[htp]
     \begin{minted}{python3}
