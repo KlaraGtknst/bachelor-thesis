@@ -1,4 +1,9 @@
 \section{\eigendocs{}}\label{sec:evaluation-eigendocs}
+% idea 
+Assuming the layout holds information about the document type, the first page of each document is used to extract this information.
+In the course of working with low-quality versions of the documents to minimize the memory necessary to store them, some documents looked similar.
+Therefore, the idea arose to use clustering algorithms to group the documents according to their appearance.
+
 % number of components
 In order to determine the optimal number of components used for \eigendocs{} the cumulative explained variance and the reconstruction error were plotted 
 as displayed in \autoref{fig:det_n_comp} from \autoref{subsec:eigenface}.
@@ -7,7 +12,7 @@ Usually, that would have been the number of dimensions of the subspace onto whic
 However, when working with cluster algorithms like \ac{optics} the number of dimensions should be reduced even further to achieve valid clusters.
 Therefore the second approach was used.
 The second plot showed the reconstruction error with respect to different numbers of components.
-\textcolor{red}{"knees"} were visible at 10 and 13.
+The "elbow" points are visible at 10 and 13.
 Since visual inspection accounted for the fact that the decline of the reconstruction error after 13 declined more than after 10, the number of components chosen is 13.
 
 % results
@@ -24,10 +29,6 @@ The results of the \eigendocs{} algorithm are displayed in \autoref{fig:preproce
     }
     \label{fig:preprocessed_docs_eigendocs}
 \end{figure}
-
-
-\textcolor{red}{documents saved as images in .png format, bad quality to minimize the size of the database
-when querying db, top image results looked similar, which is how the idea of this section arose}
 
 The preprocessing of the documents using \eigendocs{} should have encoded information about the dimensionality of the images 
 under the assumption the selection of documents is representative.
