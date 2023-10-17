@@ -15,7 +15,7 @@ Possibly, this could explain why the objects are less scattered along this dimen
     \subfloat[\centering Preprocessing according to \autoref{pt:32}.]{{\includegraphics[width=5cm]{images/OPTICS/32x32/OPTICS_cluster_32x32.pdf} }}%
     \qquad
     \subfloat[\centering Preprocessing according to \autoref{pt:eigendocs}.]{{\includegraphics[width=5cm]{images/OPTICS/eigendocs/OPTICS_cluster_eigendocs.pdf} }}%
-    \caption{The clusters were extracted from the respective reachability plots in \autoref{fig:reachability_plots} by \ac{optics}.
+    \caption[\ac{optics} clusters]{The clusters were extracted from the respective reachability plots in \autoref{fig:reachability_plots} by \ac{optics}.
     The blue points are noise points, whereas any other colour denotes a cluster.}%
     \label{fig:optics_cluster}%
 \end{figure}
@@ -37,7 +37,7 @@ Most of the certificates are classified as noise for both approaches.
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includegraphics[width=1.05\textwidth]{images/OPTICS/32x32/cluster_content_32x32.pdf}
-    \caption{The yellow images belong to the group denoted noise.
+    \caption[Detailed \ac{optics} clusters using 32x32 greyscale pixels]{The yellow images belong to the group denoted noise.
     Most certificates are classified as noise.
     There is one big cluster and multiple small clusters.
     The images were preprocessed as discussed in \autoref{pt:32} to 32x32 greyscale pixels.
@@ -49,7 +49,7 @@ Most of the certificates are classified as noise for both approaches.
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includegraphics[width=1.05\textwidth]{images/OPTICS/eigendocs/cluster_content_incl_noise_Eigendocs.pdf}
-    \caption{Most certificates are classified as noise. The rest of the clusters have similar sizes.
+    \caption[Detailed \ac{optics} clusters using \eigendocs{}]{Most certificates are classified as noise. The rest of the clusters have similar sizes.
     The images were preprocessed as discussed in \autoref{pt:eigendocs} to 13-dimensional greyscale pixels.
     }
     \label{fig:clusters_eigendocs_with_noise}

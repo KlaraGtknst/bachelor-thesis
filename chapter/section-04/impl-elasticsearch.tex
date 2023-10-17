@@ -38,7 +38,7 @@ The structure of the index is presented in \autoref{tbl:Elasticsearch-fields}.
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=0.7\textwidth]{images/Elasticsearch/PDFs_to_database}
-    \caption{\acp{pdf} to Database. 
+    \caption[Database procedure]{\acp{pdf} to Database. 
     First, the data is preprocessed:
     The first page of a \ac{pdf} file is converted to an image and the complete text is extracted. 
     The images are stored in the database as well as the text and different embeddings of the text.
@@ -56,7 +56,7 @@ This step is carried out using the keyword \texttt{create}.
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=0.5\textwidth]{images/Elasticsearch/init_db.svg}
-    \caption{Procedure of initialization and filling of the database.}
+    \caption[Initialization and filling of the database]{Procedure of initialization and filling of the database.}
     \label{fig:init_db}
 \end{figure}
 

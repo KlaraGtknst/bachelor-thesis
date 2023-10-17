@@ -34,7 +34,7 @@ The architecture of the \ac{bilstm} model with max pooling is depicted in \autor
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=0.6\textwidth]{images/embeddings/infersent/Infersent.svg}
-    \caption{Architecture of the \ac{bilstm} model with max pooling used for \infersent{} cf. \cite{inferSent2018}.
+    \caption[Architecture of \infersent{}]{Architecture of the \ac{bilstm} model with max pooling used for \infersent{} cf. \cite{inferSent2018}.
     The input sentence $(w_1, w_2, ..., w_T)$ is read from both directions by a forward and a backward \ac{lstm} 
     producing $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$ respectively.
     After concatenating $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$ to $h_t$, max pooling is applied.

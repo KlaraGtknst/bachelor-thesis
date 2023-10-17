@@ -79,7 +79,7 @@ which are directly density reachable from each other as displayed in \autoref{fi
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=0.2\textwidth]{images/density_reachable}
-    \caption{Density reachability cf. \cite{OPTICS1999}.
+    \caption[Density reachability]{Density reachability cf. \cite{OPTICS1999}.
     The point $y \in X$ is density reachable from $x \in X$, since there is a chain of directly density reachable objects $x, o, y$.
     }
     \label{fig:density_reachable}
@@ -91,7 +91,7 @@ Density connectivity is visualized in \autoref{fig:density_connected}.
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=0.2\textwidth]{images/density_connected}
-    \caption{Density connectivity cf. \cite{OPTICS1999}.
+    \caption[Density connectivity]{Density connectivity cf. \cite{OPTICS1999}.
     The objects $x$ and $y$ are density connected since there is an object $o$, from which both $x$ and $y$ are density reachable.
     }
     \label{fig:density_connected}
@@ -123,7 +123,7 @@ as displayed in \autoref{fig:diff_density_cluster}.
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=0.4\textwidth]{images/diff_density_cluster}
-    \caption{Clusters of different densities cf. \cite{OPTICS1999}.
+    \caption[Clusters with different densities]{Clusters with different densities cf. \cite{OPTICS1999}.
     Since $C_1$ and $C_2$ have different densities than $A$ and $B$, a clustering algorithm using one global density parameter would detect the clusters $A$, $B$ and $C$, 
     rather than $A$, $B$, $C_1$ and $C_2$ .
     }
@@ -166,7 +166,8 @@ The relationship between $\varepsilon$, cluster density and nested density-based
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=0.5\textwidth]{images/nested_density_cluster.svg}
-    \caption{The relationship between $\varepsilon$, cluster density and nested density-based clusters cf. \cite{OPTICS1999}.
+    \caption[Relationship between $\varepsilon$, cluster density and nested density-based clusters]
+    {The relationship between $\varepsilon$, cluster density and nested density-based clusters cf. \cite{OPTICS1999}.
     For a constant $minPts$, clusters with higher density such as $C_1$, $C_2$ and $C_3$, i.e. a low $\varepsilon_2$ value, 
     are completely contained in lower density clusters such as $C$ given $\varepsilon_1 > \varepsilon_2$.
     This idea forms the basis of \ac{optics} of expanding clusters iteratively and thus, 

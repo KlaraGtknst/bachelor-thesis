@@ -32,7 +32,7 @@ There are two approaches to designing the architecture of the \ac{nn}:
     \qquad
     \subfloat[\centering \ac{pvdm} architecture cf. \cite{SentRep2014}.]
     {{\includesvg[width=6cm]{images/embeddings/doc2vec/PV-DM.svg} }}%
-    \caption{Both approaches predict the centre word using the context.
+    \caption[\ac{cbow} and \ac{pvdm} architecture]{Both approaches predict the centre word using the context.
     \ac{pvdm} is an adaption of \ac{cbow} to work on a set of documents or paragraphs instead of words.
     }%
     \label{fig:pvdm}%
@@ -64,7 +64,7 @@ The authors of \cite{SentRep2014} also state that the document vectors are uniqu
     \qquad
     \subfloat[\centering \ac{pvdbow} architecture cf. \cite{SentRep2014}.]
     {{\includesvg[width=4.5cm]{images/embeddings/doc2vec/PV-DBOW.svg} }}%
-    \caption{Both approaches predict the context.
+    \caption[Two \ac{pvdbow} architectures]{Both approaches predict the context.
     \ac{pvdbow} is an adaption of Skip-gram to work on a set of documents or paragraphs instead of words.
     }%
     \label{fig:pvdbow}%
