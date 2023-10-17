@@ -72,7 +72,8 @@ The structure of a function that yields requests is shown in \lst{lst:db_bulk_yi
     \begin{minted}{python3}
         bulk(client, create_document_aux(src_paths, client), stats_only= True)
     \end{minted}
-    \caption{Usage of \databaseName{}'s helper functionality \texttt{bulk} to send multiple requests to the database in chunks.
+    \caption[Usage of \databaseName{}'s helper functionality \texttt{bulk}]
+    {Usage of \databaseName{}'s helper functionality \texttt{bulk} to send multiple requests to the database in chunks.
     }
     \label{lst:db_bulk}
 \end{listing}
@@ -91,7 +92,8 @@ The structure of a function that yields requests is shown in \lst{lst:db_bulk_yi
                         "text": text,
                         "path": path}
     \end{minted}
-    \caption{Method that yields requests for \texttt{bulk}.
+    \caption[Method that yields requests for \texttt{bulk}]
+    {Method that yields requests for \texttt{bulk}.
     The method checks if the document is already in the database and if not, it yields a request to create the document.
     }
     \label{lst:db_bulk_yield}
@@ -119,7 +121,7 @@ The default analyzer is used for the full-text search since for instance configu
                     }, 
                 }, source_includes=SRC_INCLUDES)
     \end{minted}
-    \caption{Exemplartary query to an \databaseName database index.
+    \caption[Query to an \databaseName database index]{Exemplartary query to an \databaseName database index.
     The number of results to return \texttt{size} and the start index of the results \texttt{from\_} is defined.
     To enable fuzzy search a value for \texttt{fuzziness} has to be defined. 
     }

@@ -13,7 +13,7 @@ The dataset used for the evaluation is a selection of 195 documents from the Bah
         rsme = np.linalg.norm(inverse_embedding - embeddings) 
                 / np.sqrt(embeddings.shape[0])
     \end{minted}
-    \caption{
+    \caption[Computation of the \ac{rsme}]{
         Computation of the \ac{rsme} between the original and the reconstructed embedding.
     }
     \label{lst:impl-rsme}
@@ -26,7 +26,7 @@ The dataset used for the evaluation is a selection of 195 documents from the Bah
                 /(np.linalg.norm(inverse_emb)*np.linalg.norm(embedding)) 
                 for inverse_emb, embedding in zip(inverse_embedding, embeddings)])
     \end{minted}
-    \caption{
+    \caption[Computation of the cosine similarity]{
         Computation of the cosine similarity between the original and the reconstructed embedding.
     }
     \label{lst:impl-cos_sim}

@@ -20,7 +20,7 @@ Hence, the first step is to create an instance of the \flask{} class, such as do
     \begin{minted}{python3}
     app = Flask(__name__)
     \end{minted}
-    \caption{Initialization of \flask{} application instance.
+    \caption[Initialization of \flask{} application instance]{Initialization of \flask{} application instance.
     }
     \label{lst:flask_app_init}
 \end{listing}
@@ -40,7 +40,7 @@ To define a route, the \texttt{route} decorator is used as displayed in \lst{lst
             return query_database.get_doc_meta_data(elastic_search_client, 
                 doc_id=id)
     \end{minted}
-    \caption{Exemplartary definition of a function to display routing with \flask{}.
+    \caption[Routing using \flask{}]{Exemplartary definition of a function to display routing with \flask{}.
     The \texttt{route} decorator is used to define the \ac{url} path.
     }
     \label{lst:flask_routing}

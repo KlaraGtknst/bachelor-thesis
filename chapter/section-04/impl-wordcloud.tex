@@ -19,7 +19,8 @@ The \wordcloud{} is initialized as shown in \lst{lst:impl-wordcloud}.
         lemmatizer = WordNetLemmatizer()
         tokens = [lemmatizer.lemmatize(token) for token in tokens]
     \end{minted}
-    \caption{Custom preprocessing of \wordcloud{} input.
+    \caption[Custom preprocessing of \wordcloud{} input]
+    {Custom preprocessing of \wordcloud{} input.
     }
     \label{lst:impl-preproc-wordcloud}
 \end{listing}
@@ -30,7 +31,8 @@ The \wordcloud{} is initialized as shown in \lst{lst:impl-wordcloud}.
             contour_width=3, max_font_size=110, background_color='white', 
             max_words=5000).generate(','.join(tokens))
     \end{minted}
-    \caption{Initialization of the \wordcloud{}.
+    \caption[Initialization of the \wordcloud{}]
+    {Initialization of the \wordcloud{}.
     }
     \label{lst:impl-wordcloud}
 \end{listing}

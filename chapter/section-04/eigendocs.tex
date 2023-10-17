@@ -38,7 +38,7 @@ Therefore, the relative size of images in the corpus is incorporated in the resu
         C[:doc.shape[0],:doc.shape[1]] = rgb2gray(doc)
         documents.append(C.ravel())
     \end{minted}
-    \caption{Preprocessing of the input images from \thesissupervisor{}.
+    \caption[Preprocessing of the input images]{Preprocessing of the input images from \thesissupervisor{}.
     The background is a white canvas.
     The images are converted to one-dimensional greyscale values.}
     \label{lst:preproc_images}
@@ -55,7 +55,7 @@ intrinsically normalizes the data as described in \autoref{subsec:eigenface} and
     \begin{minted}{python3}
         0.299*img[:,:,0] + 0.587*img[:,:,1] + 0.114*img[:,:,2]
     \end{minted}
-    \caption{Conversion of RGB pixel values to greyscale from a script by \thesissupervisor{}.}
+    \caption[Conversion of RGB pixel values to greyscale]{Conversion of RGB pixel values to greyscale from a script by \thesissupervisor{}.}
     \label{lst:rgb2grey}
 \end{listing}
 
@@ -64,7 +64,7 @@ intrinsically normalizes the data as described in \autoref{subsec:eigenface} and
         pca = decomposition.PCA(n_components=n_components, whiten=True, 
             svd_solver="randomized")
     \end{minted}
-    \caption{Initialization of the \ac{pca} instace used to compress the image data.
+    \caption[Initialization of the \ac{pca} instace]{Initialization of the \ac{pca} instace used to compress the image data.
     Since the \eigenfaces{} approach uses a svd\_solver, the adaption \eigendocs{} has to be implemented likewise.
     }
     \label{lst:pca_svd}
