@@ -3,12 +3,16 @@
 This chapter describes how the theoretical basics from \autoref{ch:methodology} interplay and how they are used in this thesis.
 Specific parameter choices are explained in \autoref{ch:evaluation}.
 
-\input{chapter/section-04/slurm.tex}
 
+\section{Offline Processing}\label{sec:offline-processing}
+ % Database
 \input{chapter/section-04/impl-elasticsearch.tex}
 
+% Eigendocs
 \input{chapter/section-04/eigendocs.tex}
 
+% Embeddings
+\subsection{Embeddings}\label{subsec:impl-embeddings}
 \input{chapter/section-04/impl-autoencoder.tex}
 
 \input{chapter/section-04/impl-tfidf.tex}
@@ -21,12 +25,19 @@ Specific parameter choices are explained in \autoref{ch:evaluation}.
 
 \input{chapter/section-04/impl-hf-sbert.tex}
 
+% Clustering
 \input{chapter/section-04/clustering_optics.tex}
 
+% Topic Modeling
+\subsection{Topic Modeling}\label{impl-topic-modeling}
 \input{chapter/section-04/impl-top2vec.tex}
 
 \input{chapter/section-04/impl-wordcloud.tex}
 
+% Slurm/ Server
+\input{chapter/section-04/slurm.tex} % last subsection
+
+% UI
 \input{chapter/section-04/user_interface.tex}
 
 
