@@ -22,10 +22,21 @@ Similarly, \citeauthor{SentRep2014} argue that \ac{d2v} is superior to \ac{bow} 
 \citeauthor{UniversalSentEnc2018} propose different \ac{use} architectures and compare their strengths \cite{UniversalSentEnc2018}.
 
 
+% similarity
+In order to determine the similarity between two objects, one has to define a metric.
+Prevalent metrics in the domain of comparing objects in a \ac{vsm} include (soft) cosine similarity 
+as outlined by \citeauthor{soft_cosine2014} and \citeauthor{soft_cosine2017} \cite{soft_cosine2014, soft_cosine2017}
+and the Euclidean norm \cite{euclidean_l2_norm2015}.
+\citeauthor{euclidean_l2_norm2015} evaluate and compare different norms in the context of \ac{ir} from images \cite{euclidean_l2_norm2015}.
+
 
 
 % clustering
 The usage of the clustering algorithm \ac{dbscan} on \ac{d2v} embeddings was proposed by \citeauthor{clusteringDocs2020} \cite{clusteringDocs2020}.
+Other researchers, for instance, \citeauthor{OPTICS_kMeans_2016}, compare related clustering algorithms including \ac{dbscan} and \ac{optics}.
+Initially, \ac{optics} was introduced by \citeauthor{OPTICS1999} in \citeyear{OPTICS1999} as a method to analyse the density-based structure from data from a database \cite{OPTICS1999}.
+\citeauthor{OPTICS2013}, \citeauthor{OPTICS2014} and \citeauthor{OPTICS2016} propose extensions, 
+i.e. for spatially and temporally evolving data or a parallel version, to \ac{optics} \cite{OPTICS2013, OPTICS2014, OPTICS2016}.
 
 % dimensionality reduction
 Since many algorithms suffer from the curse of dimensionality, \citeauthor{dim_reduction2021} proposed a survey on different dimensionality reduction techniques \cite{dim_reduction2021}.
