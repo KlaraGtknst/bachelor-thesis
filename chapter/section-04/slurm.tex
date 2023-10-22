@@ -1,7 +1,7 @@
 
 \subsection{\slurm{}}\label{subsec:slurm}
 
-Since the data corpus is too big to be processed locally on a \localMaschineStats{}, the \thesisdepartment{} has offered to provide computally means to solve this problem.
+Since the data corpus is too big to be processed locally on a \localMaschineStats{}, the Chair \ac{ies} has offered to provide computational means to solve this problem.
 The scripts can be processed by multiple nodes which are managed by \slurm{}.
 
 \slurm{} is an open-source management tool for Linux clusters \cite{slurm-online}.
@@ -21,4 +21,32 @@ A basic visualization of the architecture is given in \autoref{fig:slurm-archite
     \label{fig:slurm-architecture}
 \end{figure}
 
-\textcolor{red}{sbatch: wie wird was gestartet und welches Skript startet was?}
+% sbatch scripts
+A job is started by a \texttt{sbatch} script.
+This script defines the \texttt{partition}, the \texttt{job-name}, the number of \texttt{nodes}, the \texttt{cpus-per-task}, the memory \texttt{mem} allocated, 
+the \texttt{time} limit and the path to store \texttt{error} and \texttt{output} logs.
+It is possible to work on multiple \acp{cpu} simultaneously to divide the workload of a task.
+In this work, multiple \texttt{sbatch} scripts were used to carry out a variety of tasks.
+A summary of the tasks and scripts is given in \autoref{tbl:sbatch-scripts}.
+
+
+\begin{table}[]
+    \caption{Different \texttt{sbatch} scripts.}
+    \begin{tabular}{|
+    >{\columncolor[HTML]{EFEFEF}}p{0.28\textwidth} |p{0.68\textwidth}|}
+    \hline
+    \cellcolor[HTML]{C0C0C0}\textbf{Name of sbatch script} & \cellcolor[HTML]{C0C0C0}\textbf{Description}                                                                                                                                                                                                                      \\ \hline
+    ae\_config.sh                                          & Comparison of different \ac{ae} architectures in terms of different metrics.                                                                                                                                                                     \\ \hline
+    allocate\_res.sh                                       & Allocates resources to enable a \ac{ssh} tunnel connection from a local \ac{vscode} instance to the server of the \ac{ies}. 
+                                                                Hence, the database content can be displayed with the \databaseName{} plugin.\\ \hline
+    create\_database.sh                                    & Initializes the database by specifying fields.                                                                                                                                                                                                                    \\ \hline
+    create\_documents.sh                                   & Inserts the document's metadata information, i.e. path and text.                                                                                                                                                                                                   \\ \hline
+    elasticContainer.sh                                    & Starts the \databaseName{} container using the headless \texttt{podman-compose up} command.                                                                                                                                     \\ \hline
+    init\_database.sh                                      & Initializes database, subsequentially inserts documents metadata, embeddings and clusters.                                                                                                                                                                        \\ \hline
+    insert\_clusters.sh                                    & Inserts \ac{pca} weights, \ac{optics} and argmax clusters.                                                                                                                                                                      \\ \hline
+    insert\_embeddings.sh                                  & Subsequentially inserts embeddings of documents.                                                                                                                                                                                                                  \\ \hline
+    own\_w2v\_model.sh                                     & Creates and save custom \ac{w2v} model.                                                                                                                                                                                                          \\ \hline
+    run\_pdf2png.sh                                        & Converts and saves \ac{png} version of the first page of \acp{pdf}.                                                                                                                                                             \\ \hline
+    \end{tabular}
+    \label{tbl:sbatch-scripts}
+\end{table}
