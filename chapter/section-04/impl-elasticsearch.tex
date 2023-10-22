@@ -59,49 +59,85 @@ This step is carried out using the keyword \texttt{create}.
     \label{fig:init_db}
 \end{figure}
 
-Afterwards, the documents are created.
+Afterwards, the documents are created using the keyword \texttt{create}.
 The initial creation of a document only defines the fields \texttt{id}, \texttt{text} and \texttt{path}.
-In order to maximise efficiency when updating the database, the \databaseName{}'s built-in functionality \texttt{bulk} is used.
-\texttt{bulk} sends chunks of multiple requests to the database.
-As displayed in \lst{lst:db_bulk}, \texttt{bulk} is called with the \databaseName{} client, 
-a function which yields requests and parameters, which define the return values.
-The structure of a function that yields requests is shown in \lst{lst:db_bulk_yield}.
+% In order to maximise efficiency when updating the database, the \databaseName{}'s built-in functionality \texttt{bulk} is used.
+% \texttt{bulk} sends chunks of multiple requests to the database.
+% As displayed in \lst{lst:db_bulk}, \texttt{bulk} is called with the \databaseName{} client, 
+% a function which yields requests and parameters, which define the return values.
+% The structure of a function that yields requests is shown in \lst{lst:db_bulk_yield}.
 
-\begin{listing}[htp]
-    \begin{minted}{python3}
-        bulk(client, create_document_aux(src_paths, client), stats_only= True)
-    \end{minted}
-    \caption[Usage of \databaseName{}'s helper functionality \texttt{bulk}]
-    {Usage of \databaseName{}'s helper functionality \texttt{bulk} to send multiple requests to the database in chunks.
-    }
-    \label{lst:db_bulk}
-\end{listing}
+% \begin{listing}[htp]
+%     \begin{minted}{python3}
+%         bulk(client, create_document_aux(src_paths, client), stats_only= True)
+%     \end{minted}
+%     \caption[Usage of \databaseName{}'s helper functionality \texttt{bulk}]
+%     {Usage of \databaseName{}'s helper functionality \texttt{bulk} to send multiple requests to the database in chunks.
+%     }
+%     \label{lst:db_bulk}
+% \end{listing}
 
-\begin{listing}[htp]
-    \begin{minted}{python3}
-        def create_document_aux(src_paths: list, client: Elasticsearch):  
-            for path in src_paths:           
-                id = get_hash_file(path)
-                if get_doc_meta_data(client, doc_id=id) is not None:
-                    continue
-                text = pdf_to_str(path)
-                yield { '_op_type': 'create',
-                        '_index': 'bahamas',
-                        '_id': id,
-                        "text": text,
-                        "path": path}
-    \end{minted}
-    \caption[Method that yields requests for \texttt{bulk}]
-    {Method that yields requests for \texttt{bulk}.
-    The method checks if the document is already in the database and if not, it yields a request to create the document.
-    }
-    \label{lst:db_bulk_yield}
-\end{listing}
+% \begin{listing}[htp]
+%     \begin{minted}{python3}
+%         def create_document_aux(src_paths: list, client: Elasticsearch):  
+%             for path in src_paths:           
+%                 id = get_hash_file(path)
+%                 if get_doc_meta_data(client, doc_id=id) is not None:
+%                     continue
+%                 text = pdf_to_str(path)
+%                 yield { '_op_type': 'create',
+%                         '_index': 'bahamas',
+%                         '_id': id,
+%                         "text": text,
+%                         "path": path}
+%     \end{minted}
+%     \caption[Method that yields requests for \texttt{bulk}]
+%     {Method that yields requests for \texttt{bulk}.
+%     The method checks if the document is already in the database and if not, it yields a request to create the document.
+%     }
+%     \label{lst:db_bulk_yield}
+% \end{listing}
 
 The embeddings are added to the documents in a third step.
-To make sure that it is possible to update embeddings individually without changing other fields, 
-a method to insert the embeddings of a specific model for all documents is created.
-The documents are updated using the \texttt{update} keyword and \texttt{bulk}.
+% To make sure that it is possible to update embeddings individually without changing other fields, 
+% a method to insert the embeddings of a specific model for all documents is created.
+% The documents are updated using the \texttt{update} keyword and \texttt{bulk}.
+To increase the efficiency of this step data parallelism, i.e. parallelizing the execution of a method across multiple input values, is applied.
+In this work, the data to be split among multiple processes is a set of paths to documents.
+The \texttt{Pool} object from the multiprocessing module is used for data parallelism.
+The steps carried out are displayed in \lst{lst:db_Pool_embeddings}.
+First, the absolute paths of all documents are saved in a list.
+This list is divided in \texttt{num\_cpus} many sublists of similar size.
+Each process works on a sublist.
+The embeddings are subsequentially inserted into a database for each sublist. 
+
+\begin{listing}[htp]
+    \begin{minted}{python3}
+        with Pool(processes=num_cpus) as pool:
+            for model_name in model_names:
+                pool.map(lambda x : insert_embedding(src_paths=x, 
+                    src_path=src_path, client_addr=client_addr, 
+                    model_name=model_name), sub_lists)
+    \end{minted}
+    \caption[Usage of \texttt{Pool} for data parallelism]
+    {Usage of \texttt{Pool} for data parallelism.
+    The paths to the documents to insert are divided into sublists which are simultaneously inserted into the database.
+    }
+    \label{lst:db_Pool_embeddings}
+\end{listing}
+
+A document embedding is added to the database using the keyword \texttt{update} as displayed in \lst{lst:db_Pool_update}.
+
+\begin{listing}[htp]
+    \begin{minted}{python3}
+        client.update(index='bahamas', id=id, body={'doc': 
+            {MODELS2EMB[model_name]: embedding}})
+    \end{minted}
+    \caption[Update of a database entry]
+    {Update of a database entry to insert a specific embedding.
+    }
+    \label{lst:db_Pool_update}
+\end{listing}
 
 
 % search
