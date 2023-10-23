@@ -1,12 +1,14 @@
 
 \section{Similarity Measurement}\label{sec:similarity-measurement}
 
-Since embeddings represent texts as numerical vectors, they not only facilitate human interpretability of relationships between texts using 
-the text's respective point in a $N$-dimensional space, 
+Embeddings represent texts as numerical vectors in a $N$-dimensional space.
+This space is called \ac{vsm} \cite{soft_cosine2014}.
+These vectors not only facilitate human interpretability of relationships between texts, 
+%using the text's respective point in a $N$-dimensional space, 
 but they also enable the use of metrics, i.e. similarity measures, to quantify the similarity between texts \cite{IR2011, euclidean_l2_norm2015}.
 
 There are several similarity measures, such as the dot product quantifying the number of shared tokens of two texts, 
-the (soft) cosine similarity, which is the normalized dot product and calculates the angle between two vectors, 
+the (soft) cosine similarity \cite{soft_cosine2014, soft_cosine2017}, which is the normalized dot product and calculates the angle between two vectors, 
 and many more \cite{IR2011, euclidean_l2_norm2015, HfsentTrans2019}.
 The following section outlines a few similarity measures.
 
@@ -27,14 +29,12 @@ The points $a, b$ correspond to objects $d_1, d_2$.
 
 \subsection{Cosine Similarity}\label{subsec:cosine-similarity}
 
-In the traditional bag-of-words approach the texts are represented as vectors of \ac{tfidf} coefficients \cite{soft_cosine2017}.
-Without further processing, the vector is of size $N$, $N$ being the number of different words of the texts \cite{soft_cosine2017}.
-Hence, a vector represents its corresponding text in a $N$-dimensional space.
-This space is called \ac{vsm} \cite{soft_cosine2014}.
+% In the traditional bag-of-words approach the texts are represented as vectors of \ac{tfidf} coefficients \cite{soft_cosine2017}.
+% Without further processing, the vector is of size $N$, $N$ being the number of different words of the texts \cite{soft_cosine2017}.
 
-The similarity between two texts is measured by the cosine of the angle between their respective vectors \cite{soft_cosine2014}.
+The similarity between two texts is measured by the cosine of the angle between their respective real-valued vectors \cite{soft_cosine2014}.
 The cosine similarity is defined in \autoref{eq:cosine-similarity} from \cite{soft_cosine2014}.
-The dot-product is defined as $a \cdot b = \sum_{i=1}^{N}a_{i}b_{i}$.
+The dot-product is calculated using $a \cdot b = \sum_{i=1}^{N}a_{i}b_{i}$.
 It is normalized with $\left\| x \right\| = \sqrt{x \cdot x}$ to unit Euclidean length \cite{soft_cosine2014}.
 The cosine similarity is a value between $0$ and $1$ for positive values \cite{soft_cosine2014}.
 According to \citeauthor{soft_cosine2014}, the formula has a time and space complexity of $O(N)$ for a pair of $N$-dimensional vectors.
