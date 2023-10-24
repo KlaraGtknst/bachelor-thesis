@@ -4,10 +4,10 @@
 It considers the frequency $f_{w_{ij}, d_i}$  of a word $w_{ij}$ in a document $d_i$ and the frequency of a word in the whole corpus. 
 
 \ac{tfidf} is calculated as displayed in \autoref{eq:tfidf-formula} from \cite{clusteringDocs2020} and exemplatory in \autoref{fig:tfidf-calculation}.
-\ac{tf} is computed using $TF(w_{ij}, d_i) = f_{w_{ij}, d_i}$, whereas the \ac{idf} is computed using $IDF(w_{ij}, D) = \log_2\frac{M}{M_{ij}}$, 
+The \ac{tf} is determined utilizing $TF(w_{ij}, d_i) = f_{w_{ij}, d_i}$, whereas the \ac{idf} is computed by $IDF(w_{ij}, D) = \log_2\frac{M}{M_{ij}}$, 
 $M_{ij}$ being the number of documents the term $w_{ij}$ appears in.
-\ac{idf} measures the importance of a term $w_{ij}$ in the corpus of documents $D$.
-The underlying assumption of \ac{idf} is that a term's importance to the data corpus is inversely proportional to its occurrence frequency \cite{tfidf2008}.
+\ac{idf} measures the importance of a term $w_{ij}$ in the corpus of documents $D$
+under the assumption that a term's importance to the data corpus is inversely proportional to its occurrence frequency \cite{tfidf2008}.
 In other words: Terms which appear in many documents are not as important and thus, weighted less than document-specific terms. 
 
 \begin{equation}
@@ -27,8 +27,8 @@ In other words: Terms which appear in many documents are not as important and th
     \label{fig:tfidf-calculation}
 \end{figure}
 
-According to \citeauthor{tfidf2008}, the computation complexity of \ac{tfidf} embeddings is $O(V \cdot M)$
-The \ac{tfidf} has several drawbacks \cite{clusteringDocs2020,tfidf2008}:
+According to \citeauthor{tfidf2008}, the computation complexity of \ac{tfidf} embeddings is $O(V \cdot M)$.
+\ac{tfidf} has several drawbacks \cite{clusteringDocs2020,tfidf2008}:
 \begin{itemize}
     \item \ac{tfidf} does not consider semantic similarities between words.
     \item \ac{tfidf} does not take into account the order of words in a document.

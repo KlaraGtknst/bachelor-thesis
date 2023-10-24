@@ -1,6 +1,6 @@
 \section{Embeddings}\label{sec:embeddings}
 
-Usually, \ac{ml} techniques embeddings, such as K-Means, require the text input data to be converted to embeddings \cite{SentRep2014}.
+Usually, \ac{ml} techniques require textual inputs to be converted to embeddings \cite{SentRep2014}.
 Embeddings are numerical representations of words, sentences or texts.
 They can be used to present the textual data as real-valued vectors in a \ac{vsm}.
 \acp{vsm} are commonly used due to their conceptual simplicity and because spatial proximity serves as a metaphor for semantic proximity 
@@ -8,12 +8,12 @@ They can be used to present the textual data as real-valued vectors in a \ac{vsm
 Representations in a \ac{vsm} can improve the performance in \ac{nlp} tasks \cite{SkipGram2013}.
 According to \citeauthor{tfidf2008}, when representing text the first step is indexing, i.e. assigning indexing terms to the document.
 The second task is to assign weights to the terms which correspond to the importance of the term in the document.
-The weights assigned depend on the method and the assumptions of the model chosen to carry out the assignments.
+The weights assigned depend on the method and the assumptions of the model chosen to carry out this task.
 
 The following section outlines a selection of embeddings.
 Let a corpus of documents be denoted $D= \left\{d_1, d_2, ..., d_M  \right\}$, 
 the number of documents in the dataset $M = \left\| D \right\|$,
-and a sequence of terms $w_{ij}$ or so-called document $d_i = \left\{w_{i1}, w_{i2}, ..., d_{iV}  \right\}$, 
+and a sequence of terms $w_{ij}$ or so-called document $d_i = \left\{w_{i1}, w_{i2}, ..., w_{iV}  \right\}$, 
 $V$ being the length of the vocabulary, 
 i.e. set of distinct words \cite{clusteringDocs2020}.
 

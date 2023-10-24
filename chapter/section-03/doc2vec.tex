@@ -5,13 +5,12 @@ Another term used for \ac{d2v} is \textit{Paragraph Vector} \cite{clusteringDocs
 Hence, it preserves semantic similarities between words and encodes linguistic regularities and patterns \cite{SkipGram2013}.
 % According to \citeauthor{clusteringDocs2020} and \citeauthor{SentRep2014}, 
 % \ac{d2v} learns continuous distributed vector representations for pieces of the text.
-The model handles inputs of different dimensions and thus, tokens are sentences, paragraphs or documents.
+The model handles inputs of different dimensions and thus, tokens can be sentences, paragraphs or documents.
 
-\ac{d2v} is an adaption of the \ac{w2v} model, which maps words into a \ac{vsm} taking into consideration their semantic similarities \cite{clusteringDocs2020}.
+\ac{d2v} is an adaption of the \ac{w2v} model, which maps words into a \ac{vsm} \cite{clusteringDocs2020}.
 Both approaches assume that words appearing in similar contexts are semantically similar. %\cite{clusteringDocs2020}.
-The \ac{w2v} embedding is obtained using a \ac{nn}. %\cite{clusteringDocs2020}.
-The \ac{nn} is shallow, i.e. has only one hidden layer.
-This hidden layer creates the embedding of input data.
+The \ac{w2v} embedding is obtained using a shallow \ac{nn}, i.e. the \ac{nn} has only one hidden layer.
+The embeddings are created by the hidden layer.
 There are two approaches to designing the architecture of the \ac{nn}:
 \begin{itemize}
     \item \ac{pvdm}: 
@@ -39,9 +38,9 @@ There are two approaches to designing the architecture of the \ac{nn}:
 \end{figure}
  
 % context to centre word
-The \ac{pvdm} extends the \ac{cbow} to work on a corpus of documents instead of on a set of words \cite{clusteringDocs2020}:
+\ac{pvdm} extends \ac{cbow} to work on a corpus of documents instead of on a set of words \cite{clusteringDocs2020}:
 As usual, vectors representing the words are obtained using the \ac{cbow} model.
-The \ac{cbow} has a single-layer architecture \cite{glove2014}. %based on the inner product between two word vectors \cite{glove2014}.
+\ac{cbow} has a single-layer architecture \cite{glove2014}. %based on the inner product between two word vectors \cite{glove2014}.
 %Given training words $ w_{1}, ..., w_{T}$, the objective of the \ac{w2v} model \ac{cbow} is to maximize the average log probability in 
 %\autoref{eq:word2vec-cbow} from \cite{SentRep2014}.
 The word vectors can be concatenated, averaged or summed up \cite{SentRep2014}.
@@ -50,12 +49,12 @@ Both document and word vectors are initialized randomly, but trained to convey m
 In order to train the model, centre words are predicted using the context.
 The context consists of words within a sliding window and their document, respectively represented as vectors \cite{SentRep2014}.
 The document vector is added to incorporate the document's topic and thus, acts like a memory \cite{SentRep2014, Top2Vec2020}.
-In the work of \cite{SentRep2014}, the document vector is concatenated to the word vectors.
+\citeauthor{SentRep2014} concatenate the document vector to the word vectors.
 The resulting vector is the prediction of the central word.
 The approaches are displayed in \autoref{fig:pvdm}.
 
-According to \cite{SentRep2014}, both \ac{cbow} and \ac{pvdm} are trained using stochastic gradient descent and backpropagation.
-The authors of \cite{SentRep2014} also state that the document vectors are unique, while the word vectors are shared across the whole corpus. 
+According to \citeauthor{SentRep2014}, both \ac{cbow} and \ac{pvdm} are trained using stochastic gradient descent and backpropagation.
+They also state that the document vectors are unique, while the word vectors are shared across the whole corpus. 
 
 \begin{figure}%
     \centering

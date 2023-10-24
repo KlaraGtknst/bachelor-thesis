@@ -8,7 +8,7 @@ Their output is a 512-dimensional vector.
 % Transformer
 The transformer model is more accurate and more complex than the \ac{dan} model \cite{UniversalSentEnc2018}.
 The transformer's (self) attention is used to compute context-aware word embeddings, which consider both the word order and their semantic identity.
-Since the sequence of word embeddings of a sentence would produce embeddings of different dimensions, the approach postprocesses the word embeddings.
+Since a sequence of word embeddings of a sentence produces embeddings of different dimensions, the approach postprocesses the word embeddings.
 A sentence vector is obtained by computing the element-wise sum of the word embeddings 
 and normalizing the result by dividing by the square root of the sentence length.
 
@@ -29,13 +29,12 @@ The architecture of the \ac{dan} model is depicted in \autoref{fig:use_dan}.
 \end{figure}
 
 % dataset
-The models are trained on both unsupervised training data, e.g., Wikipedia, and the supervised training dataset \ac{snli} \cite{UniversalSentEnc2018, HfsentTrans2019}.
+The models are trained on both unsupervised training data, e.g., Wikipedia, and a supervised training dataset, i.e. \ac{snli} \cite{UniversalSentEnc2018, HfsentTrans2019}.
 
 % complexity
-The transformer model is more complex than the \ac{dan} model.
-More specifically, the transformer model complexity is $O(n^2)$, whereas the \ac{dan} model complexity is $O(n)$, 
+%The transformer model is more complex than the \ac{dan} model.
+The transformer model complexity is $O(n^2)$, whereas the \ac{dan} model complexity is $O(n)$, 
 $n$ being the number of words in the sentence \cite{UniversalSentEnc2018}.
-
 % memory usage
 The memory usage of both models is equivalent to their complexity.
 \citeauthor{UniversalSentEnc2018} state that \ac{dan}'s memory usage is dominated by the parameters used to store the embeddings of the uni- and bi-grams.
