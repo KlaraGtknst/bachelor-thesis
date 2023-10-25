@@ -1,21 +1,21 @@
 \subsubsection*{\acl{ae}}\label{subsubsec:impl-autoencoder}
 
-In this work, the \ac{ae} is used to reduce the dimensionality of the \infersent{} and the \ac{tfidf} embedding.
+In this work, an \ac{ae} is used to reduce the dimensionality of the \infersent{} and the \ac{tfidf} embedding.
 Since the \infersent{} model is pretrained, it is not possible to change the dimensionality of the embedding without a considerably big effort,
 i.e. retraining the model on a sufficiently large data corpus and reconfiguring the model's parameters.
 Moreover, retraining the model would destroy the purpose of its presence in this work, which is to provide a pretrained model and thus, 
 reducing the complexity of training a model.
-Therefore, it is not feasible to change the dimensionality of the \infersent{} embedding, but rather adding a supplementary layer after the model 
+Therefore, it is not feasible to change the dimensionality of the \infersent{} embedding, but rather add a supplementary layer after the model 
 produce the final embedding.
-Similarly, the \ac{tfidf} embedding correlates with the vocabulary size and thus, the size od the data corpus.
+Similarly, the \ac{tfidf} embedding correlates with the vocabulary size and thus, the size of the data corpus.
 Further reducing the vocabulary size would decrease the \ac{tfidf} model's quality.
 Hence, the idea is to use the encoder of an \ac{ae} to reduce the dimensionality of the \infersent{} and the \ac{tfidf} embedding.
 
-The implementation was provided by 
+\textcolor{red}{TODO:Alt. The implementation was provided by 
 \href{https://blog.paperspace.com/autoencoder-image-compression-keras/}{a blog post using keras}
 and is adapted to fulfil the needs of the specific context.
+}
 The number of hidden layers and their dimensionality were increased to improve the ability of the model to reconstruct.
-
 % \begin{figure}[h] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
 %     \centering
 %     \includesvg[width=0.6\textwidth]{images/embeddings/autoencoder/encoder-impl.svg}
@@ -26,7 +26,7 @@ The number of hidden layers and their dimensionality were increased to improve t
 \begin{figure}[h] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=1.0\textwidth]{images/embeddings/autoencoder/autoencoder-impl.svg}
-    \caption{Architecture of the \ac{ae}}
+    \caption[Architecture of the \ac{ae}]{Architecture of the \ac{ae}.}
     \label{fig:impl-ae}
 \end{figure}
 

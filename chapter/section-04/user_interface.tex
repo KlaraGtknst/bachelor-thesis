@@ -2,7 +2,7 @@
 
 Since this work should be valuable to tax offices, a basic \ac{ui} is provided.
 However, the focus of this work is on the methods and not on the \ac{ui}.
-The \ac{ui} is divided into two parts, the frontend and the backend.
+The \ac{ui} is divided into a frontend and a backend.
 
 \subsection{Backend}\label{subsec:backend}
 
@@ -14,7 +14,7 @@ There are multiple endpoints, which are used to retrieve data from the server:
 \begin{itemize}
     \item \label{pt:docs}Documents: 
         Returns a list of documents, which best match the query.
-        The query can be either of type \texttt{match\_all}, which returns all documents in the database, 
+        The query can be of type \texttt{match\_all}, which returns all documents in the database, 
         or a fuzzy full-text query, 
         or a \ac{knn} query on a certain field of the database.
         Moreover, the number and start index of the results returned can be specified.
@@ -29,7 +29,7 @@ There are multiple endpoints, which are used to retrieve data from the server:
     \item \label{pt:wordcloud}WordCloud: 
         Returns the bytes of a WordCloud image. 
         Depending on additional parameters, the WordCloud is either generated from one document or 
-        the most similar documents to the query field, identified by \ac{knn}.
+        the most similar documents to the query field identified by \ac{knn}.
 
     \item \label{pt:termfrequency}Term Frequency:
         Returns the term frequency calculated for the specified document.
@@ -43,7 +43,7 @@ There are multiple endpoints, which are used to retrieve data from the server:
         The topics are described by the words closest to the topic vectors.
 \end{itemize}
 
-In order to test the endpoints during development, swagger documentation for every endpoint is provided.
+In order to test the endpoints during development, a swagger documentation for every endpoint is provided.
 
 
 
@@ -68,7 +68,7 @@ There are three main components, which are used to display the data:
         Moreover, the WordCloud of the document is displayed.
         The WordCloud is generated from the text of the document.
         On the right side of the screen, there is a \ac{pdf} viewer which displays the pages of the document.
-        Beneath the \ac{pdf} viewer, the names and WordClouds of the most similar documents are displayed after a query for them is initiated by the user.
+        Beneath the \ac{pdf} viewer, the file names and a WordCloud of the most similar documents are displayed after a query for them is initiated by the user.
         The detail component is shown in \autoref{fig:detail_comp}.
 
     \item \label{pt:topic}Topic: 
