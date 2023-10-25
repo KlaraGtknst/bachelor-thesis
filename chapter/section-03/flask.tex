@@ -14,13 +14,13 @@ Werkzeug implements, for instance, requests and response objects \cite{mvc_flask
 
 % initialization
 All requests received from clients are passed to an instance of the \flask{} application \cite{flask_book2018}.
-Hence, the first step is to create an instance of the \flask{} class, such as done in \lst{lst:flask_app_init}.
+Hence, the first step is to create an instance of the \flask{} class shown in \lst{lst:flask_app_init}.
 
 \begin{listing}[htp]
     \begin{minted}{python3}
     app = Flask(__name__)
     \end{minted}
-    \caption[Initialization of \flask{} application instance]{Initialization of \flask{} application instance.
+    \caption[Initialization of a \flask{} application instance]{Initialization of \flask{} application instance.
     }
     \label{lst:flask_app_init}
 \end{listing}
@@ -36,9 +36,8 @@ To define a route, the \texttt{route} decorator is used as displayed in \lst{lst
     @api.route('/documents/<id>', endpoint='document')
     class Document(Resource):
         def get(self, id):
-            elastic_search_client = Elasticsearch(CLIENT_ADDR)
-            return query_database.get_doc_meta_data(elastic_search_client, 
-                doc_id=id)
+            client = Elasticsearch(CLIENT_ADDR)
+            return query_database.get_doc_meta_data(client, doc_id=id)
     \end{minted}
     \caption[Routing using \flask{}]{Exemplartary definition of a function to display routing with \flask{}.
     The \texttt{route} decorator is used to define the \ac{url} path.
@@ -46,14 +45,14 @@ To define a route, the \texttt{route} decorator is used as displayed in \lst{lst
     \label{lst:flask_routing}
 \end{listing}
 
-\acs{url} can contain dynamic components, which are enclosed in \texttt{<>} angle brackets.
+\acp{url} can contain dynamic components, which are enclosed in \texttt{<>} angle brackets.
 The values of these components are passed to the function as arguments \cite{flask_book2018}.
 By default, dynamic components are of type \texttt{string}.
-However, other types including \texttt{int} and \texttt{float} are supported \cite{flask_book2018}.
+However, other types including \texttt{int} and \texttt{float} are supported.
 
 % dev server
 During development, the \flask{} application can be run using \texttt{flask run} to start the built-in development web server \cite{flask_book2018}.
-By enabling debug mode, the server automatically reloads the application when changes are detected \cite{flask_book2018}.
+By enabling debug mode, the server automatically reloads the application when changes are detected.
 
 % endpoints
 An endpoint is a class with certain methods, which can be accessed using \ac{http} requests.

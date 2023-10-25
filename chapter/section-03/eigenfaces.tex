@@ -28,7 +28,7 @@ $\Phi_{k}$ being the difference of the $k$-th training image and the average ima
 The next step is to find an alternative lower-dimensional representation of the images, which preserves most of the information of the original image.
 In mathematical terms, this decomposition can be expressed as 
 $\textbf{x} = \sum_{i=1}^{n}\hat{x}_{i} \textbf{e}_{i}$, 
-$\hat{x}_{i}$ being inner product of $\textbf{x}$ and $\textbf{e}_{i}$, 
+%$\hat{x}_{i}$ being inner product of $\textbf{x}$ and $\textbf{e}_{i}$,
 $\textbf{e}$ being an orthogonal basis 
 \cite{eigenfaces1997}.
 If all basis vectors are used, the original image can be reconstructed using a linear combination of the basis vectors \cite{eigenfaces1991, face-recognition2020}.
@@ -37,7 +37,7 @@ In order to compress the input from a $n-$ to a $m$-dimensional space, given $m 
 The parameter $m$ is chosen such that $\hat{x}_{i}$ is small for $i \ge m$ \cite{eigenfaces1997}.
 The compressed version of the image is denoted $\textbf{x} \simeq \hat{\textbf{x}} = \left[\hat{x}_{1}, \hat{x}_{2}, ..., \hat{x}_{m}  \right]^{T}$.
 In other words: 
-The compressed image is a vector of the first $m$ weights of the linear combination of weight and basis vectors used to transform the image back to the original space \cite{eigenfaces1991}.
+The compressed image is a vector of the first $m$ weights of the linear combination of weight and basis vectors used to transform the compressed image back to the original space \cite{eigenfaces1991}.
 The weights denote the position of the projection of the face images in the feature space or so-called face space spanned by the first $m$ basis vectors \cite{eigenfaces1991}.
 
 % eigenfaces: KL base
@@ -58,7 +58,7 @@ There are two approaches in the literature to determine the number of \eigenface
         A plot displaying the cumulative explained variance and a threshold of 90\% is shown in \autoref{fig:det_n_comp} (a).
 
     \item The number of \eigenfaces{} $m$ is chosen using the reconstruction error-complexity trade-off. % \cite{face-recognition2008}.
-        The reconstruction error, i.e. the \ac{rmse} of the original image $X$ and the inverse transformed image $X'$ 
+        The reconstruction error, i.e. the \ac{rmse} of the original image $X$ and the inverse transformed image $X'$, is 
         calculated in \autoref{eq:rsme} for different values of $m$.
         The "elbow" point marks the point where the reconstruction error decreases only slightly for increasing $m$ and thus, is an indicator for the optimal $m$.
         A visualization of this approach is shown in \autoref{fig:det_n_comp} (b).
@@ -76,7 +76,7 @@ There are two approaches in the literature to determine the number of \eigenface
     \qquad
     \subfloat[\centering The reconstruction error \ac{rmse} calculated for different values of $m$. Around 13 is an "elbow" point.]
     {{\includegraphics[width=7cm]{images/Eigendocs/Eval-Params/reconstruction error_eigendocs.pdf} }}%
-    \caption[Approaches to find the number of \eigenfaces{}]{Two approaches in the literature to determine the number of \eigenfaces{} $m$ used to compress the input images.}%
+    \caption[Approaches to find the number of \eigenfaces{}]{Two approaches to determine the number of \eigenfaces{} $m$ used to compress the input images.}%
     \label{fig:det_n_comp}%
 \end{figure}
 
@@ -88,16 +88,15 @@ with $\textbf{X} = \left[ \textbf{x}_{1}, \textbf{x}_{2}, ..., \textbf{x}_{N} \r
 
 Finding the eigenvectors of $\textbf{X}\textbf{X}^{T}$ is still computationally expensive, since $\textbf{X}\textbf{X}^{T}$ is a $n$ by $n$ matrix.
 According to \citeauthor{eigenfaces1997}, the eigenvectors of $\textbf{X}\textbf{X}^{T}$ can be calculated by using the eigenvectors of $\textbf{X}^{T}\textbf{X}$.
-The eigenvalues $\textbf{e}_i \in \mathbb{R}^{n}$ of $\textbf{X}\textbf{X}^{T}$ can be derived from the eigenvectors $\textbf{v}_i \in \mathbb{R}^{N}$ of $\textbf{X}^{T}\textbf{X}$ by 
+The eigenvectors $\textbf{e}_i \in \mathbb{R}^{n}$ of $\textbf{X}\textbf{X}^{T}$ can be derived from the eigenvectors $\textbf{v}_i \in \mathbb{R}^{N}$ of $\textbf{X}^{T}\textbf{X}$ by 
 $\textbf{e}_i = \frac{1}{\sqrt{\lambda_i}}\textbf{X}\textbf{v}_i$ as discussed in more detail in \cite{eigenfaces1997}.
 Hence, the problem is reduced to a $N$ by $N$ matrix, which is computationally less expensive to solve, since $N \ll n$.
 Eigenvectors can be calculated using \ac{svd} \cite{eigenfaces1997}.
 \ac{svd} is a method, which decomposes a matrix into the so-called left singular vector, the diagonal matrix and the right singular vector \cite{dim_reduction2021}. 
-\ac{svd} facilitates the calculation of eigenvectors.
 
 % classification/ compare
 In the literature, face images are classified by comparing their position in the face space with those of already known faces \cite{eigenfaces1991}.
 % performance 
 According to \cite{eigenfaces1991}, this approach performs well on datasets with little variation in pose, lighting and facial expression.
 However, \Citeauthor{eigenfaces1997} state, that the performance deteriorates if the variations increase since the changes introduce a bias 
-that makes the distance function used to make classifications a no longer reliable measure.
+and thus, the distance function used to make classifications is no longer a reliable measure.

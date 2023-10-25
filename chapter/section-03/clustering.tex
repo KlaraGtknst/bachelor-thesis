@@ -15,7 +15,7 @@ There are multiple clustering techniques, which can be divided into four categor
     Examples include CLINK, SLINK \cite{OPTICS2014} and \ac{optics} \cite{OPTICS2013}.
 
     \item \textbf{Partitional based clustering}: 
-    Algorithms, that partition the data into $k$ clusters, whereas $k$ is given apriori.
+    Algorithms, that partition the data into $k$ clusters, $k$ is given apriori.
     Clusters are shaped in a spherical manner, are similar in size and not necessarily naturally occurring.
     KMeans is a popular example of a partitional-based clustering algorithm.
 
@@ -43,7 +43,7 @@ First, $k$ centroids, i.e. cluster centres, are randomly initialized.
 Then, the objects are assigned to the closest centroid.
 Afterwards, the centroids are updated by calculating the mean of the assigned objects.
 The process is repeated until the terminating condition, for instance, no more change in the clusters, is met \cite{OPTICS_kMeans_2016}.
-By iteratively reassinging the objects to the closest centroid and updating the centroids, 
+By iteratively reassigning the objects to the closest centroid and updating the centroids, 
 the algorithm minimizes the within-cluster sum of squared errors $E$, i.e. the sum of squared (Euclidean) distances between objects in a cluster and their centroid $\mu_{i}$, 
 calculated in \autoref{eq:kmeans-error} from \cite{OPTICS_kMeans_2016}, 
 where $C_{i}$ is the $i$-th cluster.
@@ -80,12 +80,12 @@ which are directly density reachable from each other as displayed in \autoref{fi
     \centering
     \includesvg[width=0.2\textwidth]{images/density_reachable}
     \caption[Density reachability]{Density reachability cf. \cite{OPTICS1999}.
-    The point $y \in X$ is density reachable from $x \in X$, since there is a chain of directly density reachable objects $x, o, y$.
+    The object $y \in X$ is density reachable from $x \in X$, since it exists a chain of directly density reachable objects between $x$ and $y$.
     }
     \label{fig:density_reachable}
 \end{figure}
 
-The points $x \in X$ and $y \in X$ are said to be \textit{density connected}, if there is an object $o$, from which both $x$ and $y$ are density reachable \cite{OPTICS_kMeans_2016}.
+The objects $x \in X$ and $y \in X$ are said to be \textit{density connected}, if there is an object $o$, from which both $x$ and $y$ are density reachable \cite{OPTICS_kMeans_2016}.
 Density connectivity is visualized in \autoref{fig:density_connected}.
 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
@@ -108,15 +108,15 @@ According to \citeauthor{OPTICS_kMeans_2016}, \ac{dbscan} can identify outliers 
 However, the algorithm is sensitive to the input parameters $minPts$ and $\varepsilon$ and has difficulties distinguishing closely located clusters \cite{OPTICS_kMeans_2016}.
 Moreover, if one wants to obtain hierarchical clustering, one has to run the algorithm multiple times with different $\varepsilon$, which is expensive in terms of memory usage \cite{OPTICS2013}.
 According to \citeauthor{clusteringDocs2020}, \ac{dbscan} is affected by the curse of dimensionality.
-Since \ac{dbscan} relies on nearest neighbour queries and these become less meaningful in high dimensions, i.e. distances become difficult to interprete, 
-the quality and accuracy of the results declines with increasing dimensionality \cite{clusteringDocs2020}.
-\citeauthor{clusteringDocs2020} found that their \ac{dbscan} model assigned most documents noise, when the dimensionality was sufficiently large.
+Since \ac{dbscan} relies on nearest neighbour queries and these become less meaningful in high dimensions, i.e. distances become difficult to interpret, 
+the quality and accuracy of the results decline with increasing dimensionality \cite{clusteringDocs2020}.
+\citeauthor{clusteringDocs2020} found that their \ac{dbscan} model assigned most objects noise when the dimensionality was sufficiently large.
 
 
 \subsection{\acs*{optics}}\label{subsec:optics}
 
 \ac{optics} does not return an explicit clustering, but rather a density-based clustering structure of the data, 
-which is equivalent to clustering results of a broad range of parameters \cite{OPTICS1999}.
+which is equivalent to repetitive clustering for a broad range of parameters \cite{OPTICS1999}.
 \citeauthor{OPTICS1999} claim that real-world datasets cannot be described by a single global density, since they often consist of different local densities, 
 as displayed in \autoref{fig:diff_density_cluster}.
 
@@ -155,7 +155,7 @@ with core distance $core\_dist$ being the minimal distance $\varepsilon^{min}$ s
 of each element $y$ to its predecessor $x$ in the order list and thus, 
 a representation of the density necessary to keep two consecutive objects $x$ and $y$ in the same cluster \cite{OPTICS2013}.
 If $\varepsilon < RD(y)$, then $y$ is not density reachable from any of its predecessors and thus, 
-one can determine whether two points are in the same cluster for given information saved by \ac{optics} \cite{OPTICS2013, OPTICS1999}.
+one can determine whether two points are in the same cluster for the information saved by \ac{optics} \cite{OPTICS2013, OPTICS1999}.
 If the core distance of an element is not NULL, i.e. it is a core object, and it is not density reachable from its predecessors, it is the start of a new cluster \cite{OPTICS1999}.
 Otherwise, the element is a noise point \cite{OPTICS1999}.
 According to \citeauthor{OPTICS2013}, the algorithm builds a spanning tree, which enables obtaining the clusters for a given $\varepsilon$ by returning the connected components 
@@ -185,7 +185,7 @@ The smaller $\varepsilon$ is chosen, the more objects will be identified as nois
 since some objects only become core objects for a larger $\varepsilon$ \cite{OPTICS1999}.
 According to \citeauthor{OPTICS1999}, the optimal value for $\varepsilon$ creates one cluster for most of the objects with respect to a constant $minPts$,
 since information about all density-based clusters for $\varepsilon_i < \varepsilon$ is preserved.
-A heuristic for choosing $\varepsilon$ based on the expected $k$-nearest neighbour distance is presented in \cite{OPTICS1999}.
+\citeauthor{OPTICS1999} present a heuristic for choosing $\varepsilon$ based on the expected $k$-nearest neighbour distance \cite{OPTICS1999}.
 
 % effect of minPts (reachability plot)
 High values for $minPts$ smoothen the reachability curve, even though the overall shape stays roughly the same \cite{OPTICS1999}.
