@@ -5,6 +5,9 @@ In order to determine, which architecture for the hidden or so-called latent spa
 different architectures were tested and compared in terms of \ac{rsme} and cosine similarity.
 The \ac{rsme} is calculated as given in \lst{lst:impl-rsme}.
 The cosine similarity is calculated as given in \lst{lst:impl-cos_sim}.
+Since cosine similarity is usually applied to calculate the angle between two vectors, one has to be cautious when interpreting the result obtained.
+For instance, the vectors $\left( 0, 1 \right)^T$ and $\left( 0, 2 \right)^T$ have a cosine similarity of 1, even though they are not the same vectors.
+Since an \ac{ae} is supposed to reconstruct the input rather than return a dependent or related vector, this metric should be combined with a tarditional metric.
 The dataset used for the evaluation is a selection of 195 documents from the Bahamas dataset.
 
 % RSME
@@ -34,11 +37,11 @@ The dataset used for the evaluation is a selection of 195 documents from the Bah
 
 \textcolor{red}{explain why cosine similarity is used and ggf. source}
 
-The scores of different architectures are shown in \fig{fig:eval-ae-architecture}.
+\textcolor{red}{The scores of different architectures are shown in \fig{fig:eval-ae-architecture}.
 While most of the architectures produced similar results, one architecture stood out.
 Combining 2500, 3000 and 3500 dimensions in the hidden space produced the worst \ac{rsme} results.
 The best results were achieved by adding 3500-dimensional layers in the hidden space.
-However, the results of the best architecture do not differ greatly from the others.
+However, the results of the best architecture do not differ greatly from the others.}
 
 \begin{figure}[h] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering

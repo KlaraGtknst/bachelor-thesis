@@ -1,10 +1,13 @@
 \chapter{Experimental evaluation}\label{ch:evaluation}
 
-Since the dataset has no ground truth the procedure used to decide which parameters to use is not comparable to common ground truth-based thesis.
-Hence, the evaluation is informal and was conducted after regular consultation with experts from the tax office.
+Since the dataset has no ground truth the procedure used to pick the parameter values is not comparable to ground truth-based approaches.
+Hence, the evaluation is informal and the methods applied have arisen from regular consultation with experts from the tax office.
 
  % Database
  \section{Database}\label{sec:eval-db}
+There is a variety of parameter values to choose from when working with databases and embeddings.
+These parameters include similarity metrics and the choice of queries.
+
  \input{chapter/section-05/eval-similarity-measurements.tex}
 
  \input{chapter/section-05/elasticsearch_db.tex}
@@ -14,7 +17,8 @@ Hence, the evaluation is informal and was conducted after regular consultation w
  
  % Embeddings
 \section{Embeddings}\label{sec:eval-embeddings}
-\input{chapter/section-05/eval-autoencoder.tex}
+As discussed in \autoref{subsec:impl-embeddings}, there is a range of possible parameter values to choose from when implementing embedding models.
+The section below states which findings have led to the parameter values applied in this work.
 
 \input{chapter/section-05/eval-tfidf.tex}
 
@@ -23,6 +27,8 @@ Hence, the evaluation is informal and was conducted after regular consultation w
 \input{chapter/section-05/eval-infersent.tex}
 
 \input{chapter/section-05/eval-universal-sent-enc.tex}
+
+\input{chapter/section-05/eval-autoencoder.tex}
 
 % Clustering
 \input{chapter/section-05/eval-optics.tex}

@@ -1,3 +1,11 @@
 \subsection*{Similarity measurements}\label{subsec:evaluation-sim-measurements}
 
-According to \citeauthor{HfsentTrans2019}, the similarity measurements discussed in \autoref{sec:similarity-measurement} obtained roughly the same results in their experiments \cite{HfsentTrans2019}.   
+According to \citeauthor{HfsentTrans2019}, the similarity measurements discussed in \autoref{sec:similarity-measurement} 
+obtained roughly the same results in their experiments \cite{HfsentTrans2019}.   
+
+% similarity
+As the similarity between vectors is usually calculated using some form of cosine similarity, 
+rather than Euclidean distance in literature, cosine is preferred over Euclidean distance. 
+Since the models may produce embeddings, which are not normalized, the cosine similarity is used instead of the dot product.
+Soft cosine similarity is not used, since it is not available in \databaseName{}.
+However, the usage of soft cosine would likely improve the results.
