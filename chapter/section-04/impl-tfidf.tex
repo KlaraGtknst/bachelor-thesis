@@ -7,6 +7,16 @@ The \texttt{TfidfVectorizer} is provided by the \texttt{scikit-learn} package.
 When initializing the model, the parameters define not only the input type but also the way the data is preprocessed.
 The \texttt{input} parameter defines the input type, i.e. \texttt{content} means that the input is a list of strings or bytes, 
 whereas \texttt{file} assumes the input has a \texttt{read} method and \texttt{filename} denotes a list of filenames as input \cite{tfidf-scikit-learn}.
+An embedding is obtained using the command from \lst{lst:encode-tfidf}.
+
+\begin{listing}[htp]
+    \begin{minted}{python3}
+        tfidf_model.transform(text).todense()
+    \end{minted}
+    \caption[Encoding a text using the \ac{tfidf} model]{Encoding a text using the \ac{tfidf} model.
+    }
+    \label{lst:encode-tfidf}
+\end{listing}
 
 The \texttt{preprocessor} parameter defines the preprocessing (string transformation) stage.
 It is possible to override the default with a custom preprocessing function.
@@ -81,12 +91,5 @@ The \texttt{nltk} package provides the stop words used to omit uninformative wor
 The stop word corpus consists of common English stop words.
 Afterwards, the tokens are lemmatized.
 The lemmatizer used is \texttt{WordNetLemmatizer} from the \texttt{nltk} package.
+\texttt{WordNetLemmatizer} uses the English lexical database \texttt{WordNet} to return valid stems \cite{nltk-lemma-wordnet}
 In the end, the tokens are joined to a string and returned.
-
-
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
-    \centering
-    \includesvg[width=1\textwidth]{images/embeddings/tfidf/TFIDF_preprocessing.svg}
-    \caption[\ac{tfidf} preprocessing]{\ac{tfidf} preprocessing visualized using a example text.}
-    \label{fig:preprocessing}
-\end{figure}

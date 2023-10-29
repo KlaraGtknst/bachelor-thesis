@@ -2,6 +2,7 @@
 
 \ac{tfidf} provides a numerical representation of a word in a document \cite{clusteringDocs2020}.
 It considers the frequency $f_{w_{ij}, d_i}$  of a word $w_{ij}$ in a document $d_i$ and the frequency of a word in the whole corpus. 
+The frequency $f_{w_{ij}, d_i}$ is defined as $f_{w_{ij}, d_i} = \frac{\# \text{occurrences of } w \text{ in }D}{\# \text{words in }D}$.
 
 \ac{tfidf} is calculated as displayed in \autoref{eq:tfidf-formula} from \cite{clusteringDocs2020} and exemplatory in \autoref{fig:tfidf-calculation}.
 The \ac{tf} is determined utilizing $TF(w_{ij}, d_i) = f_{w_{ij}, d_i}$, whereas the \ac{idf} is computed by $IDF(w_{ij}, D) = \log_2\frac{M}{M_{ij}}$, 
@@ -27,7 +28,7 @@ In other words: Terms which appear in many documents are not as important and th
     \label{fig:tfidf-calculation}
 \end{figure}
 
-According to \citeauthor{tfidf2008}, the computation complexity of \ac{tfidf} embeddings is $O(V \cdot M)$.
+%According to \citeauthor{tfidf2008}, the computation complexity of \ac{tfidf} embeddings is $O(V \cdot M)$.
 \ac{tfidf} has several drawbacks \cite{clusteringDocs2020,tfidf2008}:
 \begin{itemize}
     \item \ac{tfidf} does not consider semantic similarities between words.

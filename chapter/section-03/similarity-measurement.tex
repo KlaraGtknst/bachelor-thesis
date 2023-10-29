@@ -18,13 +18,7 @@ The following section outlines a few similarity measures.
 The \textit{euclidian distance} is a distance measure.
 In order to measure the distance between two points in a $N$-dimensional space, 
 the root of the sum of squared distances between the respective values of every dimension is calculated.
-The distance function Euclidean (L2) norm is given in \autoref{eq:euclidian-distance} c.f. \cite{euclidean_l2_norm2015}.
-The points $a, b$ correspond to objects $d_1, d_2$.
-
-\begin{equation}
-    d_E(a,b) = \sqrt{\sum_{i=1}^{N}(a_i - b_i)^2}
-    \label{eq:euclidian-distance}
-\end{equation}
+The Euclidean (L2) norm between two points $a, b$ is defined as $d_E(a,b) = \sqrt{\sum_{i=1}^{N}(a_i - b_i)^2}$ c.f. \cite{euclidean_l2_norm2015}.
 
 
 \subsection{Cosine Similarity}\label{subsec:cosine-similarity}
@@ -32,13 +26,11 @@ The points $a, b$ correspond to objects $d_1, d_2$.
 % In the traditional bag-of-words approach the texts are represented as vectors of \ac{tfidf} coefficients \cite{soft_cosine2017}.
 % Without further processing, the vector is of size $N$, $N$ being the number of different words of the texts \cite{soft_cosine2017}.
 
-The similarity between two texts is measured by the cosine of the angle between their respective real-valued vectors \cite{soft_cosine2014}.
+The similarity between two texts is measured by the cosine of the angle between their respective real-valued vectors.
 The cosine similarity is defined in \autoref{eq:cosine-similarity} from \cite{soft_cosine2014}.
-The dot-product is calculated using $a \cdot b = \sum_{i=1}^{N}a_{i}b_{i}$.
-It is normalized with $\left\| x \right\| = \sqrt{x \cdot x}$ to unit Euclidean length.
-The cosine similarity is a value between $0$ and $1$ for positive vectors.
+For positive vectors, for instance, produced by \ac{tfidf}, it is a value between $0$ and $1$.
 % angle can not be greater than 90 degrees, bc vectors have positive values
-According to \citeauthor{soft_cosine2014}, the formula has a time and space complexity of $O(N)$ for a pair of $N$-dimensional vectors.
+%According to \citeauthor{soft_cosine2014}, the formula has a time and space complexity of $O(N)$ for a pair of $N$-dimensional vectors.
 
 \begin{equation}
     cosine(a,b) = \frac{a \cdot b}{\left\| a \right\| \times \left\| b \right\|} = \frac{\sum_{i=1}^{N}a_{i}b_{i}}{\sqrt{\sum_{i=1}^{N}{a}^2_{i}}\sqrt{\sum_{i=1}^{N}{b}^2_{i}}}
@@ -47,7 +39,7 @@ According to \citeauthor{soft_cosine2014}, the formula has a time and space comp
 
 The formula from \autoref{eq:cosine-similarity} assumes that the vectors, which span the \ac{vsm} are orthogonal and thus, 
 completely independent.
-However, in practical applications, this often is not the case.
+However, in practical applications, the index terms which span the \ac{vsm} are often semantically dependent.
 
 
 \subsection{Soft Cosine Similarity}\label{subsec:soft-cosine-similarity}
@@ -57,6 +49,8 @@ also takes into account the semantic (word-level) similarity or lexical relation
 Hence, it improves the shortcomings of the traditional cosine similarity measure, 
 which assumes the tokens of the vocabulary are completely independent of each other \cite{soft_cosine2014}.
 
+Soft cosine similarity assumes that features, i.e. index terms, correspond to words and thus, 
+require embeddings to be produced by \ac{bow} models. 
 According to \citeauthor{soft_cosine2014}, in order to model this additional information, more dimensions are added to the \ac{vsm}.
 These dimensions can be obtained, for instance, by multiplying the mean of two features of one vector with the similarity between them \cite{soft_cosine2014}.
 The similarity can be calculated by using Levenshtein distance, i.e. the number of operations necessary to convert one string into another, 
@@ -75,6 +69,6 @@ The similarity $s_{ij}$ between the $i$-th and $j$-th basis vector is obtained u
 According to \citeauthor{soft_cosine2017}, the similarity between two texts is non-zero as soon as they share related words \cite{soft_cosine2017}.
 If there is no similarity between different features, 
 the soft cosine similarity from \autoref{eq:soft-cosine-similarity} is equal to the cosine similarity from \autoref{eq:cosine-similarity}.
-The time and space complexity of the soft cosine similarity is $O(N^2)$ \cite{soft_cosine2014}.
-In order to reduce the complexity, \citeauthor{soft_cosine2014} propose the usage of a sparse similarity matrix which only stores $s_{ij} > t$, 
-$t$ being a threshold.
+%The time and space complexity of the soft cosine similarity is $O(N^2)$ \cite{soft_cosine2014}.
+% In order to reduce the complexity, \citeauthor{soft_cosine2014} propose the usage of a sparse similarity matrix which only stores $s_{ij} > t$, 
+% $t$ being a threshold.

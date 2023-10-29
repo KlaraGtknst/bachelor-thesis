@@ -5,10 +5,19 @@ Tax offices examine the data to identify tax evasion.
 However, it has proven to be challenging to identify relevant documents and their interconnections due to the amount of documents appertaining to the leak.
 Therefore, the goal of this thesis is to support the investigators of the tax offices.
 
-The approach proposed in this thesis includes text mining and exploration methods, such as topic modelling.
-Documents are grouped based on their semantic similarity or appearance.
-In this work, a topic is denoted as a set of words which appears more often than average if not defined otherwise.
-Hence, a topic is a statistical phenomenon.
+This thesis assumes that there are similar documents and that it is valuable to explore semantically or visually similar documents simultaneously.
+Hence, the analysis of the text corpus includes analysis in terms of textual information, i.e. content, 
+and visual information, i.e. appearance and layout.
+The information gathered ought to be used to identify similarities between documents and group them.
+Topics of a document cluster do not have to be labelled specifically but should be interpretable.
+
+This thesis proposes an approach to group documents based on their appearance or semantic similarity, 
+which is defined via different embedding strategies.
+Both the embeddings and the visual information are computed offline and stored in a database.
+In order to interact with the underlying dataset the most similar documents based on a field from database to the input document are retrieved via a query to the database.
+The embeddings are compared using cosine similarity, i.e. the angle between embeddings, 
+whereas visual information is clustered using different approaches including \ac{optics} beforehand.
+To visualize the resulting groups of documents methods from topic modelling including \wordcloud{}s are employed.
 
 Besides literature research, application and evaluation of the methods identified, 
-certain preprocessing methods outlined in \autoref{sec:preprocessing} have proven to be eminent to successful work with unstructured text data.
+certain preprocessing methods have proven to be eminent to successful work with unstructured text data.

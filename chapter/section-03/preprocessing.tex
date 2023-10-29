@@ -2,8 +2,19 @@
 
 Similar to other \ac{ml} domains, \ac{nlp} requires preprocessing of the data.
 Usually, textual data contains irrelevant information and noise.
+Examples of noise include so-called stop words, such as "the" or "and".
+However, irrelevant information can be task-specific. 
+In some cases, numerical data may be regarded to be irrelevant and thus, should omitted.
 Hence, preprocessing improves the performance and the results \cite{clusteringDocs2020}.
-The next sections describe a selection of the preprocessing steps applied in this work.
+The next sections describe the preprocessing steps applied in this work.
+They are visualized in \autoref{fig:preprocessing} on an exemplary text.
+
+\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=1\textwidth]{images/embeddings/tfidf/TFIDF_preprocessing.svg}
+    \caption[Preprocessing]{Preprocessing visualized using an example text.}
+    \label{fig:preprocessing}
+\end{figure}
 
 
 \subsection{Tokenization}\label{subsec:tokenization}
@@ -34,9 +45,9 @@ Hence, the choice of the stemmer depends on the application.
 \subsection{Lemmatization}\label{subsec:lemmatization}
 
 Stemming and lemmatization are used to reduce the vocabulary size \cite{clusteringDocs2020}.
-By ensuring the resulting stem is a valid word, the process of stemming is called \textit{lemmatization} \cite{nlp-book2009}.
-Some implementations of lemmatizers only stem words if the result is in its dictionary.
-Since lemmatizers validate the result prior to returning it, they are usually slower than stemmers \cite{nlp-book2009}.
+Opposed to stemming, lemmatization returns only stems which are considered valid words \cite{nlp-book2009}.
+Some implementations of lemmatizers validate stems with regard to a set of valid words, i.e. \textit{lemma}s, stored in a dictionary.
+Lemmatizers are usually slower than stemmers \cite{nlp-book2009}.
 
 The \textit{WordNetLemmatizer} from the \texttt{nltk} package requires a vocabulary. % \cite{clusteringDocs2020}.
 According to \citeauthor{clusteringDocs2020}, it is frequently used for lemmatization of English texts.
@@ -49,6 +60,6 @@ Omitting words that are not relevant to the context of the text is called \texti
 Stop words not only depend on the domain but also the language \cite{IR2011}.
 
 
-\subsection{Lower case}\label{subsec:lower-case}
+% \subsection{Lower case}\label{subsec:lower-case}
 
-Words with capital letters are converted to lowercase.
+% Words with capital letters are converted to lowercase.
