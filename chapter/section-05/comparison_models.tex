@@ -1,0 +1,58 @@
+\section{Comparison of models}\label{sec:evaluation-models}
+
+% parameters
+Similar to \citeauthor{glove2014}'s work, in this work, for many models used, any unspecified parameters are set to their default values, 
+assuming that they are close to optimal
+acknowledging that this simplification should be revised in a more thorough analysis.
+
+% comparing models (qualitative)
+The different query responses of the models are compared on a selection of documents.
+The selection is obtained by randomly choosing \textcolor{red}{TODO: X} documents from a corpus of 2095 documents.
+The 2095 document corpus was randomly chosen from the Bahamas leak.
+The \textcolor{red}{TODO: Y} most similar documents for each selected document are retrieved from the database for each model and stored in a \ac{csv} file.
+To facilitate working with the data, the document IDs are encoded as monotonically increasing integers.
+
+Furthermore, the query results are compared using a Venn diagram and a heatmap presented in \autoref{fig:comparison-models}.
+% Venn diagram
+To build a Venn diagram, the number of documents which are shared between the query results of two models is computed.
+Hence, all query results of a model are saved in a set and the intersection of two sets is computed.
+Since there are five models the Venn diagram consists of five circles.
+\textcolor{red}{results derived from diagram}
+
+% heatmap
+Before the heatmap can be created, the shared query results of each model pair are computed and stored in a matrix.
+The matrix consists of five rows and five columns, where each row and column represents a model.
+The code snippet in \lst{lst:sim-matrix} shows the calculation of the similarity matrix.
+The cell values are the number of shared query results between the models of the row and column.
+They are calculated by summing up the number of shared query results per document query.
+Since the matrix is symmetric, only the upper triangular matrix is computed and the other half is mirrored.
+The matrix is then visualized using a heatmap.
+\textcolor{red}{results derived from diagram}
+
+\begin{listing}[htp]
+    \begin{minted}{python3}
+        sim_matr = np.matrix(np.zeros((len(model_names), len(model_names))))
+        for id in df.index:
+            for i, model in enumerate(model_names):
+                for j in range(i, len(model_names)):
+                    sim_matr[i, j] += np.sum([df.loc[id, 
+                        model_names[j]].count(item) for item in df.loc[id, model]])
+                    sim_matr[j, i] = sim_matr[i, j]
+    \end{minted}
+    \caption{Calculation of the similarity matrix used to produce the heatmap.
+    }
+    \label{lst:sim-matrix}
+\end{listing}
+
+\begin{figure}%
+    \centering
+    \subfloat[\centering Venn diagram of query results.]{{\includegraphics[width=4cm]{images/comparison/Venn_diagram_of_most_similar_documents.pdf} }}%
+    \qquad
+    \subfloat[\centering Heatmap visualizing shared query results.]{{\includegraphics[width=6cm]{images/comparison/Number_of_equal_query_results.pdf} }}%
+    \caption[Comparison of models]{Comparison of the results obtained by different models.}%
+    \label{fig:comparison-models}%
+\end{figure}
+
+
+% investigate certain images
+any images which produce unusual results?

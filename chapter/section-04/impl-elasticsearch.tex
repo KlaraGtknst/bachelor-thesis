@@ -115,13 +115,14 @@ The embeddings are subsequentially inserted into the database for each sublist.
     \begin{minted}{python3}
         with Pool(processes=num_cpus) as pool:
             for model_name in model_names:
-                pool.map(lambda x : insert_embedding(src_paths=x, 
-                    src_path=src_path, client_addr=client_addr, 
-                    model_name=model_name), sub_lists)
+                proc_wrap = wrapper(model_name=model_name, baseDir=src_path)
+                pool.map(proc_wrap, sub_lists)
     \end{minted}
     \caption[Usage of \texttt{Pool} for data parallelism]
     {Usage of \texttt{Pool} for data parallelism.
     The paths to the documents to insert are divided into sublists which are simultaneously inserted into the database.
+    Since the \texttt{Pool} object does not work with a \texttt{lambda} function, 
+    a class \texttt{wrapper} is created which works just as a \texttt{lambda} function.
     }
     \label{lst:db_Pool_embeddings}
 \end{listing}
