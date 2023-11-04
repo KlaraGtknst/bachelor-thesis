@@ -59,14 +59,20 @@ The matrix is then visualized using a heatmap.
 
 
 % sample query
-To display the differences between the models exemplary, the five most similar docuemnts to a random document were returned from the database and visualized.
-The text of the query document was encoded using the respective model and \ac{knn} query was used to obtain the results from the local database containing 2048 documents.
-The query image was omitted from the database query response.
-\autoref{fig:query_resp_doc2vec} displays \ac{d2v} reponses, ... 
-\autoref{fig:query_resp_sbert}
-\autoref{fig:query_resp_tfidf}
-\autoref{fig:query_resp_infer}
-\autoref{fig:query_resp_use}
+To display the differences between the models exemplary, the five most similar documents to a random document were returned from the database and visualized.
+The text of the query document was encoded using the respective model and a 
+\ac{knn} query was used to obtain the results from the local database containing 2048 documents.
+The query image, i.e. the one surrounded with a border, was omitted from the database query response.
+The query responses are listed according to descending similarity to the query document.
+\autoref{fig:query_resp_doc2vec} displays the \ac{d2v} reponses,  
+\autoref{fig:query_resp_sbert} displays the \ac{sbert} reponses,  
+\autoref{fig:query_resp_tfidf} displays the \ac{tfidf} reponses,  
+\autoref{fig:query_resp_infer} displays the \infersent{} reponses,  
+\autoref{fig:query_resp_use} displays the \ac{use} reponses.
+
+All models except \ac{d2v} and \ac{use} returned only documents of \textit{CREDIT SUISSE}.
+Apart from this difference, the query responses of the models are very similar.
+
 
 % sample query
 \begin{figure}[h!]
@@ -104,11 +110,16 @@ The query image was omitted from the database query response.
         \caption{\ac{use}}
         \label{fig:query_resp_use}
     \end{subfigure}
-\caption[Exemplary query response]{Exemplary query response in terms of similarity on different embeddings.}
+\caption[Exemplary query response]{Response of exemplary query in terms of similarity on different embeddings.}
 \label{fig:query_resp}
 \end{figure}
 
 % good results
+The models produced good query responses on a query document consisting of little text.
+A sample query document is shown in \autoref{fig:good_query_resp_infer}.
+Even though at first glimpse, the response documents seem to appear unrelated to the query document, they share multiple words, such as \textit{director}.
+Similar response documents do not have to of similar visual appreance results from the fact that the text embeddings only consider information from the text layer.
+
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includegraphics[width=1\textwidth]{images/query_results/42b7e56855c88c22ed01f381167e6f0887815e1ef7ea6b149be06ee1f8557b9e/Most_similar_images_found_by_infer.pdf}
@@ -118,6 +129,7 @@ The query image was omitted from the database query response.
 \end{figure}
 
 % bad results
+\textcolor{red}{TODO}
 \begin{figure}[h!]
     \ContinuedFloat
     \begin{subfigure}{\textwidth}
