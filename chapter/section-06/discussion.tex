@@ -1,0 +1,95 @@
+\subsection{Discussion}\label{subsec:discussion}
+
+% preprocessing -> filter information
+Before working with a model, the data has to be processed to a format that the model can work with.
+The requirements imposed on the data format depend on the model.
+Some models do not require any preprocessing, while others require a lot of preprocessing.
+
+% tfidf preprocessing
+In this work, the \ac{tfidf} configuration includes a custom preprocessor.
+Consequently, preprocessing played an important role in this embedding.
+The preprocessor was constructed with respect to the well-established preprocessing steps for \ac{nlp} tasks \cite{nlp-book2009},
+the \ac{tfidf} documentation about the default preprocessor and the task.
+Since the data set can contain figures due to the financial background, the preprocessor encodes all numbers into discrete strings.
+Hence, the information is not lost but strongly reduced, which is vital due to the constraints imposed 
+by the database's dense vector dimension limitation.
+
+The other embedding methods do not require any preprocessing.
+% visual preprocessing
+The visual embedding methods required more preprocessing.
+Originally, the images were matrices of \texttt{RGB} values.
+However, \ac{pca} and \ac{optics} require a vector as input.
+Therefore, the images were converted to greyscale and flattened to a vector.
+The images were resized to make them more comparable.
+Since \ac{optics}' performance deteriorates with increasing dimensionality, 
+applying \ac{pca} to compress the data can be considered preprocessing.
+
+
+% compression: AE, PCA/ Eigendocs
+As mentioned before, the database has a dense vector dimension limitation of 2048.
+This limitation is a problem for the visual embedding methods as well as \infersent{} and 
+\ac{tfidf}.
+The visual embedding methods were compressed with \ac{pca}, 
+whereas the encoder of a trained \ac{ae} was employed for textual embeddings.
+The \ac{pca} was fit on 1000 randomly selected images.
+The number of components was chosen beforehand in consideration of the explained variance and the reconstruction error.
+The architecture of the \ac{ae} was chosen in consideration of the reconstruction error.
+\textcolor{red}{TODO: Datengrundlage AE}
+Both compression techniques would benefit from a larger data set.
+
+
+% visual vs semantic
+As already stated this work examined both ways to encode semantic and visual information.
+The evaluation was conducted with respect to the task of finding similar documents.
+Since the data set is not labeled the evaluation is subjective and experimental.
+Qualitative evaluation was conducted by inspecting the responses of different models for several sample queries to the database 
+storing the respective embeddings.
+The semantic responses were similar and often managed to find either documents with the same content or documents with the same company name.
+The visual responses were more dissimilar from each other and the query document.
+% visual: OPTICS, argmax
+More precisely, the \texttt{argmax} approach returned poor results to some extent.
+Consequently, \ac{optics} is considered the superior visual embedding method for the database.
+Moreover, the textual embedding methods produced more meaningful responses than the visual embedding methods.
+For example, textual embedding methods managed to find documents with the same company name, 
+while the visual embedding methods naturally return visually similar documents.
+
+
+% semantic: TFIDF, Doc2Vec, USE, InferSent, SBERT
+When evaluating the semantic embedding methods, slight differences between the models became evident.
+Differences and similarities between the models were examined by comparing the responses to the sample queries.
+This evaluation included the calculation of the average portion of shared documents between the responses of several models 
+and exemplary evaluation of actual queries.
+\ac{tfidf}, \ac{d2v} and \ac{sbert} were most dissimilar from each other.
+The \ac{tfidf} approach performed rather poorly on unusual query documents.
+
+
+% similarity: cosine
+The similarity metric used in this work is cosine similarity.
+Since \databaseName{} provides the similarity metrics Euclidean distance, the dot product and cosine similarity,
+one of these metrics had to be chosen.
+Usually, cosine similarity is recommended for \ac{nlp} tasks and thus, applied in this work.
+
+% topic modeling: wordclouds
+Since the techniques discussed in this section have to be merged into a single system 
+\wordcloud{} provides means to visualize the response documents containing the most similar documents for different models.
+This approach is well suited to describe topics as groups of predominant words \cite{topic_modeling2019}.
+The baseline topic modeling technique \topTwovec{} provides a \wordcloud{} implementation too.
+
+% database: Elasticsearch
+The database used in this work is \databaseName{}.
+It was built to provide a fast and scalable search engine.
+Moreover, it is a document-oriented database, which is well-suited for flexible data.
+By default, several similarity measures and search strategies are provided.
+Moreover, the elastic stack offers a wide range of tools supporting embedding models which were not used in this work.
+
+
+% FE (Angular), BE (Flask)
+The libraries used for the implementation of the system are \angular{} and \flask{}.
+The libraries were chosen after discussing options with this work's supervisor.
+However, the implementation of this tool is not the focus of this work.
+
+% top2vec
+The baseline topic modeling technique \topTwovec{} was chosen due to its simplicity and functionalities.
+The \topTwovec{} implementation is well documented and provides a \wordcloud{} implementation.
+Moreover, it enables the user to find similar topics for query terms and returns inherent topics in a data corpus.
+Hence, its functionality is similar to the functionality of the system developed in this work.
