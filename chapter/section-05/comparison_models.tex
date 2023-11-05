@@ -249,3 +249,62 @@ The other models, for example, \ac{sbert}, produce results that are more similar
 \end{figure}
 
 % visual vs. textual similarity
+Since not only textual information but also visual information is encoded in the database, 
+the next step is to compare the query responses of approaches that consider visual similarity.
+The query responses are clustered using \ac{optics} or \texttt{argmax} of the \ac{pca} compression.
+
+The first exemplary query document in \autoref{fig:comp_vis_query_resp} is an image of a usual document.
+Both clustering approaches yield similar results.
+More specifically, the responses share two documents.
+Moreover, the last document in the response of both approaches differs most from the group.
+None of the result documents originates from the same company as the query document.
+
+The second exemplary query document in \autoref{fig:comp_vis_query_resp_certificates} is a certificate.
+\ac{optics} clustering approach yields a response that is more similar to the query document than the \texttt{argmax} of the \ac{pca} compression,
+because all its responses are from the same document type as the query document.
+Hence, the \ac{optics} clustering approach is considered to be of better quality.
+
+\begin{figure}[h!]
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{images/query_results/d5b16dcfc7c090c1c0ea7503d3fce417a84aa429a078478fdb4291805fee1328/Most_similar_images_found_by_pca_optics_cluster.pdf}
+        \caption{\ac{optics}}
+        \label{fig:bad_query_resp_tfidf}
+    \end{subfigure}
+
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{images/query_results/d5b16dcfc7c090c1c0ea7503d3fce417a84aa429a078478fdb4291805fee1328/Most_similar_images_found_by_argmax_pca_cluster.pdf}
+        \caption{\texttt{argmax} of \ac{pca} compression}
+        \label{fig:good_query_resp_sbert}
+    \end{subfigure}
+
+\caption[Qualitative comparison of clustering on visual information]{Qualitative comparison of query responses.
+The response documents are clustered using \ac{optics} or \texttt{argmax} of the \ac{pca} compression.
+They are not compared in terms of textual but visual similarity.
+}
+\label{fig:comp_vis_query_resp}
+\end{figure}
+
+\begin{figure}[h!]
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{images/query_results/320a70609babe5923c860ad16bc9f48e237b9d275c5269d177befab542bcff50/Most_similar_images_found_by_pca_optics_cluster.pdf}
+        \caption{\ac{optics}}
+        \label{fig:bad_query_resp_tfidf}
+    \end{subfigure}
+
+    \begin{subfigure}{\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{images/query_results/320a70609babe5923c860ad16bc9f48e237b9d275c5269d177befab542bcff50/Most_similar_images_found_by_argmax_pca_cluster.pdf}
+        \caption{\texttt{argmax} of \ac{pca} compression}
+        \label{fig:good_query_resp_sbert}
+    \end{subfigure}
+
+\caption[Qualitative comparison of query responses]{Qualitative comparison of query responses.
+The response documents are clustered using \ac{optics} or \texttt{argmax} of the \ac{pca} compression.
+They are not compared in terms of textual but visual similarity.
+The query document is a certificate.
+}
+\label{fig:comp_vis_query_resp_certificates}
+\end{figure}
