@@ -78,6 +78,11 @@ The semantic embedding methods \ac{tfidf}, \ac{d2v}, \infersent{}, \ac{use} and 
 It was possible to find a suitable database to store the data.
 A pipeline to preprocess, embed and store the data in the database was developed.
 The pipeline is scalable to large datasets.
+However, models such as \ac{tfidf} yield less meaningful results on certain query documents and 
+are prone to performance deterioation with increasing document corpus, since the embeddings' 
+dimensionality correlates directly with the vocabulary size.
+When the number of terms in the data corpus increases, but the vocabulary size is static, 
+it is likely that the vocabulary lacks important words. 
 
 Moreover, a tool was implemented.
 The tool provides the possibility to conduct text queries.
