@@ -1,20 +1,22 @@
 % fundamentals
 Since working with huge amounts of textual data is a prevalent challenge in text-mining tasks,
 \citeauthor{InformationRetrieval1999} have published a survey on \ac{ir} from documents in which
-they explore methods to extract information from different formats, including text and images \cite{InformationRetrieval1999}.
-\citeauthor{nlp-book2009} published a book covering the \ac{nlp} fundamentals using Python \cite{nlp-book2009}.
-Common preprocessing techniques, including the ones from \autoref{sec:preprocessing} are outlined. 
-
+they explore methods to extract information from different formats, including texts and images \cite{InformationRetrieval1999}.
+\citeauthor{nlp-book2009} published a book covering the \ac{nlp} fundamentals, including preprocessing techniques, using Python \cite{nlp-book2009}.
 
 % models/ embeddings
 In order to assess similarity among items of a corpus of textual data, documents have to be represented in terms of real-valued vectors.
 \citeauthor{WordRep2013}'s work covers continuous vector representations of words from very large datasets \cite{WordRep2013}.
 Specific models used in this work include 
 the \ac{d2v} model, the \ac{sbert} model \cite{HfsentTrans2019}, the \infersent{} model \cite{inferSent2018} and the \ac{use} model.
-Both \citeauthor{clusteringDocs2020} and \citeauthor{SentRep2014} assess the \ac{d2v} model, 
+Both \citeauthor{clusteringDocs2020} and \citeauthor{SentRep2014} evaluate the \ac{d2v} model, 
 arguing that it overcomes several of \ac{tfidf}'s shortcomings \cite{clusteringDocs2020} and that it is superior to \ac{bow} models \cite{SentRep2014}.
 \citeauthor{UniversalSentEnc2018} compare the strengths of different \ac{use} architectures \cite{UniversalSentEnc2018}.
 
+% time and dynamic
+In contrast to the assumption of this thesis that the prevalent topics are static, in reality, topics may be dynamic or change over time.
+\citeauthor{topic_modeling2015} and \citeauthor{topic_modeling2020} have published surveys on common topic modeling techniques, 
+including \ac{lda} and more advanced models which take into account factors such as time \cite{topic_modeling2015, topic_modeling2020}.
 
 % similarity
 To determine the similarity between two objects, one has to define a metric.
@@ -27,7 +29,7 @@ and the Euclidean norm \cite{euclidean_l2_norm2015}.
 % clustering
 The usage of the clustering algorithm \ac{dbscan} on \ac{d2v} embeddings was proposed by \citeauthor{clusteringDocs2020} \cite{clusteringDocs2020}.
 Other researchers, for instance, \citeauthor{OPTICS_kMeans_2016}, compare related clustering algorithms including \ac{dbscan} and \ac{optics}.
-Initially, \ac{optics} was introduced by \citeauthor{OPTICS1999} in \citeyear{OPTICS1999} as a method to analyse the density-based structure of data from a database \cite{OPTICS1999}.
+Initially, \ac{optics} was introduced by \citeauthor{OPTICS1999} in \citeyear{OPTICS1999} as a method to analyze the density-based structure of data from a database \cite{OPTICS1999}.
 \citeauthor{OPTICS2013}, \citeauthor{OPTICS2014} and \citeauthor{OPTICS2016} propose \ac{optics} extensions, 
 i.e. for spatially and temporally evolving data or a parallel version \cite{OPTICS2013, OPTICS2014, OPTICS2016}.
 
@@ -49,4 +51,4 @@ Due to the fact that online financial interactions become more popular, the crim
 Consequently, researchers have started developing anomaly detection techniques for financial data, such as credit card data 
 \cite{credit_f_SOM2006, fd_ARIMA2021, cf_AE2020, AE_RF2021, dt_svm_2012, kaggle_ex2017}.
 The work stated above and this thesis both concern the financial sector.
-However, this thesis does not work on numerical data but on \acp{pdf}.
+%However, this thesis does not work on numerical data but on \acp{pdf}.

@@ -19,17 +19,17 @@ such as the word embedding dimension \texttt{word\_emb\_dim} or the dimension of
 
 % state dict
 The steps necessary to create a working instance of the \infersent{} model are presented in \lst{lst:infersent-init}.
-After the \infersent{} model is initialized, the \texttt{state\_dict} of the model is loaded.
+After the \infersent{} model is initialized in line \ref{line:init}, the \texttt{state\_dict} of the model is loaded in line \ref{line:state_dict}.
 This dictionary consists of learnable parameters, i.e. weights and bias, of the model.
-The next step is to set the path to the word embeddings.
-Finally, the vocabulary of the model is built or more precisely, only those embeddings needed are kept while the rest is discarded.
+The path to the word embeddings is set in line \ref{line:w2v_path}.
+Finally, in line \ref{line:vocab}, the vocabulary of the model is built or more precisely, only those embeddings needed are kept while the rest is discarded.
 
 \begin{listing}[htp]
-    \begin{minted}{python3}
-        infersent = InferSent(params_model)
-        infersent.load_state_dict(torch.load(model_path))
-        infersent.set_w2v_path(w2v_path)
-        infersent.build_vocab(docs, tokenize=True)
+    \begin{minted}[escapeinside=||]{python3}
+        infersent = InferSent(params_model)|\phantomsection\label{line:init}|
+        infersent.load_state_dict(torch.load(model_path))|\phantomsection\label{line:state_dict}|
+        infersent.set_w2v_path(w2v_path)|\phantomsection\label{line:w2v_path}|
+        infersent.build_vocab(docs, tokenize=True)|\phantomsection\label{line:vocab}|
     \end{minted}
     \caption{Initializing the \infersent{} model.
     }
@@ -40,10 +40,10 @@ Finally, the vocabulary of the model is built or more precisely, only those embe
 Initially, in this work, the \infersent{} model was based on \acs{glove} word embeddings.
 \acs{glove} is a global log-bilinear regression model for unsupervised learning of vector representations of words \cite{glove2014}. 
 According to \citeauthor{glove2014}, the model captures global corpus statistics directly.
-The complexity of the model is bound by $O(V^2)$, $V$ being the vocabulary size.
-However, \citeauthor{glove2014} claim it is better than the worst case stated above and rather in $O(C)$, $C$ being the corpus size.
+%The complexity of the model is bound by $O(V^2)$, $V$ being the vocabulary size.
+%However, \citeauthor{glove2014} claim it is better than the worst case stated above and rather in $O(C)$, $C$ being the corpus size.
 The \acs{glove} model is trained on ratios of co-occurrence probabilities of words from the corpus, 
-which correlate with the relationship between the words \cite{glove2014}.
+which correlate with the relationship between the words. % \cite{glove2014}.
 \citeauthor{glove2014} introduce rules for a weighting function to ensure neither rare nor frequent co-occurrences are overweighted.
 It is possible to download embeddings computed by \acs{glove}, instead of using the algorithm to generate them.
 The precomputed word embeddings are stored in a 5.65 \ac{gb} text file.
@@ -52,7 +52,7 @@ According to \citeauthor{UniversalSentEnc2018}, \acs{glove} introduces bias in t
 
 % own W2V
 In this work, a custom set of vector representations of words is used.
-The custom word embeddings are computed by a \ac{w2v} model trained on a selection of 195 documents from the Bahamas dataset.
+The custom word embeddings are computed by a \ac{w2v} model trained on 2048 randomly selected documents from the Bahamas dataset.
 The only parameter which differs from the default settings is the \texttt{vector\_size} which is set to 300.
 After the \ac{w2v} model is trained, the word embeddings are saved in a file.
 The file is post-processed to be compatible with the \infersent{} model.
@@ -62,4 +62,4 @@ the first char sequence is the word and the following numbers are the vector rep
 
 % Autoencoder
 In this work, an \ac{ae} is used to reduce the dimensionality of the \infersent{} embedding.
-The implementation of the \ac{ae} is outlined in \autoref{subsubsec:impl-autoencoder}.
+The implementation of the \ac{ae} is outlined below. %in \autoref{subsubsec:impl-autoencoder}.

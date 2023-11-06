@@ -9,15 +9,15 @@ This thesis assumes that there are similar documents and that it is valuable to 
 Hence, the analysis of the text corpus includes analysis in terms of textual information, i.e. content, 
 and visual information, i.e. appearance and layout.
 The information gathered ought to be used to identify similarities between documents and group them.
-Topics of a document cluster do not have to be labelled specifically but should be interpretable.
+Topics of a document cluster do not have to be labeled specifically but should be interpretable.
 
 This thesis proposes an approach to group documents based on their appearance or semantic similarity, 
 which is defined via different embedding strategies.
 Both the embeddings and the visual information are computed offline and stored in a database.
-In order to interact with the underlying dataset the most similar documents based on a field from database to the input document are retrieved via a query to the database.
-The embeddings are compared using cosine similarity, i.e. the angle between embeddings, 
+A query to this database returns the most similar documents to the query document based on the field specified.
+The embeddings are compared using cosine similarity, i.e. the angle between embedding vectors, 
 whereas visual information is clustered using different approaches including \ac{optics} beforehand.
-To visualize the resulting groups of documents methods from topic modelling including \wordcloud{}s are employed.
+To visualize the resulting groups of documents methods from topic modeling including \wordcloud{}s are employed.
 
 Besides literature research, application and evaluation of the methods identified, 
 certain preprocessing methods have proven to be eminent to successful work with unstructured text data.

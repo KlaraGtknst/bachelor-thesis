@@ -44,12 +44,12 @@ The architecture of the \ac{bilstm} model with max pooling is depicted in \autor
 \end{figure}
 
 % LSTM
-A \ac{lstm} is a \ac{rnn} that is able to learn long-term dependencies.
+A \ac{lstm} is a \ac{rnn} that is capable of learning long-term dependencies.
 In other words: 
 A \ac{lstm} is able to remember information as a so-called \textit{state}.
 Certain \ac{lstm} mechanisms control whether the current state is deleted, whether new data is saved and 
 to what degree the current state contributes to the current input processed in the node.
-Hence, \ac{lstm} nodes are not only influenced by the former output but also by their state.
+Hence, \ac{lstm} nodes are not only influenced by former outputs but also by their state.
 
 Since the \ac{lstm} computes different numbers of hidden vectors $h_t$ depending on the length of a sentence, a max pooling layer is applied to the hidden vectors.
 The max pooling layer selects the maximum value for each dimension of the hidden vectors.

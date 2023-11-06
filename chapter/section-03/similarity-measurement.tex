@@ -1,16 +1,16 @@
 
 \section{Similarity Measurement}\label{sec:similarity-measurement}
 
-Embeddings represent texts as numerical vectors in a $N$-dimensional space.
-This space is called \ac{vsm} \cite{soft_cosine2014}.
-These vectors not only facilitate human interpretability of relationships between texts, 
+% Embeddings represent texts as numerical vectors in a $N$-dimensional space.
+% This space is called \ac{vsm} \cite{soft_cosine2014}.
+Embeddings not only facilitate human interpretability of relationships between texts, 
 %using the text's respective point in a $N$-dimensional space, 
 but they also enable the use of metrics, i.e. similarity measures, to quantify the similarity between texts \cite{IR2011, euclidean_l2_norm2015}.
 
 There are several similarity measures, such as the dot product quantifying the number of shared tokens of two texts, 
 the (soft) cosine similarity \cite{soft_cosine2014, soft_cosine2017}, which is the normalized dot product and calculates the angle between two vectors, 
 and many more \cite{IR2011, euclidean_l2_norm2015, HfsentTrans2019}.
-The following section outlines a few similarity measures.
+The following section outlines a selection of similarity measures.
 
 
 \subsection{Euclidian distance}\label{subsec:euclidian-distance}
@@ -41,34 +41,4 @@ The formula from \autoref{eq:cosine-similarity} assumes that the vectors, which 
 completely independent.
 However, in practical applications, the index terms which span the \ac{vsm} are often semantically dependent.
 
-
-\subsection{Soft Cosine Similarity}\label{subsec:soft-cosine-similarity}
-
-This similarity measure not only evaluates whether two texts consist of the same words but 
-also takes into account the semantic (word-level) similarity or lexical relation of different words of the texts \cite{soft_cosine2017}.
-Hence, it improves the shortcomings of the traditional cosine similarity measure, 
-which assumes the tokens of the vocabulary are completely independent of each other \cite{soft_cosine2014}.
-
-Soft cosine similarity assumes that features, i.e. index terms, correspond to words and thus, 
-require embeddings to be produced by \ac{bow} models. 
-According to \citeauthor{soft_cosine2014}, in order to model this additional information, more dimensions are added to the \ac{vsm}.
-These dimensions can be obtained, for instance, by multiplying the mean of two features of one vector with the similarity between them \cite{soft_cosine2014}.
-The similarity can be calculated by using Levenshtein distance, i.e. the number of operations necessary to convert one string into another, 
-or using a dictionary of synonyms.
-
-Since this approach no longer assumes that different words are independent of each other, 
-the basis vectors which span the \ac{vsm} are no longer presumed orthogonal.
-The formula for the soft cosine similarity is defined in \autoref{eq:soft-cosine-similarity} from \cite{soft_cosine2014}.
-The similarity $s_{ij}$ between the $i$-th and $j$-th basis vector is obtained using a similarity measure, such as synonymy.
-
-\begin{equation}
-    soft\_cosine(a,b) = \frac{\sum_{i=1}^{N}\sum_{j=1}^{N}s_{ij}a_{i}b_{j}}{\sqrt{\sum_{i=1}^{N}\sum_{j=1}^{N}s_{ij}a_{i}a_{j}}\sqrt{\sum_{i=1}^{N}\sum_{j=1}^{N}s_{ij}b_{i}b_{j}}}
-    \label{eq:soft-cosine-similarity}
-\end{equation}
-
-According to \citeauthor{soft_cosine2017}, the similarity between two texts is non-zero as soon as they share related words \cite{soft_cosine2017}.
-If there is no similarity between different features, 
-the soft cosine similarity from \autoref{eq:soft-cosine-similarity} is equal to the cosine similarity from \autoref{eq:cosine-similarity}.
-%The time and space complexity of the soft cosine similarity is $O(N^2)$ \cite{soft_cosine2014}.
-% In order to reduce the complexity, \citeauthor{soft_cosine2014} propose the usage of a sparse similarity matrix which only stores $s_{ij} > t$, 
-% $t$ being a threshold.
+%\input{chapter/section-03/soft_consine_similarity.tex}

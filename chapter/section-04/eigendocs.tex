@@ -9,7 +9,7 @@
     Then, the image is preprocessed:
     It is placed on a white canvas, to ensure all images have the same dimensions.
     Moreover, it is converted to greyscale and normalized to values between zero and one.
-    Afterwards, the two-dimensional image is reshaped to a one-dimensional array.
+    Afterwards, the two-dimensional image is reshaped into a one-dimensional array.
     Lastly, the image is compressed using \eigendocs{}.
     }
     \label{fig:eigendocs_procedure}
@@ -24,32 +24,13 @@ The procedure of the \eigenfaces{} adaption \textit{\eigendocs{}} is displayed i
 The documents are first read from a directory. 
 Subsequently, their first page is converted to an image and saved.
 When initially filling the database, these images are read from their directory.
-Firstly, the maximum height and width among all images in the corpus is calculated.
+Firstly, the maximum height and width among all images in a corpus of 1000 randomly sampled images are calculated.
 These dimensions are used to create a white canvas for each image which forms the background.
 Every image is placed in the upper left corner.
 Hence, assuming the selection of documents used to fit the \ac{pca} model is representative, 
 scaling is not necessary and thus, the portion of white pixels on the right and bottom side encodes the dimension of the former image.
 Therefore, the relative size of images in the corpus is incorporated in the resulting representation of the input images.
-However, some images are bigger than the max values from selected data and as a consequence are scaled.
-
-\begin{listing}[htp]
-    \begin{minted}{python3}
-        C = np.ones((max_w,max_h))
-        C[:doc.shape[0],:doc.shape[1]] = rgb2gray(doc)
-        documents.append(C.ravel())
-    \end{minted}
-    \caption[Preprocessing of the input images]{Preprocessing of the input images from \thesissupervisor{}.
-    The background is a white canvas.
-    The images are converted to one-dimensional greyscale values.}
-    \label{lst:preproc_images}
-\end{listing}
-
-Afterwards, the images are converted to greyscale using \lst{lst:rgb2grey}.
-Before returning the image, the two-dimensional image vectors are converted to one-dimensional ones as displayed in the last line of \lst{lst:preproc_images}.
-The decomposition is transformed using \ac{pca} as displayed in \lst{lst:pca_svd}.
-The implementation of \ac{pca} from \href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html}{sklearn} 
-intrinsically normalizes the data as described in \autoref{subsec:eigenface} and thus, does not require the user to manually preprocess the data.
-
+However, some images are bigger than the maximum values of the selected images and as a consequence are scaled.
 
 \begin{listing}[htp]
     \begin{minted}{python3}
@@ -58,6 +39,24 @@ intrinsically normalizes the data as described in \autoref{subsec:eigenface} and
     \caption[Conversion of RGB pixel values to greyscale]{Conversion of RGB pixel values to greyscale from a script by \thesissupervisor{}.}
     \label{lst:rgb2grey}
 \end{listing}
+
+\begin{listing}[htp]
+    \begin{minted}[escapeinside=||]{python3}
+        C = np.ones((max_w,max_h))
+        C[:doc.shape[0],:doc.shape[1]] = rgb2gray(doc)|\phantomsection\label{line:color}|
+        documents.append(C.ravel())|\phantomsection\label{line:ravel}|
+    \end{minted}
+    \caption[Preprocessing of the input images]{Preprocessing of the input images from \thesissupervisor{}.
+    The background is a white canvas.
+    The images are converted to one-dimensional greyscale values.}
+    \label{lst:preproc_images}
+\end{listing}
+
+Afterwards, the images are converted to greyscale using \lst{lst:rgb2grey} (\lst{lst:preproc_images}, line \ref{line:color}).
+Before returning the image, the two-dimensional image vectors are converted to one-dimensional ones as displayed in line \ref{line:ravel} of \lst{lst:preproc_images}.
+The decomposition is transformed using \ac{pca} as displayed in \lst{lst:pca_svd}.
+The implementation of \ac{pca} from \href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html}{sklearn} 
+intrinsically normalizes the data as described in \autoref{subsec:eigenface}.% and thus, does not require the user to manually preprocess the data.
 
 \begin{listing}[htp]
     \begin{minted}{python3}

@@ -14,17 +14,6 @@ Therefore the reconstruction error with respect to different numbers of componen
 The "elbow" points are visible at \textcolor{red}{10 and 13}.
 Since visual inspection accounted for the fact that the decline of the reconstruction error after 13 was steeper than after 10, the number of components chosen is 13.
 
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
-    \centering
-    \includegraphics[width=0.7\textwidth]{images/Eigendocs/transformation/eigendocs_13dims.pdf}
-    \caption[The first 10 documents of the dataset]{The first 10 preprocessed documents of the dataset.
-    The original images are displayed in the first row.
-    The second row shows the reconstruction from their compressed version in the fourth row.
-    The third row shows the reconstruction error, i.e. the difference between the reconstructed and the original image.
-    The last row presents the greyscale values of the compressed 13-dimensional image as a line.
-    }
-    \label{fig:preprocessed_docs_eigendocs}
-\end{figure}
 
 % results
 The results of the \eigendocs{} algorithm are displayed in \autoref{fig:preprocessed_docs_eigendocs}.

@@ -36,24 +36,7 @@ Multiple approaches listed below use the term \textit{$\varepsilon$-neighbourhoo
 In other words: $N_\varepsilon (x) = \left\{ y \in X | dist(x,y) \le \varepsilon, y \neq x \right\}$, $\varepsilon$ being the so-called generating distance.
 
 
-\subsection{KMeans}\label{subsec:kmeans}
-
-KMeans partitions the data into $k \in \mathbb{N}$  clusters, $k$ is given apriori \cite{OPTICS_kMeans_2016,clusteringDocs2020}. %
-First, $k$ centroids, i.e. cluster centres, are randomly initialized.
-Then, the objects are assigned to the closest centroid.
-Afterwards, the centroids are updated by calculating the mean of the assigned objects.
-The process is repeated until the terminating condition, for instance, no more change in the clusters, is met \cite{OPTICS_kMeans_2016}.
-By iteratively reassigning the objects to the closest centroid and updating the centroids, 
-the algorithm minimizes the within-cluster sum of squared errors $E$, i.e. the sum of squared (Euclidean) distances between objects in a cluster and their centroid $\mu_{i}$, 
-calculated in \autoref{eq:kmeans-error} from \cite{OPTICS_kMeans_2016}, 
-where $C_{i}$ is the $i$-th cluster.
-
-\begin{equation}
-    E = \sum_{i=1}^{k} \sum_{x \in C_{i}}\left\|x-\mu_{i}\right\|^{2}
-\label{eq:kmeans-error}
-\end{equation}
-
-\citeauthor{OPTICS_kMeans_2016} claim, that KMeans does not identify outliers.
+%\input{chapter/section-03/kmeans.tex}
 
 
 \subsection{DBSCAN}\label{subsec:dbscan}
@@ -97,10 +80,10 @@ Density connectivity is visualized in \autoref{fig:density_connected}.
     \label{fig:density_connected}
 \end{figure}
 
-The \ac{dbscan} algorithm starts by labelling all objects as core, border or noise points.
+The \ac{dbscan} algorithm starts by labeling all objects as core, border or noise points.
 Then, it eliminates noise points and links all core points, which are within each other's neighbourhood \cite{OPTICS_kMeans_2016}.
-Groups of connected core points form a cluster \cite{OPTICS_kMeans_2016}.
-In the end, every border point is assigned to a cluster \cite{OPTICS_kMeans_2016}.
+Groups of connected core points form a cluster.
+In the end, every border point is assigned to a cluster.
 The non-core point cluster assigning is non-deterministic \cite{OPTICS2013}.
 This algorithm creates clusters as a maximal set of density-connected points \cite{OPTICS_kMeans_2016}.
 

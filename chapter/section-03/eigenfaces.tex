@@ -7,7 +7,7 @@ The goal of this approach is to represent images using a smaller set of image fe
 such that it is possible to distinguish between the images \cite{eigenfaces1991, eigenfaces2013}.
 These features do not necessarily correspond to human facial features \cite{eigenfaces1991}.
 Similar pictures, i.e. of the same person, should lie on a manifold in the lower-dimensional feature space \cite{face-recognition2008}.
-The decomposition of input images not only reduces the complexity but also facilitates modelling probability density of a face image \cite{face-recognition2008}.
+The decomposition of input images not only reduces the complexity but also facilitates modeling probability density of a face image \cite{face-recognition2008}.
 
 % input image
 % greyscale
@@ -20,7 +20,7 @@ Some authors stress that the background is removed to omit values outside the fa
 In literature, typically, the original images' dimension is 512x512 \cite{eigenfaces1991}/ 64x64 \cite{face-recognition2020}, 
 whereas the projected images' dimension is 16x16 \cite{eigenfaces1991}/ 250 \cite{face-recognition2020}.
 % normalization/ centering
-\citeauthor{eigenfaces1991} stress that the data should be normalized, i.e. centred: 
+\citeauthor{eigenfaces1991} stress that the data should be normalized, i.e. centered: 
 $\Phi_{k} = \mathbf{x}_{k} - {\psi }$. 
 $\Phi_{k}$ being the difference of the $k$-th training image and the average image $\psi = \frac{1}{N}\sum_{k=1}^{N}\textbf{x}_{k}$, $N$ being the number of training images.
 
@@ -74,8 +74,8 @@ There are two approaches in the literature to determine the number of \eigenface
     \subfloat[\centering The cumulative explained variance of the first $i \le n$ eigenvectors (sorted by eigenvalues $\lambda_i$).]
     {{\includegraphics[width=7cm]{images/Eigendocs/Eval-Params/cumulative_explained_variance.pdf}}}%
     \qquad
-    \subfloat[\centering The reconstruction error \ac{rmse} calculated for different values of $m$. Around 13 is an "elbow" point.]
-    {{\includegraphics[width=7cm]{images/Eigendocs/Eval-Params/reconstruction error_eigendocs.pdf} }}%
+    \subfloat[\centering The reconstruction error \ac{rmse} calculated for different values of $m$. Around 13 and 30 is an "elbow" point.]
+    {{\includegraphics[width=7cm]{images/Eigendocs/Eval-Params/pca_reconstruction_error.pdf} }}%
     \caption[Approaches to find the number of \eigenfaces{}]{Two approaches to determine the number of \eigenfaces{} $m$ used to compress the input images.}%
     \label{fig:det_n_comp}%
 \end{figure}

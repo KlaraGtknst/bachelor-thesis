@@ -2,14 +2,15 @@
 
 \ac{tfidf} provides a numerical representation of a word in a document \cite{clusteringDocs2020}.
 It considers the frequency $f_{w_{ij}, d_i}$  of a word $w_{ij}$ in a document $d_i$ and the frequency of a word in the whole corpus. 
-The frequency $f_{w_{ij}, d_i}$ is defined as $f_{w_{ij}, d_i} = \frac{\# \text{occurrences of } w \text{ in }D}{\# \text{words in }D}$.
+The frequency $f_{w_{ij}, d_i}$ is defined as $f_{w_{ij}, d_i} = \frac{\# \text{occurrences of } w_{ij} \text{ in }d_i}{\# \text{words in }d_i}$.
 
-\ac{tfidf} is calculated as displayed in \autoref{eq:tfidf-formula} from \cite{clusteringDocs2020} and exemplatory in \autoref{fig:tfidf-calculation}.
+\ac{tfidf} is calculated as displayed in \autoref{eq:tfidf-formula} from \cite{clusteringDocs2020}.
 The \ac{tf} is determined utilizing $TF(w_{ij}, d_i) = f_{w_{ij}, d_i}$, whereas the \ac{idf} is computed by $IDF(w_{ij}, D) = \log_2\frac{M}{M_{ij}}$, 
 $M_{ij}$ being the number of documents the term $w_{ij}$ appears in.
 \ac{idf} measures the importance of a term $w_{ij}$ in the corpus of documents $D$
 under the assumption that a term's importance to the data corpus is inversely proportional to its occurrence frequency \cite{tfidf2008}.
 In other words: Terms which appear in many documents are not as important and thus, weighted less than document-specific terms. 
+The calculation of \ac{tf} and \ac{idf} is visualized exemplary in \autoref{fig:tfidf-calculation}.
 
 \begin{equation}
     TFIDF(w_{ij}, d_i, D) = TF(w_{ij}, d_i) \cdot IDF(w_{ij}, D)
@@ -20,8 +21,8 @@ In other words: Terms which appear in many documents are not as important and th
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=0.7\textwidth]{images/embeddings/tfidf/tfidf.svg}
-    \caption[Exemplary calculation of \ac{tfidf} values]{
-        Exemplary calculation of \ac{tfidf} for a document corpus $D$: 
+    \caption[Exemplary calculation of \ac{tf} and \ac{idf} values]{
+        Exemplary calculation of \ac{tf} and \ac{idf} for a document corpus $D$: 
         \ac{tf} only considers the documents of interest while 
         \ac{idf} incorporates the importance of the word with respect to $D$.
     }

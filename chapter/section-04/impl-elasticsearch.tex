@@ -24,7 +24,7 @@ The structure of the index is presented in \autoref{tbl:Elasticsearch-fields}.
     sim\_docs\_tfidf                            & \ac{tfidf} embedding + all-zero flag of \texttt{i}. The all-zero flag is one if the \ac{tfidf} embedding consists of only zeros, zero else. If the embedding's dimensionality is greater than 2048, the encoder of a trained \ac{ae} is used to compress the embedding.\\ \hline
     google\_univ\_sent\_encoding                & 512 dimensional \ac{use} embedding of \texttt{i}.                                     \\ \hline
     huggingface\_sent\_transformer              & 384 dimensional \ac{sbert} embedding of \texttt{i}.                                  \\ \hline
-    inferSent\_AE                               & \infersent{} embedding of \texttt{i}. Since the pretrained \infersent{} model embedding's dimension is 4096, the encoder of a trained \ac{ae} is added to reduce the dimension to 2048.                                                    \\ \hline
+    inferSent\_AE                               & \infersent{} embedding of \texttt{i}. Since the pretrained \infersent{} model embedding's dimension is 4096, the encoder of a trained \ac{ae} has to reduce the dimension to 2048.                                                    \\ \hline
     pca\_image                                  & 13-dimensional \ac{pca} version of first page image of \texttt{i}.                      \\ \hline
     pca\_optics\_cluster                        & Cluster of \texttt{i} identified by \acs{optics} on \ac{pca} version of image.            \\ \hline
     argmax\_pca\_cluster                        & Number of maximum \ac{pca} component as cluster of \texttt{i}.                            \\ \hline
@@ -122,7 +122,7 @@ The embeddings are subsequentially inserted into the database for each sublist.
     {Usage of \texttt{Pool} for data parallelism.
     The paths to the documents to insert are divided into sublists which are simultaneously inserted into the database.
     Since the \texttt{Pool} object does not work with a \texttt{lambda} function, 
-    a class \texttt{wrapper} is created which works just as a \texttt{lambda} function.
+    a class \texttt{wrapper} is created which provides the same functionality.
     }
     \label{lst:db_Pool_embeddings}
 \end{listing}
