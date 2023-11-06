@@ -1,8 +1,34 @@
 \section{Research Questions}\label{sec:research-questions}
 
-In order to support individuals exploring large unstructured text data, this thesis aims to provide computational means aiming to facilitate the work with large unstructured text data.
+In order to support individuals exploring large unstructured text data, 
+this thesis aims to provide computational means to facilitate the work with large unstructured text data.
 In this work, different methods to derive semantic and visual information from unstructured text data are applied.
 The techniques ought to be compared and evaluated.
+
+% research questions (allgemein damit nützlich und speziell für die Aufgabe -> beantwortbar, Erkenntnis allg Interesse & Operationalisierbar: Experiment)
+In the following, the research questions addressed are defined:
+\begin{description}
+    \item[How can exploration of unstructured texts be facilitated by \ac{ml} techniques?]
+    Unstructured texts emerge in many different domains.
+    Initially, the work is motivated by the task of the tax office.
+    However, this work has a broad target audience.
+
+    \item[Which methods are scalable to large datasets?]
+    The amount of information grows rapidly.
+    Hence, techniques to explore the information have to be scalable.
+    This thesis should state obstacles encountered when scaling the techniques to large datasets.
+
+    \item[Do different embedding methods produce similar results?]
+    The task at hand defines a result as a set of similar documents to a query document.
+    Hence, one has to compare response sets of different methods.
+
+    \item[Do semantic or visual embeddings produce more meaningful embeddings?]
+    The methods encode different information, i.e. text layer versus layout, into embeddings. 
+    This thesis should explore which information is more meaningful for the task at hand.
+
+
+\end{description}
+
 
 % User Interface
 In order to facilitate the exploration of the data, a \ac{ui} shall be provided.
@@ -11,10 +37,7 @@ but serves the purpose of displaying the techniques worked on.
 It should assist the natural human approach to exploration:
 A human finds a document of interest, for instance, by random sampling, and thus, wants to find similar documents.
 
-% goals
-In the following, the goals of this work are defined.
-\textcolor{red}{TODO: research QUESTIONS}
-
+% secondary goals
 The following bullet points are considered secondary goals which have influenced the design process of this thesis.
 \begin{description}
     \item[Evaluation of scalability.]

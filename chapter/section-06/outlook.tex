@@ -1,18 +1,37 @@
 \section{Outlook}\label{sec:outlook}
 % features of the application
 
-% what did I find?
+% What did I find?
+When investigating both semantic and visual embedding methods, differences between the models became evident.
+Overall, the textual embedding methods produced more meaningful responses than the visual embedding methods.
+However, this is not surprising since the textual embedding methods prioritize documents containing equal or similar terms and thus,
+return documents of similar content or originating from the same company as the query document.
+Visual embedding methods, on the other hand, return visually similar documents.
+It is complicated to compare the responses of semantic and visual embedding methods since they operate on fundamentally different data.
+A more thorough evaluation could include a survey.
+However, constructing a survey is complicated since semantic similarities should be evaluated on a textual level, i.e. content, 
+which is difficult for non-experts and not natural since humans prone to assess similarities by visual inspection.
+Moreover, identification of the target audience is difficult since the target audience of the system could be expanded to be more general.
 
 % Problems/ critic
+The \ac{tfidf} approach performed rather poorly on unusual query documents.
+This could be because the vocabulary was drastically reduced to satisfy the database's constraints for dense vector dimensionality.
+Thus, \ac{tfidf} might either be unsuitable for the task of finding similar documents when the vocabulary is strictly restricted or 
+further research is required to find suitable means to compress the embedding before inserting it into the database.
+Currently, \ac{pca} is used to compress the embedding. 
+However, a more sophisticated approach might be required to preserve the semantic information of the embedding.
 
-% Future: continue developing this application with tax office
-The evaluation of the similarity between query results of different models so far has not considered the individual weights for respective query responses.
+% AE config: Problem & future work
+Different \ac{ae} architectures were experimentally evaluated on a selection of 195 documents.
+However, since the dataset is too small and not drawn randomly from the data corpus the results are not representative.
+Thus, future work should include a more thorough evaluation of different \ac{ae} architectures on a bigger document corpus.
+
+% eval weights of response documents
+The evaluation of the similarity between query results of different models so far 
+has not considered the individual weights for respective query responses.
 Thus, future work could include the weights of the query responses in the evaluation.
-However, in this work, the weights were not considered since it was difficult to find means to visualize semantic meaningful weight relationships.
-
-% Future work
-
-% AE config
+However, in this work, the weights were not considered since it was difficult to find means 
+to visualize semantic meaningful weight relationships.
 
 % elastic stack: Kibana
 The elastic stack offers a wide range of tools, for instance, Kibana that can be used to manage models and 
@@ -21,5 +40,16 @@ If models are managed by Kibana, the models no longer have to be managed by the 
 the system would most likely be more user-friendly and less prone to errors.
 
 % server database
-Another issue is the fact that the database does neither contain all embeddings nor all documents.
+Another issue is the fact that the database contains neither all embeddings nor all documents.
 The Bahamas leak contains 38 \ac{gb} of data.
+Even though multiprocessing using Pool was used to split the workload across up to 100 processes, 
+the embedding process has not finished after several days.
+Hence, more advanced coding techniques have to be applied to speed up the embedding process.
+
+% Future: continue developing this application with the tax office
+The domain of financial fraud and tax evasion is very interesting.
+Thus, future work could include the development of a working system for the tax office.
+The techniques explored in this work could be used to find similar documents to a query document and thus,
+facilitate initial exploration of a large data corpus.
+However, the tool developed in this work is not yet ready to be used in a productive environment.
+The different embedding models to choose from are useful for research purposes but not in a productive environment.
