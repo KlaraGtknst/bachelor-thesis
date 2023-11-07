@@ -1,11 +1,12 @@
-\subsection*{Evaluation of \ac{ae}}\label{subsec:evaluation-ae}
+\subsection*{\ac{ae}}\label{subsec:evaluation-ae}
 
 % architecture
 In order to determine, which architecture for the hidden or so-called latent space of the \ac{ae} is the best option, 
 different architectures were tested and compared in terms of \ac{rsme} and cosine similarity.
 The \ac{rsme} is calculated as given in \lst{lst:impl-rsme}.
 The cosine similarity is calculated as given in \lst{lst:impl-cos_sim}.
-Since cosine similarity is usually applied to calculate the angle between two vectors, one has to be cautious when interpreting the result obtained.
+Due to the fact that cosine similarity values are bound by 0 and 1, they are easier to rank than metrics that can yield any real number.
+However, cosine similarity is usually applied to calculate the angle between two vectors and thus, one has to be cautious when interpreting the result obtained.
 For instance, the vectors $\left( 0, 1 \right)^T$ and $\left( 0, 2 \right)^T$ have a cosine similarity of 1, even though they are not the same vectors.
 Since an \ac{ae} is supposed to reconstruct the input rather than return a dependent or related vector, this metric should be combined with a tarditional metric.
 The dataset used for the evaluation is a selection of 195 documents from the Bahamas dataset.
@@ -35,20 +36,18 @@ The dataset used for the evaluation is a selection of 195 documents from the Bah
     \label{lst:impl-cos_sim}
 \end{listing}
 
-\textcolor{red}{explain why cosine similarity is used and ggf. source}
-
-\textcolor{red}{The scores of different architectures are shown in \fig{fig:eval-ae-architecture}.
+The scores of different architectures are shown in \fig{fig:eval-ae-architecture}.
 While most of the architectures produced similar results, one architecture stood out.
-Combining 2500, 3000 and 3500 dimensions in the hidden space produced the worst \ac{rsme} results.
-The best results were achieved by adding 3500-dimensional layers in the hidden space.
-However, the results of the best architecture do not differ greatly from the others.}
+Combining 2500-, 3000- and 3500-dimensional layers in the hidden space produced the worst \ac{rsme} results.
+The best results were achieved by adding a 3500-dimensional layer in the hidden space.
+However, the results of the best architecture do not differ greatly from the others.
 
 \begin{figure}[h] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includegraphics[width=0.7\textwidth]{images/embeddings/autoencoder/ae_score_plot.pdf}
     \caption[Different \ac{ae} architectures and their reconstruction error]{The effect of different \ac{ae} architectures on the reconstruction error.
     The error is measured in terms of \ac{rsme} (blue bars) and cosine similarity (yellow bars) between the original and the reconstructed image.
-    The smallest \ac{rsme} and the biggest cosine similarity belong to the architecture best suitable to this task and are coloured green.
+    The smallest \ac{rsme} and the biggest cosine similarity belong to the architecture best suited to this task and are coloured green.
     }
     \label{fig:eval-ae-architecture}
 \end{figure}

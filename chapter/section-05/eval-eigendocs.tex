@@ -11,8 +11,26 @@ The first plot indicated that 90\% of the variance is explained by 95 components
 Usually, that would have been the number of dimensions of the subspace onto which the documents would have been projected.
 However, when working with cluster algorithms like \ac{optics} the number of dimensions should be reduced even further to achieve valid clusters.
 Therefore the reconstruction error with respect to different numbers of components was taken into consideration.
-The "elbow" points are visible at \textcolor{red}{10 and 13}.
-Since visual inspection accounted for the fact that the decline of the reconstruction error after 13 was steeper than after 10, the number of components chosen is 13.
+
+\begin{listing}[htp]
+    \begin{minted}{python3}
+        sqr_dif = (X_test - X_test_pca_inverse)**2
+        reconstr_err.append(np.sqrt(np.mean(sqr_dif))/
+            (np.sum(np.abs(1-X_test))/X_test.shape[0])) 
+    \end{minted}
+    \caption[Adaption of the \ac{rsme}]{
+        Adaption of the \ac{rsme} to incorporate the content of the images assuming white pixels do not convey information.
+    }
+    \label{lst:impl-weighted-rsme}
+\end{listing}
+
+The calculation of the reconstruction error is adapted to incorporate the content of the images.
+At first sight, the majority of image pixels are white, i.e. do not convey any information.
+Hence, the reconstruction error is divided by the portion of non-white pixels. 
+The calculation is given in \lst{lst:impl-weighted-rsme}.
+The result is displayed in \autoref{fig:det_n_comp}.
+The "elbow" points are visible at 13 and 30.
+Since the number of components ought to be kept reasonably small, 13 is chosen.
 
 
 % results

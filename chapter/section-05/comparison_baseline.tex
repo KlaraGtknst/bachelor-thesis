@@ -1,6 +1,6 @@
 \section{Comparison with baseline topic modelling approach}\label{sec:evaluation-top-model-app}
 
-The baseline topic modelling \ac{t2v} offers a variety of built-in functionalities to the user.
+The baseline topic modeling \ac{t2v} offers a variety of built-in functionalities to the user.
 It is possible to retrieve human interpretable inherent topics of a set of documents, 
 as well as the topics most similar to certain search terms 
 and \wordcloud{}s of these results.
@@ -9,7 +9,7 @@ Hence, this library meets the needs articulated by this work.
 % > 1 embedding model
 Opposed to \ac{t2v}, this thesis proposes a composite of different approaches to encoding visual and semantic information 
 and query for them using a database and visualization by the means of \wordcloud{}s.
-To be more specific, this thesis not only relies on one embedding model but offers several options and an approach to incorporate visual information.
+To be more specific, this thesis not only relies on one semantic embedding model but offers several techniques and an approach to incorporate visual information.
 
 % no topics for search terms
 However, it is not possible to query for topics of the corpus which best describe a search term.
@@ -20,8 +20,8 @@ The detail component enables the investigation of similar documents in terms of 
 % topic definition
 Due to \ac{t2v}'s architecture, documents and words are mapped into the same \ac{vsm}.
 Hence, the topic vector definition and representation by its closest words are more meaningful than the approach of the thesis. 
-In this thesis, a topic is represented by frequent words in the set of documents which are not necessarily meaningful. 
+In this thesis, a topic is represented by frequent words in the set of documents that are not necessarily meaningful. 
 
 % term frequency
-This work proposes a term frequency of the document chosen in the detail component.
+The tool implemented in this thesis can display the term frequency of the document chosen in the detail component.
 The \ac{t2v} library does not offer a comparable service.

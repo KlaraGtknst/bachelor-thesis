@@ -1,18 +1,17 @@
 \subsubsection*{\wordcloud{}}\label{subsubsec:impl-wordcloud}
 
-The implementation of \wordcloud{}s in this thesis is based on the Python library \textit{wordcloud} \cite{wordcloud-dev}.
+The implementation of \wordcloud{}s in this thesis is based on the Python library \textit{wordcloud} by \citeauthor{wordcloud-dev} \cite{wordcloud-dev}.
 This implementation removes English stop words from the text by default.
 The input text is split into tokens using a regex.
 By default, plurals are removed if their singular version is present and their frequency is added to their singular version.
 By default, numbers are not included as tokens.
 
 % custom preprocessing
-In order to ensure that the words presented are interpretable, the input text is preprocessed.
-A lemmatizer is used to ensure the stemmed words exist.
-The lemmatizer used is \texttt{WordNetLemmatizer} from the \texttt{nltk} package as displayed in \lst{lst:impl-preproc-wordcloud}.
+In order to ensure that the words presented are interpretable, the input text is preprocessed as displayed in \lst{lst:impl-preproc-wordcloud}..
+The \texttt{WordNetLemmatizer} from the \texttt{nltk} package is used to ensure the stemmed words exist.
 
 % initialization
-The \wordcloud{} is initialized as shown in \lst{lst:impl-wordcloud}.
+A \wordcloud{} is initialized as shown in \lst{lst:impl-wordcloud}.
 
 \begin{listing}[htp]
     \begin{minted}{python3}
@@ -31,8 +30,8 @@ The \wordcloud{} is initialized as shown in \lst{lst:impl-wordcloud}.
             contour_width=3, max_font_size=110, background_color='white', 
             max_words=5000).generate(','.join(tokens))
     \end{minted}
-    \caption[Initialization of the \wordcloud{}]
-    {Initialization of the \wordcloud{}.
+    \caption[Initialization of a \wordcloud{}]
+    {Initialization of a \wordcloud{}.
     }
     \label{lst:impl-wordcloud}
 \end{listing}

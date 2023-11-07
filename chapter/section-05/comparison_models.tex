@@ -1,7 +1,7 @@
 \section{Comparison of models}\label{sec:evaluation-models}
 
 % parameters
-Similar to \citeauthor{glove2014}'s work, in this work, for many models used, any unspecified parameters are set to their default values, 
+Similar to \citeauthor{glove2014}'s work, in this thesis, for many models used, any unspecified parameters are set to their default values, 
 assuming that they are close to optimal
 acknowledging that this simplification should be revised in a more thorough analysis.
 
@@ -9,17 +9,18 @@ acknowledging that this simplification should be revised in a more thorough anal
 This evaluation does not aim to find the best model but to compare the similarity of the models' query results.
 It is a qualitative evaluation of a selection of documents from the Bahamas leak.
 This selection is a 2048 document corpus that was randomly chosen without replacement.
-A model's query response consists of the documents that are considered most similar to the model's embedding of the query document in terms of cosine similarity.
+A query defines a field, i.e. embedding model and a query document.
+The query response consists of the documents that are considered most similar to the model's embedding of the query document in terms of cosine similarity.
 These responses are retrieved by a \ac{knn} query from the database for each model and stored in a \ac{csv} file.
 To facilitate working with the data, the document IDs can be encoded as monotonically increasing integers.
 
 % Venn diagram
 The first approach to compare the response documents is to visualize the intersection of the query results.
-The Venn diagram was chosen since it displays intersections of all items of the power set.
+The Venn diagram was chosen since it displays intersections of all items of the power set of the models.
 To build a Venn diagram, the number of documents that are shared between the query results of several models is computed.
 First, all query responses of a model irrespective of the query document are saved in a set.
 The cardinalities of the intersections of multiple sets are displayed in \autoref{fig:venn-comparison-models}.
-Since there are five models encoding textual information the Venn diagram consists of five circles.
+Since five models encode textual information the Venn diagram consists of five circles.
 One should be cautious when interpreting the layout of the Venn diagram since 
 an intersection of documents that produces an empty set has a non-empty area in this visualization.
 
@@ -50,9 +51,10 @@ yield consistently similar results.
 
 % heatmap
 Since the Venn diagrams compare the responses of the models irrespective of the query document, 
-a second approach is to compare the query results of the models for each query document.
-This approach first constructs a matrix of the number of shared query results between all model pairs summed up or averaged over all query documents
-and visualizes the results using a heatmap.
+a second approach is to compare the query results of the models for each query document individually.
+This approach first constructs a matrix of the number of shared query results between all model pairs summed up over all query documents.
+It is possible to normalize the matrix to obtain the portion of shared query results.
+Thereafter the matrix is visualized using a heatmap.
 The matrix consists of five rows and five columns, where each row and column represents a model.
 The code snippet in \lst{lst:sim-matrix} shows the calculation of the similarity matrix.
 
@@ -85,15 +87,16 @@ The matrix is then visualized using a heatmap as displayed in \autoref{fig:heatm
     \centering
     \includegraphics[width=0.7\textwidth]{images/comparison/Portion_of_equal_query_results.pdf}
     \caption[Comparison of models using a heatmap]
-    {Heatmap visualizing portion of shared query results on 2000 queries à 10 responses of a 2048 document corpus.}
+    {Heatmap visualizing portion of shared query results on 2000 queries à 10 responses on a 2048 document corpus.}
     \label{fig:heatmap-comparison-models}
 \end{figure}
 
 % heatmap interpretation
 The heatmap in \autoref{fig:heatmap-comparison-models} shows that the models yield dissimilar query responses.
-It arose from 2000 queries à 10 responses of a 2048 document corpus.
+It arose from 2000 queries à 10 responses on a 2048 document corpus.
 The similarity matrix was normalized to present the portion of shared query results for a query.
-\ac{use} and \infersent{} produce the most similar responses, which indicates the maximum value of shared query results is less than $0.5$.
+\ac{use} and \infersent{} produce the most similar responses, which indicates the maximum value of shared query results.
+However, the maximum is less than $0.5$ and thus, rather dissimilar.
 Any two-element combination of \ac{d2v}, \ac{tfidf} and \ac{sbert} produces the most dissimilar query results, 
 namely only around $25\%$ of shared response documents per query.
 
@@ -106,7 +109,7 @@ The normalized similarity matrix for each model pair concerning one trial was ca
 The cardinalities were stored in a dictionary of lists indexed by the respective model pairs.
 Finally, the mean and standard deviation were computed for each model pair and stored in a \ac{csv} file.
 The results are displayed in \autoref{tab:mean_std_portion_shared_query_results}.
-The standard deviation does not exceed $0.1$ for any model pair and is similar among all \textcolor{red}{non-reflexive/non-auto} combinations.
+The standard deviation does not exceed $0.1$ for any model pair and is similar among all non-reflexive combinations.
 As observed before, any two-element combination of \ac{d2v}, \ac{tfidf} and \ac{sbert} has the lowest mean portion ($18-20\%$) of shared query results.
 
 \begin{table}[]
@@ -193,7 +196,7 @@ Apart from this difference, the query responses of the models are very similar.
         \caption{\ac{use}}
         \label{fig:query_resp_use}
     \end{subfigure}
-\caption[Exemplary query response]{Response of exemplary query in terms of similarity on different embeddings.}
+\caption[Exemplary query response]{Exemplary query response for different embeddings on the same query document.}
 \label{fig:query_resp}
 \end{figure}
 
@@ -216,7 +219,7 @@ Similar response documents do not have to be of similar visual appearance since 
 \end{figure}
 
 % bad results
-There are query documents such as \autoref{fig:comp_query_resp} that reveal the dissimilarity between certain models.
+There are query documents such as the one in \autoref{fig:comp_query_resp} that reveal the dissimilarity between certain models.
 Most models' response documents are similar to \autoref{fig:good_query_resp_sbert}.
 These response documents depict the same type of document, i.e. handwritten receipts for an annual fee.
 The \ac{tfidf} model, however, returns different response documents.
@@ -257,12 +260,12 @@ The first exemplary query document in \autoref{fig:comp_vis_query_resp} is an im
 Both clustering approaches yield similar results.
 More specifically, the responses share two documents.
 Moreover, the last document in the response of both approaches differs most from the group.
-None of the result documents originates from the same company as the query document.
+None of the result documents originate from the same company as the query document.
 
 The second exemplary query document in \autoref{fig:comp_vis_query_resp_certificates} is a certificate.
-\ac{optics} clustering approach yields a response that is more similar to the query document than the \texttt{argmax} of the \ac{pca} compression,
+\ac{optics} clustering approach yields a response that is more similar to the query document than the \texttt{argmax} of the \ac{pca} compression
 because all its responses are from the same document type as the query document.
-Hence, the \ac{optics} clustering approach is considered to be of better quality.
+Hence, the \ac{optics} clustering approach is considered to be superior to the \texttt{argmax} approach.
 
 \begin{figure}[h!]
     \begin{subfigure}{\textwidth}

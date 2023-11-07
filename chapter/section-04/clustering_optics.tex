@@ -29,7 +29,7 @@ There were two different preprocessing approaches:
     \label{fig:preprocessed_docs_32x32}
 \end{figure}
 
-\textcolor{red}{better images}
+\textcolor{red}{TODO: better images}
 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
@@ -44,14 +44,14 @@ There were two different preprocessing approaches:
 \end{figure}
 
 The reachability distance ordered by \ac{optics} is displayed in \autoref{fig:reachability_plots}.
-The resulting clusters are displayed in \autoref{fig:optics_cluster}.
+%The resulting clusters are displayed in \autoref{fig:optics_cluster}.
 
 % reachability plot
 \begin{figure}%
     \centering
-    \subfloat[\centering The reachability plot of the documents preprocessed according to \autoref{pt:32}.]{{\includegraphics[width=5cm]{images/OPTICS/32x32/reachability_plot_32x32_pca_13dim.pdf} }}%
+    \subfloat[\centering The reachability plot of the documents preprocessed according to \autoref{pt:32} (cf. \cite{OPTICS1999}).]{{\includegraphics[width=5cm]{images/OPTICS/32x32/reachability_plot_32x32_pca_13dim.pdf} }}%
     \qquad
-    \subfloat[\centering The reachability plot of the documents preprocessed according to \autoref{pt:eigendocs}.]{{\includegraphics[width=5cm]{images/OPTICS/eigendocs/reachability_plot_13dim_eigendocs.pdf} }}%
+    \subfloat[\centering The reachability plot of the documents preprocessed according to \autoref{pt:eigendocs} (i.e. \eigendocs{}).]{{\includegraphics[width=5cm]{images/OPTICS/eigendocs/reachability_plot_13dim_eigendocs.pdf} }}%
     \caption[Reachability distances]{The plot was created using the \ac{optics} algorithm from the Python library scikit-learn.
     It shows the reachability distance of each document to its predecessor in the order list.}%
     \label{fig:reachability_plots}%
@@ -74,7 +74,7 @@ The code to initialize an exemplary \ac{optics} model is displayed in \lst{lst:o
             eps=0.5)
     \end{minted}
     \caption[Initialization of the \ac{optics} model]{Initialization of the \ac{optics} model.
-    The minimum number of samples in a cluster corresponds to \textit{minPts}.
+    The minimum number of samples \texttt{min\_samples} in a cluster corresponds to \textit{minPts}.
     }
     \label{lst:optics_model}
 \end{listing}

@@ -1,6 +1,6 @@
 \subsection*{\databaseName{}}\label{subsec:evaluation-db}
 % SQL vs NoSQL
-According to \cite{flask_book2018}, \ac{sql} databases are a good choice for efficiently storing structured data.
+According to \citeauthor{flask_book2018}, \ac{sql} databases are a good choice for efficiently storing structured data.
 This is because their paradigm \acs{acid}, i.e. \acl{acid}, provides high reliability.
 \ac{nosql} databases, on the other hand, are more flexible and can be used to store unstructured data \cite{flask_book2018}.
 They do not require a predefined schema and can therefore accept documents of arbitrary structure \cite{flask2018}.
@@ -20,7 +20,7 @@ Moreover, modulizing the initialization and filling of the database facilitates 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includegraphics[width=0.6\textwidth]{images/Elasticsearch/Time_necessary_to_compute_2048_embeddings.pdf}
-    \caption[Times for creating the database]{Time per module of creating the Bahamas database using a selection of 195 documents.
+    \caption[Times for creating the database]{Time per module of creating the Bahamas database using a random selection of 2048 documents.
     The reference time was measured using \texttt{cProfiler} on a \localMaschineStats{}.
     %the \texttt{timer} from \texttt{timeit.default\_timer} on a \localMaschineStats{}.
     }
