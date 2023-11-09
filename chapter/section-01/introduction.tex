@@ -1,6 +1,7 @@
 \chapter{Introduction}\label{ch:introduction}
 
 The Bahamas leak is a collection of roughly 38 \ac{gb} documents, which were leaked in 2016 \cite{data-corpus-bahamas-leaks}.
+The documents are unstructured, i.e. they are of different types, content and layout.
 Tax offices examine the data to identify tax evasion.
 However, it has proven to be challenging to identify relevant documents and their interconnections due to the amount of documents appertaining to the leak.
 Therefore, the goal of this thesis is to support the investigators of the tax offices.
@@ -13,11 +14,14 @@ Topics of a document cluster do not have to be labeled specifically but should b
 
 This thesis proposes an approach to group documents based on their appearance or semantic similarity, 
 which is defined via different embedding strategies.
+Embeddings are numerical representations of words, sentences or texts.
 Both the embeddings and the visual information are computed offline and stored in a database.
 A query to this database returns the most similar documents to the query document based on the field specified.
+A query document is a \ac{pdf} document from which textual and visual information can be derived.
 The embeddings are compared using cosine similarity, i.e. the angle between embedding vectors, 
 whereas visual information is clustered using different approaches including \ac{optics} beforehand.
 To visualize the resulting groups of documents methods from topic analysis including \wordcloud{}s are employed.
+The goal of topic analysis techniques is to identify topics in a document corpus.
 
 Besides literature research, application and evaluation of the methods identified, 
 certain preprocessing methods have proven to be eminent to successful work with unstructured text data.

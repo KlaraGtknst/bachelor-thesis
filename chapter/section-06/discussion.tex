@@ -7,22 +7,22 @@ Some models do not require any preprocessing, while others require a lot of prep
 
 % tfidf preprocessing
 In this work, the \ac{tfidf} configuration includes the definition of a custom preprocessor.
-Consequently, preprocessing played an important role in this embedding.
-The preprocessor was constructed with respect to the well-established preprocessing steps for \ac{nlp} tasks \cite{nlp-book2009},
+Consequently, preprocessing plays an important role in this embedding.
+The preprocessor is constructed with respect to the well-established preprocessing steps for \ac{nlp} tasks \cite{nlp-book2009},
 the \ac{tfidf} documentation about the default preprocessor and the task.
 Since the data set can contain figures due to the financial background, the preprocessor encodes all numbers into discrete strings.
 Hence, the information is not lost but strongly reduced, which is vital due to the constraints imposed 
 by the database's dense vector dimension limitation.
-The custom preprocessor was compared to the default preprocessor on multiple datasets.
-Since it consistently produced smaller vocabulary sizes, it was chosen for the task.
+The custom preprocessor is compared to the default preprocessor on multiple datasets.
+Since it consistently produces smaller vocabulary sizes, it is chosen for the task.
 
 The other semantic embedding methods do not require any preprocessing.
 % visual preprocessing
-The visual embedding methods required more preprocessing.
+The visual embedding methods require more preprocessing.
 Originally, the images were matrices of \texttt{RGB} values.
 However, \ac{pca} and \ac{optics} require a vector as input.
-Therefore, the images were converted to greyscale and flattened to a vector.
-The images were resized to make them more comparable.
+Therefore, the images are converted to greyscale and flattened to a vector.
+The images are resized to make them more comparable.
 Since \ac{optics}' performance deteriorates with increasing dimensionality, 
 applying \ac{pca} to compress the data can be considered preprocessing.
 
@@ -31,41 +31,41 @@ applying \ac{pca} to compress the data can be considered preprocessing.
 As mentioned before, the database has a dense vector dimension limitation of 2048.
 This limitation is a problem for the visual embedding methods as well as \infersent{} and 
 \ac{tfidf}.
-The visual embedding methods were compressed with \ac{pca}, 
-whereas the encoder of a trained \ac{ae} was employed for textual embeddings.
-The \ac{pca} was fit on 1000 randomly selected images.
-The number of components was chosen beforehand in consideration of the explained variance and the reconstruction error.
-The architecture of the \ac{ae} was chosen in consideration of the reconstruction error on 195 documents.
+The visual embedding methods are compressed with \ac{pca}, 
+whereas the encoder of a trained \ac{ae} is employed for textual embeddings.
+The \ac{pca} is fitted on 1000 randomly selected images.
+The number of components is selected beforehand in consideration of the explained variance and the reconstruction error.
+The architecture of the \ac{ae} is chosen in consideration of the reconstruction error on 195 documents.
 Both compression techniques would benefit from evaluation on a larger data set.
 
 
 % visual vs semantic
 As already stated this work examined both ways to encode semantic and visual information.
-The evaluation was conducted with respect to the task of finding similar documents.
+The evaluation is conducted with respect to the task of finding similar documents.
 Since the data set is not labeled the evaluation is subjective and experimental.
-Qualitative evaluation was conducted by inspecting the responses of different models for several sample queries to the database 
+Qualitative evaluation is conducted by inspecting the responses of different models for several sample queries to the database 
 storing the respective embeddings.
-The inspection was conducted manually, 
+The inspection is conducted manually, 
 using Venn diagrams, heatmaps and 
 statistical properties of the distribution of the cardinality of the shared query response sets.
 
-The semantic responses were similar and often managed to find either documents with the same content or documents with the same company name.
-The visual responses were more dissimilar from each other and the query document.
+The semantic responses are similar and often managed to find either documents with the same content or documents with the same company name.
+The visual responses are more dissimilar from each other and the query document.
 % visual: OPTICS, argmax
-More precisely, the \texttt{argmax} approach returned poor results to some extent.
+More precisely, the \texttt{argmax} approach returns poor results to some extent.
 Consequently, \ac{optics} is considered the superior visual embedding method for the database.
-Moreover, the textual embedding methods produced more meaningful responses than the visual embedding methods.
-For example, textual embedding methods managed to find documents with the same company name, 
-while the visual embedding methods naturally returned visually similar documents.
+Moreover, the textual embedding methods produce more meaningful responses than the visual embedding methods.
+For example, textual embedding methods manage to find documents with the same company name, 
+while visual embedding methods naturally return visually similar documents.
 
 
 % semantic: TFIDF, Doc2Vec, USE, InferSent, SBERT
-When evaluating the semantic embedding methods, slight differences between the models became evident.
-Differences and similarities between the models were examined by comparing the responses to the sample queries.
-This evaluation included the calculation of the average portion of shared documents between the responses of several models 
-and exemplary evaluation of actual queries.
-\ac{tfidf}, \ac{d2v} and \ac{sbert} were most dissimilar from each other.
-The \ac{tfidf} approach performed rather poorly on unusual query documents.
+When evaluating the semantic embedding methods, slight differences between the models become evident.
+Differences and similarities between the models are examined by comparing the responses to the sample queries.
+This evaluation includes the calculation of the average portion of shared documents between the responses of several models 
+and the exemplary evaluation of actual queries.
+\ac{tfidf}, \ac{d2v} and \ac{sbert} are most dissimilar from each other.
+The \ac{tfidf} approach performs rather poorly on unusual query documents.
 
 
 % similarity: cosine
@@ -87,7 +87,7 @@ The database used in this work is \databaseName{}.
 It was built to provide a fast and scalable search engine.
 Moreover, it is a document-oriented database, which is well-suited for flexible data.
 By default, several similarity measures and search strategies are provided.
-Moreover, the elastic stack offers a wide range of tools supporting embedding models which were not used in this work.
+Moreover, the elastic stack offers a wide range of tools supporting embedding models which are not used in this work.
 
 
 % FE (Angular), BE (Flask)
@@ -96,7 +96,7 @@ The libraries were chosen after discussing options with this thesis' supervisor.
 However, the implementation of this tool is not the focus of this work.
 
 % top2vec
-The baseline topic analysis technique \ac{t2v} was chosen due to its simplicity and functionalities.
+The baseline topic analysis technique \ac{t2v} is chosen due to its simplicity and functionalities.
 The \ac{t2v} implementation is well documented and provides a \wordcloud{} implementation.
 Moreover, it enables the user to find similar topics for query terms and returns inherent topics in a data corpus.
 Hence, its functionality is similar to the functionality of the system developed in this work.

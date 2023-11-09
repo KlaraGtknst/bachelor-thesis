@@ -5,12 +5,12 @@ In the course of working with low-quality versions of the documents to minimize 
 Therefore, the idea arose to use clustering algorithms to group the documents according to their appearance.
 
 % number of components
-In order to determine the optimal number of components used for \eigendocs{} the cumulative explained variance and the reconstruction error were plotted 
+In order to determine the optimal number of components used for \eigendocs{} the cumulative explained variance and the reconstruction error are plotted 
 as displayed in \autoref{fig:det_n_comp} from \autoref{subsec:eigenface}.
 The first plot indicated that 90\% of the variance is explained by 95 components.
 Usually, that would have been the number of dimensions of the subspace onto which the documents would have been projected.
 However, when working with cluster algorithms like \ac{optics} the number of dimensions should be reduced even further to achieve valid clusters.
-Therefore the reconstruction error with respect to different numbers of components was taken into consideration.
+Therefore the reconstruction error with respect to different numbers of components is taken into consideration.
 
 \begin{listing}[htp]
     \begin{minted}{python3}

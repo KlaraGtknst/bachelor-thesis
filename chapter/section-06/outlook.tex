@@ -23,34 +23,34 @@ assuming that they are close to optimal
 acknowledging that this simplification should be revised in a more thorough analysis.
 
 % TFIDF
-The \ac{tfidf} approach performed rather poorly on unusual query documents.
+The \ac{tfidf} approach performs rather poorly on unusual query documents.
 There are multiple factors that could have contributed to this result.
-Firstly, the vocabulary was drastically reduced to satisfy the database's constraints for dense vector dimensionality.
-Thus, \ac{tfidf} might either be unsuitable for the task of finding similar documents when the vocabulary size is restricted or 
+Firstly, the vocabulary is drastically reduced to satisfy the database's constraints for dense vector dimensionality.
+Thus, \ac{tfidf} may either be unsuitable for the task of finding similar documents when the vocabulary size is restricted or 
 further research is required to find more suitable means to compress the embedding before inserting it into the database.
-Secondly, the evaluation of the different preprocessors of \ac{tfidf} was carried out on small datasets of 195 and 2048 documents.
+Secondly, the evaluation of the different preprocessors of \ac{tfidf} is carried out on small datasets of 195 and 2048 documents.
 This dataset may not be representative of the whole corpus.
 
 % GloVe (InferSent)
-In this work, the precomputed \ac{glove} embeddings were replaced by a custom \ac{w2v} model.
+In this work, the precomputed \ac{glove} embeddings are replaced by a custom \ac{w2v} model.
 However, \citeauthor{glove2014} state that \acs{glove} outperforms \ac{w2v} on the same corpus, 
 vocabulary and window size in terms of quality \cite{glove2014}.
 Hence, the quality of \infersent{} might have deteriorated due to the replacement of \ac{glove} by \ac{w2v}.
 
 % Visual embedding methods
 % Eigendocs
-When preprocessing the document images for \eigendocs{}, the images were placed on a white canvas assuming 
-its dimensions were bigger or equal than all other documents in the corpus.
-Since this assumption was not true, the images selected to find the dimensionalities of the canvas were not representative.
+When preprocessing the document images for \eigendocs{}, the images are placed on a white canvas assuming 
+its dimensions are bigger or equal to all other documents in the corpus.
+Since this assumption was not true, the images selected to find the dimensionalities of the canvas are not representative.
 
 % compression: PCA
 The parameter selection for \ac{pca} is not representative of the whole dataset, 
 due to the fact that the dataset used for the evaluation error was not drawn randomly from the data corpus and is too small.
-Moreover, the resulting plot was not optimal for conducting the "elbow method", since no significant change was evident in the slope.
+Moreover, the resulting plot is not optimal for conducting the "elbow method", since no significant change is evident in the slope.
 
 
 % AE config: Problem & future work
-Different \ac{ae} architectures were experimentally evaluated on a selection of 195 documents.
+Different \ac{ae} architectures are experimentally evaluated on a selection of 195 documents.
 However, since the dataset is too small and not drawn randomly from the whole data corpus the results are not representative.
 Thus, future work should include a more thorough evaluation of different \ac{ae} architectures on a bigger document corpus.
 % tfidf + AE only used on server
@@ -67,7 +67,7 @@ to interpret and visualize semantic meaningful weight relationships.
 Thus, future work could include the weights of the query responses in the evaluation.
 
 % similarity of query documents
-Moreover, the similarity of the query documents was not considered in the evaluation.
+Moreover, the similarity of the query documents is not considered in the evaluation.
 To further improve the evaluation, the number of occurrences of query documents in the response documents of other queries could be examined.
 
 % elastic stack: Kibana
@@ -79,8 +79,8 @@ the system would most likely be more user-friendly and less prone to errors.
 % server database
 Another issue is the fact that the database contains neither all embeddings nor all documents.
 The Bahamas leak contains 38 \ac{gb} of data.
-Even though multiprocessing using Pool was used to split the workload across up to 100 processes, 
-the embedding process has not finished after several days.
+Even though multiprocessing using Pool is used to split the workload across up to 100 processes, 
+the embedding process is not finished after several days.
 Hence, more advanced coding techniques have to be applied to speed up the embedding process.
 
 % Future: continue developing this application with the tax office

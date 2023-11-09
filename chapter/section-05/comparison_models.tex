@@ -8,7 +8,7 @@ acknowledging that this simplification should be revised in a more thorough anal
 % comparing models (qualitative)
 This evaluation does not aim to find the best model but to compare the similarity of the models' query results.
 It is a qualitative evaluation of a selection of documents from the Bahamas leak.
-This selection is a 2048 document corpus that was randomly chosen without replacement.
+This selection is a 2048 document corpus that is randomly chosen without replacement.
 A query defines a field, i.e. embedding model and a query document.
 The query response consists of the documents that are considered most similar to the model's embedding of the query document in terms of cosine similarity.
 These responses are retrieved by a \ac{knn} query from the database for each model and stored in a \ac{csv} file.
@@ -16,7 +16,7 @@ To facilitate working with the data, the document IDs can be encoded as monotoni
 
 % Venn diagram
 The first approach to compare the response documents is to visualize the intersection of the query results.
-The Venn diagram was chosen since it displays intersections of all items of the power set of the models.
+The Venn diagram is chosen since it displays intersections of all items of the power set of the models.
 To build a Venn diagram, the number of documents that are shared between the query results of several models is computed.
 First, all query responses of a model irrespective of the query document are saved in a set.
 The cardinalities of the intersections of multiple sets are displayed in \autoref{fig:venn-comparison-models}.
@@ -42,9 +42,9 @@ yield consistently similar results.
     \subfloat[\centering 10 response documents per query.]{{\includegraphics[width=6.7cm]{images/comparison/Venn_diagram_(10_queries_à_10_responses_in_a_2048_document_corpus).pdf} }}%
     \qquad   
     \caption[Venn diagram of query results]{
-    10 documents were randomly sampled from a 2048 document corpus.
-    For each sampled document and model a \ac{knn} query was conducted.
-    The respective response documents excluding the query document were saved.
+    10 documents are randomly sampled from a 2048 document corpus.
+    For each sampled document and model, a \ac{knn} query is conducted.
+    The respective response documents excluding the query document are saved.
     The cardinality of the intersection of all response documents irrespective of query document for different models is visualized in terms of Venn diagrams.}%
     \label{fig:venn-comparison-models}%
 \end{figure}
@@ -94,7 +94,7 @@ The matrix is then visualized using a heatmap as displayed in \autoref{fig:heatm
 % heatmap interpretation
 The heatmap in \autoref{fig:heatmap-comparison-models} shows that the models yield dissimilar query responses.
 It arose from 2000 queries à 10 responses on a 2048 document corpus.
-The similarity matrix was normalized to present the portion of shared query results for a query.
+The similarity matrix is normalized to present the portion of shared query results for a query.
 \ac{use} and \infersent{} produce the most similar responses, which indicates the maximum value of shared query results.
 However, the maximum is less than $0.5$ and thus, rather dissimilar.
 Any two-element combination of \ac{d2v}, \ac{tfidf} and \ac{sbert} produces the most dissimilar query results, 
@@ -103,11 +103,11 @@ namely only around $25\%$ of shared response documents per query.
 % mean and std
 Since the normalization does not consider the distribution of the cardinalities of the intersections of the query results among the models,
 another approach is to calculate the mean and standard deviation of the cardinalities of the intersections of the query results.
-Therefore, 30 trials were conducted.
-Each trial consisted of 10 randomly sampled query documents à 10 responses (excluding the query document in the response).
-The normalized similarity matrix for each model pair concerning one trial was calculated using \lst{lst:sim-matrix}.
-The cardinalities were stored in a dictionary of lists indexed by the respective model pairs.
-Finally, the mean and standard deviation were computed for each model pair and stored in a \ac{csv} file.
+Therefore, 30 trials are conducted.
+Each trial consists of 10 randomly sampled query documents à 10 responses (excluding the query document in the response).
+The normalized similarity matrix for each model pair concerning one trial is calculated using \lst{lst:sim-matrix}.
+The cardinalities are stored in a dictionary of lists indexed by the respective model pairs.
+Finally, the mean and standard deviation are computed for each model pair and stored in a \ac{csv} file.
 The results are displayed in \autoref{tab:mean_std_portion_shared_query_results}.
 The standard deviation does not exceed $0.1$ for any model pair and is similar among all combinations.
 As observed before, any two-element combination of \ac{d2v}, \ac{tfidf} and \ac{sbert} has the lowest mean portion ($18-20\%$) of shared query results.
@@ -140,10 +140,10 @@ As observed before, any two-element combination of \ac{d2v}, \ac{tfidf} and \ac{
 
 
 % sample query
-To display the differences between the models exemplary, the five most similar documents to a random document were returned from the database and visualized.
-The text of the query document was encoded using the respective model and a 
-\ac{knn} query was used to obtain the results from the local database containing 2048 documents.
-The query image, i.e. the one surrounded by a border, was omitted from the database query response.
+To display the differences between the models exemplary, the five most similar documents to a random document are returned from the database and visualized.
+The text of the query document is encoded using the respective model and a 
+\ac{knn} query is used to obtain the results from the local database containing 2048 documents.
+The query image, i.e. the one surrounded by a border, is omitted from the database query response.
 The query responses are listed according to descending similarity to the query document.
 The query results are displayed in \autoref{fig:query_resp}.
 % \autoref{fig:query_resp_doc2vec} displays the \ac{d2v} reponses,  
@@ -198,7 +198,7 @@ Apart from this difference, the query responses of the models are very similar.
 To further investigate the differences between the models, 
 the query responses of the models are compared qualitatively on documents that were found to be unusual in terms of visual inspection.
 The first document in \autoref{fig:comp_query_resp} is a table consisting of little text compared to other samples from the data corpus.
-The second document in \autoref{fig:comp_query_resp} is mostly handwritten, which is unusual since most other samples are computer generated.
+The second document in \autoref{fig:comp_query_resp} is mostly handwritten, which is unusual since most other samples are computer-generated.
 
 % good results
 The models produced good query responses on a query document consisting of little text as shown in \autoref{fig:good_query_resp_infer}.

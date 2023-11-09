@@ -5,13 +5,13 @@ Hence, the goal of the parameter selection is to find a way to reduce the dimens
 However, the quality of the embeddings should not decline too much.
 
 % parameter selection
-The choice of the preprocessor was investigated with regard to the goal of minimizing the vocabulary size.
-Both the default and a custom preprocessor were tested on a data corpus of 2048 randomly selected documents with regard to the vocabulary (size).
+The choice of the preprocessor is investigated with regard to the goal of minimizing the vocabulary size.
+Both the default and a custom preprocessor are tested on a data corpus of 2048 randomly selected documents concerning the vocabulary (size).
 While the default preprocessor had a vocabulary size of 5893, the custom preprocessor had a size of 5585.
 The relative difference likely shrinks with a larger data set, 
 since the trend is already visible for two different data corpus sizes in \autoref{tab:tfidf-preprocessor-comparison}.
-The custom preprocessor was chosen because it had a smaller vocabulary size.
-The differences between both vocabularies were compared and visualized in \autoref{fig:differences-vocabularies}.
+The custom preprocessor is chosen because it had a smaller vocabulary size.
+The differences between both vocabularies are compared and visualized in \autoref{fig:differences-vocabularies}.
 
 % Please add the following required packages to your document preamble:
 % \usepackage[table,xcdraw]{xcolor}
@@ -46,5 +46,5 @@ The second approach should have been used to obtain specific documents from the 
 Hence, the vocabulary should consist of very document-specific terms and thus, \texttt{max\_df} would have been relatively low, to omit terms that occur in many documents.
 However, the restrictions imposed by the database implementation in terms of dimensionality limitations
 made it impossible to explore many parameter ranges.
-Therefore, only one \ac{tfidf} model was used in the end, whose parameters \texttt{min\_df} and \texttt{max\_df} were set to values which kept the vocabulary and thus,
-the dimensionality of the embeddings reasonably small.
+Therefore, only one \ac{tfidf} model is used in the end, whose parameters \texttt{min\_df} and \texttt{max\_df} are set to values which kept the vocabulary and thus,
+the dimensionality of the embeddings is reasonably small.

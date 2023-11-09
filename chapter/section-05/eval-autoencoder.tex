@@ -2,7 +2,7 @@
 
 % architecture
 In order to determine, which architecture for the hidden or so-called latent space of the \ac{ae} is the best option, 
-different architectures were tested and compared in terms of \ac{rsme} and cosine similarity.
+different architectures are tested and compared in terms of \ac{rsme} and cosine similarity.
 The \ac{rsme} is calculated as given in \lst{lst:impl-rsme}.
 The cosine similarity is calculated as given in \lst{lst:impl-cos_sim}.
 Due to the fact that cosine similarity values are bound by 0 and 1, they are easier to rank than metrics that can yield any real number.
@@ -39,7 +39,7 @@ The dataset used for the evaluation is a selection of 195 documents from the Bah
 The scores of different architectures are shown in \fig{fig:eval-ae-architecture}.
 While most of the architectures produced similar results, one architecture stood out.
 Combining 2500-, 3000- and 3500-dimensional layers in the hidden space produced the worst \ac{rsme} results.
-The best results were achieved by adding a 3500-dimensional layer in the hidden space.
+The best results are achieved by adding a 3500-dimensional layer in the hidden space.
 However, the results of the best architecture do not differ greatly from the others.
 
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).

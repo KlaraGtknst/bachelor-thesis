@@ -8,7 +8,7 @@ Usually, \ac{nosql} databases do not offer services such as \texttt{JOIN} \cite{
 %According to \citeauthor{flask2018}, \ac{nosql} databases make a tradeoff between storage and speed, as well as a tradeoff between consistency and availability.
 \ac{nosql} databases are said to outperform out-of-the-box \ac{sql} databases \cite{flask2018}.
 Since the dataset consists of unstructured documents and the task at hand does not require performing any \texttt{JOIN}s a \ac{nosql} database is favourable.
-\databaseName{} was chosen since it is well known to provide near real-time search and to operate on big data.
+\databaseName{} is chosen since it is well known to provide near real-time search and to operate on big data.
 Subsequently, it is a good fit for the underlying dataset.
 
 % separation of initialisation and insertion
@@ -21,7 +21,7 @@ Moreover, modulizing the initialization and filling of the database facilitates 
     \centering
     \includegraphics[width=1\textwidth]{images/Elasticsearch/Time_necessary_to_compute_2048_embeddings.pdf}
     \caption[Times for creating the database]{Time per module of creating the Bahamas database using a random selection of 2048 documents.
-    The reference time was measured using \texttt{cProfiler} on a \localMaschineStats{}.
+    The reference time is measured using \texttt{cProfiler} on a \localMaschineStats{}.
     %the \texttt{timer} from \texttt{timeit.default\_timer} on a \localMaschineStats{}.
     }
     \label{fig:time_init_db}

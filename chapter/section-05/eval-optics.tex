@@ -1,7 +1,7 @@
 \section{Clustering using \acs{optics}}\label{sec:evaluation-OPTICS}
 % 3d plots
-The algorithm \ac{optics} was applied to data, which was preprocessed according to \autoref{pt:32} and \autoref{pt:eigendocs}.
-The clusters from \autoref{fig:optics_cluster} were extracted from the respective reachability plots in \autoref{fig:reachability_plots}.
+The algorithm \ac{optics} is applied to data, which is preprocessed according to \autoref{pt:32} and \autoref{pt:eigendocs}.
+The clusters from \autoref{fig:optics_cluster} are extracted from the respective reachability plots in \autoref{fig:reachability_plots}.
 The three-dimensional plots visualize the first three dimensions of the data and thus, the weights of the first three principal components assigned by the \eigendocs{} algorithm.
 By visual inspection and comparison of both plots, 
 it can be seen that the projection by the combination of resizing and \ac{pca} of \autoref{pt:32} scatters the objects further along the $x_2$ axis.
@@ -15,7 +15,7 @@ Possibly, the objects are grouped by document size and are thus, less scattered 
     \subfloat[\centering Preprocessing according to \autoref{pt:32} (cf. \cite{OPTICS1999}).]{{\includegraphics[width=6.5cm]{images/OPTICS/32x32/OPTICS_cluster_32x32.pdf} }}%
     \qquad
     \subfloat[\centering Preprocessing according to \autoref{pt:eigendocs} (i.e. \eigendocs{}).]{{\includegraphics[width=6.5cm]{images/OPTICS/eigendocs/OPTICS_cluster_eigendocs.pdf} }}%
-    \caption[\ac{optics} clusters]{The clusters were extracted from the respective reachability plots in \autoref{fig:reachability_plots} by \ac{optics}.
+    \caption[\ac{optics} clusters]{The clusters are extracted from the respective reachability plots in \autoref{fig:reachability_plots} by \ac{optics}.
     The blue points are noise points, whereas any other colour denotes a cluster.}%
     \label{fig:optics_cluster}%
 \end{figure}
@@ -23,11 +23,11 @@ Possibly, the objects are grouped by document size and are thus, less scattered 
 
 
 % cluster content
-To analyze the results of the clustering, the content of the clusters was examined.
-Since the documents are not labeled, the content of the clusters was analyzed by visual inspection.
+To analyze the results of the clustering, the content of the clusters is examined.
+Since the documents are not labeled, the content of the clusters is analyzed by visual inspection.
 The content of the clusters is displayed in \autoref{fig:clusters_32x32} and \autoref{fig:clusters_eigendocs_with_noise}.
 The yellow images belong to the group identified as noise.
-The images preprocessed according to \autoref{pt:32} were partitioned into multiple small and one big cluster.
+The images preprocessed according to \autoref{pt:32} are partitioned into multiple small and one big cluster.
 The \eigendocs{} images' clusters have similar sizes. 
 The row of noise images is way longer than the other rows in \autoref{fig:clusters_eigendocs_with_noise}.
 Most of the certificates are classified as noise for both approaches.
@@ -40,7 +40,7 @@ Most of the certificates are classified as noise for both approaches.
     \caption[Detailed \ac{optics} clusters using 32x32 greyscale pixels]{The yellow images belong to the group denoted noise.
     Most certificates are classified as noise.
     There is one big cluster and multiple small clusters.
-    The images were preprocessed as discussed in \autoref{pt:32} to 32x32 greyscale pixels.
+    The images are preprocessed as discussed in \autoref{pt:32} to 32x32 greyscale pixels.
     }
     \label{fig:clusters_32x32}
 \end{figure}
@@ -50,7 +50,7 @@ Most of the certificates are classified as noise for both approaches.
     \centering
     \includegraphics[width=1.05\textwidth]{images/OPTICS/eigendocs/cluster_content_incl_noise_Eigendocs.pdf}
     \caption[Detailed \ac{optics} clusters using \eigendocs{}]{Most certificates are classified as noise. The rest of the clusters have similar sizes.
-    The images were preprocessed as discussed in \autoref{pt:eigendocs} (i.e. \eigendocs{}) to 13-dimensional greyscale pixels.
+    The images are preprocessed as discussed in \autoref{pt:eigendocs} (i.e. \eigendocs{}) to 13-dimensional greyscale pixels.
     }
     \label{fig:clusters_eigendocs_with_noise}
 \end{figure}
