@@ -109,7 +109,7 @@ The normalized similarity matrix for each model pair concerning one trial was ca
 The cardinalities were stored in a dictionary of lists indexed by the respective model pairs.
 Finally, the mean and standard deviation were computed for each model pair and stored in a \ac{csv} file.
 The results are displayed in \autoref{tab:mean_std_portion_shared_query_results}.
-The standard deviation does not exceed $0.1$ for any model pair and is similar among all non-reflexive combinations.
+The standard deviation does not exceed $0.1$ for any model pair and is similar among all combinations.
 As observed before, any two-element combination of \ac{d2v}, \ac{tfidf} and \ac{sbert} has the lowest mean portion ($18-20\%$) of shared query results.
 
 \begin{table}[]
@@ -123,21 +123,16 @@ As observed before, any two-element combination of \ac{d2v}, \ac{tfidf} and \ac{
     \hline
     \rowcolor[HTML]{C0C0C0} 
     \textbf{model 1} & \textbf{model 2} & \textbf{mean} & \textbf{std} \\ \hline
-    \ac{d2v}          & \ac{d2v}          & 1.0           & 0.0          \\ \hline
     \ac{d2v}          & \ac{use}        & 0.26          & 0.09         \\ \hline
     \ac{d2v}          & \infersent{}            & 0.26          & 0.07         \\ \hline
     \ac{d2v}          & \ac{tfidf}            & 0.2           & 0.08         \\ \hline
     \ac{d2v}          & \ac{sbert}          & 0.18          & 0.06         \\ \hline
-    \ac{use}        & \ac{use}        & 1.0           & 0.0          \\ \hline
     \ac{use}        & \infersent{}            & 0.33          & 0.08         \\ \hline
     \ac{use}        & \ac{tfidf}            & 0.25          & 0.08         \\ \hline
     \ac{use}        & \ac{sbert}          & 0.25          & 0.06         \\ \hline
-    \infersent{}            & \infersent{}            & 1.0           & 0.0          \\ \hline
     \infersent{}            & \ac{tfidf}            & 0.26          & 0.08         \\ \hline
     \infersent{}            & \ac{sbert}          & 0.24          & 0.06         \\ \hline
-    \ac{tfidf}            & \ac{tfidf}            & 1.0           & 0.0          \\ \hline
     \ac{tfidf}            & \ac{sbert}          & 0.18          & 0.05         \\ \hline
-    \ac{sbert}          & \ac{sbert}          & 1.0           & 0.0          \\ \hline
     \end{tabular}
     \label{tab:mean_std_portion_shared_query_results}
 \end{table}
