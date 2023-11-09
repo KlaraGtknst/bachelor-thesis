@@ -1,6 +1,6 @@
 \subsection{Top2Vec}\label{subsec:top2vec}
 
-The approach \ac{t2v} addresses several problems of state-of-the-art topic modeling approaches \cite{Top2Vec2020}.
+The approach \ac{t2v} addresses several problems of state-of-the-art topic analysis approaches \cite{Top2Vec2020}.
 Opposed to \ac{lda}, \ac{t2v} does not require the user to specify the number of topics $k$, 
 i.e. it does not discretize the topic space into $k$ topics, 
 and it does not require stop word removal or lemmatization.
@@ -31,12 +31,12 @@ The similarity between embeddings can be measured using the cosine similarity fu
 
 % topics, dimensionality reduction & clustering
 \citeauthor{Top2Vec2020} states that topics are continuous and can be described by different sets of words \cite{Top2Vec2020}.
-Hence, topic modeling can be defined as the task of finding sets of informative words that describe a document.
+Hence, topic analysis can be defined as the task of finding sets of informative words that describe a document.
 Documents in dense areas of the topic space are considered to be about the same topic.
 The density-based clustering algorithm \ac{hdbscan} is used to find these dense areas.
 Since \ac{hdbscan} has difficulties finding dense clusters in high-dimensional data, 
 the dimensionality reduction method \ac{umap} is applied \cite{Top2Vec2020}.
-The steps of the topic modeling procedure \ac{t2v} are depicted in \autoref{fig:top2vec}.
+The steps of the topic analysis procedure \ac{t2v} are depicted in \autoref{fig:top2vec}.
 
 A topic vector is denoted as the centroid or average of the document vectors that belong to a certain topic.
 %\citeauthor{Top2Vec2020} compared several topic vector definitions and found the arithmetic mean to be the best option \cite{Top2Vec2020}.
@@ -49,6 +49,6 @@ It is possible to merge topics to hierarchically reduce the number of topics to 
 \begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=0.7\textwidth]{images/topic_modelling/Top2Vec.svg}
-    \caption{Procedure of topic modeling using \ac{t2v}.}
+    \caption{Procedure of topic analysis using \ac{t2v}.}
     \label{fig:top2vec}
 \end{figure}

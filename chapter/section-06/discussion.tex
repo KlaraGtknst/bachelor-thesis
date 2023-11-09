@@ -76,11 +76,11 @@ Usually, cosine similarity is recommended for \ac{nlp} tasks and thus, applied i
 Soft cosine similarity is not used, since it is not available in \databaseName{}.
 However, the usage of soft cosine would likely improve the results.
 
-% topic modeling: wordclouds
+% topic analysis: wordclouds
 Since the techniques discussed in this section have to be merged into a single system 
 \wordcloud{} provides means to visualize the response documents containing the most similar documents for different models.
 This approach is well suited to describe topics as groups of predominant words \cite{topic_modeling2019}.
-The baseline topic modeling technique \ac{t2v} provides a \wordcloud{} implementation too.
+The baseline topic analysis technique \ac{t2v} provides a \wordcloud{} implementation too.
 
 % database: Elasticsearch
 The database used in this work is \databaseName{}.
@@ -96,7 +96,7 @@ The libraries were chosen after discussing options with this thesis' supervisor.
 However, the implementation of this tool is not the focus of this work.
 
 % top2vec
-The baseline topic modeling technique \ac{t2v} was chosen due to its simplicity and functionalities.
+The baseline topic analysis technique \ac{t2v} was chosen due to its simplicity and functionalities.
 The \ac{t2v} implementation is well documented and provides a \wordcloud{} implementation.
 Moreover, it enables the user to find similar topics for query terms and returns inherent topics in a data corpus.
 Hence, its functionality is similar to the functionality of the system developed in this work.

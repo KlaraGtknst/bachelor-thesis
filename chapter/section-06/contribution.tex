@@ -63,7 +63,7 @@ The second method is a heatmap that shows the average portion of shared response
 Lastly, the mean and standard deviation of the portion of shared response documents were calculated 
 to further investigate the distribution of the results obtained above.
 
-% topic modeling
+% topic analysis
 To ensure \wordcloud{}s display only valid words the tokens were lemmatized before applying the \wordcloud{} implemented by \citeauthor{wordcloud-dev}. 
 The existing functionalities implemented by the library \ac{t2v} were bundled into a class 
 which accepts inputs native to the task at hand.
@@ -93,6 +93,6 @@ The file names of the ten most similar documents and a \wordcloud{} of the most 
 
 An experimental evaluation of the embeddings was conducted.
 The visual embedding methods were found to be inferior to the semantic embedding methods on certain query documents.
-Moreover, the tool was compared to a baseline topic modeling approach called \ac{t2v}.
+Moreover, the tool was compared to a baseline topic analysis approach called \ac{t2v}.
 The library \ac{t2v} implements similar functionalities to the tool developed in this work.
 However, the tool is not designed for a productive environment since the focus is on the comparison of different models rather than usability.
