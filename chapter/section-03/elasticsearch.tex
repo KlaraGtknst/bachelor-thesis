@@ -1,5 +1,5 @@
 
-\section{Database Elasticsearch}\label{sec:db}
+\subsection{Database Elasticsearch}\label{sec:db}
 
 % introduction, users
 \databaseName{} is a widely used non-relational database, which was designed to store and perform full-text search on a large corpus of unstructured data \cite{Elasticsearch2017}.
@@ -63,9 +63,9 @@ It uses this local minimum as the starting point at the next lower layer and the
 The layers of the graph are built incrementally, and a neighbour selection heuristic, as depicted in \autoref{fig:hnsw-heuristic}, not only creates links between close elements, 
 but also between isolated clusters to ensure global connectivity \cite{Elasticsearch-kNN-HNSW}.
 
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includegraphics[width=0.3\textwidth]{images/Elasticsearch/HNSW-layer.png}
+    \includegraphics[width=0.4\textwidth]{images/Elasticsearch/HNSW-layer.png}
     \caption[Structure of \ac{hnsw} layers]{Structure of \ac{hnsw} layers from \cite{Elasticsearch-kNN-HNSW}.
     The search starts on the uppermost layer, i.e. the layer containing the longest links, greedily traversing the layer until reaching the local minimum.
     The local minimum is used as the starting point at the next lower layer and the process is repeated until the lowest layer is reached.
@@ -73,9 +73,9 @@ but also between isolated clusters to ensure global connectivity \cite{Elasticse
     \label{fig:hnsw-layer}
 \end{figure}
 
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includegraphics[width=0.3\textwidth]{images/Elasticsearch/HNSW-neighbour-selection-heuristic.png}
+    \includegraphics[width=0.5\textwidth]{images/Elasticsearch/HNSW-neighbour-selection-heuristic.png}
     \caption[Neighbour selection heuristic of \ac{hnsw}]{Neighbour selection heuristic of \ac{hnsw} from \cite{Elasticsearch-kNN-HNSW}.
     The heuristic creates diverse links, i.e. links between close elements (e.g., green circle and elements in cluster 1) 
     and between isolated clusters (e.g., green circle and $e_2$) to ensure global connectivity.

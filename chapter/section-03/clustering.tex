@@ -58,7 +58,7 @@ In order to create clusters of minimum size and density, \ac{dbscan} distinguish
 Moreover, a point $y \in X$ is \textit{density reachable} from $x \in X$, if there is a chain of objects $x_1, ..., x_n$ with $x_1 = x$ and $x_n = y$, 
 which are directly density reachable from each other as displayed in \autoref{fig:density_reachable} \cite{OPTICS_kMeans_2016}.
 
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=0.2\textwidth]{images/density_reachable}
     \caption[Density reachability]{Density reachability cf. \cite{OPTICS1999}.
@@ -70,7 +70,7 @@ which are directly density reachable from each other as displayed in \autoref{fi
 The objects $x \in X$ and $y \in X$ are said to be \textit{density connected}, if there is an object $o$, from which both $x$ and $y$ are density reachable \cite{OPTICS_kMeans_2016}.
 Density connectivity is visualized in \autoref{fig:density_connected}.
 
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=0.2\textwidth]{images/density_connected}
     \caption[Density connectivity]{Density connectivity cf. \cite{OPTICS1999}.
@@ -102,7 +102,7 @@ which is equivalent to repetitive clustering for a broad range of parameters \ci
 \citeauthor{OPTICS1999} claim that real-world datasets cannot be described by a single global density, since they often consist of different local densities, 
 as displayed in \autoref{fig:diff_density_cluster}.
 
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=0.4\textwidth]{images/diff_density_cluster}
     \caption[Clusters with different densities]{Clusters with different densities cf. \cite{OPTICS1999}.
@@ -145,7 +145,7 @@ of the spanning tree after omitting all edges with $\varepsilon < RD(y)$ \cite{O
 The relationship between $\varepsilon$, cluster density and nested density-based clusters is displayed in \autoref{fig:nested_density_cluster}.
 
 % nested clusters, eps, fixed minPts
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=0.5\textwidth]{images/nested_density_cluster.svg}
     \caption[Relationship between $\varepsilon$, cluster density and nested density-based clusters]

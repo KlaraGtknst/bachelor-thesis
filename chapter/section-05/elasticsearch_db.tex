@@ -17,9 +17,9 @@ The current time measurements are shown in \autoref{fig:time_init_db}.
 Portioning the work with the database is beneficial since it is possible to update the embeddings without having to recreate the database.
 Moreover, modulizing the initialization and filling of the database facilitates debugging and comparing the models used to create the embeddings.
 
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includegraphics[width=0.6\textwidth]{images/Elasticsearch/Time_necessary_to_compute_2048_embeddings.pdf}
+    \includegraphics[width=1\textwidth]{images/Elasticsearch/Time_necessary_to_compute_2048_embeddings.pdf}
     \caption[Times for creating the database]{Time per module of creating the Bahamas database using a random selection of 2048 documents.
     The reference time was measured using \texttt{cProfiler} on a \localMaschineStats{}.
     %the \texttt{timer} from \texttt{timeit.default\_timer} on a \localMaschineStats{}.

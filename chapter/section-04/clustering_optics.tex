@@ -1,8 +1,8 @@
 \subsection{Clustering using \acs*{optics}}\label{subsec:impl-optics}
 
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includesvg[width=0.5\textwidth]{images/OPTICS/OPTICS_procedure.svg}
+    \includesvg[width=1\textwidth]{images/OPTICS/OPTICS_procedure.svg}
     \caption[\ac{optics} procedure]{The first page of each document is converted to an image.
     The image is preprocessed, i.e. conversion to greyscale and resizing.
     }
@@ -21,18 +21,18 @@ There were two different preprocessing approaches:
 
 
 % preprocessed images
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includegraphics[width=0.4\textwidth]{images/OPTICS/32x32/preprocessed_docs.pdf}
+    \includegraphics[width=1\textwidth]{images/OPTICS/32x32/preprocessed_docs.pdf}
     \caption[Preprocessing to 32x32 normalized greyscale pixels]{Preprocessing of 100 documents to 32x32 normalized greyscale pixels.
     }
     \label{fig:preprocessed_docs_32x32}
 \end{figure}
 
 
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includegraphics[width=0.7\textwidth]{images/Eigendocs/transformation/eigendocs.pdf}
+    \includegraphics[width=1\textwidth]{images/Eigendocs/transformation/eigendocs.pdf}
     \caption[Preprocessing 10 randomly selected documents from the test set]{10 randomly selected documents from the test set.
     The number of images in the test set is 561, while the \ac{pca} model was fit to 1680 training images.
     The original images are displayed in the first row.

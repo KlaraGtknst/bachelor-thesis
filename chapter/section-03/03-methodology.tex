@@ -7,8 +7,7 @@ Afterwards, the different similarity measurements are introduced in \autoref{sec
 A selection of conventional topic analysis approaches is outlined in \autoref{sec:topic-modeling}.
 Subsequently, two data compression techniques are presented in \autoref{sec:compression}.
 Then, \autoref{sec:clustering} presents multiple clustering methods.
-The database applied is described in \autoref{sec:db}.
-Finally, the libraries used to implement the web application are introduced in \autoref{sec:BE_flask} and \autoref{sec:FE_angular}.
+Finally, the libraries used to implement the web application and the database are introduced in \autoref{sec:frameworks}.
 
 
 \input{chapter/section-03/preprocessing.tex}
@@ -29,8 +28,15 @@ Finally, the libraries used to implement the web application are introduced in \
 \input{chapter/section-03/clustering}
 
 
-\input{chapter/section-03/elasticsearch.tex}
+\section{Software frameworks}\label{sec:frameworks}
 
+The different methods explored in this work ought to be presented in a web application.
+This application should be used to compare the methods and to visualize the results.
+The database applied to store the results is described in \autoref{sec:db}.
+The web interface is implemented using \flask{} and \angular{}.
+\autoref{sec:BE_flask} and \autoref{sec:FE_angular} describe the frameworks and their components.
+
+\input{chapter/section-03/elasticsearch.tex}
 
 \input{chapter/section-03/flask.tex}
 

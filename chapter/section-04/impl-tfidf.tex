@@ -61,9 +61,9 @@ it is not unlikely that a document does not contain any of the vocabulary terms.
 The all-zero flag is necessary because the cosine similarity used to query for similar documents in the database cannot handle vectors of zero magnitude.
 The pipeline in \autoref{fig:tfidf_embedding} visualizes these steps.
 
-\begin{figure}[h] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includesvg[width=0.8\textwidth]{images/embeddings/tfidf/TFIDF_embedding.svg}
+    \includesvg[width=1\textwidth]{images/embeddings/tfidf/TFIDF_embedding.svg}
     \caption[\ac{tfidf} pipeline]{\ac{tfidf} pipeline.
     Firstly, the text extracted from the documents is preprocessed using a custom preprocessor.
     Then, the \ac{tfidf} values are obtained from the \texttt{TfidfVectorizer}.

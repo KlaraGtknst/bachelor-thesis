@@ -35,11 +35,11 @@ yield consistently similar results.
 
 \begin{figure}%
     \centering
-    \subfloat[\centering 3 response documents per query.]{{\includegraphics[width=4cm]{images/comparison/Venn_diagram_(10_queries_à_3_responses_in_a_2048_document_corpus).pdf} }}%
+    \subfloat[\centering 3 response documents per query.]{{\includegraphics[width=6.7cm]{images/comparison/Venn_diagram_(10_queries_à_3_responses_in_a_2048_document_corpus).pdf} }}%
     \qquad
-    \subfloat[\centering 5 response documents per query.]{{\includegraphics[width=4cm]{images/comparison/Venn_diagram_(10_queries_à_5_responses_in_a_2048_document_corpus).pdf} }}%
+    \subfloat[\centering 5 response documents per query.]{{\includegraphics[width=6.7cm]{images/comparison/Venn_diagram_(10_queries_à_5_responses_in_a_2048_document_corpus).pdf} }}%
     \qquad
-    \subfloat[\centering 10 response documents per query.]{{\includegraphics[width=4cm]{images/comparison/Venn_diagram_(10_queries_à_10_responses_in_a_2048_document_corpus).pdf} }}%
+    \subfloat[\centering 10 response documents per query.]{{\includegraphics[width=6.7cm]{images/comparison/Venn_diagram_(10_queries_à_10_responses_in_a_2048_document_corpus).pdf} }}%
     \qquad   
     \caption[Venn diagram of query results]{
     10 documents were randomly sampled from a 2048 document corpus.
@@ -83,7 +83,7 @@ If two models produce the same query results, the cell value is either the total
 Since the matrix is symmetric, only the upper triangular matrix is computed and the other half is mirrored.
 The matrix is then visualized using a heatmap as displayed in \autoref{fig:heatmap-comparison-models}.
 
-\begin{figure}[h] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includegraphics[width=0.7\textwidth]{images/comparison/Portion_of_equal_query_results.pdf}
     \caption[Comparison of models using a heatmap]
@@ -210,7 +210,7 @@ The models produced good query responses on a query document consisting of littl
 Even though at first glimpse, the response documents seem unrelated to the query document, they share multiple words, such as \textit{director}.
 Similar response documents do not have to be of similar visual appearance since the text embeddings only consider information from the text layer.
 
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includegraphics[width=1\textwidth]{images/query_results/42b7e56855c88c22ed01f381167e6f0887815e1ef7ea6b149be06ee1f8557b9e/Most_similar_images_found_by_infer.pdf}
     \caption[\infersent{} query responses]{\infersent{} query responses on a query document consisting of little text.

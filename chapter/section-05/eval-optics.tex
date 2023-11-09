@@ -12,9 +12,9 @@ Possibly, the objects are grouped by document size and are thus, less scattered 
 % OPTIC cluster results
 \begin{figure}%
     \centering
-    \subfloat[\centering Preprocessing according to \autoref{pt:32} (cf. \cite{OPTICS1999}).]{{\includegraphics[width=5cm]{images/OPTICS/32x32/OPTICS_cluster_32x32.pdf} }}%
+    \subfloat[\centering Preprocessing according to \autoref{pt:32} (cf. \cite{OPTICS1999}).]{{\includegraphics[width=6.5cm]{images/OPTICS/32x32/OPTICS_cluster_32x32.pdf} }}%
     \qquad
-    \subfloat[\centering Preprocessing according to \autoref{pt:eigendocs} (i.e. \eigendocs{}).]{{\includegraphics[width=5cm]{images/OPTICS/eigendocs/OPTICS_cluster_eigendocs.pdf} }}%
+    \subfloat[\centering Preprocessing according to \autoref{pt:eigendocs} (i.e. \eigendocs{}).]{{\includegraphics[width=6.5cm]{images/OPTICS/eigendocs/OPTICS_cluster_eigendocs.pdf} }}%
     \caption[\ac{optics} clusters]{The clusters were extracted from the respective reachability plots in \autoref{fig:reachability_plots} by \ac{optics}.
     The blue points are noise points, whereas any other colour denotes a cluster.}%
     \label{fig:optics_cluster}%
@@ -34,7 +34,7 @@ Most of the certificates are classified as noise for both approaches.
 
 
 % 32x32
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includegraphics[width=1.05\textwidth]{images/OPTICS/32x32/cluster_content_32x32.pdf}
     \caption[Detailed \ac{optics} clusters using 32x32 greyscale pixels]{The yellow images belong to the group denoted noise.
@@ -46,7 +46,7 @@ Most of the certificates are classified as noise for both approaches.
 \end{figure}
 
 % eigendocs with noise
-\begin{figure}[htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includegraphics[width=1.05\textwidth]{images/OPTICS/eigendocs/cluster_content_incl_noise_Eigendocs.pdf}
     \caption[Detailed \ac{optics} clusters using \eigendocs{}]{Most certificates are classified as noise. The rest of the clusters have similar sizes.

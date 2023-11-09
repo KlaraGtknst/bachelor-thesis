@@ -17,9 +17,9 @@ vocabulary and window size in terms of quality and speed \cite{glove2014}.
 Hence, the quality of the results obtained in this work may have suffered from using a custom \ac{w2v} instead of \acs{glove}.
 However, since the computation time of the project is a crucial factor, the custom \ac{w2v} was used.
 
-\begin{figure}%
+\begin{figure}[!htb]%
     \centering
-    \includegraphics[width=0.8\textwidth]{images/embeddings/infersent/InferSent_time_per_used_embedding_on_195_documents.pdf}
+    \includegraphics[width=1\textwidth]{images/embeddings/infersent/InferSent_time_per_used_embedding_on_195_documents.pdf}
     \caption[Times for \infersent{} embeddings per precomputed word embedding]
     {Reference time necessary to calculate and insert 195 \infersent{} embeddings for different precomputed word embeddings on a \localMaschineStats{}.
     Using a custom \ac{w2v} model is around $5.5$ times faster than \ac{glove}.
