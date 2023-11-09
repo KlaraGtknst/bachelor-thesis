@@ -34,9 +34,9 @@ The models used to encode the textual data from the data corpus are outlined bel
 \input{chapter/section-04/clustering_optics.tex}
 
 % topic analysis
-\subsection{topic analysis}\label{impl-topic-modeling}
+\subsection{Topic analysis}\label{impl-topic-modeling}
 
-Two topic modelling approaches are outlined below.
+Two topic analysis approaches are outlined below.
 The first one serves as the baseline model of this thesis and 
 the second one is used multiple times throughout the application to visualize results obtained by queries.
 
@@ -55,7 +55,7 @@ the second one is used multiple times throughout the application to visualize re
 \section{Trade-off between memory and query time}\label{sec:trade-off}
 
 At the beginning of this thesis, it was unclear to what degree the tool, 
-i.e. the database fields and query results, should be precomputed.
+i.e. the database fields and query results should be precomputed.
 The decision to build a tool which was trained once offline seemed to be the only option facing the amount of data.
 Since \databaseName{} provides fast queries, it is sufficient to rely on real-time queries.
 
