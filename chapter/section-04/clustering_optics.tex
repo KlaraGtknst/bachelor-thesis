@@ -48,12 +48,13 @@ The reachability distance ordered by \ac{optics} is displayed in \autoref{fig:re
 %The resulting clusters are displayed in \autoref{fig:optics_cluster}.
 
 % reachability plot
-\begin{figure}%
+\begin{figure}[!htb]%
     \centering
-    \subfloat[\centering The reachability plot of the documents preprocessed according to \autoref{pt:32} (cf. \cite{OPTICS1999}).]{{\includegraphics[width=5cm]{images/OPTICS/32x32/reachability_plot_32x32_pca_13dim.pdf} }}%
+    \subfloat[\centering The reachability plot of the documents preprocessed according to \autoref{pt:32} (cf. \cite{OPTICS1999}).]{{\includegraphics[width=6.5cm]{images/OPTICS/32x32/reachability_plot_32x32.pdf} }}%
     \qquad
-    \subfloat[\centering The reachability plot of the documents preprocessed according to \autoref{pt:eigendocs} (i.e. \eigendocs{}).]{{\includegraphics[width=5cm]{images/OPTICS/eigendocs/reachability_plot_13dim_eigendocs.pdf} }}%
+    \subfloat[\centering The reachability plot of the documents preprocessed according to \autoref{pt:eigendocs} (i.e. \eigendocs{}).]{{\includegraphics[width=7cm]{images/OPTICS/eigendocs/reachability_plot_eigendocs_13_dim.pdf} }}%
     \caption[Reachability distances]{The plot was created using the \ac{optics} algorithm from the Python library scikit-learn.
+    The underlying dataset consists of 2241 documents from the Bahamas leak.
     It shows the reachability distance of each document to its predecessor in the order list.}%
     \label{fig:reachability_plots}%
 \end{figure}
@@ -72,7 +73,7 @@ The code to initialize an exemplary \ac{optics} model is displayed in \lst{lst:o
 \begin{listing}[htp]
     \begin{minted}{python3}
         optics_model = OPTICS(cluster_method='dbscan', min_samples=2, max_eps=10, 
-            eps=0.5)
+            eps=1.5)
     \end{minted}
     \caption[Initialization of the \ac{optics} model]{Initialization of the \ac{optics} model.
     The minimum number of samples \texttt{min\_samples} in a cluster corresponds to \textit{minPts}.
