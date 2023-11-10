@@ -5,10 +5,10 @@ Since the data corpus is too big to be processed locally on a \localMaschineStat
 The scripts can be processed by multiple nodes which are managed by \slurm{}.
 
 \slurm{} is an open-source management tool for Linux clusters \cite{slurm-online}.
-It allocates resources, i.e. compute nodes, and provides the means to start, execute and monitor jobs \cite{slurm-online, slurm2003}.
+It allocates resources, i. e. compute nodes, and provides the means to start, execute and monitor jobs \cite{slurm-online, slurm2003}.
 
 The so-called \slurm{} daemons control nodes, partitions, jobs and job steps \cite{slurm-online}.
-A partition is a group of nodes and a job is the allocation of resources, i.e. compute nodes, to a user for a limited period of time.
+A partition is a group of nodes and a job is the allocation of resources, i. e. compute nodes, to a user for a limited period of time.
 A basic visualization of the architecture is given in \autoref{fig:slurm-architecture}.
 
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
@@ -40,7 +40,7 @@ A summary of the tasks and scripts is given in \autoref{tbl:sbatch-scripts}.
     allocate\_res.sh                                       & Allocates resources to enable a \ac{ssh} tunnel connection from a local \ac{vscode} instance to the server of the \ac{ies}. 
                                                                 When enabled, the database content can be displayed with the \databaseName{} plugin.\\ \hline
     create\_database.sh                                    & Initializes the database by specifying fields.                                                                                                                                                                                                                    \\ \hline
-    create\_documents.sh                                   & Inserts the document's metadata information, i.e. path and text.                                                                                                                                                                                                   \\ \hline
+    create\_documents.sh                                   & Inserts the document's metadata information, i. e. path and text.                                                                                                                                                                                                   \\ \hline
     elasticContainer.sh                                    & Starts the \databaseName{} container using the headless \texttt{podman-compose up} command.                                                                                                                                     \\ \hline
     init\_database.sh                                      & Initializes database, subsequentially inserts documents metadata, embeddings and clusters.                                                                                                                                                                        \\ \hline
     insert\_clusters.sh                                    & Inserts \ac{pca} weights, \ac{optics} and argmax clusters.                                                                                                                                                                      \\ \hline

@@ -3,7 +3,7 @@
 \ac{sbert} is an enhancement of \ac{bert}.
 % BERT
 \ac{bert} is a pre-trained transformer network.
-It predicts a target value, for i.e. classification or regression tasks, based on two input sentences \cite{HfsentTrans2019}.
+It predicts a target value, for i. e. classification or regression tasks, based on two input sentences \cite{HfsentTrans2019}.
 The input sentences are separated by a special token \texttt{[SEP]}.
 The base model applies multi-head attention over 12 transformer layers, whereas the large model applies multi-head attention over 24 transformer layers.
 The final label is derived from a regression function, which receives the output of the $12^\text{th}$ or $24^\text{th}$ layer, respectively.
@@ -16,10 +16,10 @@ do not perform well on sentence embeddings produced by \ac{bert} \cite{HfsentTra
 % SBERT
 \ac{sbert} provides fixed-sized embeddings for single sentences \cite{HfsentTrans2019}.
 It differs from \ac{bert} in terms of architecture, since it adds a pooling layer after the \ac{bert} model.
-\citeauthor{HfsentTrans2019} compare different pooling strategies, such as using the output of the \texttt{CLS} (i.e. first) token, mean pooling and max pooling.
+\citeauthor{HfsentTrans2019} compare different pooling strategies, such as using the output of the \texttt{CLS} (i. e. first) token, mean pooling and max pooling.
 The architecture of a single \ac{sbert} network is depicted in \autoref{fig:sbert}.
 In order to work with multiple input sentences at the same time, siamese and triplet network architectures, 
-i.e. multiple \ac{bert} networks with tied weights, are constructed.
+i. e. multiple \ac{bert} networks with tied weights, are constructed.
 To perform classification or inference tasks layers are added on top of the \ac{sbert} network.
 % training corpus
 \ac{sbert} is trained on the \ac{snli} dataset.

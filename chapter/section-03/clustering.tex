@@ -1,6 +1,6 @@
 \section{Clustering}\label{sec:clustering}
 
-Clustering is used in a variety of domains to group data into meaningful subclasses, i.e. clusters \cite{OPTICS2013, OPTICS2014, OPTICS_kMeans_2016}.
+Clustering is used in a variety of domains to group data into meaningful subclasses, i. e. clusters \cite{OPTICS2013, OPTICS2014, OPTICS_kMeans_2016}.
 According to \citeauthor{OPTICS2013} and \citeauthor{clusteringDocs2020}, common domains include anomaly detection, noise filtering, document clustering and image segmentation. 
 The objective is to find clusters, which have a low inter-class similarity and a high intra-class similarity \cite{OPTICS2013}.
 The similarity is measured by a distance function, which is dependent on the data type. 
@@ -45,7 +45,7 @@ In order to create clusters of minimum size and density, \ac{dbscan} distinguish
 
 \begin{itemize}
     \item \textbf{Core objects}: 
-    An object $x$ with at least $minPts \in \mathbb{N}$ objects in its $\varepsilon$-neighbourhood $N_\varepsilon(x)$, i.e. $| N_\varepsilon (x) | \geq minPts$ is true \cite{OPTICS2013}.
+    An object $x$ with at least $minPts \in \mathbb{N}$ objects in its $\varepsilon$-neighbourhood $N_\varepsilon(x)$, i. e. $| N_\varepsilon (x) | \geq minPts$ is true \cite{OPTICS2013}.
 
     \item \textbf{Border objects}: 
     An object with less than $minPts$ objects in its $\varepsilon$-neighbourhood, which is in the $\varepsilon$-neighbourhood of a core object.
@@ -90,7 +90,7 @@ According to \citeauthor{OPTICS_kMeans_2016}, \ac{dbscan} can identify outliers 
 However, the algorithm is sensitive to the input parameters $minPts$ and $\varepsilon$ and has difficulties distinguishing closely located clusters \cite{OPTICS_kMeans_2016}.
 Moreover, if one wants to obtain hierarchical clustering, one has to run the algorithm multiple times with different $\varepsilon$, which is expensive in terms of memory usage \cite{OPTICS2013}.
 According to \citeauthor{clusteringDocs2020}, \ac{dbscan} is affected by the curse of dimensionality.
-Since \ac{dbscan} relies on nearest neighbour queries and these become less meaningful in high dimensions, i.e. distances become difficult to interpret, 
+Since \ac{dbscan} relies on nearest neighbour queries and these become less meaningful in high dimensions, i. e. distances become difficult to interpret, 
 the quality and accuracy of the results decline with increasing dimensionality \cite{clusteringDocs2020}.
 \citeauthor{clusteringDocs2020} found that their \ac{dbscan} model assigns most objects noise when the dimensionality is sufficiently large.
 
@@ -115,9 +115,9 @@ as displayed in \autoref{fig:diff_density_cluster}.
 Opposed to \ac{dbscan}, \ac{optics} is able to detect clusters of varying densities \cite{OPTICS2014}.
 \ac{optics} produces an order of the elements according to the distance to the already added elements \cite{OPTICS2014, OPTICS2013}:
 The first element added to the order list is arbitrary.
-%$\varepsilon$ defines the neighbourhood radius, i.e. the maximum distance between two elements, which are still considered to be in the same neighbourhood \cite{OPTICS_kMeans_2016}.
+%$\varepsilon$ defines the neighbourhood radius, i. e. the maximum distance between two elements, which are still considered to be in the same neighbourhood \cite{OPTICS_kMeans_2016}.
 The order list is iteratively expanded by adding the element of the $\varepsilon$-neighbourhood to the order list, which has the smallest distance to any of the elements already in the order list.
-Hence, clusters with higher density, i.e. lower $\varepsilon$, are added first (prioritized) \cite{OPTICS_kMeans_2016, OPTICS1999}.
+Hence, clusters with higher density, i. e. lower $\varepsilon$, are added first (prioritized) \cite{OPTICS_kMeans_2016, OPTICS1999}.
 When there are no more elements in the $\varepsilon$-neighbourhood to add, the process is repeated for the other clusters.
 The non-core point cluster assigning is non-deterministic \cite{OPTICS2013}.
 
@@ -133,12 +133,12 @@ The non-core point cluster assigning is non-deterministic \cite{OPTICS2013}.
 
 \ac{optics} saves the reachability distance $RD(y)$, as calculated in \autoref{eq:optics-reachability-distance} from \cite{OPTICS2013},
 with core distance $core\_dist$ being the minimal distance $\varepsilon^{min}$ such that $| N_{\varepsilon^{min}} (x) | \geq minPts$ 
-(i.e. the distance to the $minPts^{th}$ point in $N_\varepsilon$) or NULL else, 
+(i. e. the distance to the $minPts^{th}$ point in $N_\varepsilon$) or NULL else, 
 of each element $y$ to its predecessor $x$ in the order list and thus, 
 a representation of the density necessary to keep two consecutive objects $x$ and $y$ in the same cluster \cite{OPTICS2013}.
 If $\varepsilon < RD(y)$, then $y$ is not density reachable from any of its predecessors and thus, 
 one can determine whether two points are in the same cluster for the information saved by \ac{optics} \cite{OPTICS2013, OPTICS1999}.
-If the core distance of an element is not NULL, i.e. it is a core object, and it is not density reachable from its predecessors, it is the start of a new cluster \cite{OPTICS1999}.
+If the core distance of an element is not NULL, i. e. it is a core object, and it is not density reachable from its predecessors, it is the start of a new cluster \cite{OPTICS1999}.
 Otherwise, the element is a noise point \cite{OPTICS1999}.
 According to \citeauthor{OPTICS2013}, the algorithm builds a spanning tree, which enables obtaining the clusters for a given $\varepsilon$ by returning the connected components 
 of the spanning tree after omitting all edges with $\varepsilon < RD(y)$ \cite{OPTICS2013}.
@@ -150,7 +150,7 @@ The relationship between $\varepsilon$, cluster density and nested density-based
     \includesvg[width=0.5\textwidth]{images/nested_density_cluster.svg}
     \caption[Relationship between $\varepsilon$, cluster density and nested density-based clusters]
     {The relationship between $\varepsilon$, cluster density and nested density-based clusters cf. \cite{OPTICS1999}.
-    For a constant $minPts$, clusters with higher density such as $C_1$, $C_2$ and $C_3$, i.e. a low $\varepsilon_2$ value, 
+    For a constant $minPts$, clusters with higher density such as $C_1$, $C_2$ and $C_3$, i. e. a low $\varepsilon_2$ value, 
     are completely contained in lower density clusters such as $C$ given $\varepsilon_1 > \varepsilon_2$.
     This idea forms the basis of \ac{optics} of expanding clusters iteratively and thus, 
     enables the detection of clusters for a broad range of neighbourhood radii $0 \le \varepsilon_i \le \varepsilon$.

@@ -9,7 +9,7 @@ The model handles inputs of different dimensions and thus, tokens can be sentenc
 
 \ac{d2v} is an adaption of the \ac{w2v} model, which maps words into a \ac{vsm} \cite{clusteringDocs2020}.
 Both approaches assume that words appearing in similar contexts are semantically similar. %\cite{clusteringDocs2020}.
-The \ac{w2v} embedding is obtained using a shallow \ac{nn}, i.e. the \ac{nn} has only one hidden layer.
+The \ac{w2v} embedding is obtained using a shallow \ac{nn}, i. e. the \ac{nn} has only one hidden layer.
 The embeddings are created by the hidden layer.
 There are two approaches to designing the architecture of the \ac{nn}:
 \begin{itemize}
@@ -37,7 +37,7 @@ There are two approaches to designing the architecture of the \ac{nn}:
     \label{fig:pvdm}%
 \end{figure}
  
-% context to center word
+% context to centre word
 \ac{pvdm} extends \ac{cbow} to work on a corpus of documents instead of on a set of words \cite{clusteringDocs2020}:
 As usual, vectors representing the words are obtained using the \ac{cbow} model.
 \ac{cbow} has a single-layer architecture \cite{glove2014}. %based on the inner product between two word vectors \cite{glove2014}.
@@ -46,7 +46,7 @@ As usual, vectors representing the words are obtained using the \ac{cbow} model.
 The word vectors can be concatenated, averaged or summed up \cite{SentRep2014}.
 Each document is mapped to a vector using an additional document-to-vector matrix.
 Both document and word vectors are initialized randomly, but trained to convey meaning in terms of semantic differentiation.
-In order to train the model, center words are predicted using the context.
+In order to train the model, centre words are predicted using the context.
 The context consists of words within a sliding window and their document, respectively represented as vectors \cite{SentRep2014}.
 The document vector is added to incorporate the document's topic and thus, acts like a memory \cite{SentRep2014, Top2Vec2020}.
 \citeauthor{SentRep2014} concatenate the document vector to the word vectors.
@@ -68,7 +68,7 @@ They also state that the document vectors are unique, while the word vectors are
     }%
     \label{fig:pvdbow}%
 \end{figure}
-% center word to context
+% centre word to context
 The \ac{pvdbow} approach is the adaption of the \ac{w2v} algorithm Skip-Gram and predicts the context 
 given the document \cite{SentRep2014}.
 The approaches are displayed in \autoref{fig:pvdbow}.

@@ -31,8 +31,8 @@ For instance, certain tokenization implementations may identify tokens as subseq
 
 \subsection{Stemming}\label{subsec:stemming}
 
-In order to avoid language inflections, i.e. treating words with similar meanings differently, stemming is applied \cite{clusteringDocs2020}.
-According to \citeauthor{nlp-book2009}, \textit{stemming} is the process of striping off any affixes, i.e. prefixes and suffixes \cite{IR2011}, 
+In order to avoid language inflections, i. e. treating words with similar meanings differently, stemming is applied \cite{clusteringDocs2020}.
+According to \citeauthor{nlp-book2009}, \textit{stemming} is the process of striping off any affixes, i. e. prefixes and suffixes \cite{IR2011}, 
 from a word and returning the stem.
 Different types of stemmers are better suited for certain applications than others.
 Hence, the choice of the stemmer depends on the application.
@@ -40,13 +40,13 @@ Hence, the choice of the stemmer depends on the application.
 % For instance, the \textit{Porter Stemmer} performs well for English texts \cite{nlp-book2009, clusteringDocs2020}.
 % It is predominantly used for the normalization of inflected forms.
 % The \textit{Porter Stemmer} is an algorithmic stemmer, 
-% i.e. it applies a set of rules to a word to produce the stem and thus, does not use a dictionary \cite{IR2011, clusteringDocs2020}.
+% i. e. it applies a set of rules to a word to produce the stem and thus, does not use a dictionary \cite{IR2011, clusteringDocs2020}.
 
 \subsection{Lemmatization}\label{subsec:lemmatization}
 
 Stemming and lemmatization are used to reduce the vocabulary size \cite{clusteringDocs2020}.
 Opposed to stemming, lemmatization returns only stems that are considered valid words \cite{nlp-book2009}.
-Some implementations of lemmatizers validate stems with regard to a set of valid words, i.e. \textit{lemma}s, stored in a dictionary.
+Some implementations of lemmatizers validate stems with regard to a set of valid words, i. e. \textit{lemma}s, stored in a dictionary.
 Lemmatizers are usually slower than stemmers \cite{nlp-book2009}.
 
 The \textit{WordNetLemmatizer} from the \texttt{nltk} package requires a vocabulary. % \cite{clusteringDocs2020}.

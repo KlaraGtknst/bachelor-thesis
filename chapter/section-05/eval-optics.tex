@@ -4,7 +4,7 @@
     \centering
     \subfloat[\centering Preprocessing according to \autoref{pt:32} (cf. \cite{OPTICS1999}).]{{\includegraphics[width=6.5cm]{images/OPTICS/32x32/OPTICS_cluster_32x32.pdf} }}%
     \qquad
-    \subfloat[\centering Preprocessing according to \autoref{pt:eigendocs} (i.e. \eigendocs{}).]{{\includegraphics[width=6.5cm]{images/OPTICS/eigendocs/OPTICS_cluster_eigendocs.pdf} }}%
+    \subfloat[\centering Preprocessing according to \autoref{pt:eigendocs} (i. e. \eigendocs{}).]{{\includegraphics[width=6.5cm]{images/OPTICS/eigendocs/OPTICS_cluster_eigendocs.pdf} }}%
     \caption[\ac{optics} clusters]{The clusters are extracted from the respective reachability plots in \autoref{fig:reachability_plots} by \ac{optics}.
     The blue points are noise points, whereas any other colour denotes a cluster.}%
     \label{fig:optics_cluster}%
@@ -33,7 +33,7 @@ Most of the certificates are classified as noise for both approaches.
     \centering
     \subfloat[\centering Preprocessing according to \autoref{pt:32} (cf. \cite{OPTICS1999}).]{{\includegraphics[width=6.5cm]{images/OPTICS/32x32/cluster_content_noise_32x32.pdf} }}%
     \qquad
-    \subfloat[\centering Preprocessing according to \autoref{pt:eigendocs} (i.e. \eigendocs{}).]{{\includegraphics[width=6.5cm]{images/OPTICS/eigendocs/cluster_content_noise_eigendocs.pdf} }}%
+    \subfloat[\centering Preprocessing according to \autoref{pt:eigendocs} (i. e. \eigendocs{}).]{{\includegraphics[width=6.5cm]{images/OPTICS/eigendocs/cluster_content_noise_eigendocs.pdf} }}%
     \caption[\ac{optics} clusters]{In this visualization, at most 10 random elements of a cluster are displayed.
     The yellow images belong to the group denoted as noise.
     Most certificates are classified as noise.
@@ -47,7 +47,7 @@ since it also encodes information about the document size.
 
 % code
 According to \citeauthor{OPTICS2014}, \ac{optics} was developed to improve \ac{dbscan} flaws.
-With respect to the evolution of these clustering methods, i.e. \ac{dbscan} being \ac{optics} basis, 
+With respect to the evolution of these clustering methods, i. e. \ac{dbscan} being \ac{optics} basis, 
 \ac{dbscan} is chosen for the cluster method in \lst{lst:optics_model}.
 In order to reduce calculation complexity the maximum $\varepsilon$ is 10.
 The distance between two points to still be considered neighbours is defined after a visual inspection of the reachability plot.
