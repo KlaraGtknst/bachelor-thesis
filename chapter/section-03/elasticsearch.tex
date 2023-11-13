@@ -4,8 +4,9 @@
 % introduction, users
 \databaseName{} is a widely used non-relational database, which was designed to store and perform full-text search on a large corpus of unstructured data \cite{Elasticsearch2017}.
 This open-source distributed document-driven database system is built in Java and is based on the Apache Lucene (Java) library for high-speed full-text search \cite{Elasticsearch2017, Elasticsearch2019}.
-According to \citeauthor{Elasticsearch2019}, \databaseName{} provides Wikipedia's full-text search and suggestions as well as Github's code search and Stack Overflow's geolocation queries and related questions.
-It enables near real-time search by index refreshing periods of one second.
+According to \citeauthor{Elasticsearch2019}, \databaseName{} provides Wikipedia's full-text search 
+and suggestions as well as Github's code search and Stack Overflow's geolocation queries and related questions.
+It enables near real-time search by short refreshing periods which make performed operations on the data quickly available for search.
 Needless to say, \databaseName{} is qualified to handle Big Data.
 
 % structure
@@ -50,41 +51,45 @@ By default, this option is not enabled but can be enabled and configured individ
 
 
 % knn-search
-Another search option of \databaseName{} is the \ac{knn} search.
+Another search option of \databaseName{} is the \ac{knn} search on real-valued vectors.
 The return value of a \ac{knn} search is the \texttt{k} nearest neighbours in terms of a certain distance function of a query vector \cite{Elasticsearch-kNN-HNSW}.
-The query is a dense vector of the same dimension as the vectors stored in the database.
+In order to perform \ac{knn} search on a \texttt{<field>} it has to be of type \texttt{dense\_vector}, 
+indexed and a \texttt{similarity} measure has to be defined when initializing the database \cite{Elasticsearch-knn}.
+The query has the same dimension as the vectors stored in the database.
 A \ac{knn} search either returns the exact brute-force nearest neighbours or 
 an approximation of the nearest neighbours calculated by the \ac{hnsw} algorithm \cite{Elasticsearch-kNN-HNSW, Elasticsearch-knn}.
 \ac{hnsw} is a graph-based algorithm \cite{Elasticsearch-kNN-HNSW}.
-The term \texttt{navigable} refers to the graphs used, which are graphs with (poly-)logarithmic scaling of links traversed during greedy traversal concerning the network size \cite{Elasticsearch-kNN-HNSW}.
-The idea of a \texttt{hiercharical} algorithm is to create a multilayer graph, grouping links according to their link length, as displayed in \autoref{fig:hnsw-layer}. 
-The search starts on the uppermost layer, i. e. the layer containing the longest links, greedily traversing the layer until reaching the local minimum.
-It uses this local minimum as the starting point at the next lower layer and the process is repeated until the lowest layer is reached \cite{Elasticsearch-kNN-HNSW}.
-The layers of the graph are built incrementally, and a neighbour selection heuristic, as depicted in \autoref{fig:hnsw-heuristic}, not only creates links between close elements, 
-but also between isolated clusters to ensure global connectivity \cite{Elasticsearch-kNN-HNSW}.
 
-\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
-    \centering
-    \includegraphics[width=0.4\textwidth]{images/Elasticsearch/HNSW-layer.png}
-    \caption[Structure of \ac{hnsw} layers]{Structure of \ac{hnsw} layers from \cite{Elasticsearch-kNN-HNSW}.
-    The search starts on the uppermost layer, i. e. the layer containing the longest links, greedily traversing the layer until reaching the local minimum.
-    The local minimum is used as the starting point at the next lower layer and the process is repeated until the lowest layer is reached.
-    }
-    \label{fig:hnsw-layer}
-\end{figure}
+% The term \texttt{navigable} refers to the graphs used, which are graphs with (poly-)logarithmic scaling of links traversed 
+% during greedy traversal concerning the network size \cite{Elasticsearch-kNN-HNSW}.
+% The idea of a \texttt{hiercharical} algorithm is to create a multilayer graph, grouping links according to their link length, as displayed in \autoref{fig:hnsw-layer}. 
+% The search starts on the uppermost layer, i. e. the layer containing the longest links, greedily traversing the layer until reaching the local minimum.
+% It uses this local minimum as the starting point at the next lower layer and the process is repeated until the lowest layer is reached \cite{Elasticsearch-kNN-HNSW}.
+% The layers of the graph are built incrementally, and a neighbour selection heuristic, as depicted in \autoref{fig:hnsw-heuristic}, not only creates links between close elements, 
+% but also between isolated clusters to ensure global connectivity \cite{Elasticsearch-kNN-HNSW}.
 
-\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/Elasticsearch/HNSW-neighbour-selection-heuristic.png}
-    \caption[Neighbour selection heuristic of \ac{hnsw}]{Neighbour selection heuristic of \ac{hnsw} from \cite{Elasticsearch-kNN-HNSW}.
-    The heuristic creates diverse links, i. e. links between close elements (e.g., green circle and elements in cluster 1) 
-    and between isolated clusters (e.g., green circle and $e_2$) to ensure global connectivity.
-    }
-    \label{fig:hnsw-heuristic}
-\end{figure}
+% \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+%     \centering
+%     \includegraphics[width=0.4\textwidth]{images/Elasticsearch/HNSW-layer.png}
+%     \caption[Structure of \ac{hnsw} layers]{Structure of \ac{hnsw} layers from \cite{Elasticsearch-kNN-HNSW}.
+%     The search starts on the uppermost layer, i. e. the layer containing the longest links, greedily traversing the layer until reaching the local minimum.
+%     The local minimum is used as the starting point at the next lower layer and the process is repeated until the lowest layer is reached.
+%     }
+%     \label{fig:hnsw-layer}
+% \end{figure}
 
-In order to perform \ac{knn} search on a \texttt{<field>} it has to be of type \texttt{dense\_vector}, indexed and a \texttt{similarity} measure has to be defined when initializing the database \cite{Elasticsearch-knn}.
-\databaseName{}'s \ac{knn} implementation not only allows literal matching on search terms but also semantic search \cite{Elasticsearch-knn}.
+% \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{images/Elasticsearch/HNSW-neighbour-selection-heuristic.png}
+%     \caption[Neighbour selection heuristic of \ac{hnsw}]{Neighbour selection heuristic of \ac{hnsw} from \cite{Elasticsearch-kNN-HNSW}.
+%     The heuristic creates diverse links, i. e. links between close elements (e.g., green circle and elements in cluster 1) 
+%     and between isolated clusters (e.g., green circle and $e_2$) to ensure global connectivity.
+%     }
+%     \label{fig:hnsw-heuristic}
+% \end{figure}
+
 
 Besides \databaseName{}, the elastic stack offers other tools, for instance, Kibana, which provides a user interface to manage different models.
 After saving a model in Kibana, it is possible to create a text embedding ingest pipeline, which embeds new documents or reindexes existing documents \cite{Elasticsearch-knn-embedding}.
+\databaseName{}'s \ac{knn} implementation not only allows literal matching on search terms 
+but also semantic search incorporating Kibana's text embedding ingest pipeline on search terms \cite{Elasticsearch-knn}.

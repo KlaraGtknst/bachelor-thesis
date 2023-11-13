@@ -3,9 +3,10 @@
 \ac{lda} is a generative model, which recreates the original document word distributions with minimal error given the topics \cite{topic_modeling2015, Top2Vec2020}.
 A discrete multinomial probability distribution over a vocabulary consisting of $W$ words is called a topic.
 A document is a mixture of $K$ latent topics.
+$K$ is defined a priori by the user.
 Hence, each document from the document corpus $D$ is represented by specific topic probabilities.
 
-The probability distribution learnt by \ac{lda} only considers the statistical relationship of word occurrences in documents \cite{Topic2Vec2015}.
+The probability distribution learned by \ac{lda} only considers the statistical relationship of word occurrences in documents \cite{Topic2Vec2015}.
 The content of a document can be described by the top $N$ words with the highest conditional probability given a topic \cite{Topic2Vec2015}.
 Due to the fact that \ac{lda} considers high probability words to be informative, words 
 that occur frequently are deemed important even though they might be uninformative in reality \cite{Top2Vec2020, Topic2Vec2015}.

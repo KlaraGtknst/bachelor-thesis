@@ -1,16 +1,18 @@
 \subsection{\acl*{d2v}}\label{subsec:doc2vec}
 
 Another term used for \ac{d2v} is \textit{Paragraph Vector} \cite{clusteringDocs2020, SentRep2014}.
-\ac{d2v} addresses the problems of \ac{tfidf} by encoding texts as $N-$dimensional vectors learnt using the words' context \cite{clusteringDocs2020}.
-Hence, it preserves semantic similarities between words and encodes linguistic regularities and patterns \cite{SkipGram2013}.
+\ac{d2v} addresses \ac{tfidf} drawbacks by encoding texts as $N-$dimensional vectors learnt using the words' context \cite{clusteringDocs2020}.
+$N \in \mathbb{N}$ can be chosen arbitrarily.
+It preserves semantic similarities between words and encodes linguistic regularities and patterns \cite{SkipGram2013}.
 % According to \citeauthor{clusteringDocs2020} and \citeauthor{SentRep2014}, 
 % \ac{d2v} learns continuous distributed vector representations for pieces of the text.
-The model handles inputs of different dimensions and thus, tokens can be sentences, paragraphs or documents.
+The model handles inputs of different lengths, i. e. inputs can be sentences, paragraphs or documents.
 
 \ac{d2v} is an adaption of the \ac{w2v} model, which maps words into a \ac{vsm} \cite{clusteringDocs2020}.
 Both approaches assume that words appearing in similar contexts are semantically similar. %\cite{clusteringDocs2020}.
+Hence, words which often appear in the same context produce similar embeddings.
 The \ac{w2v} embedding is obtained using a shallow \ac{nn}, i. e. the \ac{nn} has only one hidden layer.
-The embeddings are created by the hidden layer.
+The \ac{w2v} embeddings are created by the hidden layer.
 There are two approaches to designing the architecture of the \ac{nn}:
 \begin{itemize}
     \item \ac{pvdm}: 
@@ -53,8 +55,7 @@ The document vector is added to incorporate the document's topic and thus, acts 
 The resulting vector is the prediction of the central word.
 The approaches are displayed in \autoref{fig:pvdm}.
 
-According to \citeauthor{SentRep2014}, both \ac{cbow} and \ac{pvdm} are trained using stochastic gradient descent and backpropagation.
-They also state that the document vectors are unique, while the word vectors are shared across the whole corpus. 
+%According to \citeauthor{SentRep2014}, both \ac{cbow} and \ac{pvdm} are trained using stochastic gradient descent and backpropagation.
 
 \begin{figure}%
     \centering

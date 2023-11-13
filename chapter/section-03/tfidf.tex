@@ -1,21 +1,18 @@
 \subsection{\acl*{tfidf}}\label{subsec:tfidf}
 
 \ac{tfidf} provides a numerical representation of a word in a document \cite{clusteringDocs2020}.
-It considers the frequency $f_{w_{ij}, d_i}$  of a word $w_{ij}$ in a document $d_i$ and the frequency of a word in the whole corpus. 
-The frequency $f_{w_{ij}, d_i}$ is defined as $f_{w_{ij}, d_i} = \frac{\# \text{occurrences of } w_{ij} \text{ in }d_i}{\# \text{words in }d_i}$.
+It considers the frequency $f_{w_{j}, d}$  of a word $w_{j}$ in a document $d$ and the frequency of a word in the whole corpus. 
+The frequency $f_{w_{j}, d}$ is defined as $\frac{\# \text{occurrences of } w_{j} \text{ in }d}{\# \text{words in }d}$.
 
-\ac{tfidf} is calculated as displayed in \autoref{eq:tfidf-formula} from \cite{clusteringDocs2020}.
-The \ac{tf} is determined utilizing $TF(w_{ij}, d_i) = f_{w_{ij}, d_i}$, whereas the \ac{idf} is computed by $IDF(w_{ij}, D) = \log_2\frac{M}{M_{ij}}$, 
-$M_{ij}$ being the number of documents the term $w_{ij}$ appears in.
-\ac{idf} measures the importance of a term $w_{ij}$ in the corpus of documents $D$
+\ac{tfidf} is calculated using $TFIDF(w_{j}, d, D) = TF(w_{j}, d) \cdot IDF(w_{j}, D)$ from \cite{clusteringDocs2020}.
+Each entry of a \ac{tfidf} embedding vector represents the \ac{tfidf} value of a word in a document.
+The \ac{tf} is determined utilizing $TF(w_{j}, d) = f_{w_{j}, d}$, whereas the \ac{idf} is computed by $IDF(w_{j}, D) = \log_2\frac{M}{M_{j}}$, 
+$M_{j}$ being the number of documents the term $w_{j}$ appears in.
+
+\ac{idf} measures the importance of a term $w_{j}$ in the corpus of documents $D$
 under the assumption that a term's importance to the data corpus is inversely proportional to its occurrence frequency \cite{tfidf2008}.
 In other words: Terms which appear in many documents are not as important and thus, weighted less than document-specific terms. 
 The calculation of \ac{tf} and \ac{idf} is visualized exemplary in \autoref{fig:tfidf-calculation}.
-
-\begin{equation}
-    TFIDF(w_{ij}, d_i, D) = TF(w_{ij}, d_i) \cdot IDF(w_{ij}, D)
-    \label{eq:tfidf-formula}
-\end{equation}
 
 
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
@@ -35,5 +32,7 @@ The calculation of \ac{tf} and \ac{idf} is visualized exemplary in \autoref{fig:
     \item \ac{tfidf} does not consider semantic similarities between words.
     \item \ac{tfidf} does not take into account the order of words in a document.
     \item \ac{tfidf} often produces high dimensional representations which have to be postprocessed to reduce their dimensionality, e.g., by using \ac{pca}.
-    \item The embeddings are not derived from a mathematical model of term distribution and thus, are occasionally criticised as not well reasoned.
+    %\item The embeddings are not derived from a mathematical model of term distribution and thus, are occasionally criticised as not well reasoned.
 \end{itemize}
+
+% TODO: advantages of tfidf?

@@ -87,13 +87,13 @@ The matrix is then visualized using a heatmap as displayed in \autoref{fig:heatm
     \centering
     \includegraphics[width=0.7\textwidth]{images/comparison/Portion_of_equal_query_results.pdf}
     \caption[Comparison of models using a heatmap]
-    {Heatmap visualizing portion of shared query results on 2000 queries à 10 responses on a 2048 document corpus.}
+    {Heatmap visualizing portion of shared query results on 2000 queries with 10 responses each on a 2048 document corpus.}
     \label{fig:heatmap-comparison-models}
 \end{figure}
 
 % heatmap interpretation
 The heatmap in \autoref{fig:heatmap-comparison-models} shows that the models yield dissimilar query responses.
-It arose from 2000 queries à 10 responses on a 2048 document corpus.
+It arose from 2000 queries with 10 responses each on a 2048 document corpus.
 The similarity matrix is normalized to present the portion of shared query results for a query.
 \ac{use} and \infersent{} produce the most similar responses, which indicates the maximum value of shared query results.
 However, the maximum is less than $0.5$ and thus, rather dissimilar.
@@ -104,7 +104,7 @@ namely only around $25\%$ of shared response documents per query.
 Since the normalization does not consider the distribution of the cardinalities of the intersections of the query results among the models,
 another approach is to calculate the mean and standard deviation of the cardinalities of the intersections of the query results.
 Therefore, 30 trials are conducted.
-Each trial consists of 10 randomly sampled query documents à 10 responses (excluding the query document in the response).
+Each trial consists of 10 randomly sampled query documents with 10 responses each (excluding the query document in the response).
 The normalized similarity matrix for each model pair concerning one trial is calculated using \lst{lst:sim-matrix}.
 The cardinalities are stored in a dictionary of lists indexed by the respective model pairs.
 Finally, the mean and standard deviation are computed for each model pair and stored in a \ac{csv} file.
@@ -116,7 +116,7 @@ As observed before, any two-element combination of \ac{d2v}, \ac{tfidf} and \ac{
     \centering
     \caption{Mean and standard deviation of the average portion of shared response documents of different models on a 2048 document corpus.
     One trial produced five real values, i. e. one portion per model.
-    A portion is obtained from 10 randomly sampled query documents à 10 responses (excluding the query document in the response).
+    A portion is obtained from 10 randomly sampled query documents with 10 responses each (excluding the query document in the response).
     There were 30 trials.
     }
     \begin{tabular}{|l|l|l|l|}

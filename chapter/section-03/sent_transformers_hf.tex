@@ -3,7 +3,7 @@
 \ac{sbert} is an enhancement of \ac{bert}.
 % BERT
 \ac{bert} is a pre-trained transformer network.
-It predicts a target value, for i. e. classification or regression tasks, based on two input sentences \cite{HfsentTrans2019}.
+It predicts a target value, for i. e. sentence classification or sentence-pair regression tasks, based on two input sentences \cite{HfsentTrans2019}.
 The input sentences are separated by a special token \texttt{[SEP]}.
 The base model applies multi-head attention over 12 transformer layers, whereas the large model applies multi-head attention over 24 transformer layers.
 The final label is derived from a regression function, which receives the output of the $12^\text{th}$ or $24^\text{th}$ layer, respectively.
@@ -37,4 +37,4 @@ To perform classification or inference tasks layers are added on top of the \ac{
 % performance
 According to \citeauthor{HfsentTrans2019}, \ac{sbert} outperforms \infersent{} and \ac{use} on Semantic Textual Similarity tasks 
 and on SentEval, which is an evaluation toolkit for sentence embeddings \cite{HfsentTrans2019}.
-Moreover, due to \ac{sbert}'s transformer architecture, it is more computationally efficient than \ac{use} on \acp{gpu}.
+%Moreover, due to \ac{sbert}'s transformer architecture, it is more computationally efficient than \ac{use} on \acp{gpu}.

@@ -6,13 +6,14 @@ Examples of noise include so-called stop words, such as "the" or "and".
 However, irrelevant information can be task-specific. 
 In some cases, numerical data may be regarded to be irrelevant and thus, should be omitted.
 Hence, preprocessing improves the performance and the results \cite{clusteringDocs2020}.
-The next sections describe the preprocessing steps applied in this work.
+The next sections describe the non-trivial preprocessing steps applied in this work.
 They are visualized in \autoref{fig:preprocessing} on an exemplary text.
 
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=1\textwidth]{images/embeddings/tfidf/TFIDF_preprocessing.svg}
-    \caption[Preprocessing]{Preprocessing visualized using an example text.}
+    \caption[Preprocessing]{Preprocessing visualized using an example text.
+    The stop word removal implicitly tokenizes the text.}
     \label{fig:preprocessing}
 \end{figure}
 
@@ -29,10 +30,17 @@ For instance, certain tokenization implementations may identify tokens as subseq
 % Chunks do not overlap.
 % According to \citeauthor{nlp-book2009}, chunkers produce their pieces by following a set of rules, e.g., grammar rules.
 
+
+\subsection{Stop-Word-Removal}\label{subsec:stop-word-removal}
+
+Omitting words that are not relevant to the context of the text is called \textit{stop-word-removal}.
+Stop words not only depend on the domain but also the language \cite{IR2011}.
+
+
 \subsection{Stemming}\label{subsec:stemming}
 
 In order to avoid language inflections, i. e. treating words with similar meanings differently, stemming is applied \cite{clusteringDocs2020}.
-According to \citeauthor{nlp-book2009}, \textit{stemming} is the process of striping off any affixes, i. e. prefixes and suffixes \cite{IR2011}, 
+According to \citeauthor{nlp-book2009}, \textit{stemming} is the process of stripping off any affixes, i. e. prefixes and suffixes \cite{IR2011}, 
 from a word and returning the stem.
 Different types of stemmers are better suited for certain applications than others.
 Hence, the choice of the stemmer depends on the application.
@@ -42,6 +50,7 @@ Hence, the choice of the stemmer depends on the application.
 % The \textit{Porter Stemmer} is an algorithmic stemmer, 
 % i. e. it applies a set of rules to a word to produce the stem and thus, does not use a dictionary \cite{IR2011, clusteringDocs2020}.
 
+
 \subsection{Lemmatization}\label{subsec:lemmatization}
 
 Stemming and lemmatization are used to reduce the vocabulary size \cite{clusteringDocs2020}.
@@ -49,15 +58,9 @@ Opposed to stemming, lemmatization returns only stems that are considered valid 
 Some implementations of lemmatizers validate stems with regard to a set of valid words, i. e. \textit{lemma}s, stored in a dictionary.
 Lemmatizers are usually slower than stemmers \cite{nlp-book2009}.
 
-The \textit{WordNetLemmatizer} from the \texttt{nltk} package requires a vocabulary. % \cite{clusteringDocs2020}.
+The \textit{WordNetLemmatizer} from the \texttt{nltk} package\footnote{https://www.nltk.org/\_modules/nltk/stem/wordnet.html (last accessed: 12/11/2023)} requires a vocabulary. % \cite{clusteringDocs2020}.
 According to \citeauthor{clusteringDocs2020}, it is frequently used for lemmatization of English texts.
 It considers not only the meaning of words but also the order of the words \cite{clusteringDocs2020}.
-
-
-\subsection{Stop-Word-Removal}\label{subsec:stop-word-removal}
-
-Omitting words that are not relevant to the context of the text is called \textit{stop-word-removal}.
-Stop words not only depend on the domain but also the language \cite{IR2011}.
 
 
 % \subsection{Lower case}\label{subsec:lower-case}
