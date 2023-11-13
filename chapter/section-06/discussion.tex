@@ -6,6 +6,7 @@ The requirements imposed on the data format depend on the model.
 Some models do not require any preprocessing, while others require a lot of preprocessing.
 
 % tfidf preprocessing
+Opposed to the other semantic embedding methods \ac{tfidf} requires preprocessing.
 In this work, the \ac{tfidf} configuration includes the definition of a custom preprocessor.
 Consequently, preprocessing plays an important role in this embedding.
 The preprocessor is constructed with respect to the well-established preprocessing steps for \ac{nlp} tasks \cite{nlp-book2009},
@@ -16,27 +17,26 @@ by the database's dense vector dimension limitation.
 The custom preprocessor is compared to the default preprocessor on multiple datasets.
 Since it consistently produces smaller vocabulary sizes, it is chosen for the task.
 
-The other semantic embedding methods do not require any preprocessing.
 % visual preprocessing
-The visual embedding methods require more preprocessing.
+The visual embedding methods also require preprocessing.
 Originally, the images were matrices of \texttt{RGB} values.
 However, \ac{pca} and \ac{optics} require a vector as input.
 Therefore, the images are converted to greyscale and flattened to a vector.
 The images are resized to make them more comparable.
-Since \ac{optics}' performance deteriorates with increasing dimensionality, 
+Since clustering algorithms such as \ac{optics} encounter difficulties on high-dimensional data, 
 applying \ac{pca} to compress the data can be considered preprocessing.
 
 
 % compression: AE, PCA/ Eigendocs
 As mentioned before, the database has a dense vector dimension limitation of 2048.
-This limitation is a problem for the visual embedding methods as well as \infersent{} and 
+This limitation is a problem for the visual embedding methods as well as for \infersent{} and 
 \ac{tfidf}.
 The visual embedding methods are compressed with \ac{pca}, 
 whereas the encoder of a trained \ac{ae} is employed for textual embeddings.
 The \ac{pca} is fitted on 1000 randomly selected images.
 The number of components is selected beforehand in consideration of the explained variance and the reconstruction error.
 The architecture of the \ac{ae} is chosen in consideration of the reconstruction error on 195 documents.
-Both compression techniques would benefit from evaluation on a larger data set.
+However, both the \ac{pca} and the \ac{ae} model's quality would improve if they were trained on a larger dataset.
 
 
 % visual vs semantic
@@ -56,7 +56,7 @@ More precisely, the \texttt{argmax} approach returns poor results to some extent
 Consequently, \ac{optics} is considered the superior visual embedding method for the database.
 Moreover, the textual embedding methods produce more meaningful responses than the visual embedding methods.
 For example, textual embedding methods manage to find documents with the same company name, 
-while visual embedding methods naturally return visually similar documents.
+while visual embedding methods naturally return visually similar documents which not necessarily originated by the same company.
 
 
 % semantic: TFIDF, Doc2Vec, USE, InferSent, SBERT
@@ -65,7 +65,7 @@ Differences and similarities between the models are examined by comparing the re
 This evaluation includes the calculation of the average portion of shared documents between the responses of several models 
 and the exemplary evaluation of actual queries.
 \ac{tfidf}, \ac{d2v} and \ac{sbert} are most dissimilar from each other.
-The \ac{tfidf} approach performs rather poorly on unusual query documents.
+The \ac{tfidf} approach performs rather poorly on unusual query documents such as handwritten documents.
 
 
 % similarity: cosine
