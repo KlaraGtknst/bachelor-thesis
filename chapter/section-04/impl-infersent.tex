@@ -20,7 +20,7 @@ such as the word embedding dimension \texttt{word\_emb\_dim} or the dimension of
 % state dict
 The steps necessary to create a working instance of the \infersent{} model are presented in \lst{lst:infersent-init}.
 After the \infersent{} model is initialized in line \ref{line:init}, the \texttt{state\_dict} of the model is loaded in line \ref{line:state_dict}.
-This dictionary consists of learnable parameters, i. e. weights and bias, of the model.
+This dictionary consists of learnable parameters, i.e.\ weights and bias, of the model.
 The path to the word embeddings is set in line \ref{line:w2v_path}.
 Finally, in line \ref{line:vocab}, the vocabulary of the model is built or more precisely, only those embeddings needed are kept while the rest is discarded.
 

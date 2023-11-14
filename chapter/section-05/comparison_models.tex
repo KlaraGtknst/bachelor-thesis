@@ -9,7 +9,7 @@ acknowledging that this simplification should be revised in a more thorough anal
 This evaluation does not aim to find the best model but to compare the similarity of the models' query results.
 It is a qualitative evaluation of a selection of documents from the Bahamas leak.
 This selection is a 2048 document corpus that is randomly chosen without replacement.
-A query defines a field, i. e. embedding model and a query document.
+A query defines a field, i.e.\ embedding model and a query document.
 The query response consists of the documents that are considered most similar to the model's embedding of the query document in terms of cosine similarity.
 These responses are retrieved by a \ac{knn} query from the database for each model and stored in a \ac{csv} file.
 To facilitate working with the data, the document IDs can be encoded as monotonically increasing integers.
@@ -115,7 +115,7 @@ As observed before, any two-element combination of \ac{d2v}, \ac{tfidf} and \ac{
 \begin{table}[]
     \centering
     \caption{Mean and standard deviation of the average portion of shared response documents of different models on a 2048 document corpus.
-    One trial produced five real values, i. e. one portion per model.
+    One trial produced five real values, i.e.\ one portion per model.
     A portion is obtained from 10 randomly sampled query documents with 10 responses each (excluding the query document in the response).
     There were 30 trials.
     }
@@ -143,7 +143,7 @@ As observed before, any two-element combination of \ac{d2v}, \ac{tfidf} and \ac{
 To display the differences between the models exemplary, the five most similar documents to a random document are returned from the database and visualized.
 The text of the query document is encoded using the respective model and a 
 \ac{knn} query is used to obtain the results from the local database containing 2048 documents.
-The query image, i. e. the one surrounded by a border, is omitted from the database query response.
+The query image, i.e.\ the one surrounded by a border, is omitted from the database query response.
 The query responses are listed according to descending similarity to the query document.
 The query results are displayed in \autoref{fig:query_resp}.
 % \autoref{fig:query_resp_doc2vec} displays the \ac{d2v} reponses,  
@@ -216,10 +216,10 @@ Similar response documents do not have to be of similar visual appearance since 
 % bad results
 There are query documents such as the one in \autoref{fig:comp_query_resp} that reveal the dissimilarity between certain models.
 Most models' response documents are similar to \autoref{fig:good_query_resp_sbert}.
-These response documents depict the same type of document, i. e. handwritten receipts for an annual fee.
+These response documents depict the same type of document, i.e.\ handwritten receipts for an annual fee.
 The \ac{tfidf} model, however, returns different response documents.
 The response documents from \autoref{fig:bad_query_resp_tfidf} are not handwritten and cover a different content, 
-i. e. requesting a payment and three documents concerning an address change.
+i.e.\ requesting a payment and three documents concerning an address change.
 \ac{tfidf}'s results could thus be considered to be of poor quality.
 
 \begin{figure}[h!]

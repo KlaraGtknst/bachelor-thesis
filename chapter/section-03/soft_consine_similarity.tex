@@ -1,7 +1,7 @@
 
 \subsection{Soft Cosine Similarity}\label{subsec:soft-cosine-similarity}
 
-Soft cosine similarity assumes that features, i. e. index terms, correspond to words and thus, 
+Soft cosine similarity assumes that features, i.e.\ index terms, correspond to words and thus, 
 require embeddings to be produced by \ac{bow} models. 
 This similarity measure not only evaluates whether two texts consist of the same words but 
 also takes into account the semantic (word-level) similarity or lexical relation of different words of the texts \cite{soft_cosine2017}.
@@ -10,7 +10,7 @@ which assumes the tokens of the vocabulary are completely independent of each ot
 
 According to \citeauthor{soft_cosine2014}, in order to model this additional information, more dimensions are added to the \ac{vsm}.
 These dimensions can be obtained, for instance, by multiplying the mean of two features of one vector with the similarity between them \cite{soft_cosine2014}.
-The similarity can be calculated by using Levenshtein distance, i. e. the number of operations necessary to convert one string into another, 
+The similarity can be calculated by using Levenshtein distance, i.e.\ the number of operations necessary to convert one string into another, 
 or using a dictionary of synonyms.
 
 Since this approach no longer assumes that different words are independent of each other, 

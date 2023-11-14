@@ -1,12 +1,12 @@
 \subsection{KMeans}\label{subsec:kmeans}
 
 KMeans partitions the data into $k \in \mathbb{N}$  clusters, $k$ is given apriori \cite{OPTICS_kMeans_2016,clusteringDocs2020}. %
-First, $k$ centroids, i. e. cluster centres, are randomly initialized.
+First, $k$ centroids, i.e.\ cluster centres, are randomly initialized.
 Then, the objects are assigned to the closest centroid.
 Afterwards, the centroids are updated by calculating the mean of the assigned objects.
 The process is repeated until the terminating condition, for instance, no more change in the clusters, is met \cite{OPTICS_kMeans_2016}.
 By iteratively reassigning the objects to the closest centroid and updating the centroids, 
-the algorithm minimizes the within-cluster sum of squared errors $E$, i. e. the sum of squared (Euclidean) distances between objects in a cluster and their centroid $\mu_{i}$, 
+the algorithm minimizes the within-cluster sum of squared errors $E$, i.e.\ the sum of squared (Euclidean) distances between objects in a cluster and their centroid $\mu_{i}$, 
 calculated in \autoref{eq:kmeans-error} from \cite{OPTICS_kMeans_2016}, 
 where $C_{i}$ is the $i$-th cluster.
 

@@ -4,7 +4,7 @@
     \centering
     \includesvg[width=1\textwidth]{images/OPTICS/OPTICS_procedure.svg}
     \caption[\ac{optics} procedure]{The first page of each document is converted to an image.
-    The image is preprocessed, i. e. conversion to greyscale and resizing.
+    The image is preprocessed, i.e.\ conversion to greyscale and resizing.
     }
     \label{fig:OPTICS_procedure}
 \end{figure}
@@ -38,7 +38,7 @@ There are two different preprocessing approaches:
     The number of images in the test set is 561, while the \ac{pca} model is fitted to 1680 training images.
     The original images are displayed in the first row.
     The second row shows the reconstruction from their compressed version in the fourth row.
-    The third row shows the reconstruction error, i. e. the difference between the reconstructed and the original image.
+    The third row shows the reconstruction error, i.e.\ the difference between the reconstructed and the original image.
     The last row presents the greyscale values of the compressed 13-dimensional image as a line.
     }
     \label{fig:preprocessed_docs_eigendocs}
@@ -52,7 +52,7 @@ The reachability distance ordered by \ac{optics} is displayed in \autoref{fig:re
     \centering
     \subfloat[\centering The reachability plot of the documents preprocessed according to \autoref{pt:32} (cf. \cite{OPTICS1999}).]{{\includegraphics[width=6.5cm]{images/OPTICS/32x32/reachability_plot_32x32.pdf} }}%
     \qquad
-    \subfloat[\centering The reachability plot of the documents preprocessed according to \autoref{pt:eigendocs} (i. e. \eigendocs{}).]{{\includegraphics[width=7cm]{images/OPTICS/eigendocs/reachability_plot_eigendocs_13_dim.pdf} }}%
+    \subfloat[\centering The reachability plot of the documents preprocessed according to \autoref{pt:eigendocs} (i.e.\ \eigendocs{}).]{{\includegraphics[width=7cm]{images/OPTICS/eigendocs/reachability_plot_eigendocs_13_dim.pdf} }}%
     \caption[Reachability distances]{The plot was created using the \ac{optics} algorithm from the Python library scikit-learn.
     The underlying dataset consists of 2241 documents from the Bahamas leak.
     It shows the reachability distance of each document to its predecessor in the order list.}%

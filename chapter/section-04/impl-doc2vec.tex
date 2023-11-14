@@ -4,9 +4,9 @@ The library \texttt{gensim} provides the \ac{d2v} model used in this work.
 The model is initialized with input data of type \texttt{tagged Documents}, which are documents with (numerical) tags.
 The parameter \texttt{dm} determines the training algorithm used.
 The value \texttt{dm=1} specifies the \ac{pvdm} algorithm, while \texttt{dm=0} specifies the \ac{pvdbow} algorithm \cite{gensim-doc2vec}.
-The default algorithm, i. e. \ac{pvdm}, is used in this work \cite{gensim-word2vec-init}.
+The default algorithm, i.e.\ \ac{pvdm}, is used in this work \cite{gensim-word2vec-init}.
 The parameters \texttt{vector\_size} and \texttt{window} define the dimensionality of the embeddings and the size of the window, 
-i. e. the maximum distance between the current and the predicted word, respectively.
+i.e.\ the maximum distance between the current and the predicted word, respectively.
 The default value for \texttt{vector\_size} is 100, whereas the default window size is 8 \cite{gensim-word2vec-init, gensim-doc2vec-init}.
 The \texttt{min\_count} parameter defines a threshold below which words will be ignored.
 Its default value is 5.
@@ -14,5 +14,5 @@ The \texttt{workers} parameter denotes the number of threads to be used for trai
 The default value is 1 \cite{gensim-word2vec-init}.
 The \texttt{epochs} parameter specifies the number of iterations over the corpus.
 The default value is 10.
-By default, the hierarchical softmax algorithm, i. e. \texttt{hs=1}, is used for training \cite{gensim-doc2vec}.
+By default, the hierarchical softmax algorithm, i.e.\ \texttt{hs=1}, is used for training \cite{gensim-doc2vec}.
 Many \ac{d2v} default values are adopted from \ac{w2v} since the \texttt{gensim} \ac{d2v} implementation inherits from the \ac{w2v} implementation.

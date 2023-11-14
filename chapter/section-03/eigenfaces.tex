@@ -3,10 +3,10 @@
 According to \citeauthor{eigenfaces1991}, the idea of \eigenfaces{} is inspired by information theory.
 Opposed to former approaches in the domain of face recognition which relied on the classification of images based on a set of predefined facial features, such as distance between eyes,
 \eigenfaces{} does not use predefined features \cite{eigenfaces1991}.
-The goal of this approach is to represent images using a smaller set of image features, i. e. compression to a lower-dimensional feature space, 
+The goal of this approach is to represent images using a smaller set of image features, i.e.\ compression to a lower-dimensional feature space, 
 such that it is possible to distinguish between the images \cite{eigenfaces1991, eigenfaces2013}.
 These features do not necessarily correspond to human facial features \cite{eigenfaces1991}.
-Similar pictures, i. e. of the same person, should lie on a manifold in the lower-dimensional feature space \cite{face-recognition2008}.
+Similar pictures, i.e.\ of the same person, should lie on a manifold in the lower-dimensional feature space \cite{face-recognition2008}.
 The decomposition of input images not only reduces the complexity but also facilitates modeling probability density of a face image \cite{face-recognition2008}.
 
 % input image
@@ -20,7 +20,7 @@ Some authors stress that the background is removed to omit values outside the fa
 In literature, typically, the original images' dimension is 512x512 \cite{eigenfaces1991}/ 64x64 \cite{face-recognition2020}, 
 whereas the projected images' dimension is 16x16 \cite{eigenfaces1991}/ 250 \cite{face-recognition2020}.
 % normalization/ centering
-\citeauthor{eigenfaces1991} stress that the data should be normalized, i. e. centered: 
+\citeauthor{eigenfaces1991} stress that the data should be normalized, i.e.\ centered: 
 $\Phi_{k} = \mathbf{x}_{k} - {\psi }$. 
 $\Phi_{k}$ being the difference of the $k$-th training image and the average image $\psi = \frac{1}{N}\sum_{k=1}^{N}\textbf{x}_{k}$, $N$ being the number of training images.
 
@@ -41,7 +41,7 @@ The compressed image is a vector of the first $m$ weights of the linear combinat
 The weights denote the position of the projection of the face images in the feature space or so-called face space spanned by the first $m$ basis vectors \cite{eigenfaces1991}.
 
 % eigenfaces: KL base
-In the context of \eigenfaces{} one basis used for decomposition is the \ac{kl} basis, i. e. \ac{pca} \cite{eigenfaces1997, eigenfaces1991}.
+In the context of \eigenfaces{} one basis used for decomposition is the \ac{kl} basis, i.e.\ \ac{pca} \cite{eigenfaces1997, eigenfaces1991}.
 % source 1991, pg. 587: or fourier basis
 According to \citeauthor{eigenfaces1997}, the \ac{kl} representation is optimal in the sense that it minimizes the \ac{rmse} between the original image and 
 the compressed image calculated using $m < n$ orthogonal vectors.
@@ -53,12 +53,12 @@ There are two approaches in the literature to determine the number of \eigenface
     \item The cumulative explained variance of the first $i \le n$ eigenvectors (sorted by eigenvalues $\lambda_i$) is calculated 
         \cite{eigenfaces1997, face-recognition2020, face-recognition2021}.
         The eigenvalues $\lambda_i$ can be interpreted as the amount of variance explained by the corresponding eigenvector $\textbf{e}_i$, which is equivalent to information or entropy.
-        The user can choose how much variance, i. e. information, should be preserved, by choosing $m$ such that the explained variance is greater than a chosen threshold.
+        The user can choose how much variance, i.e.\ information, should be preserved, by choosing $m$ such that the explained variance is greater than a chosen threshold.
         \citeauthor{face-recognition2021} use a threshold of 90\%.
         A plot displaying the cumulative explained variance and a threshold of 90\% is shown in \autoref{fig:det_n_comp} (a).
 
     \item The number of \eigenfaces{} $m$ is chosen using the reconstruction error-complexity trade-off. % \cite{face-recognition2008}.
-        The reconstruction error, i. e. the \ac{rmse} of the original image $X$ and the inverse transformed image $X'$, is 
+        The reconstruction error, i.e.\ the \ac{rmse} of the original image $X$ and the inverse transformed image $X'$, is 
         calculated in \autoref{eq:rsme} for different values of $m$.
         The "elbow" point marks the point where the reconstruction error decreases only slightly for increasing $m$ and thus, is an indicator for the optimal $m$.
         A visualization of this approach is shown in \autoref{fig:det_n_comp} (b).

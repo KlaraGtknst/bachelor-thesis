@@ -1,7 +1,7 @@
 \chapter{Introduction}\label{ch:introduction}
 
 The Bahamas leak is a collection of roughly 38 \ac{gb} documents, which were leaked in 2016 \cite{data-corpus-bahamas-leaks}.
-The documents are unstructured, i. e. they are of different types, content and layout.
+The documents are unstructured, i.e.\ they are of different types, content and layout.
 Tax offices examine the data to identify tax evasion.
 However, it has proven to be challenging to identify relevant documents and their interconnections due to the amount of documents appertaining to the leak.
 %Therefore, the goal of this thesis is to support the investigators of the tax offices.
@@ -9,18 +9,18 @@ However, it has proven to be challenging to identify relevant documents and thei
 %To do this an approach that explores semantically and visually similar documents simultaneously is developed in this thesis.
 Under the assumption that there are similar documents in the document corpus, 
 this work infers it is valuable to explore semantically or visually similar documents simultaneously.
-Hence, the analysis of the text corpus includes analysis in terms of textual information, i. e. content derived from the text, 
-and visual information, i. e. appearance and layout.
+Hence, the analysis of the text corpus includes analysis in terms of textual information, i.e.\ content derived from the text, 
+and visual information, i.e.\ appearance and layout.
 The information gathered ought to be used to identify similarities between documents and group them.
 
 This thesis proposes an approach to group documents based on their appearance or semantic similarity, 
-which is defined via different embedding strategies, i. e. methods to derive embeddings from texts.
+which is defined via different embedding strategies, i.e.\ methods to derive embeddings from texts.
 Embeddings are numerical representations of words, sentences or texts.
-They enable the comparison of heterogeneous data, i. e. different inherent structures in the documents of the Bahamas leak.
+They enable the comparison of heterogeneous data, i.e.\ different inherent structures in the documents of the Bahamas leak.
 %Both the embeddings and the visual information are computed offline and stored in a database.
 %A query to this database returns the most similar documents to the query document based on the field specified.
 %A query document is a \ac{pdf} document from which textual and visual information can be derived.
-The embeddings are compared using cosine similarity, i. e. the angle between embedding vectors, 
+The embeddings are compared using cosine similarity, i.e.\ the angle between embedding vectors, 
 whereas visual information is clustered using different approaches including \ac{optics} beforehand.
 The visualization of the resulting groups of documents is based on topic analysis approaches including \wordcloud{}s.
 The goal of topic analysis techniques is to identify topics in a document corpus.

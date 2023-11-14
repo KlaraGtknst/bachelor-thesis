@@ -49,7 +49,7 @@ The structure of the index is presented in \autoref{tbl:Elasticsearch-fields}.
 % initialize, insert, update
 \subsubsection*{Initialization, insertion and updating}
 To facilitate working with and running the code the initialization of the database is split into multiple steps.
-As depicted in \autoref{fig:init_db}, first the database is initialized by defining the index name and the mappings, i. e. the field names, types and sizes.
+As depicted in \autoref{fig:init_db}, first the database is initialized by defining the index name and the mappings, i.e.\ the field names, types and sizes.
 This step is carried out using the method \texttt{create}.
 
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
@@ -102,7 +102,7 @@ The embeddings are added to the documents in a third step.
 % To make sure that it is possible to update embeddings individually without changing other fields, 
 % a method to insert the embeddings of a specific model for all documents is created.
 % The documents are updated using the \texttt{update} keyword and \texttt{bulk}.
-To increase the efficiency of this step, data parallelism, i. e. parallelizing the execution of a method across multiple input values, is applied.
+To increase the efficiency of this step, data parallelism, i.e.\ parallelizing the execution of a method across multiple input values, is applied.
 In this work, the data to be split among multiple processes is a set of paths to documents.
 The \texttt{Pool} object from the multiprocessing module is used for data parallelism.
 The steps carried out are displayed in \lst{lst:db_Pool_embeddings}.
@@ -165,7 +165,7 @@ The default analyzer is used for the full-text search since for instance configu
 \end{listing}
 
 Moreover, the fuzzy matching option is set to \texttt{AUTO}, which means in terms of keyword or text fields that the allowed Levenshtein Edit Distance, 
-i. e. number of characters changed to create an exact match between two terms, to be considered a match, is correlated to the length of the term \cite{Elasticsearch-fuzziness}.
+i.e.\ number of characters changed to create an exact match between two terms, to be considered a match, is correlated to the length of the term \cite{Elasticsearch-fuzziness}.
 By default, terms of length up to two characters must match exactly, terms of length three to five characters must have an edit distance of one and 
 terms of length six or more characters must have an edit distance of two \cite{Elasticsearch-fuzziness}.
 An exemplary query, which uses fuzzy search is given in \lst{lst:fuzzy_query}.

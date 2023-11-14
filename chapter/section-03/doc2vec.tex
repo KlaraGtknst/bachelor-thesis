@@ -6,12 +6,12 @@ $N \in \mathbb{N}$ can be chosen arbitrarily.
 It preserves semantic similarities between words and encodes linguistic regularities and patterns \cite{SkipGram2013}.
 % According to \citeauthor{clusteringDocs2020} and \citeauthor{SentRep2014}, 
 % \ac{d2v} learns continuous distributed vector representations for pieces of the text.
-The model handles inputs of different lengths, i. e. inputs can be sentences, paragraphs or documents.
+The model handles inputs of different lengths, i.e.\ inputs can be sentences, paragraphs or documents.
 
 \ac{d2v} is an adaption of the \ac{w2v} model, which maps words into a \ac{vsm} \cite{clusteringDocs2020}.
 Both approaches assume that words appearing in similar contexts are semantically similar. %\cite{clusteringDocs2020}.
 Hence, words which often appear in the same context produce similar embeddings.
-The \ac{w2v} embedding is obtained using a shallow \ac{nn}, i. e. the \ac{nn} has only one hidden layer.
+The \ac{w2v} embedding is obtained using a shallow \ac{nn}, i.e.\ the \ac{nn} has only one hidden layer.
 The \ac{w2v} embeddings are created by the hidden layer.
 There are two approaches to designing the architecture of the \ac{nn}:
 \begin{itemize}
