@@ -11,6 +11,20 @@ An embedding is obtained using the command from \lst{lst:encode-tfidf}.
 
 \begin{listing}[htp]
     \begin{minted}{python3}
+        tfidf = TfidfVectorizer(input='content', 
+                    preprocessor=TfidfTextPreprocessor().transform, min_df=3, 
+                    max_df=int(len(docs)*0.07))
+        tfidf.fit(documents)
+    \end{minted}
+    \caption[Initialization of the \ac{tfidf} model]{Initialization of the \ac{tfidf} model.
+    Firstly, an instance of the \texttt{TfidfVectorizer} class is created.
+    Secondly, the \texttt{fit} method is called to fit the model on the documents.
+    }
+    \label{lst:impl-tfidf}
+\end{listing}
+
+\begin{listing}[htp]
+    \begin{minted}{python3}
         tfidf_model.transform(text).todense()
     \end{minted}
     \caption[Encoding a text using the \ac{tfidf} model]{Encoding a text using the \ac{tfidf} model.
@@ -36,20 +50,6 @@ $v_{norm} = \frac{v}{\left\| v \right\|_{2}} = \frac{v}{\sqrt{v_1^{2} + v_2^{2} 
     \label{eq:tfidf-scikit-learn}
 \end{equation}
 
-\begin{listing}[htp]
-    \begin{minted}{python3}
-        tfidf = TfidfVectorizer(input='content', 
-                    preprocessor=TfidfTextPreprocessor().transform, min_df=3, 
-                    max_df=int(len(docs)*0.07))
-        tfidf.fit(documents)
-    \end{minted}
-    \caption[Initialization of the \ac{tfidf} model]{Initialization of the \ac{tfidf} model.
-    Firstly, an instance of the \texttt{TfidfVectorizer} class is created.
-    Secondly, the \texttt{fit} method is called to fit the model on the documents.
-    }
-    \label{lst:impl-tfidf}
-\end{listing}
-
 % pipeline
 In this work, the text of the \acp{pdf} is first extracted, then preprocessed using a custom preprocessor and afterwards embedded using the \texttt{TfidfVectorizer}.
 The \ac{tfidf} weights are considered the embedding.
@@ -59,6 +59,9 @@ All-zero \ac{tfidf} weights indicate that a document does not have any terms wit
 Since the vocabulary is kept relatively small with respect to the number of different words in the data corpus to reduce the dimensionality of the embeddings, 
 it is not unlikely that a document does not contain any of the vocabulary terms.
 The all-zero flag is necessary because the cosine similarity used to query for similar documents in the database cannot handle vectors of zero magnitude.
+This alteration does not change the cosine similarity between non-zero magnitude vectors, 
+since the additional zero adds no supplementary information to the calculation of the cosine similarity.
+The vectors with a one in the all-zero flag column have a cosine similarity of one.
 The pipeline in \autoref{fig:tfidf_embedding} visualizes these steps.
 
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
@@ -76,7 +79,7 @@ The pipeline in \autoref{fig:tfidf_embedding} visualizes these steps.
 
 % custom preprocessing
 In this work, a custom preprocessing function is used.
-The preprocessing steps are visualized in \autoref{fig:preprocessing} on an exemplary text.
+The preprocessing steps introduced in \autoref{sec:preprocessing} (\autoref{fig:preprocessing}) are used here as well.
 Firstly, the accents are stripped from the text.
 Then, all new line symbols are replaced with a whitespace.
 Afterwards, the text is converted to lowercase.
@@ -93,3 +96,8 @@ Afterwards, the tokens are lemmatized.
 The lemmatizer used is \texttt{WordNetLemmatizer} from the \texttt{nltk} package.
 \texttt{WordNetLemmatizer} uses the English lexical database \texttt{WordNet} to return valid stems \cite{nltk-lemma-wordnet}
 In the end, the tokens are joined to a string and returned.
+
+% Autoencoder
+Since the dimensionality of the \ac{tfidf} embeddings is big for a large text corpus 
+an \ac{ae} is used to reduce the dimensionality of the embedding if its dimensionality exceeds 2048.
+The implementation of the \ac{ae} is outlined below.

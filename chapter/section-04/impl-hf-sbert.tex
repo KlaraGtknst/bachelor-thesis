@@ -1,6 +1,6 @@
 \subsubsection*{\ac{sbert}}\label{subsubsec:impl-sbert}
 
-The \ac{sbert} model is provided by PyTorch \cite{HfsentTrans2019}.
+The \ac{sbert} model is implemented with PyTorch \cite{HfsentTrans2019}.
 An instance of the model is obtained as shown in \lst{lst:impl-sbert}.
 The model contains a \ac{bert} transformer, which has a \texttt{max\_seq\_length} of $128$. 
 It does not convert inputs to lowercase by default \cite{sbert-dev}.

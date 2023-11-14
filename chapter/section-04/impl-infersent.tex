@@ -1,16 +1,23 @@
 \subsubsection*{\infersent{}}\label{subsubsec:impl-infersent}
 
 % parameters
-The \infersent{} model is provided by PyTorch \cite{HfsentTrans2019}.
+The \infersent{} model is implemented using PyTorch \cite{HfsentTrans2019}.
 The parameters used to initialize the model are presented in \lst{lst:infersent-params}.
-The parameter \texttt{version} indicates whether the model is trained with \acs{glove} or fastText for the value 1 or 2 respectively.
+The parameter \texttt{version} in line \ref{line:infersent_version} indicates whether 
+the model is trained with \acs{glove} or fastText for the value 1 or 2 respectively.
 Since the model is precomputed, it is not possible to change certain parameters, 
 such as the word embedding dimension \texttt{word\_emb\_dim} or the dimension of the output vectors \texttt{enc\_lstm\_dim}.
 
 \begin{listing}[htp]
-    \begin{minted}{python3}
-        {'bsize': 64, 'word_emb_dim': 300, 'enc_lstm_dim': 2048,  
-        'pool_type': 'max', 'dpout_model': 0.0, 'version': 1}
+    \begin{minted}[escapeinside=||]{python3}
+        {
+        'bsize': 64, 
+        'word_emb_dim': 300, 
+        'enc_lstm_dim': 2048,  
+        'pool_type': 'max', 
+        'dpout_model': 0.0, 
+        'version': 1|\phantomsection\label{line:infersent_version}|
+        }
     \end{minted}
     \caption{Parameters of the \infersent{} model.
     }
@@ -21,6 +28,7 @@ such as the word embedding dimension \texttt{word\_emb\_dim} or the dimension of
 The steps necessary to create a working instance of the \infersent{} model are presented in \lst{lst:infersent-init}.
 After the \infersent{} model is initialized in line \ref{line:init}, the \texttt{state\_dict} of the model is loaded in line \ref{line:state_dict}.
 This dictionary consists of learnable parameters, i.e.\ weights and bias, of the model.
+The \texttt{state\_dict} is obtained from the \ac{pkl} file of \infersent{} as stated in \cite{download-infersent}.
 The path to the word embeddings is set in line \ref{line:w2v_path}.
 Finally, in line \ref{line:vocab}, the vocabulary of the model is built or more precisely, only those embeddings needed are kept while the rest is discarded.
 
@@ -53,6 +61,7 @@ According to \citeauthor{UniversalSentEnc2018}, \acs{glove} introduces bias in t
 % own W2V
 In this work, a custom set of vector representations of words is used.
 The custom word embeddings are computed by a \ac{w2v} model trained on 2048 randomly selected documents from the Bahamas dataset.
+The usage of a selection reduces the run time of the script.
 The only parameter which differs from the default settings is the \texttt{vector\_size} which is set to 300.
 After the \ac{w2v} model is trained, the word embeddings are saved in a file.
 The file is post-processed to be compatible with the \infersent{} model.

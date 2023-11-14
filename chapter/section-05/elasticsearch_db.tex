@@ -19,8 +19,9 @@ Moreover, modulizing the initialization and filling of the database facilitates 
 
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
-    \includegraphics[width=1\textwidth]{images/Elasticsearch/Time_necessary_to_compute_2048_embeddings.pdf}
+    \includegraphics[width=1\textwidth]{images/Elasticsearch/Time_necessary_to_compute_2048_embeddings_log.pdf}
     \caption[Times for creating the database]{Time per module of creating the Bahamas database using a random selection of 2048 documents.
+    The x-axis is logarithmic.
     The reference time is measured using \texttt{cProfiler} on a \localMaschineStats{}.
     %the \texttt{timer} from \texttt{timeit.default\_timer} on a \localMaschineStats{}.
     }
