@@ -1,7 +1,8 @@
 \subsection{\eigenfaces{}}\label{subsec:eigenface}
 
 According to \citeauthor{eigenfaces1991}, the idea of \eigenfaces{} is inspired by information theory.
-Opposed to former approaches in the domain of face recognition which relied on the classification of images based on a set of predefined facial features, such as distance between eyes,
+Opposed to former approaches in the domain of face recognition which relied on the classification of images based on a set of predefined facial features, 
+such as distance between eyes,
 \eigenfaces{} does not use predefined features \cite{eigenfaces1991}.
 The goal of this approach is to represent images using a smaller set of image features, i.e.\ compression to a lower-dimensional feature space, 
 such that it is possible to distinguish between the images \cite{eigenfaces1991, eigenfaces2013}.
@@ -11,14 +12,14 @@ The decomposition of input images not only reduces the complexity but also facil
 
 % input image
 % greyscale
-The greyscale input images are two-dimensional arrays of numbers: $\textbf{x} = \left\{ x_i, i \in \textbf{S} \right\}$, $\textbf{S}$ being a square lattice \cite{eigenfaces1997, eigenfaces1991}.
+The greyscale input images are two-dimensional arrays of numbers: $\textbf{x} = \left\{ x_i \vert i \in \textbf{S} \right\}$, $\textbf{S}$ being a square lattice \cite{eigenfaces1997, eigenfaces1991}.
 The images are reshaped to an one-dimensional array $\textbf{x} = \left[x_1, x_2, ..., x_n  \right]^{T} \in \mathbb{R}^{n}$, 
 where $n = \left\| \textbf{S} \right\|$ and $\mathbb{R}^{n}$ is the $n$-dimensional euclidean space \cite{eigenfaces1997}.
 % background
 Some authors stress that the background is removed to omit values outside the face area \cite{eigenfaces1991}.
 % dimension
-In literature, typically, the original images' dimension is 512x512 \cite{eigenfaces1991}/ 64x64 \cite{face-recognition2020}, 
-whereas the projected images' dimension is 16x16 \cite{eigenfaces1991}/ 250 \cite{face-recognition2020}.
+In literature, typically, the original images' dimension is 512x512 \cite{eigenfaces1991} or 64x64 \cite{face-recognition2020}, 
+whereas the projected images' dimension is 16x16 \cite{eigenfaces1991} or 250 \cite{face-recognition2020} respectively.
 % normalization/ centering
 \citeauthor{eigenfaces1991} stress that the data should be normalized, i.e.\ centered: 
 $\Phi_{k} = \mathbf{x}_{k} - {\psi }$. 
@@ -33,7 +34,7 @@ $\textbf{e}$ being an orthogonal basis
 \cite{eigenfaces1997}.
 If all basis vectors are used, the original image can be reconstructed using a linear combination of the basis vectors \cite{eigenfaces1991, face-recognition2020}.
 The number of basis vectors is limited by the minimum of the training set size $N$ \cite{eigenfaces1991} and the number of pixels $n$ \cite{face-recognition2020}.
-In order to compress the input from a $n-$ to a $m$-dimensional space, given $m \ll n$, only the first $m$ basis vectors are used.
+In order to compress the input from a $n$ to a $m$-dimensional space, given $m \ll n$, only the first $m$ basis vectors are used.
 The parameter $m$ and the basis $\textbf{e}$ is chosen such that $\hat{x}_{i}$ is small for $i \ge m$ \cite{eigenfaces1997}.
 The compressed version of the image is denoted $\textbf{x} \simeq \hat{\textbf{x}} = \left[\hat{x}_{1}, \hat{x}_{2}, ..., \hat{x}_{m}  \right]^{T}$.
 In other words: 
@@ -41,7 +42,7 @@ The compressed image is a vector of the first $m$ weights of the linear combinat
 The weights denote the position of the projection of the face images in the feature space or so-called face space spanned by the first $m$ basis vectors \cite{eigenfaces1991}.
 
 % eigenfaces: KL base
-In the context of \eigenfaces{} one basis used for decomposition is the \ac{kl} basis, i.e.\ \ac{pca} \cite{eigenfaces1997, eigenfaces1991}.
+In the context of \eigenfaces{}, one basis used for decomposition is the \ac{kl} basis, i.e.\ \ac{pca} \cite{eigenfaces1997, eigenfaces1991}.
 % source 1991, pg. 587: or fourier basis
 According to \citeauthor{eigenfaces1997}, the \ac{kl} representation is optimal in the sense that it minimizes the \ac{rmse} between the original image and 
 the compressed image calculated using $m < n$ orthogonal vectors.

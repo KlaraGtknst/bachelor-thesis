@@ -6,6 +6,7 @@ The frequency $f_{w_{j}, d}$ is defined as $\frac{\# \text{occurrences of } w_{j
 
 \ac{tfidf} is calculated using $TFIDF(w_{j}, d, D) = TF(w_{j}, d) \cdot IDF(w_{j}, D)$ from \cite{clusteringDocs2020}.
 Each entry of a \ac{tfidf} embedding vector represents the \ac{tfidf} value of a word in a document.
+Hence, the embedding vector is of the same length as the vocabulary of the corpus.
 The \ac{tf} is determined utilizing $TF(w_{j}, d) = f_{w_{j}, d}$, whereas the \ac{idf} is computed by $IDF(w_{j}, D) = \log_2\frac{M}{M_{j}}$, 
 $M_{j}$ being the number of documents the term $w_{j}$ appears in.
 

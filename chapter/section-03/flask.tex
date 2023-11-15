@@ -8,7 +8,7 @@ It is extensible and thus, can be extended with additional plugins without affec
 
 % technical details
 \flask{} uses the Jinja Template Engine for template files including \ac{html} pages,
-whereas static files such as \ac{css} files are handeled using the Werkzeug WSGI toolkit \cite{flask2015}.
+whereas static files such as \ac{css} files are handled using the Werkzeug WSGI toolkit \cite{flask2015}.
 According to \citeauthor{flask2015}, Jinja is modeled after the Django template system.
 Werkzeug implements, for instance, requests and response objects \cite{mvc_flask2019}.
 
@@ -39,7 +39,7 @@ To define a route, the \texttt{route} decorator is used as displayed in \lst{lst
             client = Elasticsearch(CLIENT_ADDR)
             return query_database.get_doc_meta_data(client, doc_id=id)
     \end{minted}
-    \caption[Routing using \flask{}]{Exemplartary definition of a function to display routing with \flask{}.
+    \caption[Routing using \flask{}]{Exemplary definition of a function to display routing with \flask{}.
     The \texttt{route} decorator is used to define the \ac{url} path.
     }
     \label{lst:flask_routing}
