@@ -19,12 +19,13 @@ The differences between both vocabularies are compared and visualized in \autore
 \begin{table}[]
     \caption[Comparison of the default and the custom \ac{tfidf} preprocessor]
     {Comparison of vocabulary sizes resulting from the default and the custom \ac{tfidf} preprocessor on different data corpus sizes.}
-    \begin{tabular}{|p{0.2\textwidth}|p{0.3\textwidth}|p{0.3\textwidth}|p{0.14\textwidth}|}
+    \begin{tabular}{|p{0.55\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|}
     \hline
-    \rowcolor[HTML]{C0C0C0} 
-    {\color[HTML]{000000} \textbf{document corpus size M}} & {\color[HTML]{000000} \textbf{custom preprocessor vocabulary size A}} & {\color[HTML]{000000} \textbf{default preprocessor vocabulary size B}} & {\color[HTML]{000000} \textbf{(B-A)/M}} \\ \hline
-    195                                                    & 1521                                                                  & 1641                                                                   & 120/195 = 0,6153846154                  \\ \hline
-    2048                                                   & 5585                                                                  & 5893                                                                   & 308/2048 = 0,150390625                  \\ \hline
+                                                                                                    & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{first trial}} & \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{second trial}} \\ \hline
+    \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{document corpus size M}}                 & {\color[HTML]{000000} 195}                                          & {\color[HTML]{000000} 2048}                                          \\ \hline
+    \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{custom preprocessor vocabulary size A}}  & {\color[HTML]{000000} 1521}                                         & {\color[HTML]{000000} 5585}                                          \\ \hline
+    \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{default preprocessor vocabulary size B}} & {\color[HTML]{000000} 1641}                                         & {\color[HTML]{000000} 5893}                                          \\ \hline
+    \cellcolor[HTML]{C0C0C0}{\color[HTML]{000000} \textbf{(B-A)/M}}                                & {\color[HTML]{000000} 120/195 = 0,6153846154}                       & {\color[HTML]{000000} 308/2048 = 0,150390625}                        \\ \hline
     \end{tabular}
     \label{tab:tfidf-preprocessor-comparison}
 \end{table}
@@ -34,7 +35,8 @@ The differences between both vocabularies are compared and visualized in \autore
     \subfloat[\centering The terms only present in the vocabulary produced by the default preprocessor.]{{\includegraphics[width=6.8cm]{images/embeddings/tfidf/Word_cloud_in_vocabular_which_is_in_default_but_not_custom.pdf} }}%
     \qquad
     \subfloat[\centering The terms only present in the vocabulary obtained from the custom preprocessor.]{{\includegraphics[width=6.8cm]{images/embeddings/tfidf/Word_cloud_in_vocabular_which_is_in_custom_but_not_default.pdf} }}%
-    \caption[\wordcloud{}s for different \ac{tfidf} preprocessors]{The \wordcloud{}s visualize which words are unique to both vocabularies.}%
+    \caption[\wordcloud{}s for different \ac{tfidf} preprocessors]{The \wordcloud{}s visualize which words are unique to both vocabularies 
+    on a random selection of 2048 documents.}%
     \label{fig:differences-vocabularies}%
 \end{figure}
 
@@ -46,5 +48,6 @@ The second approach should have been used to obtain specific documents from the 
 Hence, the vocabulary should consist of very document-specific terms and thus, \texttt{max\_df} would have been relatively low, to omit terms that occur in many documents.
 However, the restrictions imposed by the database implementation in terms of dimensionality limitations
 made it impossible to explore many parameter ranges.
-Therefore, only one \ac{tfidf} model is used in the end, whose parameters \texttt{min\_df} and \texttt{max\_df} are set to values which kept the vocabulary and thus,
+Therefore, only one \ac{tfidf} model is used in the end, whose parameters \texttt{min\_df} and \texttt{max\_df} are set to values 
+which kept the vocabulary size small and thus,
 the dimensionality of the embeddings is reasonably small.

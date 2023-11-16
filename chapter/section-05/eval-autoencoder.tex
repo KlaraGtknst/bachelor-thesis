@@ -1,14 +1,14 @@
 \subsection*{\ac{ae}}\label{subsec:evaluation-ae}
 
 % architecture
-In order to determine, which architecture for the hidden or so-called latent space of the \ac{ae} is the best option, 
+In order to determine which architecture for the hidden or so-called latent space of the \ac{ae} is the best option, 
 different architectures are tested and compared in terms of \ac{rsme} and cosine similarity.
 The \ac{rsme} is calculated as given in \lst{lst:impl-rsme}.
 The cosine similarity is calculated as given in \lst{lst:impl-cos_sim}.
 Due to the fact that cosine similarity values are bound by 0 and 1, they are easier to rank than metrics that can yield any real number.
 However, cosine similarity is usually applied to calculate the angle between two vectors and thus, one has to be cautious when interpreting the result obtained.
 For instance, the vectors $\left( 0, 1 \right)^T$ and $\left( 0, 2 \right)^T$ have a cosine similarity of 1, even though they are not the same vectors.
-Since an \ac{ae} is supposed to reconstruct the input rather than return a dependent or related vector, this metric should be combined with a tarditional metric.
+Since an \ac{ae} is supposed to reconstruct the input rather than return a dependent or related vector, this metric should be combined with a traditional metric.
 The dataset used for the evaluation is a selection of 195 documents from the Bahamas dataset.
 
 % RSME

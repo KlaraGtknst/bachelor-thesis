@@ -6,7 +6,7 @@ The requirements imposed on the data format depend on the model.
 Some models do not require any preprocessing, while others require a lot of preprocessing.
 
 % tfidf preprocessing
-Opposed to the other semantic embedding methods \ac{tfidf} requires preprocessing.
+Opposed to the other semantic embedding methods, \ac{tfidf} requires preprocessing.
 In this work, the \ac{tfidf} configuration includes the definition of a custom preprocessor.
 Consequently, preprocessing plays an important role in this embedding.
 The preprocessor is constructed with respect to the well-established preprocessing steps for \ac{nlp} tasks \cite{nlp-book2009},
@@ -40,9 +40,9 @@ However, both the \ac{pca} and the \ac{ae} model's quality would improve if they
 
 
 % visual vs semantic
-As already stated this work examined both ways to encode semantic and visual information.
+As already stated, this work examined both ways to encode semantic and visual information.
 The evaluation is conducted with respect to the task of finding similar documents.
-Since the data set is not labeled the evaluation is subjective and experimental.
+Since the data set is not labeled, the evaluation is subjective and experimental.
 Qualitative evaluation is conducted by inspecting the responses of different models for several sample queries to the database 
 storing the respective embeddings.
 The inspection is conducted manually, 
@@ -77,7 +77,7 @@ Soft cosine similarity is not used, since it is not available in \databaseName{}
 However, the usage of soft cosine would likely improve the results.
 
 % topic analysis: wordclouds
-Since the techniques discussed in this section have to be merged into a single system 
+Since the techniques discussed in this section have to be merged into a single system, 
 \wordcloud{} provides means to visualize the response documents containing the most similar documents for different models.
 This approach is well suited to describe topics as groups of predominant words \cite{topic_modeling2019}.
 The baseline topic analysis technique \ac{t2v} provides a \wordcloud{} implementation too.
