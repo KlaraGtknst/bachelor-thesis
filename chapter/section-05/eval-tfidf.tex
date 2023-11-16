@@ -12,7 +12,12 @@ While the default preprocessor had a vocabulary size of 5893, the custom preproc
 The relative difference likely shrinks with a larger data set, 
 since the trend is already visible for two different data corpus sizes in \autoref{tab:tfidf-preprocessor-comparison}.
 The custom preprocessor is chosen because it had a smaller vocabulary size.
-The differences between both vocabularies are compared and visualized in \autoref{fig:differences-vocabularies}.
+The differences between both vocabularies are visualized in \autoref{fig:differences-vocabularies}.
+
+As stated in \autoref{sec:eval-db}, the \ac{tfidf} embeddings can be problematic 
+with regard to the maximal dimensionality of dense vectors stored in \databaseName{}.
+Hence, this work has to employ dimensionality reduction techniques to reduce the dimensionality of the embeddings.
+
 
 % Please add the following required packages to your document preamble:
 % \usepackage[table,xcdraw]{xcolor}

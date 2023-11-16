@@ -6,14 +6,17 @@
     \qquad
     \subfloat[\centering Preprocessing according to \autoref{pt:eigendocs} (i.e.\ \eigendocs{}).]{{\includegraphics[width=6.5cm]{images/OPTICS/eigendocs/OPTICS_cluster_eigendocs.pdf} }}%
     \caption[\ac{optics} clusters]{The clusters are extracted from the respective reachability plots in \autoref{fig:reachability_plots} by \ac{optics}.
+    The points in the three-dimensional space correspond to the weights of the first three principal components assigned by the \eigendocs{} algorithm.
     The blue points are noise points, whereas any other colour denotes a cluster.}%
     \label{fig:optics_cluster}%
 \end{figure}
 
 % 3d plots
-The algorithm \ac{optics} is applied to data, which is preprocessed according to \autoref{pt:32} and \autoref{pt:eigendocs}.
+The algorithm \ac{optics} is applied to data, which is preprocessed according to \autoref{pt:32} (cf. \cite{OPTICS1999}) 
+and \autoref{pt:eigendocs} (i.e.\ \eigendocs{}) from \autoref{subsec:impl-optics}.
 The clusters from \autoref{fig:optics_cluster} are extracted from the respective reachability plots in \autoref{fig:reachability_plots}.
-The three-dimensional plots visualize the first three dimensions of the data and thus, the weights of the first three principal components assigned by the \eigendocs{} algorithm.
+The three-dimensional plots visualize the first three dimensions of the data and thus, 
+the weights of the first three principal components assigned by the \eigendocs{} algorithm.
 By visual inspection and comparison of both plots, 
 it can be seen that the projection by the \eigendocs{} approach of \autoref{pt:eigendocs} scatters the objects further in the three-dimensional space.
 One could argue that this is due to the fact, 
@@ -27,7 +30,7 @@ Since the documents are not labeled, the content of the clusters is analyzed by 
 The content of the clusters is displayed in \autoref{fig:optics_content_cluster}.
 The yellow images belong to the group identified as noise.
 The images preprocessed according to \autoref{pt:32} are partitioned into more clusters than the \eigendocs{} approach.
-Most of the certificates are classified as noise for both approaches.
+Most of the certificates are classified as noise for both approaches in the trials carried out.
 
 \begin{figure}[!htb]%
     \centering
@@ -41,9 +44,9 @@ Most of the certificates are classified as noise for both approaches.
     \label{fig:optics_content_cluster}%
 \end{figure}
 
-
-The preprocessing approach used to create the \ac{optics} input for the \databaseName{} database index is \eigendocs{} 
-since it also encodes information about the document size. 
+The approach from \autoref{pt:32} (cf. \cite{OPTICS1999}) omits information about the images' original size. 
+This information is encoded in the \eigendocs{} approach.
+Hence, the preprocessing approach chosen to create the \ac{optics} input for the \databaseName{} database index is \eigendocs{}. 
 
 % code
 According to \citeauthor{OPTICS2014}, \ac{optics} was developed to improve \ac{dbscan} flaws.

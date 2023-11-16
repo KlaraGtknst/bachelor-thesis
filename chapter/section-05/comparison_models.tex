@@ -1,9 +1,9 @@
 \section{Comparison of models}\label{sec:evaluation-models}
 
 % parameters
-Similar to \citeauthor{glove2014}'s work, in this thesis, for many models used, any unspecified parameters are set to their default values, 
-assuming that they are close to optimal
-acknowledging that this simplification should be revised in a more thorough analysis.
+% Similar to \citeauthor{glove2014}'s work, in this thesis, for many models used, any unspecified parameters are set to their default values, 
+% assuming that they are close to optimal
+% acknowledging that this simplification should be revised in a more thorough analysis.
 
 % comparing models (qualitative)
 This evaluation does not aim to find the best model but to compare the similarity of the models' query results.
@@ -12,7 +12,7 @@ This selection is a 2048 document corpus that is randomly chosen without replace
 A query defines a field, i.e.\ embedding model and a query document.
 The query response consists of the documents that are considered most similar to the model's embedding of the query document in terms of cosine similarity.
 These responses are retrieved by a \ac{knn} query from the database for each model and stored in a \ac{csv} file.
-To facilitate working with the data, the document IDs can be encoded as monotonically increasing integers.
+%To facilitate working with the data, the document IDs can be encoded as monotonically increasing integers.
 
 % Venn diagram
 The first approach to compare the response documents is to visualize the intersection of the query results.

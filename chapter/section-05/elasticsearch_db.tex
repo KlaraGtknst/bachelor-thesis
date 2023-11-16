@@ -30,3 +30,11 @@ Moreover, modulizing the initialization and filling of the database facilitates 
 \end{figure}
 
 %A document store database can be used if the primary goal is to write fast rather than write save \cite{flask2018}.
+
+% limited dimensionality elastic search
+Since \databaseName{} stores vectors of at most 2048 dimensions,
+the \ac{tfidf} and \infersent{} embeddings are problematic.
+Besides imposing limits to the dimensionality of the embeddings, \databaseName{} offers a variety of convenient functionalities,
+such as the built-in \ac{knn} search.
+Therefore, in this work, \databaseName{} is used regardless of the dimensionality constraints imposed by the database.
+Hence, the techniques are adjusted to the database and not vice versa.

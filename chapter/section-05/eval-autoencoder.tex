@@ -47,7 +47,11 @@ The dataset used for the evaluation is a selection of 195 documents from the Bah
 \end{figure}
 
 The scores of different architectures are shown in \fig{fig:eval-ae-architecture}.
+The x-axis denotes the number of neurons in the layers.
+The input space is 4096-dimensional since that is the dimensionality of \infersent{} embeddings.
+The output of the encoder is 2048-dimensional which is the maximum dimensionality supported by \databaseName{} for dense vectors.
+The other figures in the x-axis labels denote the other layers in the hidden space.
 While most of the architectures produced similar results, one architecture stood out.
 Combining 2500-, 3000- and 3500-dimensional layers in the hidden space produced the worst \ac{rsme} results.
-The best results are achieved by adding a 3500-dimensional layer in the hidden space.
+The smallest \ac{rsme} and the biggest cosine similarity are achieved by adding a 3500-dimensional layer in the hidden space.
 However, the results of the best architecture do not differ greatly from the others.
