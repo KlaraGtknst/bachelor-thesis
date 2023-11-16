@@ -1,13 +1,13 @@
 \section{\eigendocs{}}\label{sec:evaluation-eigendocs}
 % idea 
-Assuming the layout holds information about the document type, the first page of each document is used to extract this information.
-In the course of working with low-quality versions of the documents to minimize the memory necessary to store them, some documents looked similar.
-Therefore, the idea arose to use clustering algorithms to group the documents according to their appearance.
+% Assuming the layout holds information about the document type, the first page of each document is used to extract this information.
+% In the course of working with low-quality versions of the documents to minimize the memory necessary to store them, some documents looked similar.
+% Therefore, the idea arose to use clustering algorithms to group the documents according to their appearance.
 
 % number of components
 In order to determine the optimal number of components used for \eigendocs{} the cumulative explained variance and the reconstruction error are plotted 
 as displayed in \autoref{fig:det_n_comp} from \autoref{subsec:eigenface}.
-The first plot indicated that 90\% of the variance is explained by 95 components.
+The first plot indicated that 90\% of the variance is explained by 441 components.
 Usually, that would have been the number of dimensions of the subspace onto which the documents would have been projected.
 However, when working with cluster algorithms like \ac{optics}, the number of dimensions should be reduced even further to achieve valid clusters.
 Therefore the reconstruction error with respect to different numbers of components is taken into consideration.
@@ -20,6 +20,11 @@ Therefore the reconstruction error with respect to different numbers of componen
     \end{minted}
     \caption[Adaption of the \ac{rsme}]{
         Adaption of the \ac{rsme} to incorporate the content of the images assuming white pixels do not convey information.
+        Firstly, the squared difference between the original and the reconstructed image is calculated.
+        Since the values are normalized, a 1 corresponds to a white pixel.
+        Then, the non-white pixels, i.e.\ $1-$\texttt{X\_test}$> 0$, are summed up.
+        The portion of non-white pixels is calculated by dividing the sum by the number of pixels.
+        This approach considers pixels of value $0.5$ as 50\% white and thus, they are incorporated in the sum.
     }
     \label{lst:impl-weighted-rsme}
 \end{listing}
@@ -34,7 +39,7 @@ Since the number of components ought to be kept reasonably small, 13 is chosen.
 
 
 % results
-The results of the \eigendocs{} algorithm are displayed in \autoref{fig:preprocessed_docs_eigendocs}.
+Some impressions of the \eigendocs{} algorithm are displayed in \autoref{fig:preprocessed_docs_eigendocs}.
 Assuming that the selection of documents is representative, 
 the preprocessing of the documents using \eigendocs{} should have encoded information about the dimensionality of the images.
 However, this assumption is not valid since bigger document images exist.

@@ -4,14 +4,17 @@ and finally, the process of querying is outlined.
 
 % content
 \subsubsection*{Content of the database}
-In this work, the database is filled once with data from a large unstructured corpus of \ac{pdf} files.
+In this work, the database is filled once with data from the Bahamas leak.
+The data is a large unstructured corpus of \ac{pdf} files.
+Since leak data does not change over time it is not necessary to update the database.
 After the initialization of the database, it is used for queries. 
-Therefore, the workflow of processing the text corpus is done completely offline and in advance.
+Therefore, the workflow of processing the text corpus is carried out completely offline and in advance.
 
 The index \textit{Bahamas} stores different embeddings of the information derived from the text layer and metadata of the documents.
 As depicted in \autoref{fig:pdf2db}, not only textual information is stored in the database, 
 but also information about the appearance of the first page of the \ac{pdf}.
 The structure of the index is presented in \autoref{tbl:Elasticsearch-fields}.
+The visual information is stored in the fields \texttt{pca\_image}, \texttt{pca\_optics\_cluster} and \texttt{argmax\_pca\_cluster}.
 
 \begin{table}[]
     \caption{Fields of the \databaseName{} database index \textit{Bahamas}.}
@@ -171,7 +174,7 @@ terms of length six or more characters must have an edit distance of two \cite{E
 An exemplary query, which uses fuzzy search is given in \lst{lst:fuzzy_query}.
 
 According to \citeauthor{Elasticsearch-kNN-HNSW}, one of \ac{knn} search's use cases is semantic document retrieval, which makes it a good fit for this task.
-In this work, the approximate nearest neighbours search is used, since it is faster and the results are good enough for the purpose of this work.
+In this work, the approximate nearest neighbours search \ac{hnsw} is used since it is faster and the results are good enough for the purpose of this work.
 The similarity measure used in this work is the cosine similarity, which calculates the \texttt{\_score} of a document according to \autoref{eq:cosine-similarity-db} from \cite{Elasticsearch-kNN-similarity}, 
 where \texttt{query} is the query vector and \texttt{vector} is the vector representation of the document in the database.
 The other similarity measures provided by \databaseName{} are \texttt{l2\_norm} or 
@@ -186,4 +189,4 @@ are enhanced with an all-zero flag before inserting them into the database.
 
 In this work, the only tool from the elastic stack used is \databaseName{}.
 Without Kibana, the used models are saved on disk as \ac{pkl} files.
-Consequently, instead of using the \ac{knn} query structure for semantic search on embeddings provided by \databaseName{}, the normal \ac{knn} search on a field that contains an embedding is used.
+Consequently, instead of using the \ac{knn} query structure for semantic search on embeddings provided by \databaseName{} and Kibana, the normal \ac{knn} search on a field that contains an embedding is used.

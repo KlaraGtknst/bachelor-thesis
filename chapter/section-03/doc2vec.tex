@@ -12,8 +12,8 @@ The model handles inputs of different lengths, i.e.\ inputs can be sentences, pa
 Both approaches assume that words appearing in similar contexts are semantically similar. %\cite{clusteringDocs2020}.
 Hence, words which often appear in the same context produce similar embeddings.
 The \ac{w2v} embedding is obtained using a shallow \ac{nn}, i.e.\ the \ac{nn} has only one hidden layer.
-The \ac{w2v} embeddings are created by the hidden layer.
-There are two approaches to designing the architecture of the \ac{nn}:
+The embeddings are created by the hidden layer.
+There are two \ac{d2v} approaches to designing the architecture of the \ac{nn}:
 \begin{itemize}
     \item \ac{pvdm}: 
         Predicts a word given a context \cite{SentRep2014, WordRep2013}.
