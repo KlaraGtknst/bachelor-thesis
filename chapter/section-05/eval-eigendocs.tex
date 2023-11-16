@@ -37,8 +37,8 @@ Therefore, the reconstruction error is divided by the average number of non-whit
 Hence, the reconstruction error of an image is weighted by the amount of information it conveys.
 The calculation is given in \lst{lst:impl-weighted-rsme}.
 The result is displayed in \autoref{fig:det_n_comp}.
-The "elbow" points are visible at 13 and 30.
-Since the number of components ought to be kept reasonably small, 13 is chosen.
+Since the reconstruction error increases less rapidly after 10 to 20 components, the number of components is set to 13,
+which has been an "elbow" point in a similar trial using a not randomly selected dataset of 195 images.
 
 
 % results
