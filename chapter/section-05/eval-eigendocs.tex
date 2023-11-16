@@ -19,19 +19,22 @@ Therefore the reconstruction error with respect to different numbers of componen
             (np.sum(np.abs(1-X_test))/X_test.shape[0])) 
     \end{minted}
     \caption[Adaption of the \ac{rsme}]{
-        Adaption of the \ac{rsme} to incorporate the content of the images assuming white pixels do not convey information.
-        Firstly, the squared difference between the original and the reconstructed image is calculated.
+        Adaption of the \ac{rsme}: 
+        Firstly, the squared differences between the original and the reconstructed images are calculated.
         Since the values are normalized, a 1 corresponds to a white pixel.
-        Then, the non-white pixels, i.e.\ $1-$\texttt{X\_test}$> 0$, are summed up.
-        The portion of non-white pixels is calculated by dividing the sum by the number of pixels.
-        This approach considers pixels of value $0.5$ as 50\% white and thus, they are incorporated in the sum.
+        Then, the absolute values of all non-white pixels of the test set are summed up.
+        The average number of non-white pixels is calculated by dividing the sum by the number of images in the test set.
+        This approach considers pixels of value $p \in (0,1)$ as $(p \cdot 100)$\% white and thus, they are incorporated in the sum.
     }
     \label{lst:impl-weighted-rsme}
 \end{listing}
 
-The calculation of the reconstruction error is adapted to incorporate the content of the images.
+Usually, a \ac{rsme} is minimized to determine the optimize parameter configurations.
+In this case, the reconstruction error shall be interpreted.
+To facilitate the interpretability of the reconstruction error, its calculation is adapted to incorporate the content of the images.
 At first sight, the majority of image pixels are white, i.e.\ do not convey any information.
-Therefore, the reconstruction error is divided by the portion of non-white pixels. 
+Therefore, the reconstruction error is divided by the average number of non-white pixels. 
+Hence, the reconstruction error of an image is weighted by the amount of information it conveys.
 The calculation is given in \lst{lst:impl-weighted-rsme}.
 The result is displayed in \autoref{fig:det_n_comp}.
 The "elbow" points are visible at 13 and 30.
