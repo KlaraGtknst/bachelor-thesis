@@ -34,26 +34,22 @@ Therefore, the relative size of images in the corpus is incorporated in the resu
 However, some images are bigger than the maximum values of the selected images and as a consequence are scaled.
 
 \begin{listing}[htp]
-    \begin{minted}{python3}
-        0.299*img[:,:,0] + 0.587*img[:,:,1] + 0.114*img[:,:,2]
-    \end{minted}
-    \caption[Conversion of RGB pixel values to greyscale]{Conversion of RGB pixel values to greyscale from a script by \thesissupervisor{} according to \cite{RGB2Grey}.}
-    \label{lst:rgb2grey}
-\end{listing}
-
-\begin{listing}[htp]
     \begin{minted}[escapeinside=||]{python3}
+        def rgb2gray(img):
+            return 0.299*img[:,:,0] + 0.587*img[:,:,1] + 0.114*img[:,:,2]
+        # more code
         C = np.ones((max_w,max_h))
         C[:doc.shape[0],:doc.shape[1]] = rgb2gray(doc)|\phantomsection\label{line:color}|
         documents.append(C.ravel())|\phantomsection\label{line:ravel}|
     \end{minted}
     \caption[Preprocessing of the input images]{Preprocessing of the input images from \thesissupervisor{}.
+    Conversion of RGB pixel values to greyscale according to \cite{RGB2Grey}.
     The background is a white canvas.
     The images are converted to one-dimensional greyscale values.}
     \label{lst:preproc_images}
 \end{listing}
 
-Afterwards, the images are converted to greyscale using \lst{lst:rgb2grey} (\lst{lst:preproc_images}, line \ref{line:color}).
+Afterwards, the images are converted to greyscale using line \ref{line:color} of \lst{lst:preproc_images}.
 Before returning the image, the two-dimensional image vectors are converted to one-dimensional ones as displayed in line \ref{line:ravel} of \lst{lst:preproc_images}.
 The decomposition is transformed using \ac{pca} as displayed in \lst{lst:pca_svd}.
 The implementation of \ac{pca} from \href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html}{sklearn} 

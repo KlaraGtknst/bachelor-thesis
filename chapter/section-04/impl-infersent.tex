@@ -10,14 +10,12 @@ such as the word embedding dimension \texttt{word\_emb\_dim} or the dimension of
 
 \begin{listing}[htp]
     \begin{minted}[escapeinside=||]{python3}
-        {
         'bsize': 64, 
         'word_emb_dim': 300, 
         'enc_lstm_dim': 2048,  
         'pool_type': 'max', 
         'dpout_model': 0.0, 
         'version': 1|\phantomsection\label{line:infersent_version}|
-        }
     \end{minted}
     \caption{Parameters of the \infersent{} model.
     }
@@ -30,7 +28,8 @@ After the \infersent{} model is initialized in line \ref{line:init}, the \texttt
 This dictionary consists of learnable parameters, i.e.\ weights and bias, of the model.
 The \texttt{state\_dict} is obtained from the \ac{pkl} file of \infersent{} as stated in \cite{download-infersent}.
 The path to the word embeddings is set in line \ref{line:w2v_path}.
-Finally, in line \ref{line:vocab}, the vocabulary of the model is built or more precisely, only those embeddings needed are kept while the rest is discarded.
+Finally, in line \ref{line:vocab}, the vocabulary of the model is built. 
+More precisely, only those embeddings needed are kept while the rest is discarded.
 
 \begin{listing}[htp]
     \begin{minted}[escapeinside=||]{python3}

@@ -6,9 +6,9 @@ The model contains a \ac{bert} transformer, which has a \texttt{max\_seq\_length
 It does not convert inputs to lowercase by default \cite{sbert-dev}.
 The output of the \ac{bert} transformer is passed to a pooling layer, which is initialized with the \texttt{pooling\_mode} parameter.
 The default is \texttt{mean\_pooling}, which calculates the mean of the output vectors of the transformer.
-The other options are \texttt{cls\_token\_pooling}, which returns the output of the first token, 
-\texttt{max\_pooling}, which returns the maximum value of the output vectors,
-and \texttt{pooling\_mode\_mean\_sqrt\_len\_tokens}.
+The other options include \texttt{cls\_token\_pooling}, which returns the output of the first token and 
+\texttt{max\_pooling}, which returns the maximum value of the output vectors.
+%and \texttt{pooling\_mode\_mean\_sqrt\_len\_tokens}.
 The word embedding dimension is 384 by default \cite{sbert-dev}.
 
 \begin{listing}[htp]
