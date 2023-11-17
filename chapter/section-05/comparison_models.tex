@@ -146,11 +146,6 @@ The text of the query document is encoded using the respective model and a
 The query image, i.e.\ the one surrounded by a border, is omitted from the database query response.
 The query responses are listed according to descending similarity to the query document.
 The query results are displayed in \autoref{fig:query_resp}.
-% \autoref{fig:query_resp_doc2vec} displays the \ac{d2v} reponses,  
-% \autoref{fig:query_resp_sbert} displays the \ac{sbert} reponses,  
-% \autoref{fig:query_resp_tfidf} displays the \ac{tfidf} reponses,  
-% \autoref{fig:query_resp_infer} displays the \infersent{} reponses,  
-% \autoref{fig:query_resp_use} displays the \ac{use} reponses.
 All models except \ac{d2v} and \ac{use} returned only documents of \textit{CREDIT SUISSE}.
 Apart from this difference, the query responses of the models are very similar.
 
@@ -197,8 +192,8 @@ Apart from this difference, the query responses of the models are very similar.
 
 To further investigate the differences between the models, 
 the query responses of the models are compared qualitatively on documents that were found to be unusual in terms of visual inspection.
-The first document in \autoref{fig:comp_query_resp} is a table consisting of little text compared to other samples from the data corpus.
-The second document in \autoref{fig:comp_query_resp} is mostly handwritten, which is unusual since most other samples are computer-generated.
+The document in \autoref{fig:bad_query_resp_tfidf} is a table consisting of little text compared to other samples from the data corpus.
+The document in \autoref{fig:good_query_resp_sbert} is mostly handwritten, which is unusual since most other samples are computer-generated.
 
 % good results
 The models produced good query responses on a query document consisting of little text as shown in \autoref{fig:good_query_resp_infer}.
@@ -218,12 +213,11 @@ There are query documents such as the one in \autoref{fig:comp_query_resp} that 
 Most models' response documents are similar to \autoref{fig:good_query_resp_sbert}.
 These response documents depict the same type of document, i.e.\ handwritten receipts for an annual fee.
 The \ac{tfidf} model, however, returns different response documents.
-The response documents from \autoref{fig:bad_query_resp_tfidf} are not handwritten and cover a different content, 
-i.e.\ requesting a payment and three documents concerning an address change.
+The response documents from \autoref{fig:bad_query_resp_tfidf} are not handwritten and cover different content, 
+i.e.\ requesting payment and three documents concerning an address change.
 \ac{tfidf}'s results could thus be considered to be of poor quality.
 
 \begin{figure}[h!]
-    \ContinuedFloat
     \begin{subfigure}{\textwidth}
         \centering
         \includegraphics[width=1\textwidth]{images/query_results/4542b223317eba23e4bda3e1536d61c8e2d2890a6439830ca8c62650bc1aac70/Most_similar_images_found_by_tfidf.pdf}
@@ -237,7 +231,6 @@ i.e.\ requesting a payment and three documents concerning an address change.
         \caption{\ac{sbert}}
         \label{fig:good_query_resp_sbert}
     \end{subfigure}
-
 \caption[Qualitative comparison of query responses]{Qualitative comparison of query responses.
 The majority of the query document consists of handwritten text.
 The results of the \ac{tfidf} model are not very similar to the query document and thus, are considered to be of poor quality.
@@ -267,14 +260,12 @@ Hence, the \ac{optics} clustering approach is considered to be superior to the \
         \centering
         \includegraphics[width=1\textwidth]{images/query_results/d5b16dcfc7c090c1c0ea7503d3fce417a84aa429a078478fdb4291805fee1328/Most_similar_images_found_by_pca_optics_cluster.pdf}
         \caption{\ac{optics}}
-        \label{fig:bad_query_resp_tfidf}
     \end{subfigure}
 
     \begin{subfigure}{\textwidth}
         \centering
         \includegraphics[width=1\textwidth]{images/query_results/d5b16dcfc7c090c1c0ea7503d3fce417a84aa429a078478fdb4291805fee1328/Most_similar_images_found_by_argmax_pca_cluster.pdf}
         \caption{\texttt{argmax} of \ac{pca} compression}
-        \label{fig:good_query_resp_sbert}
     \end{subfigure}
 
 \caption[Qualitative comparison of clustering on visual information]{Qualitative comparison of query responses.
@@ -289,14 +280,12 @@ They are not compared in terms of textual but visual similarity.
         \centering
         \includegraphics[width=1\textwidth]{images/query_results/320a70609babe5923c860ad16bc9f48e237b9d275c5269d177befab542bcff50/Most_similar_images_found_by_pca_optics_cluster.pdf}
         \caption{\ac{optics}}
-        \label{fig:bad_query_resp_tfidf}
     \end{subfigure}
 
     \begin{subfigure}{\textwidth}
         \centering
         \includegraphics[width=1\textwidth]{images/query_results/320a70609babe5923c860ad16bc9f48e237b9d275c5269d177befab542bcff50/Most_similar_images_found_by_argmax_pca_cluster.pdf}
         \caption{\texttt{argmax} of \ac{pca} compression}
-        \label{fig:good_query_resp_sbert}
     \end{subfigure}
 
 \caption[Qualitative comparison of query responses]{Qualitative comparison of query responses.
