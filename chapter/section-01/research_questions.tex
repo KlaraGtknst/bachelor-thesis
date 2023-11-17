@@ -1,22 +1,30 @@
 \section{Research Questions}\label{sec:research-questions}
 
 In order to support the exploration of large unstructured text data, 
-this thesis aims to provide computational means to facilitate the work with large unstructured text data.
+this thesis aims to provide computational means to facilitate the work with large corpora.
 In this work, different methods to derive semantic and visual information from unstructured text data are applied.
 These techniques ought to be compared and evaluated.
 % research questions (allgemein damit nützlich und speziell für die Aufgabe -> beantwortbar, Erkenntnis allg Interesse & Operationalisierbar: Experiment)
 In the following, the research questions addressed are defined:
 \begin{questions}%[style=unboxed]
-    \item Is it possible to use a visual representation to find similar documents in the corpus?\label{enum:rq1}
-    
-    \item How are the results of the system presented to experts?\label{enum:rq2}
-    
-    \item How can the performance of the system be evaluated?\label{enum:rq3}
+    \item \textbf{Is it possible to use a visual representation to find similar documents in the corpus?}\label{enum:rq1}
+    Assuming that it is valuable to explore documents of similar type, for instance, invoices, simultaneously,
+    the system should be able to find similar documents with respect to their visual appearance.
+    It remains to be seen whether encodings of the visual appearance of a document are sufficient to find similar documents.
 
-    \item Do different embedding methods produce similar results?\label{enum:rq4}
+    \item \textbf{Do different embedding methods produce similar results?}\label{enum:rq4}
     The task at hand defines a result as a set of similar documents to a query document.
     Hence, one has to compare response sets of different methods.
+    The similarity between to response documents can be evaluated with respect to the content or the visual appearance of the documents. 
+    
+    \item \textbf{How are the results of the system presented to experts?}\label{enum:rq2}
+    The system should be able to present the query responses in a way that is intuitive to the user.
+    The user should be able to explore the documents considered most similar to the query document.
+    Topics among a set of documents should be displayed to the user.
+    
+    \item \textbf{How can the performance of the system be evaluated?}\label{enum:rq3}
+    Since the dataset is not labeled, the performance of the system cannot be evaluated with respect to a ground truth.
+    Hence, other means of evaluation have to be found.
+    These techniques could include time measurements or qualitative analysis of the query responses.
+
 \end{questions}
-
-
-\ref{enum:rq1} is answered by the implementation of the system.
