@@ -1,13 +1,48 @@
 
 \section{Structure of the Thesis}\label{sec:structure-of-the-thesis}
-The remainder of this thesis is structured as follows.
-\autoref{ch:related-work} covers related work where similar approaches are presented.
-Moreover, the chapter introduces the literature that serves as a basis for this thesis.
-\autoref{ch:methodology} provides background information on the techniques applied in this thesis.
-Theoretical foundations are presented and the methods are described.
-\autoref{ch:implementation} describes the implementation of the methods, while
-\autoref{ch:evaluation} evaluates them.
-While \autoref{ch:implementation} only covers how the techniques can be implemented, 
-\autoref{ch:evaluation} gives a reason why certain parameter choices were made with respect to established parameter estimation approaches.
-\autoref{ch:conclusion-outlook} discusses the results, concludes this thesis and gives an outlook on future work.
-This chapter also includes a discussion of the limitations of this thesis.
+The thesis is structured as follows.
+
+\begin{description}
+    \item[Chapter \ref{ch:introduction}] \hfill \\
+        Firstly, the problem of working with large unstructured text corpora is introduced.
+        Secondly, the dataset used in this thesis is described.
+        Since this thesis aims to support the identification of tax fraud in fiscal documents 
+        by enabling simultaneous exploration of similar documents, 
+        the target audience is the investigators of the tax office.
+        Afterwards, the motivation and research questions are presented.
+        The chapter concludes with an outlook on the techniques used and an overview of the thesis.
+    
+    \item[Chapter \ref{ch:related-work}] \hfill \\
+        This chapter covers related work where similar approaches are presented.
+        Moreover, the chapter introduces the literature that serves as a basis for this thesis.
+
+    \item[Chapter \ref{ch:methodology}] \hfill \\
+        The background information on the techniques applied in this thesis are outlined in this chapter.
+        Theoretical foundations of preprocessing (cf. \autoref{sec:preprocessing}), 
+        semantic embeddings (cf. \autoref{sec:embeddings}), 
+        similarity measurements (cf. \autoref{sec:similarity-measurement}),
+        topic analysis (cf. \autoref{sec:topic-modeling}),
+        compression of data (cf. \autoref{sec:compression}),
+        clustering algorithms (cf. \autoref{sec:clustering})
+        and software frameworks (cf. \autoref{sec:frameworks})
+        is presented.
+
+    \item[Chapter \ref{ch:implementation}] \hfill \\  
+        This chapter describes the implementation of the methods.
+        The implementation is based on the theoretical foundations presented in \autoref{ch:methodology}.
+        The chapter also covers the offline preprocessing (cf. \autoref{sec:offline-processing}),
+        the implementation of the \ac{ui} (cf. \autoref{sec:ui})
+        and the trade-off between memory and query time in \autoref{sec:trade-off}.
+
+    \item[Chapter \ref{ch:evaluation}] \hfill \\
+        The evaluation of the methods is presented in this chapter.
+        It gives a reason why certain parameter choices were made 
+        with respect to established parameter estimation approaches.
+        Moreover, it compares the different methods with regard to their query responses 
+        and an existing baseline topic analysis approach.
+
+    \item[Chapter \ref{ch:conclusion-outlook}] \hfill \\
+        The last chapter discusses the results, concludes this thesis and gives an outlook on future work.
+        This chapter also includes a discussion of the limitations of this thesis.
+
+\end{description}
