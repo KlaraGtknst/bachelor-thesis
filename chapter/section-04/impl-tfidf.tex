@@ -77,9 +77,18 @@ The pipeline in \autoref{fig:tfidf_embedding} visualizes these steps.
     \label{fig:tfidf_embedding}
 \end{figure}
 
+
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=1\textwidth]{images/embeddings/tfidf/TFIDF_preprocessing.svg}
+    \caption[Preprocessing]{Preprocessing visualized using an example text.
+    The stop word removal implicitly tokenizes the text.}
+    \label{fig:preprocessing}
+\end{figure}
+
 % custom preprocessing
 In this work, a custom preprocessing function is used.
-The preprocessing steps introduced in \autoref{sec:preprocessing} (\autoref{fig:preprocessing}) are used here as well.
+The preprocessing steps are visualized in \autoref{fig:preprocessing}.
 Firstly, the accents are stripped from the text.
 Then, all new line symbols are replaced with a whitespace.
 Afterwards, the text is converted to lowercase.
@@ -100,4 +109,3 @@ In the end, the tokens are joined to a string and returned.
 % Autoencoder
 Since the dimensionality of the \ac{tfidf} embeddings is big for a large text corpus, 
 an \ac{ae} is used to reduce the dimensionality of the embedding if its dimensionality exceeds 2048.
-The implementation of the \ac{ae} is outlined below.

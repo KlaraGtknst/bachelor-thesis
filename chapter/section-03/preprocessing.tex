@@ -9,21 +9,22 @@ Hence, preprocessing improves the performance and the results \cite{clusteringDo
 The next sections describe the non-trivial preprocessing steps applied in this work.
 They are visualized in \autoref{fig:preprocessing} on an exemplary text.
 
-\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
-    \centering
-    \includesvg[width=1\textwidth]{images/embeddings/tfidf/TFIDF_preprocessing.svg}
-    \caption[Preprocessing]{Preprocessing visualized using an example text.
-    The stop word removal implicitly tokenizes the text.}
-    \label{fig:preprocessing}
-\end{figure}
 
 
 \subsection{Tokenization}\label{subsec:tokenization}
+
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=0.7\textwidth]{images/preprocessing/Preproc-tokenization.svg}
+    \caption[Tokenization]{Tokenization visualized using an example text.}
+    \label{fig:preproc-tokenization}
+\end{figure}
 
 \textit{Tokenization} is the process of splitting a text into smaller pieces, so-called \textit{tokens}.
 Tokens can be words and punctuation marks \cite{nlp-book2009}.
 However, the definition of a token depends on the application.
 For instance, certain tokenization implementations may identify tokens as subsequent series of non-whitespace characters omitting all numbers and punctuation marks \cite{IR2011}.
+
 
 % \textit{Chunking} is the process of splitting a text into smaller pieces, so-called \textit{chunks}.
 % A chunk is a sequence of tokens, e.g. words, in a text \cite{nlp-book2009}.
@@ -31,7 +32,14 @@ For instance, certain tokenization implementations may identify tokens as subseq
 % According to \citeauthor{nlp-book2009}, chunkers produce their pieces by following a set of rules, e.g., grammar rules.
 
 
-\subsection{Stop-Word-Removal}\label{subsec:stop-word-removal}
+\subsection{\stopWordRemoval{}}\label{subsec:stop-word-removal}
+
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=0.7\textwidth]{images/preprocessing/Preprocessing-stop-word-removal.svg}
+    \caption[\stopWordRemoval{}]{\stopWordRemoval{} visualized using an example text.}
+    \label{fig:preproc-stop-word-removal}
+\end{figure}
 
 Omitting words that are not relevant to the context of the text is called \textit{stop-word-removal}.
 Stop words not only depend on the domain but also the language \cite{IR2011}.
@@ -51,7 +59,14 @@ Hence, the choice of the stemmer depends on the application.
 % i.e.\ it applies a set of rules to a word to produce the stem and thus, does not use a dictionary \cite{IR2011, clusteringDocs2020}.
 
 
-\subsection{Lemmatization}\label{subsec:lemmatization}
+\subsection{\Lemmatization{}}\label{subsec:lemmatization}
+
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=0.7\textwidth]{images/preprocessing/Preprocessing-lemmatization.svg}
+    \caption[\Lemmatization{}]{\Lemmatization{} visualized using an example text.}
+    \label{fig:preproc-lemmatization}
+\end{figure}
 
 Stemming and lemmatization are used to reduce the vocabulary size \cite{clusteringDocs2020}.
 Opposed to stemming, lemmatization returns only stems that are considered valid words \cite{nlp-book2009}.
