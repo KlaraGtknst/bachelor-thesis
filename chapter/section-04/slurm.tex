@@ -25,7 +25,7 @@ A basic visualization of the architecture is given in \autoref{fig:slurm-archite
 A job is started by a \texttt{sbatch} script.
 This script defines the \texttt{partition}, the \texttt{job-name}, the number of \texttt{nodes}, the \texttt{cpus-per-task}, the memory \texttt{mem} allocated, 
 the \texttt{time} limit and the path to store \texttt{error} and \texttt{output} logs.
-It is possible to work on multiple \acp{cpu} simultaneously to divide the workload of a task.
+It is possible to work on multiple CPUs simultaneously to divide the workload of a task.
 In this work, multiple \texttt{sbatch} scripts are used to carry out a variety of tasks.
 A summary of the tasks and scripts is given in \autoref{tbl:sbatch-scripts}.
 
@@ -37,7 +37,7 @@ A summary of the tasks and scripts is given in \autoref{tbl:sbatch-scripts}.
     \hline
     \cellcolor[HTML]{C0C0C0}\textbf{Name of sbatch script} & \cellcolor[HTML]{C0C0C0}\textbf{Description}                                                                                                                                                                                                                      \\ \hline
     ae\_config.sh                                          & Comparison of different \ac{ae} architectures in terms of the metrics cosine similarity and \ac{rsme}.                                                                                                                                                                     \\ \hline
-    allocate\_res.sh                                       & Allocates resources to enable a \ac{ssh} tunnel connection from a local \ac{vscode} instance to the server of the \ac{ies}. 
+    allocate\_res.sh                                       & Allocates resources to enable a SSH tunnel connection from a local VSCode instance to the server of the \ac{ies}. 
                                                                 When enabled, the database content can be displayed with the \databaseName{} plugin.\\ \hline
     create\_database.sh                                    & Initializes the database by specifying fields.                                                                                                                                                                                                                    \\ \hline
     create\_documents.sh                                   & Inserts the document's metadata information, i.e.\ path and text.                                                                                                                                                                                                   \\ \hline
@@ -46,7 +46,7 @@ A summary of the tasks and scripts is given in \autoref{tbl:sbatch-scripts}.
     insert\_clusters.sh                                    & Inserts \ac{pca} weights, \ac{optics} and argmax clusters.                                                                                                                                                                      \\ \hline
     insert\_embeddings.sh                                  & Subsequentially inserts embeddings of documents.                                                                                                                                                                                                                  \\ \hline
     own\_w2v\_model.sh                                     & Creates and saves custom \ac{w2v} model.                                                                                                                                                                                                          \\ \hline
-    run\_pdf2png.sh                                        & Converts and saves the \ac{png} version of the first page of the \acp{pdf}.                                                                                                                                                             \\ \hline
+    run\_pdf2png.sh                                        & Converts and saves the PNG version of the first page of the PDFs.                                                                                                                                                             \\ \hline
     \end{tabular}
     \label{tbl:sbatch-scripts}
 \end{table}

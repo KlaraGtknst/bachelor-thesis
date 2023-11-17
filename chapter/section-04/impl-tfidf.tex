@@ -51,7 +51,7 @@ $v_{norm} = \frac{v}{\left\| v \right\|_{2}} = \frac{v}{\sqrt{v_1^{2} + v_2^{2} 
 \end{equation}
 
 % pipeline
-In this work, the text of the \acp{pdf} is first extracted, then preprocessed using a custom preprocessor and afterwards embedded using the \texttt{TfidfVectorizer}.
+In this work, the text of the PDFs is first extracted, then preprocessed using a custom preprocessor and afterwards embedded using the \texttt{TfidfVectorizer}.
 The \ac{tfidf} weights are the embedding.
 Before storing the \ac{tfidf} weights in the database, they are enhanced with an all-zero flag.
 The all-zero flag ensures that no all-zero vectors are stored in the database by extending those that have a zero magnitude with a "1" entry and "0" otherwise.

@@ -25,10 +25,10 @@ There are multiple endpoints, which are used to retrieve data from the server:
         Returns the metadata, i.e.\ text and path, of a document with the specified \texttt{id}.
         The \ac{url} to access this endpoint is \texttt{/documents/<id>}.
 
-    \item \label{pt:pdf}\ac{pdf}: 
-        Returns the \ac{pdf} file.
+    \item \label{pt:pdf}PDF: 
+        Returns the PDF file.
         %In order to access the path information necessary a query for a document with the specified \texttt{id} is performed.
-        This endpoint is used to display the \ac{pdf} in the detail component of the frontend.
+        This endpoint is used to display the PDF in the detail component of the frontend.
         The \ac{url} to access this endpoint is \texttt{/documents/<id>/pdf}.
     
     \item \label{pt:wordcloud}WordCloud: 
@@ -81,8 +81,8 @@ There are three main components, which are used to display the data:
         Beneath the document name and ID, a button which opens the term frequency image on a new page is located. 
         Moreover, the \wordcloud{} of the document is displayed.
         The \wordcloud{} is generated from the text of the document.
-        On the right side of the screen, there is a \ac{pdf} viewer which displays the pages of the document.
-        Beneath the \ac{pdf} viewer, the file names and a \wordcloud{} of the most similar documents are displayed after a query for them is initiated by the user.
+        On the right side of the screen, there is a PDF viewer which displays the pages of the document.
+        Beneath the PDF viewer, the file names and a \wordcloud{} of the most similar documents are displayed after a query for them is initiated by the user.
         The detail component is shown in \autoref{fig:detail_comp}.
 
     \item \label{pt:topic}Topic: 

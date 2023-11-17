@@ -3,11 +3,11 @@
 % introduction
 \flask{} is open source and written in Python by Armin Ronancher in 2004 \cite{flask2015, mvc_flask2019}.
 According to \citeauthor{flask_book2015} and \citeauthor{mvc_flask2019}, \flask{} is one of the most popular Python web frameworks.
-It provides powerful libraries for core functionality such as routing, templating, and \ac{http} request parsing \cite{flask_book2015}.
+It provides powerful libraries for core functionality such as routing, templating, and HTTP request parsing \cite{flask_book2015}.
 It is extensible and thus, can be extended with additional plugins without affecting the internal structure of the existing system \cite{flask2015}.
 
 % technical details
-\flask{} uses the Jinja Template Engine for template files including \ac{html} pages,
+\flask{} uses the Jinja Template Engine for template files including HTML pages,
 whereas static files such as \ac{css} files are handled using the Werkzeug WSGI toolkit \cite{flask2015}.
 According to \citeauthor{flask2015}, Jinja is modeled after the Django template system.
 Werkzeug implements, for instance, requests and response objects \cite{mvc_flask2019}.
@@ -55,6 +55,6 @@ During development, the \flask{} application can be run using \texttt{flask run}
 By enabling debug mode, the server automatically reloads the application when changes are detected.
 
 % endpoints
-An endpoint is a class with certain methods, which can be accessed using \ac{http} requests.
+An endpoint is a class with certain methods, which can be accessed using HTTP requests.
 Every endpoint can have multiple decorators, including \texttt{GET}, \texttt{POST}, \texttt{PUT} and \texttt{DELETE} \cite{flask2018}.
 The \texttt{GET} method is used to retrieve data from the server, whereas the other methods are used to either insert, update or delete data.
