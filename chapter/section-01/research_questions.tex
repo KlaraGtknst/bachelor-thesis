@@ -1,43 +1,22 @@
 \section{Research Questions}\label{sec:research-questions}
 
-In order to support individuals exploring large unstructured text data, 
+In order to support the exploration of large unstructured text data, 
 this thesis aims to provide computational means to facilitate the work with large unstructured text data.
 In this work, different methods to derive semantic and visual information from unstructured text data are applied.
 These techniques ought to be compared and evaluated.
 % research questions (allgemein damit nützlich und speziell für die Aufgabe -> beantwortbar, Erkenntnis allg Interesse & Operationalisierbar: Experiment)
 In the following, the research questions addressed are defined:
-\begin{description}[style=unboxed]
-    \item[Does a combination of visual and textual topic analysis approach facilitate the exploration of unstructured texts?]
-    Unstructured texts emerge in many different domains.
-    Initially, this work is motivated by the task of tax evasion detection for tax offices.
-    However, this work has a broad target audience, ranging from police officers to companies, 
-    that are in need of support facing the task of exploration of these unstructured texts.
+\begin{questions}%[style=unboxed]
+    \item Is it possible to use a visual representation to find similar documents in the corpus?\label{enum:rq1}
+    
+    \item How are the results of the system presented to experts?\label{enum:rq2}
+    
+    \item How can the performance of the system be evaluated?\label{enum:rq3}
 
-    \item[Which methods are scalable to large datasets?]
-    The amount of information grows rapidly.
-    Hence, techniques to explore information have to be scalable.
-    This thesis should state obstacles and possibly limitations encountered when scaling the techniques to a dataset of roughly 38 \ac{gb} of documents.
-
-    \item[Do different embedding methods produce similar results?]
+    \item Do different embedding methods produce similar results?\label{enum:rq4}
     The task at hand defines a result as a set of similar documents to a query document.
     Hence, one has to compare response sets of different methods.
-
-    \item[Do semantic or visual embedding methods produce (more) meaningful embeddings?]
-    The methods encode different types of information, i.e.\ text layer versus layout, into embeddings. 
-    This thesis should explore which type of information is (more) meaningful for the task at hand.
+\end{questions}
 
 
-\end{description}
-
-% secondary goals
-% The following bullet points are considered secondary goals which have influenced the design process of this thesis.
-% \begin{description}
-%     \item[Similarity of grouped documents.]
-%     The document clusters should be derived from either semantically or visually similar documents.
-%     \item[Topic identification.]
-%     The topics identified should be meaningful to the task at hand and human interpretable.  
-%     \item[Little latency.]
-%     The database should be calculated offline to ensure little latency when executing queries.
-%     \item[Usability.]
-%     The methods should be bundled in an application, which is easy to use and does not require any programming skills.
-% \end{description}
+\ref{enum:rq1} is answered by the implementation of the system.
