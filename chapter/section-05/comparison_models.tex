@@ -14,130 +14,6 @@ The query response consists of the documents that are considered most similar to
 These responses are retrieved by a \ac{knn} query from the database for each model and stored in a \ac{csv} file.
 %To facilitate working with the data, the document IDs can be encoded as monotonically increasing integers.
 
-% Venn diagram
-The first approach to compare the response documents is to visualize the intersection of the query results.
-The Venn diagram is chosen since it displays intersections of all items of the power set of the models.
-To build a Venn diagram, the number of documents that are shared between the query results of several models is computed.
-First, all query responses of a model irrespective of the query document are saved in a set.
-The cardinalities of the intersections of multiple sets are displayed in \autoref{fig:venn-comparison-models}.
-Since five models encode textual information, the Venn diagram consists of five circles.
-One should be cautious when interpreting the layout of the Venn diagram since 
-an intersection of documents that produces an empty set has a non-empty area in this visualization.
-
-The Venn diagrams in \autoref{fig:venn-comparison-models} display the total number of shared response documents for 10 queries 
-and 3, 5 or 10 response documents respectively.
-The models produce rather dissimilar query results.
-Any combination of more than two models among the green (\ac{d2v}), orange (\ac{sbert}), red (\ac{tfidf}) and blue (\ac{use}) models 
-seem to produce rather dissimilar results 
-as the number in the respective areas at the bottom is close to zero across all Venn diagrams.
-The blue (\ac{use}) and orange (\ac{sbert}) models, as well as the yellow (\infersent{}), orange (\ac{sbert}) and blue (\ac{use}) models, 
-yield consistently similar results.
-
-\begin{figure}%
-    \centering
-    \subfloat[\centering 3 response documents per query.]{{\includegraphics[width=6.7cm]{images/comparison/Venn_diagram_(10_queries_à_3_responses_in_a_2048_document_corpus).pdf} }}%
-    \qquad
-    \subfloat[\centering 5 response documents per query.]{{\includegraphics[width=6.7cm]{images/comparison/Venn_diagram_(10_queries_à_5_responses_in_a_2048_document_corpus).pdf} }}%
-    \qquad
-    \subfloat[\centering 10 response documents per query.]{{\includegraphics[width=6.7cm]{images/comparison/Venn_diagram_(10_queries_à_10_responses_in_a_2048_document_corpus).pdf} }}%
-    \qquad   
-    \caption[Venn diagram of query results]{
-    10 documents are randomly sampled from a 2048 document corpus.
-    For each sampled document and model, a \ac{knn} query is conducted.
-    The respective response documents excluding the query document are saved.
-    The cardinality of the intersection of all response documents irrespective of query document for different models is visualized in terms of Venn diagrams.}%
-    \label{fig:venn-comparison-models}%
-\end{figure}
-
-% heatmap
-Since the Venn diagrams compare the responses of the models irrespective of the query document, 
-a second approach is to compare the query results of the models for each query document individually.
-This approach first constructs a matrix of the number of shared query results between all model pairs summed up over all query documents.
-It is possible to normalize the matrix to obtain the portion of shared query results.
-Thereafter the matrix is visualized using a heatmap.
-The matrix consists of five rows and five columns, where each row and column represents a model.
-The code snippet in \lst{lst:sim-matrix} shows the calculation of the similarity matrix.
-
-\begin{listing}[htp]
-    \begin{minted}{python3}
-        sim_matr = np.matrix(np.zeros((len(model_names), len(model_names))))
-        for id in df.index:
-            for i, model in enumerate(model_names):
-                for j in range(i, len(model_names)):
-                    sim_matr[i, j] += np.sum([df.loc[id, 
-                        model_names[j]].count(item) for item in df.loc[id, model]])
-                    sim_matr[j, i] = sim_matr[i, j]
-        if normalize:
-            sim_matr /= np.array(len(df.index)* len(df.iloc[0,0]))
-    \end{minted}
-    \caption{Calculation of the similarity matrix used to produce the heatmap.
-    }
-    \label{lst:sim-matrix}
-\end{listing}
-
-The cell values are the number of shared query results between the models of the row and column.
-They are calculated by summing up the number of shared query results per document query.
-It is possible to return the total number of shared documents per model pair
-or to normalize the matrix by dividing each cell value by the total number of query results.
-If two models produce the same query results, the cell value is either the total number of query results or 1 if the matrix is normalized.
-Since the matrix is symmetric, only the upper triangular matrix is computed and the other half is mirrored.
-The matrix is then visualized using a heatmap as displayed in \autoref{fig:heatmap-comparison-models}.
-
-\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
-    \centering
-    \includegraphics[width=1\textwidth]{images/comparison/Portion_of_equal_query_results_(2000_queries,_10_responses_query,_2048_document_corpus).pdf}
-    \caption[Comparison of models using a heatmap]
-    {Heatmap visualizing portion of shared query results on 2000 queries with 10 responses each on a 2048 document corpus.}
-    \label{fig:heatmap-comparison-models}
-\end{figure}
-
-% heatmap interpretation
-The heatmap in \autoref{fig:heatmap-comparison-models} shows that the models yield dissimilar query responses.
-It arose from 2000 queries with 10 responses each on a 2048 document corpus.
-The similarity matrix is normalized to present the portion of shared query results for a query.
-\ac{use} and \infersent{} produce the most similar responses, which indicates the maximum value of shared query results.
-However, the maximum is less than $0.5$ and thus, rather dissimilar.
-Any two-element combination of \ac{d2v}, \ac{tfidf} and \ac{sbert} produces the most dissimilar query results, 
-namely only around $25\%$ of shared response documents per query.
-
-% mean and std
-Since the normalization does not consider the distribution of the cardinalities of the intersections of the query results among the models,
-another approach is to calculate the mean and standard deviation of the cardinalities of the intersections of the query results.
-Therefore, 30 trials are conducted.
-Each trial consists of 10 randomly sampled query documents with 10 responses each (excluding the query document in the response).
-The normalized similarity matrix for each model pair concerning one trial is calculated using \lst{lst:sim-matrix}.
-The cardinalities are stored in a dictionary of lists indexed by the respective model pairs.
-Finally, the mean and standard deviation are computed for each model pair and stored in a \ac{csv} file.
-The results are displayed in \autoref{tab:mean_std_portion_shared_query_results}.
-The standard deviation does not exceed $0.1$ for any model pair and is similar among all combinations.
-As observed before, any two-element combination of \ac{d2v}, \ac{tfidf} and \ac{sbert} has the lowest mean portion ($18-20\%$) of shared query results.
-
-\begin{table}[]
-    \centering
-    \caption{Mean and standard deviation of the average portion of shared response documents of different models on a 2048 document corpus.
-    One trial produced five real values, i.e.\ one portion per model.
-    A portion is obtained from 10 randomly sampled query documents with 10 responses each (excluding the query document in the response).
-    There were 30 trials.
-    }
-    \begin{tabular}{|l|l|l|l|}
-    \hline
-    \rowcolor[HTML]{C0C0C0} 
-    \textbf{model 1} & \textbf{model 2} & \textbf{mean} & \textbf{std} \\ \hline
-    \ac{d2v}          & \ac{use}        & 0.26          & 0.09         \\ \hline
-    \ac{d2v}          & \infersent{}            & 0.26          & 0.07         \\ \hline
-    \ac{d2v}          & \ac{tfidf}            & 0.2           & 0.08         \\ \hline
-    \ac{d2v}          & \ac{sbert}          & 0.18          & 0.06         \\ \hline
-    \ac{use}        & \infersent{}            & 0.33          & 0.08         \\ \hline
-    \ac{use}        & \ac{tfidf}            & 0.25          & 0.08         \\ \hline
-    \ac{use}        & \ac{sbert}          & 0.25          & 0.06         \\ \hline
-    \infersent{}            & \ac{tfidf}            & 0.26          & 0.08         \\ \hline
-    \infersent{}            & \ac{sbert}          & 0.24          & 0.06         \\ \hline
-    \ac{tfidf}            & \ac{sbert}          & 0.18          & 0.05         \\ \hline
-    \end{tabular}
-    \label{tab:mean_std_portion_shared_query_results}
-\end{table}
-
-
 
 % sample query
 To display the differences between the models exemplary, the five most similar documents to a random document are returned from the database and visualized.
@@ -296,3 +172,126 @@ The query document is a certificate.
 }
 \label{fig:comp_vis_query_resp_certificates}
 \end{figure}
+
+% Venn diagram
+Another approach to compare the response documents is to visualize the intersection of the query results.
+The Venn diagram is chosen since it displays intersections of all items of the power set of the models.
+To build a Venn diagram, the number of documents that are shared between the query results of several models is computed.
+First, all query responses of a model irrespective of the query document are saved in a set.
+The cardinalities of the intersections of multiple sets are displayed in \autoref{fig:venn-comparison-models}.
+Since five models encode textual information, the Venn diagram consists of five circles.
+One should be cautious when interpreting the layout of the Venn diagram since 
+an intersection of documents that produces an empty set has a non-empty area in this visualization.
+
+The Venn diagrams in \autoref{fig:venn-comparison-models} display the total number of shared response documents for 10 queries 
+and 3, 5 or 10 response documents respectively.
+The models produce rather dissimilar query results.
+Any combination of more than two models among the green (\ac{d2v}), orange (\ac{sbert}), red (\ac{tfidf}) and blue (\ac{use}) models 
+seem to produce rather dissimilar results 
+as the number in the respective areas at the bottom is close to zero across all Venn diagrams.
+The blue (\ac{use}) and orange (\ac{sbert}) models, as well as the yellow (\infersent{}), orange (\ac{sbert}) and blue (\ac{use}) models, 
+yield consistently similar results.
+
+\begin{figure}%
+    \centering
+    \subfloat[\centering 3 response documents per query.]{{\includegraphics[width=6.7cm]{images/comparison/Venn_diagram_(10_queries_à_3_responses_in_a_2048_document_corpus).pdf} }}%
+    \qquad
+    \subfloat[\centering 5 response documents per query.]{{\includegraphics[width=6.7cm]{images/comparison/Venn_diagram_(10_queries_à_5_responses_in_a_2048_document_corpus).pdf} }}%
+    \qquad
+    \subfloat[\centering 10 response documents per query.]{{\includegraphics[width=6.7cm]{images/comparison/Venn_diagram_(10_queries_à_10_responses_in_a_2048_document_corpus).pdf} }}%
+    \qquad   
+    \caption[Venn diagram of query results]{
+    10 documents are randomly sampled from a 2048 document corpus.
+    For each sampled document and model, a \ac{knn} query is conducted.
+    The respective response documents excluding the query document are saved.
+    The cardinality of the intersection of all response documents irrespective of query document for different models is visualized in terms of Venn diagrams.}%
+    \label{fig:venn-comparison-models}%
+\end{figure}
+
+% heatmap
+Since the Venn diagrams compare the responses of the models irrespective of the query document, 
+another approach is to compare the query results of the models for each query document individually.
+This approach first constructs a matrix of the number of shared query results between all model pairs summed up over all query documents.
+It is possible to normalize the matrix to obtain the portion of shared query results.
+Thereafter the matrix is visualized using a heatmap.
+The matrix consists of five rows and five columns, where each row and column represents a model.
+The code snippet in \lst{lst:sim-matrix} shows the calculation of the similarity matrix.
+
+\begin{listing}[htp]
+    \begin{minted}{python3}
+        sim_matr = np.matrix(np.zeros((len(model_names), len(model_names))))
+        for id in df.index:
+            for i, model in enumerate(model_names):
+                for j in range(i, len(model_names)):
+                    sim_matr[i, j] += np.sum([df.loc[id, 
+                        model_names[j]].count(item) for item in df.loc[id, model]])
+                    sim_matr[j, i] = sim_matr[i, j]
+        if normalize:
+            sim_matr /= np.array(len(df.index)* len(df.iloc[0,0]))
+    \end{minted}
+    \caption{Calculation of the similarity matrix used to produce the heatmap.
+    }
+    \label{lst:sim-matrix}
+\end{listing}
+
+The cell values are the number of shared query results between the models of the row and column.
+They are calculated by summing up the number of shared query results per document query.
+It is possible to return the total number of shared documents per model pair
+or to normalize the matrix by dividing each cell value by the total number of query results.
+If two models produce the same query results, the cell value is either the total number of query results or 1 if the matrix is normalized.
+Since the matrix is symmetric, only the upper triangular matrix is computed and the other half is mirrored.
+The matrix is then visualized using a heatmap as displayed in \autoref{fig:heatmap-comparison-models}.
+
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includegraphics[width=1\textwidth]{images/comparison/Portion_of_equal_query_results_(2000_queries,_10_responses_query,_2048_document_corpus).pdf}
+    \caption[Comparison of models using a heatmap]
+    {Heatmap visualizing portion of shared query results on 2000 queries with 10 responses each on a 2048 document corpus.}
+    \label{fig:heatmap-comparison-models}
+\end{figure}
+
+% heatmap interpretation
+The heatmap in \autoref{fig:heatmap-comparison-models} shows that the models yield dissimilar query responses.
+It arose from 2000 queries with 10 responses each on a 2048 document corpus.
+The similarity matrix is normalized to present the portion of shared query results for a query.
+\ac{use} and \infersent{} produce the most similar responses, which indicates the maximum value of shared query results.
+However, the maximum is less than $0.5$ and thus, rather dissimilar.
+Any two-element combination of \ac{d2v}, \ac{tfidf} and \ac{sbert} produces the most dissimilar query results, 
+namely only around $25\%$ of shared response documents per query.
+
+% mean and std
+Since the normalization does not consider the distribution of the cardinalities of the intersections of the query results among the models,
+another approach is to calculate the mean and standard deviation of the cardinalities of the intersections of the query results.
+Therefore, 30 trials are conducted.
+Each trial consists of 10 randomly sampled query documents with 10 responses each (excluding the query document in the response).
+The normalized similarity matrix for each model pair concerning one trial is calculated using \lst{lst:sim-matrix}.
+The cardinalities are stored in a dictionary of lists indexed by the respective model pairs.
+Finally, the mean and standard deviation are computed for each model pair and stored in a \ac{csv} file.
+The results are displayed in \autoref{tab:mean_std_portion_shared_query_results}.
+The standard deviation does not exceed $0.1$ for any model pair and is similar among all combinations.
+As observed before, any two-element combination of \ac{d2v}, \ac{tfidf} and \ac{sbert} has the lowest mean portion ($18-20\%$) of shared query results.
+
+\begin{table}[]
+    \centering
+    \caption{Mean and standard deviation of the average portion of shared response documents of different models on a 2048 document corpus.
+    One trial produced five real values, i.e.\ one portion per model.
+    A portion is obtained from 10 randomly sampled query documents with 10 responses each (excluding the query document in the response).
+    There were 30 trials.
+    }
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \rowcolor[HTML]{C0C0C0} 
+    \textbf{model 1} & \textbf{model 2} & \textbf{mean} & \textbf{std} \\ \hline
+    \ac{d2v}          & \ac{use}        & 0.26          & 0.09         \\ \hline
+    \ac{d2v}          & \infersent{}            & 0.26          & 0.07         \\ \hline
+    \ac{d2v}          & \ac{tfidf}            & 0.2           & 0.08         \\ \hline
+    \ac{d2v}          & \ac{sbert}          & 0.18          & 0.06         \\ \hline
+    \ac{use}        & \infersent{}            & 0.33          & 0.08         \\ \hline
+    \ac{use}        & \ac{tfidf}            & 0.25          & 0.08         \\ \hline
+    \ac{use}        & \ac{sbert}          & 0.25          & 0.06         \\ \hline
+    \infersent{}            & \ac{tfidf}            & 0.26          & 0.08         \\ \hline
+    \infersent{}            & \ac{sbert}          & 0.24          & 0.06         \\ \hline
+    \ac{tfidf}            & \ac{sbert}          & 0.18          & 0.05         \\ \hline
+    \end{tabular}
+    \label{tab:mean_std_portion_shared_query_results}
+\end{table}
