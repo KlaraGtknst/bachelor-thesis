@@ -7,7 +7,7 @@ The output is derived from the calculation of a weighted sum of the inputs and a
 The architecture of a \ac{nn} is shown in \autoref{fig:architecture_nn}.
 The first and last layers are called input and output layers, respectively.
 The layers between the input and output layers are called hidden layers.
-If a \ac{nn} has more than one hidden layer, it is called a \ac{dnn}.
+If a \ac{nn} has more than one hidden layer, it is called a \ac{dnn} and working with \acp{dnn} is considered deep learning.
 To propagate the input through the network the layers are connected.
 
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
@@ -16,7 +16,8 @@ To propagate the input through the network the layers are connected.
     \caption[Architecture of a \ac{nn}]
     {Architecture of a \ac{nn}. 
     The input layer is the first layer of the network.
-    The output layer is the last layer of the network.
+    It receives the input data \textbf{x}.
+    The output layer is the last layer of the network and returns \textbf{y}.
     Between the input and output layers, there are one or more hidden layers.
     }
     \label{fig:architecture_nn}
