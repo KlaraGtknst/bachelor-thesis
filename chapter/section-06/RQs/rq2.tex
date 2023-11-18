@@ -15,6 +15,12 @@ or the same company name,
 the visual responses are more dissimilar from each other and the query document.
 However, the response documents and their order are different for the distinct semantic embeddings.
 
+% However, models such as \ac{tfidf} yield less meaningful results on certain query documents and 
+% are prone to performance deterioration with increasing document corpus, since the embeddings' 
+% dimensionality correlates directly with the vocabulary size.
+% When the number of terms in the data corpus increases, but the vocabulary size is static, 
+% the vocabulary likely lacks important words. 
+
 To answer \ref{enum:rq2}, the content and visual appearance of the response documents 
 of different embedding techniques is similar,
 but the actual documents in the response sets differ.
