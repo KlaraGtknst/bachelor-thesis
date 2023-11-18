@@ -4,14 +4,15 @@ Another term used for \ac{d2v} is \textit{Paragraph Vector} \cite{clusteringDocs
 \ac{d2v} addresses \ac{tfidf} drawbacks by encoding texts as $N-$dimensional vectors learnt using the words' context \cite{clusteringDocs2020}.
 $N \in \mathbb{N}$ can be chosen arbitrarily.
 It preserves semantic similarities between words and encodes linguistic regularities and patterns \cite{SkipGram2013}.
-% According to \citeauthor{clusteringDocs2020} and \citeauthor{SentRep2014}, 
-% \ac{d2v} learns continuous distributed vector representations for pieces of the text.
 The model handles inputs of different lengths, i.e.\ inputs can be sentences, paragraphs or documents.
 
+% semantic similarity = similar embeddings
 \ac{d2v} is an adaption of the \ac{w2v} model, which maps words into a \ac{vsm} \cite{clusteringDocs2020}.
-Both approaches assume that words appearing in similar contexts are semantically similar. %\cite{clusteringDocs2020}.
+Both approaches assume that words appearing in similar contexts are semantically similar. 
 Hence, words which often appear in the same context produce similar embeddings.
-The \ac{w2v} embedding is obtained using a shallow \ac{nn}, i.e.\ the \ac{nn} has only one hidden layer.
+
+% obtain embeddings
+The \ac{d2v} embedding is obtained using a shallow \ac{nn}, i.e.\ the \ac{nn} has only one hidden layer.
 The embeddings are created by the hidden layer.
 There are two \ac{d2v} approaches to designing the architecture of the \ac{nn}:
 \begin{itemize}
@@ -21,11 +22,6 @@ There are two \ac{d2v} approaches to designing the architecture of the \ac{nn}:
         Predicts the context given a word \cite{EmbDist2015, SkipGram2013, SentRep2014}.
 \end{itemize}
 
-% \begin{equation}
-%     \frac{1}{T}\sum_{t=k}^{T-k}\text{log}(p(w_t | w_{t-k}, ..., w_{t+k}))
-%     \label{eq:word2vec-cbow}
-% \end{equation}
-
 \begin{figure}%
     \centering
     \subfloat[\centering \acs*{cbow} architecture cf. \cite{WordRep2013}.]
@@ -33,49 +29,20 @@ There are two \ac{d2v} approaches to designing the architecture of the \ac{nn}:
     \qquad
     \subfloat[\centering \acs*{pvdm} architecture cf. \cite{SentRep2014}.]
     {{\includesvg[width=6cm]{images/embeddings/doc2vec/PV-DM.svg} }}%
-    \caption[\acs*{cbow} and \acs*{pvdm} architecture]{Both approaches predict the centre word using the context.
+    \caption[\acs*{cbow} and \acs*{pvdm} architecture]{Both approaches predict the centre word \textbf{w(t)} using the context.
     \acs*{pvdm} is an adaption of \acs*{cbow} to work on a set of documents or paragraphs instead of words.
     }%
     \label{fig:pvdm}%
 \end{figure}
  
-% context to centre word
-\ac{pvdm} extends \ac{cbow} to work on a corpus of documents instead of on a set of words \cite{clusteringDocs2020}:
-As usual, vectors representing the words are obtained using the \ac{cbow} model.
-\ac{cbow} has a single-layer architecture \cite{glove2014}. %based on the inner product between two word vectors \cite{glove2014}.
-%Given training words $ w_{1}, ..., w_{T}$, the objective of the \ac{w2v} model \ac{cbow} is to maximize the average log probability in 
-%\autoref{eq:word2vec-cbow} from \cite{SentRep2014}.
-The word vectors can be concatenated, averaged or summed up \cite{SentRep2014}.
-Each document is mapped to a vector using an additional document-to-vector matrix.
-Both document and word vectors are initialized randomly, but trained to convey meaning in terms of semantic differentiation.
-In order to train the model, centre words are predicted using the context.
-The context consists of words within a sliding window and their document, respectively represented as vectors \cite{SentRep2014}.
+% context to centre word (PVDM)
+The \ac{pvdm} algorithm considers words within a sliding window and their document the context of a centre word \cite{SentRep2014}.
 The document vector is added to incorporate the document's topic and thus, acts like a memory \cite{SentRep2014, Top2Vec2020}.
-\citeauthor{SentRep2014} concatenate the document vector to the word vectors.
+% word vectors
+It encodes the context words into vectors via the \ac{w2v} \ac{cbow} model \cite{glove2014}.
+% document vector
+Each document is mapped to a vector using an additional document-to-vector matrix.
+% result
+The vectors can be concatenated, averaged or summed up \cite{SentRep2014}.
 The resulting vector is the prediction of the central word.
-The approaches are displayed in \autoref{fig:pvdm}.
-
-%According to \citeauthor{SentRep2014}, both \ac{cbow} and \ac{pvdm} are trained using stochastic gradient descent and backpropagation.
-
-\begin{figure}%
-    \centering
-    \subfloat[\centering Skip-gram architecture cf. \cite{WordRep2013}.]
-    {{\includesvg[width=7cm]{images/embeddings/doc2vec/Skip-gram.svg}}}%
-    \qquad
-    \subfloat[\centering \acs*{pvdbow} architecture cf. \cite{SentRep2014}.]
-    {{\includesvg[width=4.5cm]{images/embeddings/doc2vec/PV-DBOW.svg} }}%
-    \caption[Two \acs*{pvdbow} architectures]{Both approaches predict the context.
-    \acs*{pvdbow} is an adaption of Skip-gram to work on a set of documents or paragraphs instead of words.
-    }%
-    \label{fig:pvdbow}%
-\end{figure}
-% centre word to context
-The \ac{pvdbow} approach is the adaption of the \ac{w2v} algorithm Skip-Gram and predicts the context 
-given the document \cite{SentRep2014}.
-The approaches are displayed in \autoref{fig:pvdbow}.
-%According to \citeauthor{SentRep2014}, the 
-
-
-% paper widerspricht sich
-%According to \citeauthor{clusteringDocs2020}, the \ac{doc2vec} model's performance is influenced quality of the preprocessing.
-%If for instance, the stemmer assigns words with different meaning to the same root, there is a degradation in performance.
+The \ac{cbow} and the \ac{pvdm} approach are displayed in \autoref{fig:pvdm}.
