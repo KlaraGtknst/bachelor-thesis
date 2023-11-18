@@ -15,21 +15,40 @@ The following section outlines a selection of similarity measures.
 \subsection{Euclidian distance}\label{subsec:euclidian-distance}
 
 The \textit{euclidian distance} is a distance measure.
-In order to measure the distance between two points in a $N$-dimensional space, 
+In order to measure the distance between two vectors in a $N$-dimensional space, 
 the root of the sum of squared distances between the respective values of every dimension is calculated.
-The Euclidean (L2) norm between two points $a, b$ is defined as $d_E(a,b) = \sqrt{\sum_{i=1}^{N}(a_i - b_i)^2}$ c.f. \cite{euclidean_l2_norm2015}.
+The Euclidean (L2) norm between two vectors $a, b$ is defined in \autoref{eq:euclidean-distance} \cite{euclidean_l2_norm2015}.
+The distance is zero if the vectors are identical, i.e. $a = b$.
+The more $a$ and $b$ differ, the greater is the distance $d_E(a,b)$ between them.
+
+\begin{equation}
+    d_E(a,b) = \sqrt{\sum_{i=1}^{N}(a_i - b_i)^2}
+    \label{eq:euclidean-distance}
+\end{equation}
 
 
 \subsection{Cosine Similarity}\label{subsec:cosine-similarity}
+
+\begin{figure}%
+    \centering
+    \subfloat[\centering Similar vectors $a, b$.]
+    {{\includesvg[width=7cm]{images/cosine_similarity/similar_vectors_cos_sim.svg}}}%
+    \qquad
+    \subfloat[\centering Dissimilar vectors $a, b$.]
+    {{\includesvg[width=7cm]{images/cosine_similarity/dissimilar_vectors_cos_sim.svg} }}%
+    \caption[Cosine Similarity]{Cosine Similarity between two vectors considers the angle between them.}%
+    \label{fig:cos_sim_vectors}%
+\end{figure}
 
 % In the traditional bag-of-words approach the texts are represented as vectors of \ac{tfidf} coefficients \cite{soft_cosine2017}.
 % Without further processing, the vector is of size $N$, $N$ being the number of different words of the texts \cite{soft_cosine2017}.
 
 The similarity between two texts is measured by the cosine of the angle between their respective real-valued vectors.
-The cosine similarity is defined in \autoref{eq:cosine-similarity} from \cite{soft_cosine2014}.
+The cosine similarity is defined in \autoref{eq:cosine-similarity} \cite{soft_cosine2014}.
 For positive vectors, for instance, produced by \ac{tfidf}, it is a value between $0$ and $1$.
-% angle can not be greater than 90 degrees, bc vectors have positive values
-%According to \citeauthor{soft_cosine2014}, the formula has a time and space complexity of $O(N)$ for a pair of $N$-dimensional vectors.
+If the angle is close to zero degrees, the cosine similarity is close to $1$ and the vectors are similar.
+Otherwise, if the angle is close to $90$ degrees, the cosine similarity is close to $0$ and the vectors are dissimilar.
+Both a similar and a dissimilar pair of vectors are depicted in \autoref{fig:cos_sim_vectors}.
 
 \begin{equation}
     cosine(a,b) = \frac{a \cdot b}{\left\| a \right\| \times \left\| b \right\|} = \frac{\sum_{i=1}^{N}a_{i}b_{i}}{\sqrt{\sum_{i=1}^{N}{a}^2_{i}}\sqrt{\sum_{i=1}^{N}{b}^2_{i}}}
