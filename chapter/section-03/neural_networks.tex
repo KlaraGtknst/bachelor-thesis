@@ -1,14 +1,4 @@
-\subsection{\acl*{nn}}\label{sec:neural_network}
-
-% architecture
-A \ac{nn} is a \ac{ml} model which consists of multiple layers of nodes.
-A node, or so-called neuron, takes an input vector and produces an output vector.
-The output is derived from the calculation of a weighted sum of the inputs and an activation function \cite{KI2022}.
-The architecture of a \ac{nn} is shown in \autoref{fig:architecture_nn}.
-The first and last layers are called input and output layers, respectively.
-The layers between the input and output layers are called hidden layers.
-If a \ac{nn} has more than one hidden layer, it is called a \ac{dnn} and working with \acp{dnn} is considered deep learning.
-To propagate the input through the network the layers are connected.
+\subsection{\aclp*{nn}}\label{sec:neural_network}
 
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
@@ -22,6 +12,17 @@ To propagate the input through the network the layers are connected.
     }
     \label{fig:architecture_nn}
 \end{figure}
+
+% architecture
+A \ac{nn} is a \ac{ml} model which consists of multiple layers of nodes.
+A node, or so-called neuron, takes an input vector and produces an output vector.
+The output is derived from the calculation of a weighted sum of the inputs and an activation function \cite{KI2022}.
+The architecture of a \ac{nn} is shown in \autoref{fig:architecture_nn}.
+The first and last layers are called input and output layers, respectively.
+The layers between the input and output layers are called hidden layers.
+If a \ac{nn} has more than one hidden layer, it is called a \ac{dnn} and working with \acp{dnn} is considered deep learning.
+To propagate the input through the network the layers are connected.
+In a \textit{feed-forward} \ac{nn}, the information flows from the input layer to the output layer \cite{seminar_ies}.
 
 % training
 \acp{nn} are trained using the backpropagation algorithm which reduces the error between the predicted and the actual output iteratively.
