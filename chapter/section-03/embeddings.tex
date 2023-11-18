@@ -4,15 +4,22 @@ Usually, \ac{ml} techniques require textual inputs to be converted to embeddings
 Embeddings are numerical representations of words, sentences or texts.
 They can be used to present the textual data as real-valued vectors in a \ac{vsm}.
 A \ac{vsm} is a $N$-dimensional space \cite{soft_cosine2014}.
-%Each dimension of a \ac{vsm} corresponds to an index term, which is dependent on the embedding model.
-%Every document embedding dimension explains the importance of the corresponding index term to the document.
 \acp{vsm} are commonly used due to their conceptual simplicity and because spatial proximity correlates with semantic proximity 
 \cite{tfidf2008, UniversalSentEnc2018, HfsentTrans2019, Top2Vec2020}.
 Representations in a \ac{vsm} can improve the performance in \ac{nlp} tasks \cite{SkipGram2013}.
-% According to \citeauthor{tfidf2008}, when representing text the first step is indexing, i.e.\ assigning indexing terms to the document.
-% The second task is to assign weights to the terms that correspond to the importance of the term in the document.
-% The weights assigned depend on the model.
+A simple example of a \ac{vsm} in the \ac{nlp} context is shown in \autoref{fig:vsm_example}.
 The following section outlines the fundamentals of a selection of embeddings.
+
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=0.5\textwidth]{images/embeddings/VSM/VSM_example.svg}
+    \caption[A simple \acs*{vsm}]
+    {A simple \acs*{vsm}. 
+    The words are represented as vectors in a two-dimensional space.
+    Since \textit{wine} is semantically closer to \textit{drink} than to \textit{food}, the vectors are closer together.
+    }
+    \label{fig:vsm_example}
+\end{figure}
 
 
 \input{chapter/section-03/neural_networks.tex}
