@@ -17,8 +17,8 @@ The dataset used for the evaluation is a selection of 195 documents from the Bah
         rsme = np.linalg.norm(inverse_embedding - embeddings) 
                 / np.sqrt(embeddings.shape[0])
     \end{minted}
-    \caption[Computation of the \ac{rsme}]{
-        Computation of the \ac{rsme} between the original and the reconstructed embedding.
+    \caption[Computation of the \acs*{rsme}]{
+        Computation of the \acs*{rsme} between the original and the reconstructed embedding.
     }
     \label{lst:impl-rsme}
 \end{listing}
@@ -39,9 +39,9 @@ The dataset used for the evaluation is a selection of 195 documents from the Bah
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includegraphics[width=1\textwidth]{images/embeddings/autoencoder/ae_score_plot.pdf}
-    \caption[Different \ac{ae} architectures and their reconstruction error]{The effect of different \ac{ae} architectures on the reconstruction error.
-    The error is measured in terms of \ac{rsme} (blue bars) and cosine similarity (yellow bars) between the original and the reconstructed image.
-    The smallest \ac{rsme} and the biggest cosine similarity belong to the architecture best suited to this task and are coloured green.
+    \caption[Different \acs*{ae} architectures and their reconstruction error]{The effect of different \acs*{ae} architectures on the reconstruction error.
+    The error is measured in terms of \acs*{rsme} (blue bars) and cosine similarity (yellow bars) between the original and the reconstructed image.
+    The smallest \acs*{rsme} and the biggest cosine similarity belong to the architecture best suited to this task and are coloured green.
     }
     \label{fig:eval-ae-architecture}
 \end{figure}

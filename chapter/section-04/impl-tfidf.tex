@@ -67,11 +67,11 @@ The pipeline in \autoref{fig:tfidf_embedding} visualizes these steps.
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=1\textwidth]{images/embeddings/tfidf/TFIDF_embedding.svg}
-    \caption[\ac{tfidf} pipeline]{\ac{tfidf} pipeline.
+    \caption[\acs*{tfidf} pipeline]{\acs*{tfidf} pipeline.
     Firstly, the text extracted from the documents is preprocessed using a custom preprocessor.
-    Then, the \ac{tfidf} values are obtained from the \texttt{TfidfVectorizer}.
-    Afterwards, the all-zero flag is added to the \ac{tfidf} weights.
-    If the resulting dimensionality is bigger than 2048, the encoder of an \ac{ae} is used to reduce the dimensionality.
+    Then, the \acs*{tfidf} values are obtained from the \texttt{TfidfVectorizer}.
+    Afterwards, the all-zero flag is added to the \acs*{tfidf} weights.
+    If the resulting dimensionality is bigger than 2048, the encoder of an \acs*{ae} is used to reduce the dimensionality.
     The results are stored in the database.
     }
     \label{fig:tfidf_embedding}
