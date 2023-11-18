@@ -4,33 +4,6 @@
 \infersent{} is a sentence embedding method trained in a supervised manner on the \ac{snli} dataset \cite{inferSent2018, HfsentTrans2019}.
 The trained model is transferable to other tasks.
 
-% training
-% The \ac{snli} dataset contains a huge data corpus of English sentence pairs.
-% The sentence pairs are labelled with one of three categories: \textit{entailment}, \textit{contradiction} or \textit{neutral}.
-% This dataset is used because it captures \ac{nli} and thus, enables learning sentence semantics.
-% To train the model, a shared sentence encoder encodes both the premise and the hypothesis to their vector representations $u$ and $v$.
-% In order to extract information about the relation of $u$ and $v$, three matching methods are applied:
-
-% \begin{itemize}
-%     \item $(u,v)$: Concatenation of the two vectors.
-%     \item $u \cdot v$: Element-wise product.
-%     \item $|u - v|$: Element-wise difference of the two vectors.
-% \end{itemize}
-
-% The results of the matching methods are concatenated (cf. \cite{HfsentTrans2019}).
-% The resulting vector is then fed into a three-class classifier.
-% The classifier consists of multiple fully connected layers and a softmax layer \cite{inferSent2018}.
-
-% Bi-LSTM as sentence encoder
-\citeauthor{inferSent2018} have compared multiple architectures in their work.
-The \ac{bilstm} architecture with max pooling was found to be the best option for the sentence encoder \cite{inferSent2018}.
-According to \citeauthor{HfsentTrans2019}, it consists of a single siamese \ac{bilstm} layer \cite{HfsentTrans2019}.
-Given a sentence $(w_1, w_2, ..., w_T)$ of $T$ words, the \ac{bilstm} architecture computes the hidden representations $h_t$ for each word $w_t$.
-The hidden representation $h_t$ is the concatenation of the forward and backward hidden vectors $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$.
-$\overrightarrow{h_t}$ and $\overleftarrow{h_t}$ are produced by a forward and backward \ac{lstm} respectively.
-Hence, the sentence is read from both directions and thus, considers past and future context.
-The architecture of the \ac{bilstm} model with max pooling is depicted in \autoref{fig:infersent_bilstm}.
-
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=0.9\textwidth]{images/embeddings/infersent/Infersent.svg}
@@ -43,15 +16,25 @@ The architecture of the \ac{bilstm} model with max pooling is depicted in \autor
     \label{fig:infersent_bilstm}
 \end{figure}
 
+% Bi-LSTM as sentence encoder
+\citeauthor{inferSent2018} compare multiple architectures in their work.
+The \ac{bilstm} architecture with max pooling which was found to be the best option for the sentence encoder 
+is depicted in \autoref{fig:infersent_bilstm} \cite{inferSent2018}.
+
 % LSTM
 A \ac{lstm} is a \ac{rnn} that is capable of learning long-term dependencies.
+\acp{rnn} have closed loops, i.e.\ feedback connections between the nodes \cite{rnn_book2001}.
 In other words, 
 a \ac{lstm} is able to remember information as a so-called \textit{state}.
 Certain \ac{lstm} mechanisms control whether the current state is deleted, whether new data is saved and 
 to what degree the current state contributes to the current input processed in the node.
 Hence, \ac{lstm} nodes are not only influenced by former outputs but also by their state.
+Since the \ac{lstm} computes different numbers of hidden vectors $h_t$ depending on the length of a sentence, 
+a max pooling layer is applied to the hidden vectors which selects the maximum value for a patch of the hidden vectors.
 
-Since the \ac{lstm} computes different numbers of hidden vectors $h_t$ depending on the length of a sentence, a max pooling layer is applied to the hidden vectors.
-The max pooling layer selects the maximum value for each dimension of the hidden vectors.
-
-%LSTM: The sentence is represented by the last hidden vector $h_T$.
+% Bi-LSTM
+According to \citeauthor{HfsentTrans2019}, it consists of a single \ac{bilstm} layer \cite{HfsentTrans2019}.
+Given a sentence $(w_1, w_2, ..., w_T)$ of $T$ words, the \ac{bilstm} architecture computes the hidden representations $h_t$ for each word $w_t$.
+The hidden representation $h_t$ is the concatenation of the forward and backward hidden vectors $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$.
+$\overrightarrow{h_t}$ and $\overleftarrow{h_t}$ are produced by a forward and backward \ac{lstm} respectively.
+Hence, the sentence is read from both directions and thus, considers past and future context.
