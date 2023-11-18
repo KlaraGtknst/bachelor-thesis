@@ -168,14 +168,14 @@ The default analyzer is used for the full-text search since for instance configu
 \end{listing}
 
 Moreover, the fuzzy matching option is set to \texttt{AUTO}, which means in terms of keyword or text fields that the allowed Levenshtein Edit Distance, 
-i.e.\ number of characters changed to create an exact match between two terms, to be considered a match, is correlated to the length of the term \cite{Elasticsearch-fuzziness}.
+i.e.\ number of characters changed to create an exact match between two terms, to be considered a match, is correlated to the length of the term \cite{Elasticsearch-guide}.
 By default, terms of length up to two characters must match exactly, terms of length three to five characters must have an edit distance of one and 
-terms of length six or more characters must have an edit distance of two \cite{Elasticsearch-fuzziness}.
+terms of length six or more characters must have an edit distance of two \cite{Elasticsearch-guide}.
 An exemplary query, which uses fuzzy search is given in \lst{lst:fuzzy_query}.
 
 According to \citeauthor{Elasticsearch-kNN-HNSW}, one of \ac{knn} search's use cases is semantic document retrieval, which makes it a good fit for this task.
 In this work, the approximate nearest neighbours search \ac{hnsw} is used since it is faster and the results are good enough for the purpose of this work.
-The similarity measure used in this work is the cosine similarity, which calculates the \texttt{\_score} of a document according to \autoref{eq:cosine-similarity-db} from \cite{Elasticsearch-kNN-similarity}, 
+The similarity measure used in this work is the cosine similarity, which calculates the \texttt{\_score} of a document according to \autoref{eq:cosine-similarity-db} from \cite{Elasticsearch-guide}, 
 where \texttt{query} is the query vector and \texttt{vector} is the vector representation of the document in the database.
 The other similarity measures provided by \databaseName{} are \texttt{l2\_norm} or 
 so-called Euclidian distance and \texttt{dot\_product} which is the non-auto-normalized version of the \texttt{cosine} option.
