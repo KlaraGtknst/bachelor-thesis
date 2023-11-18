@@ -1,7 +1,7 @@
 \subsection{\acl*{use}}\label{subsec:univ-sent-encoder}
 
-\citeauthor{UniversalSentEnc2018} have published their \ac{use} model on TensorFlow Hub.
-They propose two architectures, one based on a Transformer and one based on a \ac{dan}.
+\citeauthor{UniversalSentEnc2018} have published their \acf{use} model on TensorFlow Hub.
+They propose two architectures, one based on a Transformer and one based on a \ac{dan} \cite{UniversalSentEnc2018}.
 Both models' input is a lowercase tokenized string.
 Their output is a 512-dimensional vector.
 
@@ -14,8 +14,9 @@ and normalizing the result by dividing by the square root of the sentence length
 
 % DAN
 The \ac{dan} model receives real-valued embeddings of words and bi-grams as input.
-Those input vectors can be obtained from the text strings using models such as the \ac{bow} model \cite{UniversalSentEnc-dan-input-emb}.
-The embeddings are averaged and subsequently passed to a feedforward \ac{dnn} \cite{UniversalSentEnc2018}.
+A bi-gram is a tupel of two subsequent words in a text \cite{nlp-book2009}, for instance, \textit{(red, wine), (wine, tastes), (tastes, good)}.
+The embeddings can be obtained from the text strings using models such as the \ac{bow} model \cite{UniversalSentEnc-dan-input-emb}.
+They are averaged and subsequently passed to a feedforward \ac{dnn} \cite{UniversalSentEnc2018}.
 The architecture of the \ac{dan} model is depicted in \autoref{fig:use_dan}.
 
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
