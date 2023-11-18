@@ -1,13 +1,26 @@
 \subsection{\acl*{tfidf}}\label{subsec:tfidf}
 
 \ac{tfidf} provides a numerical representation of a word in a document \cite{clusteringDocs2020}.
-It considers the frequency $f_{w_{j}, d}$  of a word $w_{j}$ in a document $d$ and the frequency of a word in the whole corpus. 
-The frequency $f_{w_{j}, d}$ is defined as $\frac{\text{number of occurrences of } w_{j} \text{ in }d}{\text{number of words in }d}$.
+Let a corpus of documents be denoted $D= \left\{d_1, d_2, ..., d_M  \right\}$, $M$ being the total number of documents in the corpus. 
+Let a sequence of terms $w_{j} \in V$ be denoted a document $d_i = \left\{w_{1}, w_{2}, ...\right\}$, 
+$V$ being the vocabulary, 
+i.e.\ set of distinct words \cite{clusteringDocs2020}.
 
-\ac{tfidf} is calculated using $TFIDF(w_{j}, d, D) = TF(w_{j}, d) \cdot IDF(w_{j}, D)$ from \cite{clusteringDocs2020}.
+The \ac{tfidf} model considers the frequency $f_{w_{j}, d}$  of a word $w_{j}$ in a document $d$ and the frequency of a word in the whole corpus. 
+The frequency $f_{w_{j}, d}$ is defined in \autoref{eq:tfidf_frequency}, $w'_j$ being the number of occurrences of $w_j$ in $d$.
+
+\begin{align}
+    f_{w_{j}, d} &= \frac{w'_{j}}{\sum_{k \in d} w'_k}\label{eq:tfidf_frequency}\\
+    TFIDF(w_{j}, d, D) &= TF(w_{j}, d) \cdot IDF(w_{j}, D)\label{eq:tfidf_calculation}\\
+    TF(w_{j}, d) &= f_{w_{j}, d}\label{eq:tf_calculation}\\
+    IDF(w_{j}, D) &= \log_2\frac{M}{M_{j}}\label{eq:idf_calculation}
+\end{align}
+
+\ac{tfidf} is calculated using \autoref{eq:tfidf_calculation} from \cite{clusteringDocs2020}.
 Each entry of a \ac{tfidf} embedding vector represents the \ac{tfidf} value of a word in a document.
 Hence, the embedding vector is of the same length as the vocabulary of the corpus.
-The \ac{tf} is determined utilizing $TF(w_{j}, d) = f_{w_{j}, d}$, whereas the \ac{idf} is computed by $IDF(w_{j}, D) = \log_2\frac{M}{M_{j}}$, 
+The \ac{tf} is determined utilizing \autoref{eq:tf_calculation}, 
+whereas the \ac{idf} is computed by \autoref{eq:idf_calculation}, 
 $M_{j}$ being the number of documents the term $w_{j}$ appears in.
 
 \ac{idf} measures the importance of a term $w_{j}$ in the corpus of documents $D$
