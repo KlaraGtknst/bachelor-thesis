@@ -1,0 +1,20 @@
+% RQ2: different embedding methods -> similar results?
+\ref{enum:rq2} aims to find out whether different embedding methods produce similar results.
+
+% 2.1. Comparison of different semantic embedding methods
+% semantic: TFIDF, Doc2Vec, USE, InferSent, SBERT
+When comparing different semantic embedding methods in \autoref{sec:evaluation-models}, 
+slight differences between the models become evident.
+\ac{tfidf}, \ac{d2v} and \ac{sbert} are most dissimilar to each other.
+The \ac{tfidf} approach performs rather poorly on unusual query documents such as handwritten documents.
+
+% 2.2. Comparison of semantic and visual embedding methods.
+While the semantic responses are considered similar to the query document since
+they contain documents with the same content 
+or the same company name,
+the visual responses are more dissimilar from each other and the query document.
+However, the response documents and their order are different for the distinct semantic embeddings.
+
+To answer \ref{enum:rq2}, the content and visual appearance of the response documents 
+of different embedding techniques is similar,
+but the actual documents in the response sets differ.
