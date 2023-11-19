@@ -1,33 +1,27 @@
+\newpage
 \section{Comparison of models}\label{sec:evaluation-models}
-
-% parameters
-% Similar to \citeauthor{glove2014}'s work, in this thesis, for many models used, any unspecified parameters are set to their default values, 
-% assuming that they are close to optimal
-% acknowledging that this simplification should be revised in a more thorough analysis.
 
 % comparing models (qualitative)
 This evaluation does not aim to find the best model but to compare the similarity of the models' query results.
 It is a qualitative evaluation of a selection of documents from the Bahamas leak.
 This selection is a 2048 document corpus that is randomly chosen without replacement.
-A query defines a field, i.e.\ embedding model and a query document.
-The query response consists of the documents that are considered most similar to the model's embedding of the query document in terms of cosine similarity.
-These responses are retrieved by a \ac{knn} query from the database for each model and stored in a \ac{csv} file.
-%To facilitate working with the data, the document IDs can be encoded as monotonically increasing integers.
-
+A query defines a field, i.e.\ embedding model, and a query document.
+The query response consists of the documents that are considered most similar to the query document in terms of cosine similarity.
 
 % sample query
-To display the differences between the models exemplary, the five most similar documents to a random document are returned from the database and visualized.
-The text of the query document is encoded using the respective model and a 
-\ac{knn} query is used to obtain the results from the local database containing 2048 documents.
-The query image, i.e.\ the one surrounded by a border, is omitted from the database query response.
-The query responses are listed according to descending similarity to the query document.
+The differences between the models are illustrated by visualizing  
+the first five response documents of a sample query.
+The text of the query document is encoded using the respective model.
+A \ac{knn} query is used to obtain the results from the local database containing 2048 documents. 
 The query results are displayed in \autoref{fig:query_resp}.
+The query document, i.e.\ the image surrounded by a border, is omitted from the query response.
+The documents in the query response are listed according to descending similarity to the query document.
 All models except \ac{d2v} and \ac{use} returned only documents of \textit{CREDIT SUISSE}.
 Apart from this difference, the query responses of the models are very similar.
 
 
 % sample query
-\begin{figure}[h!]
+\begin{figure}[htp!]
     \begin{subfigure}{\textwidth}
         \centering
         \includegraphics[width=1\textwidth]{images/query_results/4b4d0a9ee0c7283e5bfd69c402c73b2140bf90351c8f44d6809afe23c6dfaa50/Most_similar_images_found_by_doc2vec.pdf}
@@ -67,16 +61,11 @@ Apart from this difference, the query responses of the models are very similar.
 \end{figure}
 
 To further investigate the differences between the models, 
-the query responses of the models are compared qualitatively on documents that were found to be unusual in terms of visual inspection.
-The document in \autoref{fig:bad_query_resp_tfidf} is a table consisting of little text compared to other samples from the data corpus.
-The document in \autoref{fig:good_query_resp_sbert} is mostly handwritten, which is unusual since most other samples are computer-generated.
+the query responses of the models are compared qualitatively on query documents that are considered unusual in terms of their appearance.
+The document in \autoref{fig:good_query_resp_infer} is a table consisting of little text compared to other samples from the data corpus.
+The document in \autoref{fig:comp_query_resp} is mostly handwritten, which is unusual since most other samples are computer-generated.
 
-% good results
-The models produced good query responses on a query document consisting of little text as shown in \autoref{fig:good_query_resp_infer}.
-Even though at first glimpse, the response documents seem unrelated to the query document, they share multiple words, such as \textit{director}.
-Similar response documents do not have to be of similar visual appearance since the text embeddings only consider information from the text layer.
-
-\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includegraphics[width=1\textwidth]{images/query_results/42b7e56855c88c22ed01f381167e6f0887815e1ef7ea6b149be06ee1f8557b9e/Most_similar_images_found_by_infer.pdf}
     \caption[\infersent{} query responses]{\infersent{} query responses on a query document consisting of little text.
@@ -84,16 +73,12 @@ Similar response documents do not have to be of similar visual appearance since 
     \label{fig:good_query_resp_infer}
 \end{figure}
 
-% bad results
-There are query documents such as the one in \autoref{fig:comp_query_resp} that reveal the dissimilarity between certain models.
-Most models' response documents are similar to \autoref{fig:good_query_resp_sbert}.
-These response documents depict the same type of document, i.e.\ handwritten receipts for an annual fee.
-The \ac{tfidf} model, however, returns different response documents.
-The response documents from \autoref{fig:bad_query_resp_tfidf} are not handwritten and cover different content, 
-i.e.\ requesting payment and three documents concerning an address change.
-\ac{tfidf}'s results could thus be considered to be of poor quality.
+% good results
+The models produced good query responses on a query document consisting of little text as shown in \autoref{fig:good_query_resp_infer}.
+Even though at first glimpse, the response documents seem unrelated to the query document, they share multiple words, such as \textit{director}.
+Similar response documents do not have to be of similar visual appearance since the text embeddings only consider information from the text layer.
 
-\begin{figure}[h!]
+\begin{figure}[htp!]
     \begin{subfigure}{\textwidth}
         \centering
         \includegraphics[width=1\textwidth]{images/query_results/4542b223317eba23e4bda3e1536d61c8e2d2890a6439830ca8c62650bc1aac70/Most_similar_images_found_by_tfidf.pdf}
@@ -109,11 +94,21 @@ i.e.\ requesting payment and three documents concerning an address change.
     \end{subfigure}
 \caption[Qualitative comparison of query responses]{Qualitative comparison of query responses.
 The majority of the query document consists of handwritten text.
-The results of the \ac{tfidf} model are not very similar to the query document and thus, are considered to be of poor quality.
-The other models, for example, \ac{sbert}, produce results that are more similar to the query document.
+The results of the \ac{tfidf} model are not similar to the query document.
+The other models, including \ac{sbert}, produce results that are more similar to the query document.
 }
 \label{fig:comp_query_resp}
 \end{figure}
+
+
+% bad results
+There are query documents such as the one in \autoref{fig:comp_query_resp} that reveal the dissimilarity between certain models.
+Most models' response documents are similar to \autoref{fig:good_query_resp_sbert}.
+These response documents depict the same type of document, i.e.\ handwritten receipts for an annual fee.
+The \ac{tfidf} model, however, returns different response documents.
+The response documents from \autoref{fig:bad_query_resp_tfidf} are not handwritten and cover different content, 
+i.e.\ requesting payment and three documents concerning an address change.
+\ac{tfidf}'s results could thus be considered to be of poor quality.
 
 % visual vs. textual similarity
 Since not only textual information but also visual information is encoded in the database, 
@@ -128,7 +123,7 @@ Most documents have a similar visual appearance, i.e.\ they have a stamp.
 None of the result documents originate from the same company as the query document.
 
 The second exemplary query document in \autoref{fig:comp_vis_query_resp_certificates} is a certificate.
-\ac{optics} clustering approach yields a response that is more similar to the query document than the \texttt{argmax} of the \ac{pca} compression
+The \ac{optics} clustering approach yields a response that is more similar to the query document than the \texttt{argmax} of the \ac{pca} compression
 because all its responses are from the same document type as the query document.
 Hence, the \ac{optics} clustering approach is considered to be superior to the \texttt{argmax} approach.
 
@@ -181,16 +176,14 @@ First, all query responses of a model irrespective of the query document are sav
 The cardinalities of the intersections of multiple sets are displayed in \autoref{fig:venn-comparison-models}.
 Since five models encode textual information, the Venn diagram consists of five circles.
 One should be cautious when interpreting the layout of the Venn diagram since 
-an intersection of documents that produces an empty set has a non-empty area in this visualization.
+the cardinality of an intersection of documents does not correlate with its area in this visualization.
 
 The Venn diagrams in \autoref{fig:venn-comparison-models} display the total number of shared response documents for 10 queries 
 and 3, 5 or 10 response documents respectively.
 The models produce rather dissimilar query results.
 Any combination of more than two models among the green (\ac{d2v}), orange (\ac{sbert}), red (\ac{tfidf}) and blue (\ac{use}) models 
 seem to produce rather dissimilar results 
-as the number in the respective areas at the bottom is close to zero across all Venn diagrams.
-The blue (\ac{use}) and orange (\ac{sbert}) models, as well as the yellow (\infersent{}), orange (\ac{sbert}) and blue (\ac{use}) models, 
-yield consistently similar results.
+as the number in the respective areas is close to zero across all Venn diagrams.
 
 \begin{figure}%
     \centering
@@ -212,9 +205,12 @@ yield consistently similar results.
 Since the Venn diagrams compare the responses of the models irrespective of the query document, 
 another approach is to compare the query results of the models for each query document individually.
 This approach first constructs a matrix of the number of shared query results between all model pairs summed up over all query documents.
-It is possible to normalize the matrix to obtain the portion of shared query results.
-Thereafter the matrix is visualized using a heatmap.
 The matrix consists of five rows and five columns, where each row and column represents a model.
+The cell values are the number of shared query results between the models of the row and column.
+It is possible to normalize the matrix to obtain the portion of shared query results.
+If two models produce the same query results, the cell value is either the total number of query results or 1 if the matrix is normalized.
+Since the matrix is symmetric, only the upper triangular matrix is computed and the other half is mirrored.
+The matrix is visualized using a heatmap as displayed in \autoref{fig:heatmap-comparison-models}.
 The code snippet in \lst{lst:sim-matrix} shows the calculation of the similarity matrix.
 
 \begin{listing}[htp]
@@ -234,14 +230,6 @@ The code snippet in \lst{lst:sim-matrix} shows the calculation of the similarity
     \label{lst:sim-matrix}
 \end{listing}
 
-The cell values are the number of shared query results between the models of the row and column.
-They are calculated by summing up the number of shared query results per document query.
-It is possible to return the total number of shared documents per model pair
-or to normalize the matrix by dividing each cell value by the total number of query results.
-If two models produce the same query results, the cell value is either the total number of query results or 1 if the matrix is normalized.
-Since the matrix is symmetric, only the upper triangular matrix is computed and the other half is mirrored.
-The matrix is then visualized using a heatmap as displayed in \autoref{fig:heatmap-comparison-models}.
-
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includegraphics[width=1\textwidth]{images/comparison/Portion_of_equal_query_results_(2000_queries,_10_responses_query,_2048_document_corpus).pdf}
@@ -252,8 +240,6 @@ The matrix is then visualized using a heatmap as displayed in \autoref{fig:heatm
 
 % heatmap interpretation
 The heatmap in \autoref{fig:heatmap-comparison-models} shows that the models yield dissimilar query responses.
-It arose from 2000 queries with 10 responses each on a 2048 document corpus.
-The similarity matrix is normalized to present the portion of shared query results for a query.
 \ac{use} and \infersent{} produce the most similar responses, which indicates the maximum value of shared query results.
 However, the maximum is less than $0.5$ and thus, rather dissimilar.
 Any two-element combination of \ac{d2v}, \ac{tfidf} and \ac{sbert} produces the most dissimilar query results, 
@@ -269,13 +255,14 @@ The cardinalities are stored in a dictionary of lists indexed by the respective 
 Finally, the mean and standard deviation are computed for each model pair and stored in a \ac{csv} file.
 The results are displayed in \autoref{tab:mean_std_portion_shared_query_results}.
 The standard deviation does not exceed $0.1$ for any model pair and is similar among all combinations.
-As observed before, any two-element combination of \ac{d2v}, \ac{tfidf} and \ac{sbert} has the lowest mean portion ($18-20\%$) of shared query results.
+As observed before, any two-element combination of \ac{d2v}, \ac{tfidf} and \ac{sbert} has the lowest ($18-20\%$) mean portion of shared query results.
 
 \begin{table}[]
     \centering
     \caption{Mean and standard deviation of the average portion of shared response documents of different models on a 2048 document corpus.
     One trial produced five real values, i.e.\ one portion per model.
     A portion is obtained from 10 randomly sampled query documents with 10 responses each (excluding the query document in the response).
+    The sample selection is based on the same dataset for each trial and thus, query documents can be selected for multiple trials.
     There were 30 trials.
     }
     \begin{tabular}{|l|l|l|l|}

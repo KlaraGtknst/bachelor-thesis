@@ -1,3 +1,4 @@
+\newpage
 \section{Comparison with baseline topic analysis approach}\label{sec:evaluation-top-model-app}
 
 The baseline topic analysis \ac{t2v} offers a variety of built-in functionalities to the user.
@@ -8,8 +9,12 @@ Hence, this library meets the needs articulated by this work.
 
 % > 1 embedding model
 Opposed to \ac{t2v}, this thesis proposes a composite of different approaches to encoding visual and semantic information 
-and query for them using a database and visualization by the means of \wordcloud{}s.
+and query for them using a database.
 To be more specific, this thesis not only relies on one semantic embedding model but offers several techniques and an approach to incorporate visual information.
+
+% term frequency
+Moreover, the tool implemented in this thesis can display the term frequency of the document chosen in the detail component.
+The \ac{t2v} library does not offer a comparable service.
 
 % no topics for search terms
 However, it is not possible to query for topics of the corpus which best describe a search term.
@@ -21,7 +26,3 @@ The detail view enables the investigation of similar documents in terms of diffe
 Due to \ac{t2v}'s architecture, documents and words are mapped into the same \ac{vsm}.
 Hence, the topic vector definition and representation by its closest words are more meaningful than the approach of the thesis. 
 In this thesis, a topic is represented by frequent words in the set of documents that are not necessarily meaningful. 
-
-% term frequency
-The tool implemented in this thesis can display the term frequency of the document chosen in the detail component.
-The \ac{t2v} library does not offer a comparable service.

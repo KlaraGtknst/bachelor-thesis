@@ -94,7 +94,7 @@ There are three main components, which are used to display the data:
 \end{itemize}
 
 
-\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includegraphics[width=1\textwidth]{images/UI/Home_component.png}
     \caption[Home component of the frontend]{Home component of the frontend.
@@ -104,8 +104,7 @@ There are three main components, which are used to display the data:
     \label{fig:home_comp}
 \end{figure}
 
-
-\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includegraphics[width=1\textwidth]{images/UI/Home_detail.png}
     \caption[Detail component of the frontend]{Detail component of the frontend.
@@ -115,8 +114,7 @@ There are three main components, which are used to display the data:
     \label{fig:detail_comp}
 \end{figure}
 
-
-\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includegraphics[width=1\textwidth]{images/UI/Top2Vec_Topics.png}
     \caption[Topic component of the frontend]{Topic component of the frontend.
@@ -126,20 +124,3 @@ There are three main components, which are used to display the data:
     }
     \label{fig:top2vec_topic_comp}
 \end{figure}
-
-
-% To change between the components, the routes have to be defined.
-% The routes are defined in the \texttt{app-routing.module.ts} file, as shown in \autoref{lst:angular_routing}.
-
-% \begin{listing}[htp]
-%     \begin{minted}{typescript}
-%         const routes: Routes = [
-%             { path: 'topics', component: TopicsComponent},
-%             { path: ':id', component: DocumentDetailComponent},
-%             { path: '', component: HomeComponent},
-%           ];
-%     \end{minted}
-%     \caption[Definition of routes using \angular{}]{Definition of routes in \angular{} in the \texttt{app-routing.module.ts}.
-%     }
-%     \label{lst:angular_routing}
-% \end{listing}
