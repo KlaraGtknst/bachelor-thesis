@@ -1,0 +1,34 @@
+% models/ embeddings
+\ac{ml} techniques usually require numerical data as input.
+Therefore, in order to utilize \ac{ml} techniques, textual data is often represented as real-valued vectors.
+Depending on the approaches, vectors either represent single words, sentences or whole documents as vectors.
+The models used in this work are briefly introduced in the following.
+More detailed information can be found in \autoref{sec:embeddings}.
+
+% TFIDF
+The \acs*{tfidf} model is a widely used model for text representation.
+Even though \citeauthor{tfidf2008} discuss \acs*{tfidf}'s drawbacks the model is incorporated in this work due to its simplicity.
+
+% CBOW, Skip-gram
+Well-established \acs*{w2v} models for this task are \acs*{cbow} and Skip-gram which are discussed by \citeauthor{WordRep2013}.
+The authors found that these \acs*{w2v} models produce high-quality word embeddings on large datasets \cite{WordRep2013}.
+These \acs*{w2v} models form the basis of so-called \ac{d2v} models which embed whole documents.
+The \acs*{pvdm} is an extension of \acs*{cbow} to work on a set of documents or paragraphs instead of words and is used in this work.
+
+% SBERT
+A more complex model is the \acs*{sbert} model \cite{HfsentTrans2019}.
+This model is an extension of the \acs*{bert} model which set new state-of-the-art results in many \ac{nlp} tasks.
+\citeauthor{HfsentTrans2019} show that \acs*{bert} is not suitable for certain similarity measures, such as cosine similarity.
+Moreover, they argue that \acs*{sbert} overcomes \acs*{bert}'s shortcomings.
+
+% Infersent
+The \infersent{} model is a sentence embedding model \cite{inferSent2018}.
+\citeauthor{inferSent2018} state that it outperforms models trained in an unsupervised fashion.
+They train it on a labeled dataset and optimize the model's architecture.
+Since the model is open-source, it is used in this work.
+
+% USE
+Another embedding model of interest is the \acs*{use} model \cite{UniversalSentEnc2018}.
+\citeauthor{UniversalSentEnc2018} propose two model architectures which respectively are either superior with regard to accuracy or resource consumption.
+They claim that their model surpasses word-level embedding transfer learning on several \acs*{nlp} tasks.
+Due to the fact that the pretrained models are open-source, the computationally more efficient one is used in this work.
