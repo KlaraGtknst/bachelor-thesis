@@ -20,18 +20,6 @@ There are two different preprocessing approaches:
     is used to compress the images to 13-dimensional normalized greyscale images as displayed in \autoref{fig:preprocessed_docs_eigendocs}.
 \end{enumerate}
 
-% preprocessed images
-\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
-    \centering
-    \includegraphics[width=1\textwidth]{images/OPTICS/32x32/preprocessed_docs.pdf}
-    \caption[Preprocessing to 32x32 normalized greyscale pixels]{Preprocessing of 100 documents to 32x32 normalized greyscale pixels.
-    }
-    \label{fig:preprocessed_docs_32x32}
-\end{figure}
-
-%The reachability distance ordered by \ac{optics} is displayed in \autoref{fig:reachability_plots}.
-%The resulting clusters are displayed in \autoref{fig:optics_cluster}.
-
 % reachability plot
 \begin{figure}[!htb]%
     \centering
@@ -44,18 +32,20 @@ There are two different preprocessing approaches:
     \label{fig:reachability_plots}%
 \end{figure}
 
-% code
-The configurations used when initializing an \ac{optics} model greatly influence the clusters returned.
-The parameter \texttt{max\_eps} is infinity by default but can be specified by the user to reduce complexity and runtime.
-According to literature, \texttt{max\_eps} should be big enough to include almost all points in a single cluster.
-The way the reachability plot is used to extract clusters is dependent on the \texttt{cluster\_method}. 
-One can choose either \texttt{dbscan} or \texttt{xi} as a clustering method.
-The parameters \texttt{min\_samples} and \texttt{eps} influence the cluster sizes and number of clusters found for a given clustering approach.
-The value of \texttt{eps} defines the distance between two points to still be considered neighbours 
-and can be chosen by consulting the reachability plot.
-The code to initialize an exemplary \ac{optics} model is displayed in \lst{lst:optics_model}.
 
-\begin{listing}[htp]
+% preprocessed images
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includegraphics[width=1\textwidth]{images/OPTICS/32x32/preprocessed_docs.pdf}
+    \caption[Preprocessing to 32x32 normalized greyscale pixels]{Preprocessing of 100 documents to 32x32 normalized greyscale pixels.
+    }
+    \label{fig:preprocessed_docs_32x32}
+\end{figure}
+
+%The resulting clusters are displayed in \autoref{fig:optics_cluster}.
+
+
+\begin{listing}[!htp]
     \begin{minted}{python3}
         optics_model = OPTICS(cluster_method='dbscan', min_samples=2, max_eps=10, 
             eps=1.5)
@@ -65,3 +55,14 @@ The code to initialize an exemplary \ac{optics} model is displayed in \lst{lst:o
     }
     \label{lst:optics_model}
 \end{listing}
+
+% code
+The configurations used when initializing an \ac{optics} model greatly influence the clusters returned.
+The parameter \texttt{max\_eps} is infinity by default but can be specified by the user to reduce complexity and runtime.
+According to literature, \texttt{max\_eps} should be big enough to include almost all points in a single cluster.
+The way the reachability plot is used to extract clusters is dependent on the \texttt{cluster\_method}. 
+One can choose either \texttt{dbscan} or \texttt{xi} as a clustering method.
+The parameters \texttt{min\_samples} and \texttt{eps} influence the cluster sizes and number of clusters found for a given clustering approach.
+The value of \texttt{eps} defines the distance between two points to still be considered neighbours 
+and can be chosen by consulting the reachability plot which is displayed in \autoref{fig:reachability_plots}.
+The code to initialize an exemplary \ac{optics} model is displayed in \lst{lst:optics_model}.
