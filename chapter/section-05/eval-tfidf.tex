@@ -2,27 +2,19 @@
 
 The main obstacle to overcome is the high dimensionality of the \ac{tfidf} embeddings.
 Hence, the goal of the parameter selection is to find a way to reduce the dimensionality of the vocabulary to 2048 
-which is the maximum vector dimensionality of \databaseName{}.
+which is the maximum dense vector dimensionality of \databaseName{}.
 However, the quality of the embeddings should not decline too much.
 
 % parameter selection
 The choice of the preprocessor is investigated with regard to the goal of minimizing the vocabulary size.
 Both the default and a custom preprocessor are tested on a data corpus of 2048 randomly selected documents concerning the vocabulary (size).
 While the default preprocessor had a vocabulary size of 5893, the custom preprocessor had a size of 5585.
-The relative difference likely shrinks with a larger data set, 
+The relative differences between vocabulary sizes seem to be inversely proportional to the data set size 
 since the trend is already visible for two different data corpus sizes in \autoref{tab:tfidf-preprocessor-comparison}.
 The custom preprocessor is chosen because it had a smaller vocabulary size.
 The differences between both vocabularies are visualized in \autoref{fig:differences-vocabularies}.
 
-As stated in \autoref{sec:eval-db}, the \ac{tfidf} embeddings can be problematic 
-with regard to the maximal dimensionality of dense vectors stored in \databaseName{}.
-Hence, this work has to employ dimensionality reduction techniques to reduce the dimensionality of the embeddings.
-
-
-% Please add the following required packages to your document preamble:
-% \usepackage[table,xcdraw]{xcolor}
-% Beamer presentation requires \usepackage{colortbl} instead of \usepackage[table,xcdraw]{xcolor}
-\begin{table}[]
+\begin{table}[!htb]
     \caption[Comparison of the default and the custom \ac{tfidf} preprocessor]
     {Comparison of vocabulary sizes resulting from the default and the custom \ac{tfidf} preprocessor on different data corpus sizes.}
     \begin{tabular}{|p{0.55\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|}
@@ -36,7 +28,7 @@ Hence, this work has to employ dimensionality reduction techniques to reduce the
     \label{tab:tfidf-preprocessor-comparison}
 \end{table}
 
-\begin{figure}%
+\begin{figure}[!htb]%
     \centering
     \subfloat[\centering The terms only present in the vocabulary produced by the default preprocessor.]{{\includegraphics[width=6.8cm]{images/embeddings/tfidf/Word_cloud_in_vocabular_which_is_in_default_but_not_custom.pdf} }}%
     \qquad
@@ -46,14 +38,10 @@ Hence, this work has to employ dimensionality reduction techniques to reduce the
     \label{fig:differences-vocabularies}%
 \end{figure}
 
-% two fields in db
-Initially, there should have been two different \ac{tfidf} models.
-The first one should have been used to obtain documents which are similar to the query document.
-Therefore, terms that occur only once in the corpus should have been removed from the vocabulary.
-The second approach should have been used to obtain specific documents from the corpus.
-Hence, the vocabulary should consist of very document-specific terms and thus, \texttt{max\_df} would have been relatively low, to omit terms that occur in many documents.
-However, the restrictions imposed by the database implementation in terms of dimensionality limitations
-made it impossible to explore many parameter ranges.
-Therefore, only one \ac{tfidf} model is used in the end, whose parameters \texttt{min\_df} and \texttt{max\_df} are set to values 
-which kept the vocabulary size small and thus,
+As stated in \autoref{sec:eval-db}, the \ac{tfidf} embeddings can be problematic 
+with regard to the maximal dimensionality of dense vectors stored in \databaseName{}.
+The parameters \texttt{min\_df} and \texttt{max\_df} are set to values 
+which keep the vocabulary size small and thus,
 the dimensionality of the embeddings is reasonably small.
+Furthermore, this work employs dimensionality reduction techniques to reduce the dimensionality of the embeddings 
+if the embeddings have a higher dimensionality than 2048.

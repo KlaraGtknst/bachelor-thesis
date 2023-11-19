@@ -4,13 +4,15 @@ Since the dataset has no ground truth, the procedure used to pick the parameter 
 Hence, the evaluation is informal and the methods applied have arisen from regular consultation with experts from the tax office.
 Run times of different configurations are measured and compared.
 Parameters are chosen with respect to model-specific procedures, such as reachability plots for \ac{optics}.
-The models are compared to each other and their composition to the baseline topic analysis model \ac{t2v}.
+The models are compared to each other and 
+the tool constructed from the composition of the models is compared to the baseline topic analysis model \ac{t2v}.
 
 
- % Database
- \section{Database}\label{sec:eval-db}
-There is a variety of parameter values to choose from when working with databases and embeddings.
-These parameters include similarity metrics and the choice of query types.
+% Database
+\section{Database}\label{sec:eval-db}
+There is a variety of parameter values to choose from when working with databases.
+The choice of the similarity metric is discussed first.
+Secondly, the reasons for choosing \databaseName{} as a database are presented.
 
  \input{chapter/section-05/eval-similarity-measurements.tex}
 
