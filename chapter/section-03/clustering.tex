@@ -138,9 +138,10 @@ with core distance $core\_dist$ being the minimal distance $\varepsilon^{min}$ s
 of each element $y$ to its predecessor $x$ in the order list and thus, 
 a representation of the density necessary to keep two consecutive objects $x$ and $y$ in the same cluster \cite{OPTICS2013}.
 If $\varepsilon < RD(y)$, then $y$ is not density reachable from any of its predecessors and thus, 
-one can determine whether two points are in the same cluster for the information saved by \ac{optics} \cite{OPTICS2013, OPTICS1999}.
-If the core distance of an element is not NULL, i.e.\ it is a core object, and it is not density reachable from its predecessors, it is the start of a new cluster \cite{OPTICS1999}.
-Otherwise, the element is a noise point \cite{OPTICS1999}.
+one can determine whether two points are in the same cluster using the information saved by \ac{optics} \cite{OPTICS2013, OPTICS1999}.
+If the core distance of an element is not NULL, i.e.\ it is a core object, and it is not density reachable from its predecessors, 
+it is the start of a new cluster \cite{OPTICS1999}.
+Otherwise, the element is a noise point.
 According to \citeauthor{OPTICS2013}, the algorithm builds a spanning tree, which enables obtaining the clusters for a given $\varepsilon$ by returning the connected components 
 of the spanning tree after omitting all edges with $\varepsilon < RD(y)$ \cite{OPTICS2013}.
 The relationship between $\varepsilon$, cluster density and nested density-based clusters is displayed in \autoref{fig:nested_density_cluster}.
@@ -161,7 +162,8 @@ The relationship between $\varepsilon$, cluster density and nested density-based
 
 This procedure enables the extraction of clusters for arbitrary $0 \le \varepsilon_i \le \varepsilon$ \cite{OPTICS_kMeans_2016, OPTICS1999}.
 According to \citeauthor{OPTICS2013}'s work, even though the clustering algorithm is expensive, the extraction only needs linear time.
-According to \cite{OPTICS1999}, the algorithm yields good results if the input parameters $minPts$ and $\varepsilon$ are "large enough" and thus, the algorithm is rather insensitive to the input parameters.
+\citeauthor{OPTICS1999} claim that the algorithm yields good results if the input parameters $minPts$ and $\varepsilon$ are "large enough" and thus, 
+the algorithm is rather insensitive to the input parameters.
 
 % effect of eps (reachability plot)
 The smaller $\varepsilon$ is chosen, the more objects will be identified as noise and thus, the algorithm will not identify clusters with low density, 

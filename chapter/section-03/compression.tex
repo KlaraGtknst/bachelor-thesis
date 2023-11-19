@@ -1,6 +1,6 @@
 \section{Compression of data}\label{sec:compression}
 
-According to \citeauthor{clusteringDocs2020}, a decomposition of data that preserves the inner structure in inherent clusters. 
+According to \citeauthor{clusteringDocs2020}, a decomposition of data preserves the inner structure in inherent clusters. 
 When data analysis techniques are applied to reasonably low-dimensional data, the results usually improve.
 Moreover, compressed data is less memory-consuming and often less difficult to interpret by humans 
 since there are more methods to visualize low-dimensional data.
@@ -24,32 +24,14 @@ The low-dimensional representation can be decoded into an approximation of the h
 \end{figure}
 
 An undercomplete \ac{ae} is a feed-forward \ac{nn}, which consists of an encoder and a decoder.
+\acp{nn} are discussed in \autoref{sec:neural_network}.
 It learns efficient (non-correlated) encodings of the input data \cite{autoencoder2020}.
 It is \textit{undercomplete} because the dimensionality of the hidden layer, or so-called hidden space, 
 is lower than the dimensionality of the input layer \cite{seminar_ies}.
-However, while training, the network employs backpropagation to update the parameters of the network \cite{seminar_ies}.
-
-The \ac{ae}'s goal is to approximate the identity function $f_\theta(X) = X$ (trivial solution eliminated) for input $X$ and 
-function parameters to be learned $\theta$ \cite{seminar_ies}.
 The input and output layers have the same dimensionality.
 
-% \begin{equation}
-%     Z = f_E(W_\theta X + B_\theta)
-%     \label{eq:encoder}
-% \end{equation}
-
-% The formulae for the encoder and the decoder are given in \autoref{eq:encoder} and in \autoref{eq:decoder}.
-% The parameter $W_\theta$ is the weight, whereas $B_\theta$ is the bias.
-% The activation functions $f_E$ and $f_D$ are possibly non-linear and thus, the \ac{nn} is capable of more than linear regression.
-% $Z$ is the low-dimensional representation of the input $X$ and $X'$ is the reconstructed version of $Z$.
-
-% \begin{equation}
-%     X' = f_D(W_\theta Z + B_\theta)
-%     \label{eq:decoder}
-% \end{equation}
-
-% The loss function $L$ is defined as the reconstruction error between the input $X$ and the output $X'$ \cite{seminar_ies}.
-% In order to train the \ac{ae}, the loss function is minimized \cite{autoencoder2021}.
-
+The network employs backpropagation to update the parameters of the network during training.
+The \ac{ae}'s goal is to approximate the identity function $f_\theta(X) = X$ (trivial solution eliminated) for input $X$ and 
+function parameters to be learned $\theta$ \cite{seminar_ies}.
 
 \input{chapter/section-03/eigenfaces}

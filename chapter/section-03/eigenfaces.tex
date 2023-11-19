@@ -16,19 +16,21 @@ The greyscale input images are two-dimensional arrays of numbers: $\textbf{x} = 
 The images are reshaped to an one-dimensional array $\textbf{x} = \left[x_1, x_2, ..., x_n  \right]^{T} \in \mathbb{R}^{n}$, 
 where $n = \left\| \textbf{S} \right\|$ and $\mathbb{R}^{n}$ is the $n$-dimensional euclidean space \cite{eigenfaces1997}.
 % background
-Some authors stress that the background is removed to omit values outside the face area \cite{eigenfaces1991}.
-% dimension
-In literature, typically, the original images' dimension is 512x512 \cite{eigenfaces1991} or 64x64 \cite{face-recognition2020}, 
-whereas the projected images' dimension is 16x16 \cite{eigenfaces1991} or 250 \cite{face-recognition2020} respectively.
+Some authors remove the background to omit values outside the face area \cite{eigenfaces1991}.
 % normalization/ centering
-\citeauthor{eigenfaces1991} stress that the data should be normalized, i.e.\ centered: 
-$\Phi_{k} = \mathbf{x}_{k} - {\psi }$. 
-$\Phi_{k}$ being the difference of the $k$-th training image and the average image $\psi = \frac{1}{N}\sum_{k=1}^{N}\textbf{x}_{k}$, $N$ being the number of training images.
+\citeauthor{eigenfaces1991} stress that the data should be normalized, i.e.\ centered, as computed in \autoref{eq:center_eigenfaces}. 
+$\Phi_{k}$ is the difference of the $k$-th training image and the average image calculated using \autoref{eq:average_image}, 
+$N$ being the number of training images.
+
+\begin{align}
+    \Phi_{k} = \mathbf{x}_{k} - {\psi }\label{eq:center_eigenfaces}\\
+    \psi = \frac{1}{N}\sum_{k=1}^{N}\textbf{x}_{k}\label{eq:average_image}\\
+    \textbf{x} = \sum_{i=1}^{n}\hat{x}_{i} \textbf{e}_{i}\label{eq:decomposition}
+\end{align}
 
 % decomposition
 The next step is to find an alternative lower-dimensional representation of the images, which preserves most of the information of the original image.
-In mathematical terms, this decomposition can be expressed as 
-$\textbf{x} = \sum_{i=1}^{n}\hat{x}_{i} \textbf{e}_{i}$, 
+In mathematical terms, this decomposition can be expressed using the formula in \autoref{eq:decomposition}, 
 %$\hat{x}_{i}$ being inner product of $\textbf{x}$ and $\textbf{e}_{i}$,
 $\textbf{e}$ being an orthogonal basis 
 \cite{eigenfaces1997}.
@@ -59,18 +61,13 @@ There are two approaches in the literature to determine the number of \eigenface
         A plot displaying the cumulative explained variance and a threshold of 90\% is shown in \autoref{fig:det_n_comp} (a).
 
     \item The number of \eigenfaces{} $m$ is chosen using the reconstruction error-complexity trade-off. % \cite{face-recognition2008}.
-        The reconstruction error, i.e.\ the \ac{rmse} of the original image $X$ and the inverse transformed image $X'$, is 
+        The reconstruction error, i.e.\ the \ac{rmse} of the original image $x$ and the inverse transformed image $x'$, is 
         calculated in \autoref{eq:rsme} for different values of $m$.
         The "elbow" point marks the point where the reconstruction error decreases only slightly for increasing $m$ and thus, is an indicator for the optimal $m$.
         A visualization of this approach is shown in \autoref{fig:det_n_comp} (b).
 \end{enumerate}
-
-\begin{equation}
-    \text{RSME} = \sqrt{\frac{\sum_{i=1}^{N}(x_{i}-x'_i)^2}{N}}
-    \label{eq:rsme}
-\end{equation}
  
-\begin{figure}%
+\begin{figure}[!htb]%
     \centering
     \subfloat[\centering The cumulative explained variance of the first $i \le n$ eigenvectors (sorted by eigenvalues $\lambda_i$).]
     {{\includegraphics[width=7cm]{images/Eigendocs/Eval-Params/cumulative_explained_variance.pdf}}}%
@@ -82,18 +79,26 @@ There are two approaches in the literature to determine the number of \eigenface
     \label{fig:det_n_comp}%
 \end{figure}
 
+
+\begin{align}
+    \text{RSME} = \sqrt{\frac{\sum_{i=1}^{N}(x_{i}-x'_i)^2}{N}}\label{eq:rsme}\\
+    \textbf{C} \simeq \frac{1}{N}\sum_{k=1}^{N}\textbf{x}_{k}\textbf{x}_{k}^{T} = \frac{1}{N}\textbf{X}\textbf{X}^{T}\label{eq:approx_covariance_matrix}\\
+    \textbf{e}_i = \frac{1}{\sqrt{\lambda_i}}\textbf{X}\textbf{v}_i\label{eq:get_eigenvectors}
+\end{align}
+
 % calculation of eigenvectors of covariance matrix C
 In order to reduce calculation complexity, $C$ is approximated.
 % 1997
-\citeauthor{eigenfaces1997} propose the approximation $\textbf{C} \simeq \frac{1}{N}\sum_{k=1}^{N}\textbf{x}_{k}\textbf{x}_{k}^{T} = \frac{1}{N}\textbf{X}\textbf{X}^{T}$, 
+\citeauthor{eigenfaces1997} propose the approximation displayed in \autoref{eq:approx_covariance_matrix}, 
 with $\textbf{X} = \left[ \textbf{x}_{1}, \textbf{x}_{2}, ..., \textbf{x}_{N} \right]$, $\textbf{x}_i \in \mathbb{R}^{n}$ \cite{eigenfaces1997}.
 
 Finding the eigenvectors of $\textbf{X}\textbf{X}^{T}$ is still computationally expensive, since $\textbf{X}\textbf{X}^{T}$ is a $n$ by $n$ matrix.
 According to \citeauthor{eigenfaces1997}, the eigenvectors of $\textbf{X}\textbf{X}^{T}$ can be calculated by using the eigenvectors of $\textbf{X}^{T}\textbf{X}$.
-The eigenvectors $\textbf{e}_i \in \mathbb{R}^{n}$ of $\textbf{X}\textbf{X}^{T}$ can be derived from the eigenvectors $\textbf{v}_i \in \mathbb{R}^{N}$ of $\textbf{X}^{T}\textbf{X}$ by 
-$\textbf{e}_i = \frac{1}{\sqrt{\lambda_i}}\textbf{X}\textbf{v}_i$ as discussed in more detail in \cite{eigenfaces1997}.
+The eigenvectors $\textbf{e}_i \in \mathbb{R}^{n}$ of $\textbf{X}\textbf{X}^{T}$ can be derived from the eigenvectors 
+$\textbf{v}_i \in \mathbb{R}^{N}$ of $\textbf{X}^{T}\textbf{X}$ 
+using \autoref{eq:get_eigenvectors} as discussed in more detail in \cite{eigenfaces1997}.
 According to \citeauthor{dim_reduction2021}, the problem is reduced to a $N$ by $N$ matrix, which is computationally less expensive to solve assuming $N \ll n$.
-Eigenvectors can be calculated using \ac{svd} \cite{eigenfaces1997}.
+The eigenvectors can be calculated using \ac{svd} \cite{eigenfaces1997}.
 \ac{svd} is a method, which decomposes a matrix into the so-called left singular vector, the diagonal matrix and the right singular vector \cite{dim_reduction2021}. 
 
 % classification/ compare

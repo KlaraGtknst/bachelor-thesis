@@ -1,19 +1,27 @@
 \subsection{\acl*{sbert}}\label{subsec:hf-sent-ransformers}
 
 \acf{sbert} is an enhancement of \ac{bert}.
+The applicability of \ac{bert} is limited because it does not produce independent embeddings for single sentences \cite{HfsentTrans2019}.
+Moreover, \citeauthor{HfsentTrans2019} found that common similarity measurements, for instance, the ones discussed in \autoref{sec:similarity-measurement}, 
+do not perform well on sentence embeddings produced by \ac{bert}.
+
 % BERT
-\ac{bert} is a pre-trained transformer network.
-It predicts a target value based on two input sentences for sentence classification or sentence-pair regression tasks \cite{HfsentTrans2019}.
-The input sentences are separated by a special token \texttt{[SEP]}.
-The base model applies multi-head attention over 12 transformer layers, whereas the large model applies multi-head attention over 24 transformer layers.
+\ac{bert} is a pre-trained transformer network which 
+predicts a target value based on two input sentences for sentence classification or sentence-pair regression tasks \cite{HfsentTrans2019}.
+The \ac{bert} base model applies multi-head attention over 12 transformer layers, whereas the large model applies multi-head attention over 24 transformer layers.
 The attention mechanism enables access to all hidden states as opposed to only the last hidden state \cite{attention_book2023}.
 It derives its output vector as a dynamic weighted sum of the hidden states.
 The final label is derived from a regression function, which receives the output of the $12^\text{th}$ or $24^\text{th}$ layer, respectively.
-\citeauthor{HfsentTrans2019} state that \ac{bert} is not suitable for specific pair regression tasks, 
-since the number of input sentence combinations is too big.
-Another shortcoming of \ac{bert} is that it does not produce independent embeddings for single sentences.
-Moreover, \citeauthor{HfsentTrans2019} found that common similarity measurements, for instance, the ones discussed in \autoref{sec:similarity-measurement}, 
-do not perform well on sentence embeddings produced by \ac{bert} \cite{HfsentTrans2019}.
+
+\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=0.7\textwidth]{images/embeddings/SBERT/SBERT.svg}
+    \caption[Architecture of \acs*{sbert}]{Architecture of \acs*{sbert} cf. \cite{HfsentTrans2019}.
+    \acs*{bert} is extended by a pooling layer.
+    The input is a sentence and the output is a fixed-sized embedding.
+    }
+    \label{fig:sbert}
+\end{figure}
 
 % SBERT
 \ac{sbert} provides fixed-sized embeddings for single sentences \cite{HfsentTrans2019}.
@@ -25,16 +33,6 @@ i.e.\ multiple \ac{bert} networks with tied weights, are constructed.
 To perform classification or inference tasks, layers are added on top of the \ac{sbert} network.
 % training corpus
 \ac{sbert} is trained on the \ac{snli} dataset \cite{HfsentTrans2019, snli_dataset}.
-
-\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
-    \centering
-    \includesvg[width=0.7\textwidth]{images/embeddings/SBERT/SBERT.svg}
-    \caption[Architecture of \acs*{sbert}]{Architecture of \acs*{sbert} cf. \cite{HfsentTrans2019}.
-    \acs*{bert} is extended by a pooling layer.
-    The input is a sentence and the output is a fixed-sized embedding.
-    }
-    \label{fig:sbert}
-\end{figure}
 
 % performance
 According to \citeauthor{HfsentTrans2019}, \ac{sbert} outperforms \infersent{} and \ac{use} on Semantic Textual Similarity tasks 

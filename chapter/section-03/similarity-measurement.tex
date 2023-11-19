@@ -1,9 +1,6 @@
 \section{Similarity measurement}\label{sec:similarity-measurement}
 
-% Embeddings represent texts as numerical vectors in a $N$-dimensional space.
-% This space is called \ac{vsm} \cite{soft_cosine2014}.
 Embeddings not only facilitate human interpretability of relationships between texts, 
-%using the text's respective point in a $N$-dimensional space, 
 but they also enable the use of metrics, i.e.\ similarity measures, to quantify the similarity between texts \cite{IR2011, euclidean_l2_norm2015}.
 
 There are several similarity measures, such as the dot product quantifying the number of shared tokens of two texts, 
@@ -29,13 +26,13 @@ The more $a$ and $b$ differ, the greater is the distance $d_E(a,b)$ between them
 
 \subsection{Cosine Similarity}\label{subsec:cosine-similarity}
 
-\begin{figure}%
+\begin{figure}[!htb]%
     \centering
     \subfloat[\centering Similar vectors $a, b$.]
-    {{\includesvg[width=7cm]{images/cosine_similarity/similar_vectors_cos_sim.svg}}}%
+    {{\includesvg[width=5cm]{images/cosine_similarity/similar_vectors_cos_sim.svg}}}%
     \qquad
     \subfloat[\centering Dissimilar vectors $a, b$.]
-    {{\includesvg[width=7cm]{images/cosine_similarity/dissimilar_vectors_cos_sim.svg} }}%
+    {{\includesvg[width=5cm]{images/cosine_similarity/dissimilar_vectors_cos_sim.svg} }}%
     \caption[Cosine Similarity]{Cosine Similarity between two vectors considers the angle between them.}%
     \label{fig:cos_sim_vectors}%
 \end{figure}
@@ -47,7 +44,7 @@ The similarity between two texts is measured by the cosine of the angle between 
 The cosine similarity is defined in \autoref{eq:cosine-similarity} \cite{soft_cosine2014}.
 For positive vectors, for instance, produced by \ac{tfidf}, it is a value between $0$ and $1$.
 If the angle is close to zero degrees, the cosine similarity is close to $1$ and the vectors are similar.
-Otherwise, if the angle is close to $90$ degrees, the cosine similarity is close to $0$ and the vectors are dissimilar.
+If the angle is close to $90$ degrees, the cosine similarity is close to $0$ and the vectors are dissimilar.
 Both a similar and a dissimilar pair of vectors are depicted in \autoref{fig:cos_sim_vectors}.
 
 \begin{equation}

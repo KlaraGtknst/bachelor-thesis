@@ -37,12 +37,12 @@ To query for a specific value, one has to specify the field of interest and the 
 
 \databaseName{} preprocesses the query value before starting the search \cite{Elasticsearch-guide}.
 The default preprocessing steps of the so-called default analyzer include tokenization and lowercasing. 
-Omitting stop words is disabled by default, but it is possible to provide custom stop words or use the English stop word list.
+Omitting stop words is disabled by default, but custom stop words can be provided by the user or the English stop word list can be used.
 It is possible to create custom tokenizers, which split the query value into tokens of a certain maximum length.
 
-Another useful feature of \databaseName{} is the multi-term synonym expansion.
-When the user queries a specific phrase, \databaseName{} expands the query to include synonyms of the query terms \cite{Elasticsearch-guide}.
-The maximum number of expansion terms is set to 50 by default but can be configured by the user \cite{Elasticsearch-guide}.
+Another useful feature of \databaseName{} is the multi-term synonym expansion where
+the user query is expanded to include synonyms of the query terms \cite{Elasticsearch-guide}.
+The maximum number of expansion terms is set to 50 by default but can be configured by the user.
 By default, the multi-term synonym expansion option is enabled.
 
 \databaseName{} also provides the option to perform fuzzy matching instead of exact search.
@@ -52,10 +52,10 @@ By default, this option is not enabled but can be enabled and configured individ
 
 % knn-search
 Another search option of \databaseName{} is the \ac{knn} search on real-valued vectors.
-The return value of a \ac{knn} search is the \texttt{k} nearest neighbours in terms of a certain distance function of a query vector \cite{Elasticsearch-kNN-HNSW}.
+The return value of a \ac{knn} search is the \texttt{k} nearest neighbours to the query vector in terms of a certain distance function \cite{Elasticsearch-kNN-HNSW}.
 In order to perform \ac{knn} search on a field it has to be of type \texttt{dense\_vector}, 
 indexed and a \texttt{similarity} measure has to be defined when initializing the database \cite{Elasticsearch-guide}.
-The query has the same dimension as the vectors stored in the database.
+The query value must have the same dimension as the vectors stored in the database.
 A \ac{knn} search either returns the exact brute-force nearest neighbours or 
 an approximation of the nearest neighbours calculated by the \ac{hnsw} algorithm \cite{Elasticsearch-kNN-HNSW, Elasticsearch-guide}.
 \ac{hnsw} is a graph-based algorithm \cite{Elasticsearch-kNN-HNSW}.

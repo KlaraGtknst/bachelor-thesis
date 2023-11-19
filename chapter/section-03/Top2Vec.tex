@@ -1,13 +1,13 @@
 \subsection{\acl*{t2v}}\label{subsec:top2vec}
 
-The approach \ac{t2v} addresses several problems of state-of-the-art topic analysis approaches, such as \ac{lda} \cite{Top2Vec2020}.
+The approach \acf{t2v} addresses several problems of state-of-the-art topic analysis approaches, such as \ac{lda} \cite{Top2Vec2020}.
 \ac{t2v} does not require the user to specify the number of topics $k$, 
 i.e.\ it does not discretize the topic space into $k$ topics, 
 and it does not require stop word removal or lemmatization.
 It considers the semantic meaning of words.
 \ac{t2v} only associates one topic with a document.
 
-\begin{figure}%
+\begin{figure}[!htb]%
     \centering
     \subfloat[\centering Skip-gram architecture cf. \cite{Topic2Vec2015}.]
     {{\includesvg[width=6.5cm]{images/topic_modelling/Skip-gram_Top2Vec.svg}}}%
@@ -22,29 +22,21 @@ It considers the semantic meaning of words.
 
 % word2vec and doc2vec
 \ac{t2v} is based on \ac{w2v} and \ac{d2v}.
-The documents are embedded using \ac{pvdbow}.
+The documents are embedded using the \ac{d2v} model \ac{pvdbow}.
 The two learning architectures \ac{cbow} and Skip-gram from \ac{w2v} are adapted to train the model as depicted in \autoref{fig:top2vec_architectures} \cite{Topic2Vec2015}.
-The Skip-Gram learning task is to predict the document a word came from \cite{Top2Vec2020, Topic2Vec2015}.
-Similar to \ac{d2v}, \ac{t2v} not only embeds words and documents in the same feature space but also topics \cite{Top2Vec2020, Topic2Vec2015}.
+The Skip-Gram learning task is to predict the context a word came from \cite{Top2Vec2020, Topic2Vec2015}.
+\ac{t2v} embeds words, documents and topics in the same feature space.
 The similarity between embeddings can be measured using the cosine similarity function \cite{Topic2Vec2015}.
-\citeauthor{Top2Vec2020} regards each point in the \ac{vsm} as a topic, described by its nearest words.
 
 % topics, dimensionality reduction & clustering
-\citeauthor{Top2Vec2020} states that topics are continuous and can be described by different sets of words \cite{Top2Vec2020}.
-Hence, topic analysis can be defined as the task of finding sets of informative words that describe a document.
+\citeauthor{Top2Vec2020} regards each point in the \ac{vsm} as a topic, described by its nearest words.
+The author states that topics are continuous and can be described by different sets of words \cite{Top2Vec2020}.
+Hence, topic analysis can be defined as the task of finding sets of informative words that describe the topic of a document.
 Documents in dense areas of the topic space are considered to be about the same topic.
 The density-based clustering algorithm \ac{hdbscan} is used to find these dense areas.
 Since \ac{hdbscan} has difficulties finding dense clusters in high-dimensional data, 
 the dimensionality reduction method \ac{umap} is applied \cite{Top2Vec2020}.
 The steps of the topic analysis procedure \ac{t2v} are depicted in \autoref{fig:top2vec}.
-
-A topic vector is denoted as the centroid or average of the document vectors that belong to a certain topic.
-%\citeauthor{Top2Vec2020} compared several topic vector definitions and found the arithmetic mean to be the best option \cite{Top2Vec2020}.
-The number of topics is derived from the number of dense areas.
-It is possible to merge topics to hierarchically reduce the number of topics to any number smaller than the number of topics initially found.
-
-% complexity
-%According to \citeauthor{Topic2Vec2015}, the complexity of \ac{t2v} is linear with the size of the dataset \cite{Topic2Vec2015}.
 
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
@@ -52,3 +44,7 @@ It is possible to merge topics to hierarchically reduce the number of topics to 
     \caption{Procedure of topic analysis using \acs*{t2v}.}
     \label{fig:top2vec}
 \end{figure}
+
+A topic vector is denoted as the centroid or average of the document vectors that belong to a certain topic.
+The number of topics is derived from the number of dense areas.
+It is possible to merge topics to hierarchically reduce the number of topics to any number smaller than the number of topics initially found.

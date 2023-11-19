@@ -3,6 +3,10 @@
 % general
 \infersent{} is a sentence embedding method trained in a supervised manner on the \ac{snli} dataset \cite{inferSent2018, HfsentTrans2019}.
 The trained model is transferable to other tasks.
+% Bi-LSTM as sentence encoder
+\citeauthor{inferSent2018} compare multiple architectures in their work.
+The \ac{bilstm} architecture with max pooling which was found to be the best option for the sentence encoder 
+is depicted in \autoref{fig:infersent_bilstm} \cite{inferSent2018}.
 
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
@@ -16,11 +20,6 @@ The trained model is transferable to other tasks.
     \label{fig:infersent_bilstm}
 \end{figure}
 
-% Bi-LSTM as sentence encoder
-\citeauthor{inferSent2018} compare multiple architectures in their work.
-The \ac{bilstm} architecture with max pooling which was found to be the best option for the sentence encoder 
-is depicted in \autoref{fig:infersent_bilstm} \cite{inferSent2018}.
-
 % LSTM
 A \ac{lstm} is a \ac{rnn} that is capable of learning long-term dependencies.
 \acp{rnn} have closed loops, i.e.\ feedback connections between the nodes \cite{rnn_book2001}.
@@ -33,7 +32,7 @@ Since the \ac{lstm} computes different numbers of hidden vectors $h_t$ depending
 a max pooling layer is applied to the hidden vectors which selects the maximum value for a patch of the hidden vectors.
 
 % Bi-LSTM
-According to \citeauthor{HfsentTrans2019}, it consists of a single \ac{bilstm} layer \cite{HfsentTrans2019}.
+According to \citeauthor{HfsentTrans2019}, \infersent{} consists of a single \ac{bilstm} layer \cite{HfsentTrans2019}.
 Given a sentence $(w_1, w_2, ..., w_T)$ of $T$ words, the \ac{bilstm} architecture computes the hidden representations $h_t$ for each word $w_t$.
 The hidden representation $h_t$ is the concatenation of the forward and backward hidden vectors $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$.
 $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$ are produced by a forward and backward \ac{lstm} respectively.
