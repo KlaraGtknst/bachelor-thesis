@@ -3,25 +3,11 @@
 In this work, an \ac{ae} is used to reduce the dimensionality of the \infersent{} and the \ac{tfidf} embeddings.
 Since the \infersent{} model is pretrained, it is not possible to change the dimensionality of the embedding without a considerably big effort,
 i.e.\ retraining the model on a sufficiently large data corpus and reconfiguring the model's parameters.
-% Moreover, retraining the model would destroy the purpose of its presence in this work, which is to provide a pretrained model and thus, 
-% reducing the complexity of training a model.
 Therefore, it is not feasible to change the dimensionality of the \infersent{} embedding, but rather add a supplementary layer after the model 
 to produce the final embedding.
 Similarly, the \ac{tfidf} embedding dimension correlates with the vocabulary size and thus, the size of the data corpus.
 Further reducing the vocabulary size would decrease the \ac{tfidf} model's quality.
 Hence, the idea is to use the encoder of an \ac{ae} to reduce the dimensionality of the \infersent{} and the \ac{tfidf} embedding.
-
-The implementation was provided by the blog post \cite{impl-src-ae}.
-It uses the library keras.
-The architecture is adapted to fulfil the needs of the specific context.
-It is presented in \autoref{fig:impl-ae}.
-In this work, only the encoder is used.
-% \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
-%     \centering
-%     \includesvg[width=0.6\textwidth]{images/embeddings/autoencoder/encoder-impl.svg}
-%     \caption{Architecture of the encoder of the \ac{ae}}
-%     \label{fig:impl-encoder}
-% \end{figure}
 
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
@@ -29,3 +15,8 @@ In this work, only the encoder is used.
     \caption[Architecture of the \acs*{ae}]{Architecture of the \acs*{ae}.}
     \label{fig:impl-ae}
 \end{figure}
+
+The implementation was provided by the blog post from \cite{impl-src-ae}.
+It uses the library keras\footnote{https://keras.io/ (last accessed: 19/11/2023)}.
+The architecture is adapted to fulfil the needs of the specific context.
+It is presented in \autoref{fig:impl-ae}.

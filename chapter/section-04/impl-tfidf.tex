@@ -4,7 +4,7 @@
 The \ac{tfidf} model has to be initialized and trained on the data corpus to build a data-specific vocabulary.
 An exemplary implementation is given in \lst{lst:impl-tfidf}.
 The \texttt{TfidfVectorizer} is provided by the \texttt{scikit-learn} package.
-When initializing the model, the parameters define not only the input type but also the way the data is preprocessed.
+%When initializing the model, the parameters define not only the input type but also the way the data is preprocessed.
 The \texttt{input} parameter defines the input type, i.e.\ \texttt{content} means that the input is a list of strings or bytes, 
 whereas \texttt{file} assumes the input has a \texttt{read} method and \texttt{filename} denotes a list of filenames as input \cite{tfidf-scikit-learn}.
 An embedding is obtained using the command from \lst{lst:encode-tfidf}.
@@ -37,32 +37,17 @@ It is possible to override the default with a custom preprocessing function.
 The parameters \texttt{min\_df} and \texttt{max\_df} define the minimum and maximum document frequency of a word in the corpus to be considered relevant.
 The default values are $1$, i.e.\ a term has to appear at least once, and $1.0$, i.e.\ a term appears at most in all documents, respectively \cite{tfidf-scikit-learn}.
 
-By default, the \texttt{scikit-learn} implementation uses the \texttt{norm='l2'} parameter, i.e.\ the Euclidean norm \cite{tfidf-scikit-learn}.
+By default, the \texttt{scikit-learn} implementation uses the \texttt{norm='l2'} configuration, i.e.\ the Euclidean norm.
 The implementation of \ac{tfidf} in \texttt{scikit-learn} is different from the original \ac{tfidf} definition.
 The difference is the calculation of the \ac{idf} part, which is given in \autoref{eq:tfidf-scikit-learn} from \cite{tfidf-scikit-learn}.
-The one is added to $M_{ij}$ due to the parameter \texttt{smooth\_id=True} by default to prevent zero divisions \cite{tfidf-scikit-learn}
+The one is added to $M_{ij}$ due to the parameter \texttt{smooth\_id=True} by default to prevent zero divisions 
 and to avoid logarithmic divergences due to a zero argument \cite{glove2014}.
-After calculating the \ac{tfidf} values, they are normalized by the Euclidean norm 
-$v_{norm} = \frac{v}{\left\| v \right\|_{2}} = \frac{v}{\sqrt{v_1^{2} + v_2^{2} + ... + v_M^{2}}}$.
+After calculating the \ac{tfidf} values, they are normalized by the Euclidean norm given in \autoref{eq:tfidf-norm}.
 
-\begin{equation}
-    \text{idf}(w_{ij}) = \log \frac{1 + M}{1 + M_{ij}} + 1    
-    \label{eq:tfidf-scikit-learn}
-\end{equation}
-
-% pipeline
-In this work, the text of the PDFs is first extracted, then preprocessed using a custom preprocessor and afterwards embedded using the \texttt{TfidfVectorizer}.
-The \ac{tfidf} weights are the embedding.
-Before storing the \ac{tfidf} weights in the database, they are enhanced with an all-zero flag.
-The all-zero flag ensures that no all-zero vectors are stored in the database by extending those that have a zero magnitude with a "1" entry and "0" otherwise.
-All-zero \ac{tfidf} weights indicate that a document does not have any terms with the vocabulary in common.
-Since the vocabulary is kept relatively small with respect to the number of different words in the data corpus to reduce the dimensionality of the embeddings, 
-it is not unlikely that a document does not contain any of the vocabulary terms.
-The all-zero flag is necessary because the cosine similarity used to query for similar documents in the database cannot handle vectors of zero magnitude.
-This alteration does not change the cosine similarity between non-zero magnitude vectors, 
-since the additional zero adds no supplementary information to the calculation of the cosine similarity.
-The vectors with a one in the all-zero flag column have a cosine similarity of one.
-The pipeline in \autoref{fig:tfidf_embedding} visualizes these steps.
+\begin{align}
+    \text{idf}(w_{ij}) = \log \frac{1 + M}{1 + M_{ij}} + 1\label{eq:tfidf-scikit-learn}\\
+    v_{norm} = \frac{v}{\left\| v \right\|_{2}} = \frac{v}{\sqrt{v_1^{2} + v_2^{2} + ... + v_M^{2}}}\label{eq:tfidf-norm}
+\end{align}
 
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
@@ -77,6 +62,22 @@ The pipeline in \autoref{fig:tfidf_embedding} visualizes these steps.
     \label{fig:tfidf_embedding}
 \end{figure}
 
+% pipeline
+The pipeline in \autoref{fig:tfidf_embedding} visualizes the steps carried out in this work 
+to derive the \ac{tfidf} embedding of a text and store it in the database.
+The text of the PDFs is extracted and preprocessed using a custom preprocessor.
+Thereafter, it is embedded using the \texttt{TfidfVectorizer}.
+The \ac{tfidf} weights are the embedding.
+Before storing the \ac{tfidf} weights in the database, they are enhanced with an all-zero flag.
+The all-zero flag ensures that no all-zero vectors are stored in the database by extending those that have a zero magnitude with a "1" entry and "0" otherwise.
+All-zero \ac{tfidf} weights indicate that a document does not have any terms with the vocabulary in common.
+Since the vocabulary is kept relatively small with respect to the number of different words in the data corpus to reduce the dimensionality of the embeddings, 
+it is not unlikely that a document does not contain any of the vocabulary terms.
+The all-zero flag is necessary because the cosine similarity used to query for similar documents in the database cannot handle vectors of zero magnitude.
+This alteration does not change the cosine similarity between non-zero magnitude vectors, 
+since the additional zero adds no supplementary information to the calculation of the cosine similarity.
+The vectors whose all-zero flag is one have a cosine similarity of one when being compared to each other.
+
 
 \begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
@@ -87,8 +88,7 @@ The pipeline in \autoref{fig:tfidf_embedding} visualizes these steps.
 \end{figure}
 
 % custom preprocessing
-In this work, a custom preprocessing function is used.
-The preprocessing steps are visualized in \autoref{fig:preprocessing}.
+The preprocessing steps of the custom preprocessor are visualized in \autoref{fig:preprocessing}.
 Firstly, the accents are stripped from the text.
 Then, all new line symbols are replaced with a whitespace.
 Afterwards, the text is converted to lowercase.
@@ -102,8 +102,8 @@ Then, the text is tokenized, i.e.\ split at whitespaces, and stop words are omit
 The stop word list is provided by the \texttt{nltk} package 
 and consists of common English stop words.
 Afterwards, the tokens are lemmatized.
-The lemmatizer used is \texttt{WordNetLemmatizer} from the \texttt{nltk} package.
-\texttt{WordNetLemmatizer} uses the English lexical database \texttt{WordNet} to return valid stems \cite{nltk-lemma-wordnet}
+The lemmatizer used is the \texttt{WordNetLemmatizer} from the \texttt{nltk} package.
+The \texttt{WordNetLemmatizer} uses the English lexical database \texttt{WordNet} to return valid stems \cite{nltk-lemma-wordnet}.
 In the end, the tokens are joined to a string and returned.
 
 % Autoencoder

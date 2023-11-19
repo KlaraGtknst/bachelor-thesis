@@ -37,15 +37,14 @@ Different stages of this approach are displayed in \autoref{fig:preprocessed_doc
 % procedure
 The documents are first read from a directory. 
 Subsequently, their first page is converted to an image and saved.
-When initially filling the database, these images are read from their directory.
-Firstly, the maximum height and width among all images in a corpus of 1000 randomly sampled images are calculated.
+The maximum height and width among all images in a corpus of 1000 randomly sampled images are calculated.
 The selection of 1000 images is used to reduce the run time of the script.
 The maximum height and width are used to create a white canvas for each image which forms the background.
-Every image is placed in the upper left corner.
+Every image is placed in the upper left corner of the canvas.
 Hence, assuming the selection of documents used to fit the \ac{pca} model is representative, 
-scaling is not necessary and thus, the portion of white pixels on the right and bottom side encodes the dimension of the former image.
+scaling is not necessary and thus, the portion of white pixels on the right and bottom side encodes the sizes of the original image.
 Therefore, the relative size of images in the corpus is incorporated in the resulting representation of the input images.
-However, some images are bigger than the maximum values of the selected images and as a consequence are scaled.
+However, some images of the test set are bigger than the maximum values of the selected images and as a consequence are scaled.
 
 \begin{listing}[htp]
     \begin{minted}[escapeinside=||]{python3}
@@ -74,7 +73,7 @@ intrinsically normalizes the data as described in \autoref{subsec:eigenface}.% a
         pca = decomposition.PCA(n_components=n_components, whiten=True, 
             svd_solver="randomized")
     \end{minted}
-    \caption[Initialization of the \ac{pca} instace]{Initialization of the \ac{pca} instace used to compress the image data.
+    \caption[Initialization of the \ac{pca} instace]{Initialization of the \ac{pca} instace used to compress the images.
     Since the \eigenfaces{} approach uses \ac{svd}, the adaption \eigendocs{} has to be implemented likewise applying a \texttt{svd\_solver}.
     }
     \label{lst:pca_svd}
