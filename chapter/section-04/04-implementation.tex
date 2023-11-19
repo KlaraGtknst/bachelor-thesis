@@ -66,15 +66,16 @@ the second one is used multiple times throughout the application to visualize re
 
 At the beginning of this thesis, it was unclear to what degree the tool, 
 i.e.\ the database fields and query results should be precomputed.
-A tool which is trained once offline is beneficial due to the amount of data.
-Since \databaseName{} provides fast queries, it is sufficient to rely on real-time queries.
+A tool which is trained once offline is beneficial due to the amount and the nature of the data.
+The Bahamas leak is static and thus, the database does not need to be updated with new documents.
+%Since \databaseName{} provides fast queries, it is sufficient to rely on real-time queries.
 
 In the course of filling the database with information, 
 one had to face obstacles not only regarding excessive memory usage but also long run times of methods.
 Early on it became evident that one either had to reduce accuracy and details in order to achieve less memory or 
 one had to settle for minutes to hours of calculations and bigger costs in terms of memory consumption.
 
-Beforehand, it was not as clear which information, i.e.\ fields in the database, seemed worth the time and memory.
+Beforehand, it was not clear which information, i.e.\ fields in the database, seemed worth the time and memory.
 For instance, initially, the image of the first PDF page of each document was saved alongside the other fields within the database.
 After scaling the amount of data stored in the database to about 2900 documents, 
 this approach caused severe issues in terms of memory usage.
