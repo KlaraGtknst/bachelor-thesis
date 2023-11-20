@@ -17,7 +17,7 @@ Besides the research questions, some additional findings are presented in the fo
 % 5.1 TFIDF & Infersent vector size
 The \infersent{} and the \ac{tfidf} model produce embeddings of large dimensionalities.
 Since changing the dimensionality would require retraining the models 
-or risking loss of quality, the dimensionality is not changed in this work.
+or risking the loss of quality, the dimensionality is not changed in this work.
 
 % 5.2. DB: Elasticsearch
 The database \databaseName{} was chosen because it offers built-in functionalities,
@@ -25,5 +25,5 @@ such as \ac{knn} and fuzzy text search.
 It is well-suited for flexible data since it is possible to insert 
 incomplete documents into the database.
 However, the maximum dimensionality of the embeddings is limited to 2048.
-If the task at hand requires higher dimensional embeddings, such as the \infersent{} model, 
+If the task at hand requires higher dimensional embeddings, such as the ones produced by the \infersent{} model, 
 another database may be more suitable.

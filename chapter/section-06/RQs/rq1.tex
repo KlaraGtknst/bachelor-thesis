@@ -1,37 +1,21 @@
 % RQ1: visual
 \paragraph{\ref{enum:rq1}} seeks to discover whether visual embedding methods are suitable 
 for the task of finding similar documents in large unstructured text corpora.
-% 1.1. PCA components
-In this work, the visual information of a document is encoded and stored in a database.
-When comparing the literature approach of resizing the original images to 32x32 images with the 
-\eigendocs{} approach for preprocessing the images (cf. \autoref{subsec:impl-optics}), 
-the latter approach was found superior.
-As discussed in \autoref{sec:evaluation-OPTICS}, 
-this is due to the fact that the \eigendocs{} approach preserves more information than the literature approach.
 
-The numerical data obtained from preprocessing the images is then reduced using \ac{pca}.
-In order to determine the number of components to be used for the \ac{pca}, 
-both the cumulative explained variance and the reconstruction error \ac{rsme} are considered 
-(cf. \autoref{subsec:eigenface}).
-Since the cumulative explained variance did not indicate a small number of components to be used, 
-the \ac{rsme} was chosen to be more meaningful.
-However, the \ac{rsme} calculation was found to be unsuitable for the dataset.
-This hypothesis is motivated by multiple random selections of documents from the dataset that
-did not indicate a clear "elbow" point.
-The difficulty of determining the number of components to be used for the \ac{pca} in a meaningful scientific way 
-do not satisfy the requirements of a scientific approach.
-
+In this work, firstly, the images are preprocessed using the \eigendocs{} approach as discussed in \autoref{subsec:impl-optics} and \autoref{sec:evaluation-OPTICS}. 
+Then, the numerical data obtained from preprocessing the images is then reduced using \ac{pca}.
+Determining the number of components to be used for \ac{pca} in a meaningful scientific way was problematic 
+(cf. \autoref{subsec:eigenface} \& \autoref{sec:evaluation-eigendocs}):
+The cumulative explained variance did not indicate a small number of components to use.
+The \ac{rsme} calculation was found to be unsuitable for the dataset since 
+multiple random selections of documents from the dataset did not indicate a clear "elbow" point.
 % 1.2. OPTICS vs. argmax
-\autoref{sec:evaluation-models} compares the \ac{optics} approach 
-with the \texttt{argmax} approach for two sample queries.
-The \texttt{argmax} approach returns inferior results to \ac{optics} on the query document 
-of type certificate in \autoref{fig:comp_vis_query_resp_certificates}.
-Consequently, \ac{optics} is considered the superior clustering method.
+The compressed images are clustered using the \ac{optics} algorithm and the \texttt{argmax} approach (cf. \autoref{sec:evaluation-models}).
 
 % 1.3. overall quality of query responses
-In general, the query responses which are based on visual information from \autoref{sec:evaluation-models} 
+In general, the query responses from \autoref{sec:evaluation-models} which are based on visual information 
 consist of visually similar documents.
-In terms of qualitative visual evaluation, the visual representation is considered to be 
+Hence, in terms of qualitative evaluation, the visual representation is considered to be 
 valuable means to find visually similar documents in large unstructured corpora.
 Consequently, the answer to \ref{enum:rq1} is positive but 
 acknowledges the lack of scientific justification for the proof of concept's configuration.

@@ -9,12 +9,12 @@ However, the quality of the embeddings should not decline too much.
 The choice of the preprocessor is investigated with regard to the goal of minimizing the vocabulary size.
 Both the default and a custom preprocessor are tested on a data corpus of 2048 randomly selected documents concerning the vocabulary (size).
 While the default preprocessor had a vocabulary size of 5893, the custom preprocessor had a size of 5585.
-The relative differences between vocabulary sizes seem to be inversely proportional to the data set size 
+The relative differences between vocabulary sizes seem to be inversely proportional to the dataset size 
 since the trend is already visible for two different data corpus sizes in \autoref{tab:tfidf-preprocessor-comparison}.
 The custom preprocessor is chosen because it had a smaller vocabulary size.
 The differences between both vocabularies are visualized in \autoref{fig:differences-vocabularies}.
 
-\begin{table}[!htb]
+\begin{table}[!htp]
     \caption[Comparison of the default and the custom \ac{tfidf} preprocessor]
     {Comparison of vocabulary sizes resulting from the default and the custom \ac{tfidf} preprocessor on different data corpus sizes.}
     \begin{tabular}{|p{0.55\textwidth}|p{0.2\textwidth}|p{0.2\textwidth}|}

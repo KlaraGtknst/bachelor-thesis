@@ -5,14 +5,13 @@
 When comparing different semantic embedding methods in \autoref{sec:evaluation-models}, 
 slight differences between the models become evident.
 \ac{tfidf}, \ac{d2v} and \ac{sbert} are most dissimilar to each other.
-The \ac{tfidf} approach performs rather poorly on unusual query documents such as handwritten documents.
+The \ac{tfidf} approach performs rather poorly on unusual query documents such as handwritten ones.
 
 % 2.2. Comparison of semantic and visual embedding methods.
-While the semantic responses are considered similar to the query document since
-they contain documents with the same content 
-or the same company name,
-the visual responses are more dissimilar from each other and the query document.
-However, the response documents and their order are different for the distinct semantic embeddings.
+The distinct response documents and their order are different for the same query document regarding different semantic embeddings.
+Different semantic embeddings can yield response documents containing the same company name.
+While the semantic responses' contents are considered similar to the query document and each other,
+the visual responses are more dissimilar from the query document and each other.
 
 % However, models such as \ac{tfidf} yield less meaningful results on certain query documents and 
 % are prone to performance deterioration with increasing document corpus, since the embeddings' 
