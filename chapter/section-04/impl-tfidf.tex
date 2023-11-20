@@ -49,7 +49,7 @@ After calculating the \ac{tfidf} values, they are normalized by the Euclidean no
     v_{norm} = \frac{v}{\left\| v \right\|_{2}} = \frac{v}{\sqrt{v_1^{2} + v_2^{2} + ... + v_M^{2}}}\label{eq:tfidf-norm}
 \end{align}
 
-\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=1\textwidth]{images/embeddings/tfidf/TFIDF_embedding.svg}
     \caption[\acs*{tfidf} pipeline]{\acs*{tfidf} pipeline.
@@ -79,7 +79,7 @@ since the additional zero adds no supplementary information to the calculation o
 The vectors whose all-zero flag is one have a cosine similarity of one when being compared to each other.
 
 
-\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=1\textwidth]{images/embeddings/tfidf/TFIDF_preprocessing.svg}
     \caption[Preprocessing]{Preprocessing visualized using an example text.

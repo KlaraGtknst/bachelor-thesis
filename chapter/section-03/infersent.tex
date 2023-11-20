@@ -8,18 +8,6 @@ The trained model is transferable to other tasks.
 The \ac{bilstm} architecture with max pooling which was found to be the best option for the sentence encoder 
 is depicted in \autoref{fig:infersent_bilstm} \cite{inferSent2018}.
 
-\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
-    \centering
-    \includesvg[width=0.9\textwidth]{images/embeddings/infersent/Infersent.svg}
-    \caption[Architecture of \infersent{}]{Architecture of the \acs*{bilstm} model with max pooling used for \infersent{} cf. \cite{inferSent2018}.
-    The input sentence $(w_1, w_2, ..., w_T)$ is read from both directions by a forward and a backward \acs*{lstm} 
-    producing $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$ respectively.
-    After concatenating $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$ to $h_t$, max pooling is applied.
-    The output is a fixed-sized embedding.
-    }
-    \label{fig:infersent_bilstm}
-\end{figure}
-
 % LSTM
 A \ac{lstm} is a \ac{rnn} that is capable of learning long-term dependencies.
 \acp{rnn} have closed loops, i.e.\ feedback connections between the nodes \cite{rnn_book2001}.
@@ -30,6 +18,18 @@ to what degree the current state contributes to the current input processed in t
 Hence, \ac{lstm} nodes are not only influenced by former outputs but also by their state.
 Since the \ac{lstm} computes different numbers of hidden vectors $h_t$ depending on the length of a sentence, 
 a max pooling layer is applied to the hidden vectors which selects the maximum value for a patch of the hidden vectors.
+
+\begin{figure}[!htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+    \centering
+    \includesvg[width=0.9\textwidth]{images/embeddings/infersent/Infersent.svg}
+    \caption[Architecture of \infersent{}]{Architecture of the \acs*{bilstm} model with max pooling used for \infersent{} cf. \cite{inferSent2018}.
+    The input sentence $(w_1, w_2, ..., w_T)$ is read from both directions by a forward and a backward \acs*{lstm} 
+    producing $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$ respectively.
+    After concatenating $\overrightarrow{h_t}$ and $\overleftarrow{h_t}$ to $h_t$, max pooling is applied.
+    The output is a fixed-sized embedding.
+    }
+    \label{fig:infersent_bilstm}
+\end{figure}
 
 % Bi-LSTM
 According to \citeauthor{HfsentTrans2019}, \infersent{} consists of a single \ac{bilstm} layer \cite{HfsentTrans2019}.

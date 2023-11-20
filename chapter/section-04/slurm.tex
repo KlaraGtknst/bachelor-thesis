@@ -10,7 +10,7 @@ The so-called \slurm{} daemons control nodes, partitions, jobs and job steps \ci
 A partition is a group of nodes and a job is the allocation of resources, i.e.\ compute nodes, to a user for a limited period of time.
 A basic visualization of the architecture is given in \autoref{fig:slurm-architecture}.
 
-\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=0.7\textwidth]{images/slurm/slurm_architecture}
     \caption[\slurm{} architecture]{\slurm{} architecture. The management node has a \texttt{slurmctld} daemon, while every compute node has a \texttt{slurmd} daemon.

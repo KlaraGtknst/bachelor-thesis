@@ -43,20 +43,6 @@ More precisely, only those embeddings needed are kept while the rest is discarde
     \label{lst:infersent-init}
 \end{listing}
 
-% GloVe
-% Initially, in this work, the \infersent{} model was based on \acs{glove} word embeddings.
-% \acs{glove} is a global log-bilinear regression model for unsupervised learning of vector representations of words \cite{glove2014}. 
-% According to \citeauthor{glove2014}, the model captures global corpus statistics directly.
-% %The complexity of the model is bound by $O(V^2)$, $V$ being the vocabulary size.
-% %However, \citeauthor{glove2014} claim it is better than the worst case stated above and rather in $O(C)$, $C$ being the corpus size.
-% The \acs{glove} model is trained on ratios of co-occurrence probabilities of words from the corpus, 
-% which correlate with the relationship between the words. % \cite{glove2014}.
-% \citeauthor{glove2014} introduce rules for a weighting function to ensure neither rare nor frequent co-occurrences are overweighted.
-% It is possible to download embeddings computed by \acs{glove}, instead of using the algorithm to generate them.
-% The precomputed word embeddings are stored in a 5.65 \ac{gb} text file.
-% The file contains 840 B tokens and a vocabulary of 2.2 M cased 300-dimensional vector representations of words \cite{download-glove}.
-% According to \citeauthor{UniversalSentEnc2018}, \acs{glove} introduces bias in terms of ageism, racism and sexism into the model.
-
 % own W2V
 In this work, a custom set of vector representations of words is used.
 The custom word embeddings are computed by a \ac{w2v} model trained on 2048 randomly selected documents from the Bahamas dataset 
@@ -64,10 +50,6 @@ which reduces the run time of the script.
 The only parameter which differs from the default settings of \ac{w2v} is the \texttt{vector\_size} which is set to 300.
 After the \ac{w2v} model is trained, the word embeddings are saved in a file 
 whose file path is the value of \texttt{w2v\_path} in line \ref{line:w2v_path} of \lst{lst:infersent-params}.
-% The file is post-processed to be compatible with the \infersent{} model.
-% To be more precise, only lines that consist of at least two whitespace-separated char sequences are kept.
-% Usually, word embeddings stored in a text file are structured in a way that 
-% the first char sequence is the word and the following numbers are the vector representation of the word.
 
 % Autoencoder
 In this work, an \ac{ae} is used to reduce the dimensionality of the \infersent{} embedding.

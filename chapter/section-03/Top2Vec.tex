@@ -7,7 +7,7 @@ and it does not require stop word removal or lemmatization.
 It considers the semantic meaning of words.
 \ac{t2v} only associates one topic with a document.
 
-\begin{figure}[!htb]%
+\begin{figure}[!htp]%
     \centering
     \subfloat[\centering Skip-gram architecture cf. \cite{Topic2Vec2015}.]
     {{\includesvg[width=6.5cm]{images/topic_modelling/Skip-gram_Top2Vec.svg}}}%
@@ -38,7 +38,7 @@ Since \ac{hdbscan} has difficulties finding dense clusters in high-dimensional d
 the dimensionality reduction method \ac{umap} is applied \cite{Top2Vec2020}.
 The steps of the topic analysis procedure \ac{t2v} are depicted in \autoref{fig:top2vec}.
 
-\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=1\textwidth]{images/topic_modelling/Top2Vec.svg}
     \caption{Procedure of topic analysis using \acs*{t2v}.}

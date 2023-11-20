@@ -37,7 +37,7 @@ The visual information is stored in the fields \texttt{pca\_image}, \texttt{pca\
     \label{tbl:Elasticsearch-fields}
 \end{table}
 
-\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=1\textwidth]{images/Elasticsearch/PDFs_to_database}
     \caption[Database procedure]{PDFs to Database. 
@@ -55,7 +55,7 @@ To facilitate working with and running the code, the initialization of the datab
 As depicted in \autoref{fig:init_db}, first the database is initialized by defining the index name and the mappings, i.e.\ the field names, types and sizes.
 This step is carried out using the method \texttt{create}.
 
-\begin{figure}[!htb] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
+\begin{figure}[!htp] % htp = hier (h), top (t), oder auf einer eigenen Seite (p).
     \centering
     \includesvg[width=0.5\textwidth]{images/Elasticsearch/init_db.svg}
     \caption[Initialization and filling of the database]{Procedure of initialization and filling of the database.}
@@ -157,8 +157,8 @@ The default analyzer is used for the full-text search since for instance configu
             query= {'match': {
                         'text': {'query':text,
                                 'fuzziness': 'AUTO',}
-                    }, 
-                }, source_includes=SRC_INCLUDES)
+                        }, 
+                    }, source_includes=SRC_INCLUDES)
     \end{minted}
     \caption[Query to an \databaseName{} database index]{Exemplary query to an \databaseName{} database index.
     The parameters \texttt{size} and \texttt{from\_} define the number of results to return and the start index of the results.
